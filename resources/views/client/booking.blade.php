@@ -39,7 +39,7 @@
                     <div class="result-salon" id="result-salon">
                         <div class="row justify-content-between ">
                             <div class="filter-district col-4" role="presentation">
-                                <select style="border: 2px solid black;padding:10px;,margin:10px;border-radius:5px;"
+                                <select style="border: 2px solid black;padding:10px;margin:10px;border-radius:5px;"
                                     id="Cate">
                                     <option value="">Tất cả Quận/Huyện</option>
                                  
@@ -789,6 +789,7 @@
 @endsection
 
  
+
 <style>
     .btn-selected{
         
@@ -809,3 +810,4 @@
     });
 </script>
 @endsection
+

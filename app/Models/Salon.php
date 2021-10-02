@@ -24,3 +24,4 @@ class Salon extends Model
         return $this->hasMany(Time::class,'salon_id','id');
     }
 }
+
