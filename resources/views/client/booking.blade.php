@@ -114,7 +114,7 @@ Thông tin đặt lịch
                                             <div class="" id="c_s_{{$item['id']}}_{{$service['id']}}">
                                                 <div class="swiper-slide list__item swiper-slide-active">
                                                     <div class="item__media pointer ">
-                                                        <img src="https://storage.30shine.com/service/combo_booking/364.jpg" alt="">
+                                                        <img src="{{ asset('uploads/' . $service['image']) }}" alt="">
                                                     </div>
                                                     <div class="item__title pointer ">{{$service['name']}}</div>
                                                     <div class="item__description pointer "> </div>

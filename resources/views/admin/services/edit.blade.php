@@ -38,8 +38,12 @@
                     {{-- image --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Ảnh</label>
-                        <input class="form-control" type="file" name="image">
-                        <img src="{{ asset('uploads/' . $service->image) }}" name="image" width="70" height="70" alt="">
+                        <input class="form-control" type="file" name="image" value="{{$service->image}}">
+                        <div >
+                            @if ($service->image)
+                            <img src="{{ asset('uploads/' . $service->image) }}" width="100px" height="150px">
+                            @endif
+                        </div>
                         @error('image')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -47,7 +51,7 @@
                     {{-- execution_time --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Thời gian thực hiện</label>
-                        <input class="form-control" type="text" name="execution_time" value="{{$service->execution_time}}" placeholder="Nhập thời gian ...">
+                        <input class="form-control" type="text" name="execution_time" value="{{$service->execution_time}}" placeholder="Nhập thời gian ...">Phút
                         @error('execution_time')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
