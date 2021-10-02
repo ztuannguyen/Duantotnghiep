@@ -6,6 +6,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\SalonController;
+use App\Http\Controllers\Admin\SalonTimeController;
 use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +28,42 @@ Route::get('/client/booking',[ClientController::class,'index'])->name('client.bo
 
 // Admin dashbord
 Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
-
+//--------------------------SALONS--------------------//
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'namespace' => 'Admin'
+], function () {
+    Route::group([
+        'prefix' => "salons",
+        'as' => "salons."
+    ], function () {
+        Route::get('/', [SalonController::class,'index'])->name('index');
+        Route::get('/create', [SalonController::class,'create'])->name('create');
+        Route::post('/store', [SalonController::class,'store'])->name('store');
+        Route::get('/edit/{salon}', [SalonController::class,'edit'])->name('edit');
+        Route::post('/update/{salon}', [SalonController::class,'update'])->name('update');
+        Route::post('/delete/{salon}', [SalonController::class,'delete'])->name('delete');
+    });
+});
+//-------------------------TIME SALONS----------------------//
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'namespace' => 'Admin'
+], function () {
+    Route::group([
+        'prefix' => "times",
+        'as' => "times."
+    ], function () {
+        Route::get('/', [SalonTimeController::class,'index'])->name('index');
+        Route::get('/create', 'SalonTimeController@create')->name('create');
+        Route::post('/store', 'SalonTimeController@store')->name('store');
+        Route::get('/edit/{time}', 'SalonTimeController@edit')->name('edit');
+        Route::post('/update/{time}', 'SalonTimeController@update')->name('update');
+        Route::post('/delete/{time}', 'SalonTimeController@delete')->name('delete');
+    });
+});
 // Cate Service
 Route::get('/admin/cate_services', [CateServiceController::class, 'index'])->name('admin.cate_services.index');
 Route::get('/cate_services/delete/{id}', [CateServiceController::class, 'delete'])->name('admin.cate_services.delete');
