@@ -2,36 +2,20 @@
     background-color: rgb(255, 255, 255);
     padding: 0px 15px 30px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .salon__regions .regions {
     padding: 16px 0px;
     border-bottom: 1px solid rgb(232, 232, 232);
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .salon__regions .regions__title {
     margin-bottom: 10px;
     font-weight: 700;
     font-size: 16px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .salon__regions .regions__cities {
     display: flex;
     flex-flow: row wrap;
     margin: -5px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .salon__regions .regions__cities .cities__name {
     flex-basis: auto;
     background: #BF925B;
@@ -42,31 +26,17 @@
     color: rgb(255, 255, 255);
 }
 
-<<<<<<< HEAD
-
 /*css listSalon */
-
-=======
-/*css listSalon */
->>>>>>> main
 .result-salon {
     min-height: 500px;
     background-color: rgb(255, 255, 255);
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .filter-district {
     position: relative;
     margin: 15px 15px 0px;
     display: inline-block;
     min-width: 202px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .filter-district .box-filter {
     padding: 4px 16px;
     border: 1px solid rgb(209, 209, 209);
@@ -76,18 +46,6 @@
     align-items: baseline;
     justify-content: space-between;
 }
-<<<<<<< HEAD
-
-.filter-district .box-filter {
-    padding-right: 10px;
-    font-weight: 700;
-}
-
-.select {
-    border: none;
-}
-
-=======
 .filter-district .box-filter{
     padding-right: 10px;
     font-weight: 700;
@@ -95,7 +53,6 @@
 .select{
     border: none;
 }
->>>>>>> main
 .filter-district .box-filter .icon {
     display: flex;
     align-items: center;
@@ -103,18 +60,10 @@
     width: 10px;
     height: 10px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .salon__box-switch {
     background-color: rgb(255, 255, 255);
     padding: 0px 15px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .salon__box-switch .box-switch {
     display: flex;
     justify-content: space-between;
@@ -122,53 +71,29 @@
     align-items: center;
     padding: 10px 0px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .salon__box-switch .box-switch__text {
     color: rgb(0, 0, 0);
     font-size: 16px;
     font-weight: 700;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .salon__box-switch .box-switch__text .text__gray {
     color: rgb(118, 118, 118);
     font-size: 12px;
     font-weight: 400;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .salon__box-switch .box-switch__button {
     height: 28px;
     width: 48px;
     background-color: rgb(209, 209, 209);
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .salon__box-switch .box-switch__button .ant-switch-handle {
     top: 2px;
     width: 24px;
     height: 24px;
 }
-<<<<<<< HEAD
-
 .salon__box-switch .box-switch__button .ant-switch-handle::before {
     border-radius: 50%;
 }
-
-=======
-.salon__box-switch .box-switch__button .ant-switch-handle::before {
-    border-radius: 50%;
-}
->>>>>>> main
 .ant-switch-inner {
     display: block;
     margin: 0px 7px 0px 25px;
@@ -176,55 +101,20 @@
     font-size: 12px;
     transition: margin 0.2s ease 0s;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .content-center-middle {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-<<<<<<< HEAD
-
 .salon .show {
     animation: 0.5s ease 0s 1 normal forwards running showList;
 }
-
-=======
-.salon .show {
-    animation: 0.5s ease 0s 1 normal forwards running showList;
-}
->>>>>>> main
 .salon__item {
     height: auto;
     border-bottom: 1px solid rgb(232, 232, 232);
     padding: 15px 0px;
     margin: 0px 15px;
 }
-<<<<<<< HEAD
-
-.salon__item .item {
-    cursor: pointer;
-}
-
-.flex {
-    display: flex;
-}
-
-.salon__item .item__media {
-    align-self: center;
-}
-
-.relative {
-    position: relative;
-}
-
-.placehoder {
-    background-color: rgb(227, 227, 227);
-}
-
-=======
 .salon__item .item {
     cursor: pointer;
 }
@@ -240,7 +130,6 @@
 .placehoder {
     background-color: rgb(227, 227, 227);
 }
->>>>>>> main
 .w-full {
     width: 100%;
 }
@@ -248,18 +137,10 @@
 .block {
     display: block;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 img {
     vertical-align: middle;
     border-style: none;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .salon .parking-salon {
     background-color: rgb(255, 204, 51);
     display: inline-block;
@@ -268,91 +149,49 @@ img {
     bottom: 0px;
     padding: 1px 2.5px;
 }
-<<<<<<< HEAD
-
-.salon .parking-salon img {
-    width: 20px;
-}
-
-.salon__item .item__content {
-    padding-left: 12px;
-}
-
-=======
 .salon .parking-salon img {
     width: 20px;
 }
 .salon__item .item__content {
     padding-left: 12px;
 }
->>>>>>> main
 .salon__item .item__address {
     font-weight: 700;
     font-size: 16px;
     margin-bottom: 8px;
     color: black;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .salon__item .item__note {
     font-size: 12px;
 }
 
-<<<<<<< HEAD
-
 /* css service */
-
-=======
-/* css service */
->>>>>>> main
 .booking-service {
     font-family: Be;
     position: relative;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .booking-service .service {
     background-color: #fff;
     padding: 0 8px 8px;
     margin-bottom: 8px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .booking-service .service__category {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px 8px 16px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .booking-service .service__category .category__name {
     font-weight: 600;
     font-size: 16px;
     color: #111;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .booking-service .service__category .category__number {
     font-weight: 500;
     font-size: 14px;
     color: #767676;
     white-space: nowrap;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .swiper-container {
     margin-left: auto;
     margin-right: auto;
@@ -362,10 +201,6 @@ img {
     padding: 0;
     z-index: 1;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .swiper-wrapper {
     position: relative;
     width: 100%;
@@ -375,10 +210,6 @@ img {
     transition-property: transform;
     box-sizing: content-box;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .booking-service .service__list .list__item {
     border: 1px solid #d1d1d1;
     border-radius: 6px;
@@ -386,20 +217,12 @@ img {
     overflow: hidden;
     max-width: 250px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .booking-service .service__list .swiper-slide {
     height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .swiper-slide {
     flex-shrink: 0;
     width: 100%;
@@ -407,33 +230,16 @@ img {
     position: relative;
     transition-property: transform;
 }
-<<<<<<< HEAD
-
-.btn,
-.pointer {
-    cursor: pointer;
-}
-
-.booking-service img {
-    width: 100%;
-}
-
-=======
 .btn, .pointer {
     cursor: pointer;
 }
 .booking-service img {
     width: 100%;
 }
->>>>>>> main
 img {
     vertical-align: middle;
     border-style: none;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .booking-service .service__list .list__item .item__tag {
     position: absolute;
     top: -1px;
@@ -444,10 +250,6 @@ img {
     border-radius: 6px 0 6px 0;
     padding: 5px 10px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .booking-service .service__list .list__item .item__title {
     font-size: 14px;
     min-height: 44px;
@@ -466,53 +268,29 @@ img {
     white-space: pre-line;
     margin: 4px 5px 5px 8px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .booking-service .service__list .list__item .item__description {
     font-size: 12px;
     color: #5f5f5f;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .booking-service .service__list .list__item .item__description {
     margin: 0 8px 8px;
     font-size: 10px;
     color: #5f5f5f;
     white-space: pre-line;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .booking-service .service__list .list__item .item__price {
     margin: auto 8px 10px;
     font-size: 14px;
     color: #111;
     font-weight: 700;
 }
-<<<<<<< HEAD
-
 .booking-service .service__list .list__item .meta__newPrice {
     padding-right: 10px;
 }
-
-=======
-.booking-service .service__list .list__item .meta__newPrice {
-    padding-right: 10px;
-}
->>>>>>> main
 .booking-service .service__list .list__item .item__button.isChecked {
     background: #ffd65c;
     border-color: #ffd65c;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .booking-service .service__list .list__item .item__button {
     margin: 0 8px 8px;
     border: 1px solid #111;
@@ -527,10 +305,6 @@ img {
     transition: all .3s;
     cursor: pointer;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .swiper-container .swiper-notification {
     position: absolute;
     left: 0;
@@ -539,10 +313,6 @@ img {
     opacity: 0;
     z-index: -1000;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .new-affix-v2 {
     font-size: 25px;
     font-family: Oswald;
@@ -551,29 +321,10 @@ img {
     bottom: -1px;
     z-index: 10;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .new-affix-v2 .content-step {
     padding: 15px;
     background: #fff;
 }
-<<<<<<< HEAD
-
-.text-center {
-    text-align: center;
-}
-
-.space-between {
-    justify-content: space-between;
-}
-
-.flex {
-    display: flex;
-}
-
-=======
 .text-center {
     text-align: center;
 }
@@ -583,7 +334,6 @@ img {
 .flex {
     display: flex;
 }
->>>>>>> main
 .new-affix-v2 .content-step .button-next {
     height: 48px;
     width: 100%;
@@ -593,10 +343,6 @@ img {
 .new-affix-v2 .button-next.btn-inactive {
     background: #e8e8e8;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .new-affix-v2 .button-next {
     border-radius: 10px;
     padding: 5px 20px;
@@ -605,10 +351,6 @@ img {
     display: flex;
     align-items: center;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .new-affix-v2 .button-next span {
     font-family: Oswald;
     font-size: 16px;
@@ -619,33 +361,18 @@ img {
     color: black;
 }
 
-<<<<<<< HEAD
-
 /*time*/
-
-=======
-/*time*/
->>>>>>> main
 .box-time {
     font-family: Be;
     font-size: 18px;
     color: rgb(34, 34, 34);
     margin-top: 15px;
-<<<<<<< HEAD
-}
-
-=======
     
 }
->>>>>>> main
 .box-time .relative {
     position: relative;
     width: 1010px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .swiper-container {
     margin-left: auto;
     margin-right: auto;
@@ -655,34 +382,18 @@ img {
     padding: 0px;
     z-index: 1;
 }
-<<<<<<< HEAD
-
-.box-time .swiper-wrapper {
-    align-items: flex-end;
-}
-
-.box-time .box-time_gr {
-    width: 100%;
-}
-
-=======
 .box-time .swiper-wrapper {
     align-items: flex-end;
 }
 .box-time .box-time_gr {
     width: 100%;
 }
->>>>>>> main
 .box-time .unavailable {
     border: 1px solid rgb(209, 209, 209);
     background: rgb(232, 232, 232);
     color: rgb(163, 163, 163);
     cursor: not-allowed;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .swiper-container .swiper-notification {
     position: absolute;
     left: 0px;
@@ -691,10 +402,6 @@ img {
     opacity: 0;
     z-index: -1000;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 .box-time .box-time_item {
     background: rgb(255, 255, 255);
     border: 1px solid rgb(0, 0, 0);
@@ -706,13 +413,7 @@ img {
     cursor: pointer;
 }
 
-<<<<<<< HEAD
-
 /* button tư vấn */
-
-=======
-/* button tư vấn */
->>>>>>> main
 .btn-toggle {
     margin: 0 4rem;
     padding: 0;
@@ -724,23 +425,10 @@ img {
     color: #6b7381;
     background: #bdc1c8;
 }
-<<<<<<< HEAD
-
-.btn-toggle:focus,
-.btn-toggle:focus.active,
-.btn-toggle.focus,
-.btn-toggle.focus.active {
-    outline: none;
-}
-
-.btn-toggle:before,
-.btn-toggle:after {
-=======
 .btn-toggle:focus, .btn-toggle:focus.active, .btn-toggle.focus, .btn-toggle.focus.active {
     outline: none;
 }
 .btn-toggle:before, .btn-toggle:after {
->>>>>>> main
     line-height: 1.5rem;
     width: 4rem;
     text-align: center;
@@ -752,27 +440,14 @@ img {
     bottom: 0;
     transition: opacity .25s;
 }
-<<<<<<< HEAD
-
 .btn-toggle:before {
     left: -4rem;
 }
-
-=======
-.btn-toggle:before {
-    left: -4rem;
-}
->>>>>>> main
 .btn-toggle:after {
     right: 4rem;
     opacity: .5;
 }
-<<<<<<< HEAD
-
-.btn-toggle>.handle {
-=======
 .btn-toggle > .handle {
->>>>>>> main
     position: absolute;
     top: 0.1875rem;
     left: 0.1875rem;
@@ -782,26 +457,6 @@ img {
     background: #fff;
     transition: left .25s;
 }
-<<<<<<< HEAD
-
-.btn-toggle.active {
-    transition: background-color .25s;
-}
-
-.btn-toggle.active {
-    background-color: #81b51a;
-}
-
-.btn-toggle.active>.handle {
-    left: 1.6875rem;
-    transition: left .25s;
-}
-
-.btn-toggle.active:before {
-    opacity: .5;
-}
-
-=======
 .btn-toggle.active {
     transition: background-color .25s;
 }
@@ -815,7 +470,6 @@ img {
 .btn-toggle.active:before {
     opacity: .5;
 }
->>>>>>> main
 .btn-toggle.active:after {
     opacity: 1;
 }

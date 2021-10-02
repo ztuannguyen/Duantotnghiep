@@ -30,14 +30,16 @@
     <link rel="stylesheet" href="{{ asset('client/css/icomoon.css') }}">
     <link rel="stylesheet" href="{{ asset('client/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('client/css/css/booking.css') }}">
-    
 </head>
 
 <body>
     @include('client.top-bar')
 
-        @yield('contents')
+
+    @yield('contents')
+
     @include('client.footer')
+
 
 
     <!-- loader -->
@@ -65,7 +67,9 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
     </script>
     <script src="{{ asset('client/js/google-map.js') }}"></script>
-    <script src="{{ asset('client/js/main.js') }}"></script>'
+    <script src="{{ asset('client/js/main.js') }}"></script>
+    @yield('scripts')
+    
 </body>
 
 </html>
