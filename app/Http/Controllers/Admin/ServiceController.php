@@ -69,6 +69,7 @@ class ServiceController extends Controller
     }
 
     public function update(Request $request, Service $service){
+
         if ($request->isMethod('post')) {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|min:6|max:300',
