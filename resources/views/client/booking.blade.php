@@ -6,7 +6,7 @@
 
 
     <section class="hero-wrap hero-wrap-2" style="background-image:
-                          url('images/bg-1.jpg');" data-stellar-background-ratio="0.5">
+                              url('images/bg-1.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-end
@@ -35,37 +35,35 @@
                         </button>
 
                     </div>
-                   
-                        @foreach ($salon as $item)
-                            <div class="salon__item show" role="presentation">
+                    @foreach ($salon as $item)
+                        <div class="salon__item show" role="presentation">
 
-                                <div class="item">
-                                    <div class="flex">
-                                        <div class="item__media" style="width: 30%;">
-                                            <div class="relative">
-                                                <div class="placehoder" style="height: inherit;"><img
-                                                        class="block w-full"
-                                                        src="{{ url('uploads') }}/{{ $item->image }} " alt="">
-                                                </div>
-                                                <div class="parking-salon"><img src="/static/media/parking.44ab7007.svg"
-                                                        alt=""></div>
+                            <div class="item">
+                                <div class="flex">
+                                    <div class="item__media" style="width: 30%;">
+                                        <div class="relative">
+                                            <div class="placehoder" style="height: inherit;"><img class="block w-full"
+                                                    src="{{ url('uploads') }}/{{ $item->image }} " alt="">
                                             </div>
-                                        </div>
-                                        <div class="item__content w-70" style="width: 70%;">
-                                            <div class="item__address">{{ $item->address }}</div>
-                                            <div class="flex"></div>
-                                            <div class="item__note">{{ $item->description }} </div>
-
+                                            <div class="parking-salon"><img src="/static/media/parking.44ab7007.svg"
+                                                    alt=""></div>
                                         </div>
                                     </div>
+                                    <div class="item__content w-70" style="width: 70%;">
+                                        <div class="item__address">{{ $item->address }}</div>
+                                        <div class="flex"></div>
+                                        <div class="item__note">{{ $item->description }} </div>
+
+                                    </div>
                                 </div>
-
-
                             </div>
-                        @endforeach
-                    </div>
+
+
+                        </div>
+                    @endforeach
                 </div>
             </div>
+        </div>
         </div>
         </div>
         <!--End Modal danh sách salon -->
@@ -107,7 +105,8 @@
                                                                 </div>
                                                                 <div class="item__title pointer ">{{ $service['name'] }}
                                                                 </div>
-                                                                <div class="item__description pointer ">{{$service['description']}} </div>
+                                                                <div class="item__description pointer ">
+                                                                    {{ $service['description'] }} </div>
                                                                 <div class="item__price pointer">
                                                                     <div class="meta__price"><span
                                                                             class="meta__newPrice">{{ $service['price'] }}</span>
@@ -116,28 +115,29 @@
                                                                 <div class="item__button"
                                                                     data-cate_id="{{ $item['id'] }}"
                                                                     data-service_id="{{ $service['id'] }}">Chọn</div>
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                 @endforeach
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
-
                             </div>
+
                         </div>
-                    @endforeach
-                    <div class="new-affix-v2">
-                        <div class="flex space-between text-center content-step">
-                            <div class="right button-next pointer btn-inactive" role="presentation"><span>Chọn dịch
-                                    vụ</span></div>
-                        </div>
-                    </div>
+                </div>
+                @endforeach
+            </div>
+            @endforeach
+            <div class="new-affix-v2">
+                <div class="flex space-between text-center content-step">
+                    <div class="right button-next pointer btn-inactive" role="presentation"><span>Chọn dịch vụ</span></div>
                 </div>
             </div>
+        </div>
+        </div>
         </div>
         <!--End Modal service -->
 

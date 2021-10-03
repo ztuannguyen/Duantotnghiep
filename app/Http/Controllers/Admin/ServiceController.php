@@ -30,7 +30,8 @@ class ServiceController extends Controller
     }
 
     public function store(Request $request){
-         if ($request->isMethod('post')) {
+        
+         if ($request->isMethod('post')) {  
              $validator =Validator::make($request->all(),[
                  'name' => 'required|min:3|max:30',
                  'price' => 'required',
@@ -50,7 +51,9 @@ class ServiceController extends Controller
           }
           }
           $data =  request()->except('_token');
+          
           $model = new Service();
+
          $model->fill($request->all());
          // save ảnh
          if ($request->hasFile('image')) {
@@ -59,6 +62,7 @@ class ServiceController extends Controller
              $filename = time() . '.' . $ext;
              $file->move(public_path('/uploads'), $filename);
              $model->image = $filename;
+             
          }
         
         $model->save();
@@ -72,6 +76,7 @@ class ServiceController extends Controller
     }
 
     public function update(Request $request, Service $service){
+
         if ($request->isMethod('post')) {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|min:6|max:300',
