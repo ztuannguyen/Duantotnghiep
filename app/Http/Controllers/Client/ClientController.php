@@ -14,7 +14,7 @@ class ClientController extends Controller
        
         $salon = Salon::all();
         $cateService = CateService::with('services')->get()->toArray();
-        $service =Service::all();
+        $service = Service::all();
         return view('client/booking',compact('salon','service','cateService'));
     }
 }

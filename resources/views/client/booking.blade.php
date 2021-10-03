@@ -6,7 +6,7 @@
 
 
     <section class="hero-wrap hero-wrap-2" style="background-image:
-                  url('images/bg-1.jpg');" data-stellar-background-ratio="0.5">
+                          url('images/bg-1.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-end
@@ -35,31 +35,7 @@
                         </button>
 
                     </div>
-                    <div class="result-salon" id="result-salon">
-                        <div class="filter-district col-4" role="presentation">
-                            <select style="border: 2px solid black;padding:10px;,margin:10px;border-radius:5px;" id="Cate">
-                                <option value="">Tất cả Quận/Huyện</option>
-                                <option value="">Q. Cầu Giấy</option>
-
-                            </select>
-                        </div>
-                        <div class="filter-district col-md-6" role="presentation">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="16" height="16" fill="currentColor" class="bi bi-search"
-                                            viewBox="0 0 16 16">
-                                            <path
-                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                        </svg></span>
-                                </div>
-                                <input type="text" class="form-control form-input input-search"
-                                    placeholder="Tìm kiếm salon..." aria-label="Search" aria-describedby="basic-addon1">
-                                <div class="search-ajax">
-
-                                </div>
-                            </div>
-                        </div>
+                   
                         @foreach ($salon as $item)
                             <div class="salon__item show" role="presentation">
 
@@ -105,9 +81,10 @@
                             <span aria-hidden="true" class="white-text">&times;</span>
                         </button>
                     </div>
-                    <div class="booking-service">
-                        <div>
-                            @foreach ($cateService as $item)
+                    @foreach ($cateService as $item)
+                        <div class="booking-service">
+                            <div>
+
                                 <div class="" id=" category-1">
                                     <div class="service">
                                         <div class="service__category">
@@ -125,12 +102,12 @@
                                                             c_s_{{ $item['id'] }}_{{ $service['id'] }}">
                                                             <div class="swiper-slide list__item swiper-slide-active">
                                                                 <div class="item__media pointer ">
-                                                                    <img src="https://storage.30shine.com/service/combo_booking/364.jpg"
+                                                                    <img src="{{ url('uploads') }}/{{ $service['image'] }}"
                                                                         alt="">
                                                                 </div>
                                                                 <div class="item__title pointer ">{{ $service['name'] }}
                                                                 </div>
-                                                                <div class="item__description pointer "> </div>
+                                                                <div class="item__description pointer ">{{$service['description']}} </div>
                                                                 <div class="item__price pointer">
                                                                     <div class="meta__price"><span
                                                                             class="meta__newPrice">{{ $service['price'] }}</span>
@@ -149,9 +126,10 @@
 
                                     </div>
                                 </div>
-                            @endforeach
+
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
                     <div class="new-affix-v2">
                         <div class="flex space-between text-center content-step">
                             <div class="right button-next pointer btn-inactive" role="presentation"><span>Chọn dịch
@@ -200,7 +178,7 @@
                                 <div class="col-sm-12">
                                     <h3>3.CHỌN NGÀY CẮT</h3>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" id="">
+                                        <input type="date" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-12">

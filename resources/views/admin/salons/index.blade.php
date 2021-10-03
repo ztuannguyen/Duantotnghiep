@@ -55,15 +55,12 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->name_salon }}</td>
                             <td>{{ $item->address }}</td>
-                            <td><img src="{{ asset('uploads/' . $item->image) }}" width="120px" height="150px"></td>
+                            <td><img src="{{ asset('uploads/' . $item->image) }}" width="150" height="100" ></td>
                             <td>{{$item->description}}</td>
                             <td>
                                 <div class="form-group">
-                                    <div class="custom-control custom-switch ml-md-3">
-                                        <input type="checkbox" class="custom-control-input"
-                                            {{ $item->status ? 'checked' : '' }}>
-                                        <label class="custom-control-label pointer"></label>
-                                    </div>
+                                    
+                                        <label class="btn btn-success btn-sm" >{{ $item->status ? 'ON' : 'OFF' }}</label>
                                 </div>
                             </td>
                             <td> <a href="{{ route('admin.salons.edit', ['salon' => $item->id]) }}"

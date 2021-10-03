@@ -9,8 +9,14 @@ use Illuminate\Support\Facades\Validator;
 
 class CateServiceController extends Controller
 {
-    public function index(){
-        $listCateService = CateService::all();
+    public function index(Request $request){
+        if ($request->has('keyword') == true) {
+            $keyword = $request->get('keyword');
+            $listCateService = CateService::where('name_cate', 'LIKE', "%$keyword%")->get();
+        } else {
+            $listCateService = CateService::all();
+        }
+        $listCateService->load(['services']);
         return view('admin/cateServices/index',['data' => $listCateService]);
     }
 

@@ -5,8 +5,8 @@
 @section('contents')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">Danh mục</li>
-            <li class="breadcrumb-item">Danh sách dịch vụ </li>
+            <li class="breadcrumb-item">Dịch vụ </li>
+            <li class="breadcrumb-item"><a href="{{route('admin.services.index')}}">Danh sách dịch vụ </a> </li>
         </ol>
     </nav>
     <div class="card shadow mb-4">
@@ -21,7 +21,8 @@
                 <span class="text">Thêm mới</span>
             </a>
             <!-- Topbar Search -->
-            <form class="d-none d-sm-inline-block form-inline mr-auto  ml-md-3 my-2 my-md-0 mw-100 navbar-search" action=""
+            <form class="d-none d-sm-inline-block form-inline mr-auto  ml-md-3 my-2 my-md-0 mw-100 navbar-search" 
+            action="{{ route('admin.services.index') }}"
                 method="GET">
                 <div class="input-group">
                     <input type="text" class="form-control bg-light  small" placeholder="Tìm kiếm..." aria-label="Search"
@@ -61,7 +62,7 @@
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->price }}</td>
-                            <td>{{ $item->cate_id }}</td>
+                            <td>{{ $item->cateService->name_cate }}</td>
                             <td>{{ $item->execution_time }}</td>
                             <td>{{ $item->discount }}</td>
                             <td>{{ $item->description }}</td>
