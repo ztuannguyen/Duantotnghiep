@@ -18,7 +18,6 @@ class ServiceController extends Controller
             $listService = Service::all();
         }
         $listService->load(['cateservice']);
-        $listService->load(['bookings']);
         return view('admin/services/index', ['data' => $listService]);
     }
 
