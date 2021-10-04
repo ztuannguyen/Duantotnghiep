@@ -6,7 +6,7 @@
 
 
     <section class="hero-wrap hero-wrap-2" style="background-image:
-                                  url('images/bg-1.jpg');" data-stellar-background-ratio="0.5">
+                  url('images/bg-1.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-end
@@ -35,104 +35,99 @@
                         </button>
 
                     </div>
-                    @foreach ($salon as $item)
-                        <div class="salon__item show" role="presentation">
+                        @foreach ($salon as $item)
+                            <div class="salon__item show" role="presentation">
 
-                            <div class="item">
-                                <div class="flex">
-                                    <div class="item__media" style="width: 30%;">
-                                        <div class="relative">
-                                            <div class="placehoder" style="height: inherit;"><img class="block w-full"
-                                                    src="{{ url('uploads') }}/{{ $item->image }} " alt="">
+                                <div class="item">
+                                    <div class="flex">
+                                        <div class="item__media" style="width: 30%;">
+                                            <div class="relative">
+                                                <div class="placehoder" style="height: inherit;"><img
+                                                        class="block w-full"
+                                                        src="{{ url('uploads') }}/{{ $item->image }} " alt="">
+                                                </div>
+                                                <div class="parking-salon"><img src="/static/media/parking.44ab7007.svg"
+                                                        alt=""></div>
                                             </div>
-                                            <div class="parking-salon"><img src="/static/media/parking.44ab7007.svg"
-                                                    alt=""></div>
+                                        </div>
+                                        <div class="item__content w-70" style="width: 70%;">
+                                            <div class="item__address">{{ $item->address }}</div>
+                                            <div class="flex"></div>
+                                            <div class="item__note">{{ $item->description }} </div>
+
                                         </div>
                                     </div>
-                                    <div class="item__content w-70" style="width: 70%;">
-                                        <div class="item__address">{{ $item->address }}</div>
-                                        <div class="flex"></div>
-                                        <div class="item__note">{{ $item->description }} </div>
-
-                                    </div>
                                 </div>
+
+
                             </div>
-
-
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
+        </div>
         </div>
         <!--End Modal danh sách salon -->
 
         <!-- Modal service -->
-        <div class="modal fade card-footer my-5 p-4" id="listService" data-backdrop="false"
-            aria-labelledby="exampleModalScrollableTitle">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>Danh Sách Dịch Vụ</h2>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="white-text">&times;</span>
-                        </button>
-                    </div>
-                    @foreach ($cateService as $item)
-                        <div class="booking-service">
-                                <div class="" id=" category-1">
-                                    <div class="service">
-                                        <div class="service__category">
-                                            <div class="category__name">{{ $item['name_cate'] }}</div>
-                                            <div class="category__number"> {{ count($item['services']) }} dịch vụ</div>
-                                        </div>
-
-                                        <div class="service__list container">
-
-                                            <div class="row col-md-12" id="cate_{{ $item['id'] }}">
-
+        <div class="modal fade card-footer my-5 p-4" id="listService" data-backdrop="false" aria-labelledby="exampleModalScrollableTitle">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Danh Sách Dịch Vụ</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                </div>
+                <div class="booking-service">
+                    <div class="">
+                        @foreach ($cateService as $item)
+                        <div class="" id="category-1">
+                            <div class="service">
+                                <div class="service__category">
+                                    <div class="category__name">{{$item['name_cate']}}</div>
+                                    <div class="category__number">{{count($item['services'])}} dịch vụ</div>
+                                </div>
+                                <div class="service__list">
+                                    <div class="swiper-container bbb_viewed_slider_container row col-md-12"
+                                        id="cate_{{$item['id']}}">
+                                        <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+                                            <div class="owl-carousel bbb_viewed_slider">
                                                 @foreach ($item['services'] as $service)
-                                                    <div class="col-md-4">
-                                                        <div class="" id="
-                                                            c_s_{{ $item['id'] }}_{{ $service['id'] }}">
-                                                            <div class="swiper-slide list__item swiper-slide-active">
-                                                                <div class="item__media pointer ">
-                                                                    <img src="{{ url('uploads') }}/{{ $service['image'] }}"
-                                                                        alt="">
-                                                                </div>
-                                                                <div class="item__title pointer ">{{ $service['name'] }}
-                                                                </div>
-                                                                <div class="item__description pointer ">
-                                                                    {{ $service['description'] }} </div>
-                                                                <div class="item__price pointer">
-                                                                    <div class="meta__price"><span
-                                                                            class="meta__newPrice">{{ $service['price'] }}</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="item__button"
-                                                                    data-cate_id="{{ $item['id'] }}"
-                                                                    data-service_id="{{ $service['id'] }}">Chọn</div>
-
-                                                            </div>
+                                                <div class="swiper-slide list__item swiper-slide-active">
+                                                    <div class="item__media pointer ">
+                                                        <img src="{{ url('uploads') }}/{{ $service['image'] }}"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="item__title pointer ">{{$service['name']}}</div>
+                                                    <div class="item__description pointer ">Trắng sáng tức thì, da mịn
+                                                        màng chắc khỏe</div>
+                                                    <div class="item__price pointer">
+                                                        <div class="meta__price"><span
+                                                                class="meta__newPrice">{{$service['price']}}</span>
                                                         </div>
                                                     </div>
+                                                    <div class="item__button" data-cate_id="{{$item['id']}}"
+                                                        data-service_id="{{$service['id']}}">Chọn</div>
+                                                </div>
                                                 @endforeach
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
+                            </div>
                         </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
-
-            </div>
-
-            <div class="new-affix-v2">
-                <div class="flex space-between text-center content-step">
-                    <div class="right button-next pointer btn-inactive" role="presentation"><span>Chọn dịch vụ</span></div>
+                <div class="new-affix-v2">
+                    <div class="flex space-between text-center content-step">
+                        <div class="right button-next pointer btn-inactive" role="presentation"><span>Chọn dịch vụ</span></div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
         <!--End Modal service -->
 
         <div class="container">
@@ -172,7 +167,7 @@
                                 <div class="col-sm-12">
                                     <h3>3.CHỌN NGÀY CẮT</h3>
                                     <div class="form-group">
-                                        <input type="date" class="form-control">
+                                        <input type="date" class="form-control" id="">
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
@@ -339,12 +334,10 @@
     </section> <!-- .section -->
     <style>
         .btn-selected {
-
             background: #b98d58;
             color: #fff !important;
             border: #b98d58 !important;
         }
-
     </style>
 @endsection
 
