@@ -22,7 +22,5 @@ class Service extends Model
     public function CateService(){
         return $this->belongsTo(CateService::class, 'cate_id', 'id');
     }
-    public function Bookings(){
-        return $this->hasMany(Booking::class,'service_id','id');
-    }
+    
 }
