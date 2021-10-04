@@ -22,7 +22,7 @@
             </a>
             <!-- Topbar Search -->
             <form class="d-none d-sm-inline-block form-inline mr-auto  ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-                action="{{ route('admin.salons.index') }}" method="GET">
+                action="{{ route('admin.times.index') }}" method="GET">
                 <div class="input-group">
                     <input type="text" class="form-control bg-light  small" placeholder="Tìm kiếm..." aria-label="Search"
                         aria-describedby="basic-addon2" name="keyword" value="{{ old('keyword') }}">
@@ -52,7 +52,7 @@
                     @foreach ($data as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->salon_id }}</td>
+                            <td>{{ $item->salon->name_salon }}</td>
                             <td>{{ $item->slot }}</td>
                             <td>{{$item->time_start}}</td>
                             <td>{{$item->time_end}}</td>
@@ -97,7 +97,7 @@
                 </tbody>
             </table>
         </div>
-        <div >{{ $data->links() }}    </div>  
+        <div >{{ $data->links() }}</div>  
     @else
         <h2>Không có dữ liệu</h2>
     @endif

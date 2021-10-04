@@ -10,8 +10,15 @@ use Illuminate\Support\Facades\Validator;
 
 class ServiceController extends Controller
 {
-    public function index(){
-        $listService = Service::all();
+    public function index(Request $request){
+        if ($request->has('keyword') == true) {
+            $keyword = $request->get('keyword');
+            $listService = Service::where('name', 'LIKE', "%$keyword%")->get();
+        } else {
+            $listService = Service::all();
+        }
+        $listService->load(['cateservice']);
+        $listService->load(['bookings']);
         return view('admin/services/index', ['data' => $listService]);
     }
 

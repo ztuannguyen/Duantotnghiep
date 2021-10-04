@@ -23,4 +23,7 @@ class Salon extends Model
     public function Times(){
         return $this->hasMany(Time::class,'salon_id','id');
     }
+    public function Bookings(){
+        return $this->hasMany(Booking::class,'salon_id','id');
+    }
 }

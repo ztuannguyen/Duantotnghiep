@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 @section('title')
-    Danh mục dịch vụ
+    Danh sách đặt lịch
 @endsection
 @section('contents')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">Dịch vụ</li>
-            <li class="breadcrumb-item"><a href="{{route('admin.cate_services.index')}}"> Danh sách danh mục dịch vụ</a> </li>
+            <li class="breadcrumb-item">Đặt lịch</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.bookings.index') }}"> Danh sách đặt lịch</a> </li>
         </ol>
     </nav>
     <div class="card shadow mb-4">
@@ -16,13 +16,13 @@
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                 <i class="fa fa-bars"></i>
             </button>
-            <a href="{{ Route('admin.cate_services.create') }}" class="btn btn-success  ">
+            <a href="/admin/bookings/create" class="btn btn-success  ">
 
                 <span class="text">Thêm mới</span>
             </a>
             <!-- Topbar Search -->
-            <form class="d-none d-sm-inline-block form-inline mr-auto  ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="{{route('admin.cate_services.index')}}"
-                method="GET">
+            <form class="d-none d-sm-inline-block form-inline mr-auto  ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+                action="{{ route('admin.bookings.index') }}" method="GET">
                 <div class="input-group">
                     <input type="text" class="form-control bg-light  small" placeholder="Tìm kiếm..." aria-label="Search"
                         aria-describedby="basic-addon2" name="keyword" value="{{ old('keyword') }}">
@@ -40,22 +40,40 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <td>ID</td>
-                        <td>Tên danh mục dịch vụ</td>
-                        <td>Order_by</td>
-                        <td>Hành động</td>
+                        <td>#</td>
+                        <td>Số điện thoại</td>
+                        <td>Salon</td>
+                        <td>Dịch vụ</td>
+                        <td>Thời gian</td>
+                        <td>Ngày đặt</td>
+                        <td>Lời nhắn</td>
+                        <td>Trạng thái</td>
+                        <td colspan="2">Hành động</td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
-                            <td>{{ $item->name_cate }}</td>
-                            <td>{{ $item->order_by }}</td>
-                            <td> <a href="{{ Route('admin.cate_services.edit', ['cateService' => $item->id]) }}" {{-- {{ route('admin.salons.edit', ['salon' => $item->id]) }} --}}
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->number_phone }}</td>
+                            <td >{{ $item->Salon->name_salon }}</td>
+                            <td>{{$item->service_id}}</td>
+                            <td >{{ $item->Time->time_start}}</td>
+                            <td>{{ $item->date_booking }}</td>
+                            <td>{{ $item->note }}</td>
+                            <td>
+                                @if ($item->status == config('common.booking.status.cho_xac_nhan'))
+                                    <span class="text-danger">Chờ xác nhận</span>
+                                @elseif($item->status == config('common.booking.status.da_xac_nhan'))
+                                    <span class="text-success">Đã xác nhận</span>
+                                @elseif($item->status == config('common.booking.status.da_huy'))
+                                    <span class="text-danger">Đã hủy</span>
+                                @endif
+                            </td>
+                            <td>{{-- <td> <a href="{{ route('admin.salons.edit', ['salon' => $item->id]) }}"
                                     class="btn btn-warning btn-circle btn-sm">
                                     <i class="fas  fa-edit"></i>
-                                </a>
+                                </a> --}}
                                 <a data-toggle="modal" class="btn btn-danger btn-circle btn-sm"
                                     data-target="#confirm_delete_{{ $item->id }}"><i class="fas fa-trash"></i></a>
 
@@ -77,8 +95,8 @@
                                                 <button type="button" class="btn btn-default"
                                                     data-dismiss="modal">Cancel</button>
 
-                                                <form method="GET"
-                                                    action="{{ route('admin.cate_services.delete', ['id' => $item->id]) }}">
+                                                <form method="POST"
+                                                    action="{{ route('admin.bookings.delete', ['booking' => $item->id]) }}">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger">Xóa</button>
                                                 </form>
@@ -96,4 +114,5 @@
     @else
         <h2>Không có dữ liệu</h2>
     @endif
+
 @endsection

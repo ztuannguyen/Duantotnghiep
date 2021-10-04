@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SalonController;
 use App\Http\Controllers\Admin\SalonTimeController;
+use App\Http\Controllers\Admin\BookingController;
 use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,10 @@ Route::get('/', function () {
 });
 // User
 Route::get('/client/booking',[ClientController::class,'index'])->name('client.booking');
-
 // Admin dashbord
 Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
+
+
 //--------------------------SALONS--------------------//
 Route::group([
     'prefix' => 'admin',
@@ -57,11 +59,29 @@ Route::group([
         'as' => "times."
     ], function () {
         Route::get('/', [SalonTimeController::class,'index'])->name('index');
-        Route::get('/create', 'SalonTimeController@create')->name('create');
-        Route::post('/store', 'SalonTimeController@store')->name('store');
-        Route::get('/edit/{time}', 'SalonTimeController@edit')->name('edit');
-        Route::post('/update/{time}', 'SalonTimeController@update')->name('update');
-        Route::post('/delete/{time}', 'SalonTimeController@delete')->name('delete');
+        Route::get('/create', [SalonTimeController::class,'create'])->name('create');
+        Route::post('/store', [SalonTimeControlle::class,'store'])->name('store');
+        Route::get('/edit/{time}', [SalonTimeController::class,'edit'])->name('edit');
+        Route::post('/update/{time}', [SalonTimeController::class,'update'])->name('update');
+        Route::post('/delete/{time}', [SalonTimeController::class,'delete'])->name('delete');
+    });
+});
+//--------------------------BOOKINGS--------------------//
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'namespace' => 'Admin'
+], function () {
+    Route::group([
+        'prefix' => "bookings",
+        'as' => "bookings."
+    ], function () {
+        Route::get('/', [BookingController::class,'index'])->name('index');
+        Route::get('/create', [BookingController::class,'create'])->name('create');
+        Route::post('/store', [BookingController::class,'store'])->name('store');
+        // Route::get('/edit/{salon}', [SalonController::class,'edit'])->name('edit');
+        // Route::post('/update/{salon}', [SalonController::class,'update'])->name('update');
+        Route::post('/delete/{booking}', [BookingController::class,'delete'])->name('delete');
     });
 });
 // Cate Service

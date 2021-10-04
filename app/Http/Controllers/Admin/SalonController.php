@@ -18,6 +18,7 @@ class SalonController extends Controller
             $ListSalon = Salon::all();
         }
         $ListSalon->load(['times']);
+        $ListSalon->load(['bookings']);
         return view('admin/salons/index', ['data' => $ListSalon]);
     }
     public function create(){
