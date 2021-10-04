@@ -31,12 +31,12 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
             aria-controls="collapseTwo">
             <i class="fas fa-th-list"></i>
-            <span>Danh mục</span>
+            <span>Dịch vụ</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{Route('admin.cate_services.index')}}">Danh mục dịch vụ</a>
-                <a class="collapse-item" href="{{Route('admin.services.index')}}">Dịch vụ</a>
+                <a class="collapse-item" href="{{Route('admin.services.index')}}">Danh sách dịch vụ</a>
             </div>
         </div>
     </li>
@@ -55,6 +55,11 @@
                 <a class="collapse-item" href="/admin/times">Thời gian đặt lịch</a>
             </div>
         </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/bookings">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Đặt lịch</span></a>
     </li>
 
     <!-- Divider -->

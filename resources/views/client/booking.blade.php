@@ -79,7 +79,6 @@
                     </div>
                     @foreach ($cateService as $item)
                         <div class="booking-service">
-
                                 <div class="" id=" category-1">
                                     <div class="service">
                                         <div class="service__category">
@@ -127,6 +126,7 @@
                 </div>
 
             </div>
+
             <div class="new-affix-v2">
                 <div class="flex space-between text-center content-step">
                     <div class="right button-next pointer btn-inactive" role="presentation"><span>Chọn dịch vụ</span></div>
