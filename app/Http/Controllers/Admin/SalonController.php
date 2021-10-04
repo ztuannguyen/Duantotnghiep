@@ -15,7 +15,7 @@ class SalonController extends Controller
             $keyword = $request->get('keyword');
             $ListSalon = Salon::where('name_salon', 'LIKE', "%$keyword%")->get();
         } else {
-            $ListSalon = Salon::all();
+            $ListSalon = Salon::where('status',1)->orderBy('id','ASC')->get();
         }
         $ListSalon->load(['times']);
         return view('admin/salons/index', ['data' => $ListSalon]);

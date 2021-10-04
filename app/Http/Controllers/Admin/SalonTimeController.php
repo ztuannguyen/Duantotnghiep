@@ -11,7 +11,9 @@ use App\Http\Requests\Admin\SalonTime\UpdateRequest;
 
 class SalonTimeController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
+
         if ($request->has('keyword') == true) {
             $keyword = $request->get('keyword');
             // SELECT * FROM users WHERE email LIKE '%keyword%'
@@ -19,28 +21,32 @@ class SalonTimeController extends Controller
         } else {
             $ListTime = Time::paginate(14);
         }
-            $ListTime->load(['salon']);
-        return view('admin.times.index',['data'=>$ListTime]);
+        return view('admin.times.index', ['data' => $ListTime]);
     }
-    public function create(){
+    public function create()
+    {
         $ListSalon = Salon::all();
         return view('admin.times.create', ['ListSalon' => $ListSalon]);
     }
-    public function store(SalonTimeRequest $request){
+    public function store(SalonTimeRequest $request)
+    {
         $data =  $request->except('_token');
         $result = Time::create($data);
         return redirect()->route('admin.times.index');
     }
-    public function edit(Time $time){
+    public function edit(Time $time)
+    {
         $ListSalon = Salon::all();
-        return view('admin.times.edit', ['time' => $time,'ListSalon'=>$ListSalon]);
+        return view('admin.times.edit', ['time' => $time, 'ListSalon' => $ListSalon]);
     }
-    public function update(UpdateRequest $request,Time $time){
+    public function update(UpdateRequest $request, Time $time)
+    {
         $data = $request->except('_token');
         $time->update($data);
         return redirect()->route('admin.times.index');
     }
-    public function delete(Time $time){
+    public function delete(Time $time)
+    {
         $time->delete($time);
         return redirect()->route('admin.times.index');
     }
