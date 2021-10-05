@@ -139,7 +139,7 @@
                                 <div class="col-sm-12">
                                     <h3>1.CHỌN SALON</h3>
                                     <div class="input-group mb-3">
-                                        <input type="select" class="form-control" placeholder="Chọn salon">
+                                        <input type="select" class="form-control" data-toggle="modal" data-target="#listSalon" placeholder="Chọn salon" >
                                         <div class="input-group-append">
                                             <button class="btn btn-outline-secondary form-control" type="button"
                                                 data-toggle="modal" data-target="#listSalon">></button>
@@ -150,7 +150,7 @@
                                 <div class="col-sm-12">
                                     <h3>2.CHỌN DỊCH VỤ</h3>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Nhập Tên Dịch Vụ">
+                                        <input type="text" class="form-control" data-toggle="modal" data-target="#listService" placeholder="Nhập Tên Dịch Vụ">
                                         <div class="input-group-append">
                                             <button class="btn btn-outline-secondary form-control" type="button"
                                                 data-toggle="modal" data-target="#listService">></button>
@@ -172,11 +172,14 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="box-time" id="box-time">
+                                        
                                         <div class="relative">
-                                            <div
-                                                class="swiper-container swiper-container-initialized swiper-container-horizontal">
-                                                <div class="swiper-wrapper"
-                                                    style="transition-duration: 0ms; transform: translate3d(-367.692px, 0px, 0px);">
+                                        
+                                            <div class="swiper-container swiper-container-initialized swiper-container-horizontal">
+                                                
+                                                <div class="swiper-wrapper">
+                                                    
+                                                    
                                                     <div class="swiper-slide box-time_gr"
                                                         style="width: 83.9231px; margin-right: 8px;">
                                                         <div class="box-time_item   " role="presentation">7h00</div>
@@ -195,24 +198,7 @@
                                                         <div class="box-time_item   " role="presentation">9h20</div>
                                                         <div class="box-time_item  " role="presentation">9h40</div>
                                                     </div>
-                                                    <div class="swiper-slide box-time_gr swiper-slide-prev"
-                                                        style="width: 83.9231px; margin-right: 8px;">
-                                                        <div class="box-time_item   " role="presentation">10h00</div>
-                                                        <div class="box-time_item  " role="presentation">10h20</div>
-                                                        <div class="box-time_item  " role="presentation">10h40</div>
-                                                    </div>
-                                                    <div class="swiper-slide box-time_gr swiper-slide-active"
-                                                        style="width: 83.9231px; margin-right: 8px;">
-                                                        <div class="box-time_item   " role="presentation">11h00</div>
-                                                        <div class="box-time_item   " role="presentation">11h20</div>
-                                                        <div class="box-time_item  " role="presentation">11h40</div>
-                                                    </div>
-                                                    <div class="swiper-slide box-time_gr swiper-slide-next"
-                                                        style="width: 83.9231px; margin-right: 8px;">
-                                                        <div class="box-time_item   " role="presentation">12h00</div>
-                                                        <div class="box-time_item   " role="presentation">12h20</div>
-                                                        <div class="box-time_item   " role="presentation">12h40</div>
-                                                    </div>
+                                                    
                                                     <div class="swiper-slide box-time_gr"
                                                         style="width: 83.9231px; margin-right: 8px;">
                                                         <div class="box-time_item   " role="presentation">13h00</div>
@@ -261,36 +247,21 @@
                                                         <div class="box-time_item   " role="presentation">20h20</div>
                                                         <div class="box-time_item  " role="presentation">20h40</div>
                                                     </div>
-                                                    <div class="swiper-slide box-time_gr"
-                                                        style="width: 83.9231px; margin-right: 8px;">
-                                                        <div class="box-time_item   " role="presentation">21h00</div>
-                                                        <div class="box-time_item  " role="presentation">21h20</div>
-                                                        <div class="box-time_item " role="presentation">21h40</div>
-                                                    </div>
-                                                    <div class="swiper-slide box-time_gr"
-                                                        style="width: 83.9231px; margin-right: 8px;">
-                                                        <div class="box-time_item   " role="presentation">22h00</div>
-                                                        <div class="box-time_item  " role="presentation">22h20</div>
-                                                        <div class="box-time_item " role="presentation">22h40</div>
-                                                    </div>
-                                                    <div class="swiper-slide box-time_gr"
-                                                        style="width: 83.9231px; margin-right: 8px;">
-                                                        <div class="box-time_item   " role="presentation">23h00</div>
-                                                        <div class="box-time_item   " role="presentation">23h20</div>
-                                                        <div class="box-time_item  " role="presentation">23h40</div>
-                                                    </div>
+                                                  
+                                                  
                                                 </div><span class="swiper-notification" aria-live="assertive"
                                                     aria-atomic="true">
                                                     Không có giờ nào phù hợp với anh
                                                 </span>
                                             </div>
+                                            
                                         </div>
                                         <div class=""></div>
                                 </div>
                             </div>
                             <div class="
                                             col-sm-12 mb-3">
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label for="" class="form-control-label col-md-3 col-6">
                                                     <h5>Yêu cầu tư vấn</h5>
                                                 </label>
@@ -317,7 +288,7 @@
                                                     cho thợ khác?)</p>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
                                         <input type="submit" value="Đặt Lịch Ngay"
                                             class="btn
