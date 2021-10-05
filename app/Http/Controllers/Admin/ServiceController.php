@@ -10,8 +10,15 @@ use Illuminate\Support\Facades\Validator;
 
 class ServiceController extends Controller
 {
-    public function index(){
-        $listService = Service::all();
+
+    public function index(Request $request){
+        if ($request->has('keyword') == true) {
+            $keyword = $request->get('keyword');
+            $listService = Service::where('name', 'LIKE', "%$keyword%")->get();
+        } else {
+            $listService = Service::all();
+        }
+        $listService->load(['cateservice']);
         return view('admin/services/index', ['data' => $listService]);
     }
 
@@ -23,7 +30,8 @@ class ServiceController extends Controller
     }
 
     public function store(Request $request){
-         if ($request->isMethod('post')) {
+        
+         if ($request->isMethod('post')) {  
              $validator =Validator::make($request->all(),[
                  'name' => 'required|min:3|max:30',
                  'price' => 'required',
@@ -43,6 +51,7 @@ class ServiceController extends Controller
           }
           }
           $data =  request()->except('_token');
+          
           $model = new Service();
          $model->fill($request->all());
          // save ảnh
@@ -51,7 +60,7 @@ class ServiceController extends Controller
              $ext = $file->getClientOriginalExtension();
              $filename = time() . '.' . $ext;
              $file->move(public_path('/uploads'), $filename);
-             $model->image = $filename;
+             $model->image = $filename;           
          }
         
         $model->save();

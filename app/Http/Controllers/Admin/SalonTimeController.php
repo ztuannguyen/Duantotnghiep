@@ -31,16 +31,19 @@ class SalonTimeController extends Controller
         $result = Time::create($data);
         return redirect()->route('admin.times.index');
     }
-    public function edit(Time $time){
+    public function edit(Time $time)
+    {
         $ListSalon = Salon::all();
-        return view('admin.times.edit', ['time' => $time,'ListSalon'=>$ListSalon]);
+        return view('admin.times.edit', ['time' => $time, 'ListSalon' => $ListSalon]);
     }
-    public function update(UpdateRequest $request,Time $time){
+    public function update(UpdateRequest $request, Time $time)
+    {
         $data = $request->except('_token');
         $time->update($data);
         return redirect()->route('admin.times.index');
     }
-    public function delete(Time $time){
+    public function delete(Time $time)
+    {
         $time->delete($time);
         return redirect()->route('admin.times.index');
     }

@@ -19,7 +19,7 @@ class Service extends Model
             	'image',	'total_time', 	'status',	'order_by',
     ];
 
-    public function services(){
-        return $this->belongsTo('App\Models\CateService', 'cate_id', 'id');
+    public function CateService(){
+        return $this->belongsTo(CateService::class, 'cate_id', 'id');
     }
 }

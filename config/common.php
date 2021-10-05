@@ -7,5 +7,12 @@
 
             ]
         ],
+        'booking' => [
+            'status' => [
+                'cho_xac_nhan'=> 1,
+                'da_xac_nhan' => 2,
+                'da_huy' => 3,
+            ]
+            ],
     ]
 ?>

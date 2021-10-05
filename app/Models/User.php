@@ -11,16 +11,18 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
+    protected $table = 'user';
+    public function roles(){
+        return $this->belongsTo(Role::class, 'role_id');
+    }
     protected $fillable = [
         'name',
-        'email',
-        'password',
+        'number_phone',
+        'pass',
+        'otp',
+        'image',
+        'role_id',
+        'ratings',
     ];
 
     /**
