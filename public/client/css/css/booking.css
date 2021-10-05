@@ -137,10 +137,12 @@
     padding: 15px 0px;
     margin: 0px 15px;
 }
+
 .salon__item:hover {
     background-color: #BF925B;
     color: white;
 }
+
 .salon__item .item {
     cursor: pointer;
 }
@@ -278,6 +280,7 @@ img {
     position: relative;
     transition-property: transform;
 }
+
 .btn,
 .pointer {
     cursor: pointer;
@@ -310,7 +313,7 @@ img {
 }
 
 .booking-service .service__list .list__item .item__title {
-    font-size: 12px;
+    font-size: 14px;
     color: #111;
     font-weight: 700;
     overflow: hidden;
@@ -332,7 +335,6 @@ img {
     margin: 0 8px 8px;
     font-size: 10px;
     color: #5f5f5f;
-    white-space: pre-line;
 }
 
 .booking-service .service__list .list__item .item__price {
@@ -366,9 +368,10 @@ img {
     cursor: pointer;
 }
 
-.booking-service .service__list .list__item .item__button:hover{
+.booking-service .service__list .list__item .item__button:hover {
     background-color: #BF925B;
 }
+
 .swiper-container .swiper-notification {
     position: absolute;
     left: 0;

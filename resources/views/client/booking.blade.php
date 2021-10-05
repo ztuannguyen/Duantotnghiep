@@ -96,15 +96,14 @@
                                                 @foreach ($item['services'] as $service)
                                                 <div class="swiper-slide list__item swiper-slide-active">
                                                     <div class="item__media pointer ">
-                                                        <img src="{{ url('uploads') }}/{{ $service['image'] }}"
+                                                        <img src="{{ url('uploads') }}/{{ $service['image'] }}" width="60" height="120"
                                                             alt="">
                                                     </div>
                                                     <div class="item__title pointer ">{{$service['name']}}</div>
-                                                    <div class="item__description pointer ">Trắng sáng tức thì, da mịn
-                                                        màng chắc khỏe</div>
+                                                    <div class="item__description pointer ">{{$service['description']}}</div>
                                                     <div class="item__price pointer">
                                                         <div class="meta__price"><span
-                                                                class="meta__newPrice">{{$service['price']}}</span>
+                                                                class="meta__newPrice">{{ number_format($service['price'])}}đ</span>
                                                         </div>
                                                     </div>
                                                     <div class="item__button" data-cate_id="{{$item['id']}}"

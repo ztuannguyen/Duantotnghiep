@@ -41,7 +41,7 @@
                         <input class="form-control" type="file" name="image" value="{{$service->image}}">
                         <div >
                             @if ($service->image)
-                            <img src="{{ asset('uploads/' . $service->image) }}" width="100px" height="150px">
+                            <img src="{{ asset('uploads/' . $service->image) }}" width="150px" height="100px">
                             @endif
                         </div>
                         @error('image')
@@ -51,7 +51,7 @@
                     {{-- execution_time --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Thời gian thực hiện</label>
-                        <input class="form-control" type="text" name="execution_time" value="{{$service->execution_time}}" placeholder="Nhập thời gian ...">Phút
+                        <input class="form-control" type="number" name="execution_time" value="{{$service->execution_time}}" placeholder="Nhập thời gian ...">Phút
                         @error('execution_time')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -80,15 +80,6 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    {{-- total_time --}}
-                    <div class="form-group">
-                        <label class="font-weight-bold">Tổng thời gian</label>
-                        <input class="form-control" type="text" name="total_time"
-                            placeholder="Nhập tổng thời gian ..." value="{{$service->total_time}}">
-                        @error('total_time')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
                     {{-- Cate_id --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Danh mục dịch vụ</label>
@@ -107,10 +98,10 @@
                     <div class="form-group">
                         <label class="font-weight-bold">Trạng thái</label>
                         <select class="mt-3 form-control" name="status">
-                            <option value="0">
+                            <option value="1">
                                 Đang hoạt động
                             </option>
-                            <option value="1">
+                            <option value="0">
                                 Dừng hoạt động
                             </option >
                             @error('status')
@@ -120,18 +111,11 @@
                     </div>
                     {{-- order_by --}}
                     <div class="form-group">
-                        <label class="font-weight-bold">Được tạo bởi</label>
-                        <select class="mt-3 form-control" name="order_by">
-                            <option value="0">
-                                1
-                            </option>
-                            <option value="1">
-                                2
-                            </option>
-                            @error('order_by')
-                                <span class="text-danger">{{ $message }}</span>
-    @enderror
-                        </select>
+                        <label class="font-weight-bold">Order_by</label>
+                        <input class="form-control" type="number" name="order_by" value="{{$service->order_by}}">
+                        @error('order_by')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-success">Sửa</button>
                 </form>
