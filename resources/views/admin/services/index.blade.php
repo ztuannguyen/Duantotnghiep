@@ -50,7 +50,6 @@
                         <td>Mô tả ngắn</td>
                         <td>Mô tả chi tiết</td>
                         <td>Ảnh</td>
-                        <td>Tổng thời gian</td>
                         <td>Trạng thái</td>
                         <td>Sắp xếp</td>
                         <td>Chức năng</td>
@@ -67,9 +66,8 @@
                             <td>{{ $item->discount }}</td>
                             <td>{{ $item->description }}</td>
                             <td>{{ $item->detail}}</td>
-                            <td><img src="{{ asset('uploads/' . $item->image) }}" width="70" height="70" alt=""></td>
-                            <td>{{ $item->total_time }}</td>
-                            < <td>
+                            <td><img src="{{ asset('uploads/' . $item->image) }}" width="150" height="100" alt=""></td>
+                            <td>
                                 <div class="form-group">
                                         <label class="btn btn-success btn-sm" >{{ $item->status ? 'ON' : 'OFF' }}</label>
                                 </div>

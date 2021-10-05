@@ -96,14 +96,15 @@ Thông tin đặt lịch
                                                 @foreach ($item['services'] as $service)
                                                 <div class="swiper-slide list__item swiper-slide-active">
                                                     <div class="item__media pointer ">
-                                                        <img src="{{ url('uploads') }}/{{ $service['image'] }}" alt="">
+                                                        <img src="{{ url('uploads') }}/{{ $service['image'] }}" width="60" height="120"
+                                                            alt="">
+
                                                     </div>
                                                     <div class="item__title pointer ">{{$service['name']}}</div>
-                                                    <div class="item__description pointer ">Trắng sáng tức thì, da mịn
-                                                        màng chắc khỏe</div>
+                                                    <div class="item__description pointer ">{{$service['description']}}</div>
                                                     <div class="item__price pointer">
                                                         <div class="meta__price"><span
-                                                                class="meta__newPrice">{{$service['price']}}</span>
+                                                                class="meta__newPrice">{{ number_format($service['price'])}}đ</span>
                                                         </div>
                                                     </div>
                                                     <div class="item__button" data-cate_id="{{$item['id']}}"
@@ -171,7 +172,6 @@ Thông tin đặt lịch
                                 <div class="form-group">
                                     <input type="date" class="form-control" id="">
                                 </div>
-                            </div>
                             <div class="col-sm-12">
                                 <div class="box-time" id="box-time">
                                     <div class="relative">
@@ -254,35 +254,6 @@ Thông tin đặt lịch
                                 </div>
                             </div>
                             <div class="col-sm-12 mb-3">
-                                <!-- <div class="form-group">
-                                                <label for="" class="form-control-label col-md-3 col-6">
-                                                    <h5>Yêu cầu tư vấn</h5>
-                                                </label>
-                                                <button type="button" class="btn btn-toggle" data-toggle="button"
-                                                    aria-pressed="false" autocomplete="on">
-                                                    <div class="handle"></div>
-                                                </button>
-                                                <p class="col-sm-12">(Anh chị có muốn nghe thông tin về các chương
-                                                    trình bán hàng, khuyến mãi, giảm
-                                                    giá?)</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="form-group">
-                                                <label for="" class="form-control-label col-md-3 col-6">
-                                                    <h5>Chụp hình sau khi cắt</h5>
-                                                </label>
-                                                <button type="button" class="btn btn-toggle" data-toggle="button"
-                                                    aria-pressed="false" autocomplete="on">
-                                                    <div class="handle"></div>
-                                                </button>
-                                                <p class="col-sm-12">(Anh chị có muốn chụp hình lưu lại kiểu tóc,
-                                                    để lần sau không phải mô tả lại
-                                                    cho thợ khác?)</p>
-                                            </div>
-                                        </div>
-                                    </div> -->
-
                                 <div class="form-group">
                                     <input type="submit" value="Đặt Lịch Ngay" class="btn btn-primary">
                                 </div>

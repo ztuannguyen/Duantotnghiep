@@ -19,20 +19,15 @@ class BookingController extends Controller
         } else {
             $ListBooking = Booking::all();
         }
-        $ListBooking->load(['service']);
         $ListBooking->load(['salon']);
-        
         $ListBooking->load(['time']);
+        $ListBooking->load(['service']);
         $service = Service::all();
         return view('admin.bookings.index', [
             'data' => $ListBooking, 
             'service' => $service,
         ]);
 
-        // $ListBooking->load(['service']);
-        // $ListBooking->load(['salon']);
-        // $ListBooking->load(['time']);
-        // return view('admin.bookings.index',['data' => $ListBooking]);
     }
 
     public function create(){
@@ -46,10 +41,6 @@ class BookingController extends Controller
     }
     public function store(Request $request){
         
-        // $data =  $request->except('_token');
-        // $result = Booking::create($data);
-        // return redirect()->route('admin.bookings.index');
-        //
 
         
         $model = new Booking(); 
@@ -78,6 +69,7 @@ class BookingController extends Controller
         $model->delete();
         Booking::destroy($id);
         return redirect()->back();
+
 
     }
 }

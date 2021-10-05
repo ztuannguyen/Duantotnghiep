@@ -47,6 +47,24 @@ Route::group([
         Route::post('/delete/{salon}', [SalonController::class,'delete'])->name('delete');
     });
 });
+//--------------------------BOOKINGS--------------------//
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'namespace' => 'Admin'
+], function () {
+    Route::group([
+        'prefix' => "bookings",
+        'as' => "bookings."
+    ], function () {
+        Route::get('/', [BookingController::class,'index'])->name('index');
+        Route::get('/create', [BookingController::class,'create'])->name('create');
+        Route::post('/store', [BookingController::class,'store'])->name('store');
+        // Route::get('/edit/{salon}', [BookingController::class,'edit'])->name('edit');
+        // Route::post('/update/{salon}', [BookingController::class,'update'])->name('update');
+        Route::post('/delete/{booking}', [BookingController::class,'delete'])->name('delete');
+    });
+});
 //-------------------------TIME SALONS----------------------//
 Route::group([
     'prefix' => 'admin',
