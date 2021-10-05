@@ -65,6 +65,7 @@ Route::group([
         Route::post('/delete/{time}', [SalonTimeController::class,'delete'])->name('delete');
     });
 });
+///bookings
 //--------------------------BOOKINGS--------------------//
 Route::group([
     'prefix' => 'admin',
@@ -80,7 +81,7 @@ Route::group([
         Route::post('/store', [BookingController::class,'store'])->name('store');
         // Route::get('/edit/{salon}', [BookingController::class,'edit'])->name('edit');
         // Route::post('/update/{salon}', [BookingController::class,'update'])->name('update');
-        Route::post('/delete/{booking}', [BookingController::class,'delete'])->name('delete');
+        Route::post('/delete/{booking}', [BookingController::class,'remove'])->name('remove');
     });
 });
 // Cate Service
@@ -99,7 +100,10 @@ Route::post('/admin/services/store', [ServiceController::class, 'store'])->name(
 Route::get('/admin/services/edit/{service}', [ServiceController::class, 'edit'])->name('admin.services.edit');
 Route::post('/admin/services/update/{service}', [ServiceController::class, 'update'])->name('admin.services.update');
 
+
+
 //users
+
 
 Route::get('/admin/users', [UserController::class,'index'])->name('admin.users.index');
 Route::get('/admin/user/delete/{id}', [UserController::class, 'remove'])->name('admin.users.remove');

@@ -21,6 +21,7 @@ class BookingController extends Controller
         }
         $ListBooking->load(['service']);
         $ListBooking->load(['salon']);
+        
         $ListBooking->load(['time']);
         $service = Service::all();
         return view('admin.bookings.index', [
@@ -28,7 +29,12 @@ class BookingController extends Controller
             'service' => $service,
         ]);
 
+        // $ListBooking->load(['service']);
+        // $ListBooking->load(['salon']);
+        // $ListBooking->load(['time']);
+        // return view('admin.bookings.index',['data' => $ListBooking]);
     }
+
     public function create(){
   
 
@@ -40,6 +46,11 @@ class BookingController extends Controller
     }
     public function store(Request $request){
         
+        // $data =  $request->except('_token');
+        // $result = Booking::create($data);
+        // return redirect()->route('admin.bookings.index');
+        //
+
         
         $model = new Booking(); 
         $model->number_phone = $request->number_phone;
@@ -59,8 +70,14 @@ class BookingController extends Controller
         }
         return redirect()->route('admin.bookings.index');
     }
-    public function delete(Booking $booking){
-        $booking->delete($booking);
-        return redirect()->route('admin.bookings.delete');
+
+  
+    public function remove($id)
+    {
+        $model = Booking::find($id);
+        $model->delete();
+        Booking::destroy($id);
+        return redirect()->back();
+
     }
 }
