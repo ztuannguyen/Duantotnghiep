@@ -66,6 +66,7 @@ Route::group([
     });
 });
 ///bookings
+//--------------------------BOOKINGS--------------------//
 Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
@@ -100,7 +101,10 @@ Route::get('/admin/services/edit/{service}', [ServiceController::class, 'edit'])
 Route::post('/admin/services/update/{service}', [ServiceController::class, 'update'])->name('admin.services.update');
 
 
+
 //users
+
+
 Route::get('/admin/users', [UserController::class,'index'])->name('admin.users.index');
 Route::get('/admin/user/delete/{id}', [UserController::class, 'remove'])->name('admin.users.remove');
 Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');

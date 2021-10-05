@@ -22,6 +22,7 @@ class BookingController extends Controller
         $ListBooking->load(['service']);
         $ListBooking->load(['salon']);
         
+        $ListBooking->load(['time']);
         $service = Service::all();
         return view('admin.bookings.index', [
             'data' => $ListBooking, 
@@ -33,12 +34,9 @@ class BookingController extends Controller
         // $ListBooking->load(['time']);
         // return view('admin.bookings.index',['data' => $ListBooking]);
     }
+
     public function create(){
-        // $service = Booking::with('service')->get();
-        // $service = Service::all();
-        // $ListSalon = Salon::all();
-        // $ListTime = Time::all();
-        // return view('admin.bookings.create',['ListSalon' => $ListSalon,'ListTime' =>$ListTime,'service' => $service]);
+  
 
         $booking = Booking::with('service')->get();
         $service = Service::all();
@@ -53,6 +51,7 @@ class BookingController extends Controller
         // return redirect()->route('admin.bookings.index');
         //
 
+        
         $model = new Booking(); 
         $model->number_phone = $request->number_phone;
         $model->salon_id = $request->salon_id;
@@ -71,6 +70,7 @@ class BookingController extends Controller
         }
         return redirect()->route('admin.bookings.index');
     }
+
   
     public function remove($id)
     {
@@ -78,5 +78,6 @@ class BookingController extends Controller
         $model->delete();
         Booking::destroy($id);
         return redirect()->back();
+
     }
 }
