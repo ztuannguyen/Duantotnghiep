@@ -4,11 +4,11 @@ use App\Http\Controllers\Admin\CateServiceController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Client\ClientController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SalonController;
 use App\Http\Controllers\Admin\SalonTimeController;
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +28,6 @@ Route::get('/', function () {
 Route::get('/client/booking',[ClientController::class,'index'])->name('client.booking');
 // Admin dashbord
 Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
-
 
 //--------------------------SALONS--------------------//
 Route::group([
@@ -84,7 +83,25 @@ Route::group([
         Route::post('/delete/{time}', [SalonTimeController::class,'delete'])->name('delete');
     });
 });
-
+///bookings
+//--------------------------BOOKINGS--------------------//
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'namespace' => 'Admin'
+], function () {
+    Route::group([
+        'prefix' => "bookings",
+        'as' => "bookings."
+    ], function () {
+        Route::get('/', [BookingController::class,'index'])->name('index');
+        Route::get('/create', [BookingController::class,'create'])->name('create');
+        Route::post('/store', [BookingController::class,'store'])->name('store');
+        // Route::get('/edit/{salon}', [BookingController::class,'edit'])->name('edit');
+        // Route::post('/update/{salon}', [BookingController::class,'update'])->name('update');
+        Route::post('/delete/{booking}', [BookingController::class,'remove'])->name('remove');
+    });
+});
 // Cate Service
 Route::get('/admin/cate_services', [CateServiceController::class, 'index'])->name('admin.cate_services.index');
 Route::get('/cate_services/delete/{id}', [CateServiceController::class, 'delete'])->name('admin.cate_services.delete');
@@ -101,3 +118,14 @@ Route::post('/admin/services/store', [ServiceController::class, 'store'])->name(
 Route::get('/admin/services/edit/{service}', [ServiceController::class, 'edit'])->name('admin.services.edit');
 Route::post('/admin/services/update/{service}', [ServiceController::class, 'update'])->name('admin.services.update');
 
+
+
+//users
+
+
+Route::get('/admin/users', [UserController::class,'index'])->name('admin.users.index');
+Route::get('/admin/user/delete/{id}', [UserController::class, 'remove'])->name('admin.users.remove');
+Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
+Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
+Route::get('/admin/users/edit/{user}', [UserController::class, 'edit'])->name('admin.users.edit');
+Route::post('/admin/users/update/{user}', [UserController::class, 'update'])->name('admin.users.update');

@@ -21,7 +21,9 @@
                 <span class="text">Thêm mới</span>
             </a>
             <!-- Topbar Search -->
+
             <form class="d-none d-sm-inline-block form-inline mr-auto  ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="{{route('admin.cate_services.index')}}"
+
                 method="GET">
                 <div class="input-group">
                     <input type="text" class="form-control bg-light  small" placeholder="Tìm kiếm..." aria-label="Search"

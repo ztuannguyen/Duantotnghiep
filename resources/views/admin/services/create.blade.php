@@ -47,6 +47,7 @@
                     <div class="form-group">
                         <label class="font-weight-bold">Thời gian thực hiện</label>
                         <input class="form-control" type="number" name="execution_time" placeholder="Nhập thời gian ...">
+
                         @error('execution_time')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror

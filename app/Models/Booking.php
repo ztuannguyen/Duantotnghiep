@@ -17,16 +17,19 @@ class Booking extends Model
         'number_phone',
         'salon_id',
         'time_id',
-        'note',
         'date_booking',
-        'total_price',
-        'add_by_id_user',
         'status',
+        'note'
+        // 'total_price',
+        // 'add_by_id_user'
     ];
     public function Salon(){
         return $this->belongsTo(Salon::class,'salon_id','id');
     }
     public function Time(){
         return $this->belongsTo(Time::class,'time_id','id');
+    }
+    public function service(){
+        return $this->belongsToMany(Service::class,'bookings_services','booking_id','service_id');
     }
 }

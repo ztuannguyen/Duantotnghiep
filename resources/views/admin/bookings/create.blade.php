@@ -34,10 +34,23 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="">Dịch vụ</label>
+                        <div class="form-check">
+                          @foreach($service as $ser)
+                              <div class="form-check">
+                                  <input class="form-check-input" name="bookings_services[]" type="checkbox" value="{{$ser->id}}">
+                                  <label class="form-check-label" >
+                                      {{$ser->name}}
+                                  </label>
+                              </div>
+                          @endforeach
+                      </div>
+                    </div>
+                    <div class="form-group">
                         <label class="font-weight-bold">Thời gian</label>
                         <select class="mt-3 form-control" name="time_id">
                             @foreach ($ListTime as $item)
-                                <option value="{{ $item->id }}">{{ $item->time_start }}</option>
+                                <option value="{{ $item->id }}">{{ $item->time_start}}</option>
                             @endforeach
                         </select>
                     </div>

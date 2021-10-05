@@ -43,11 +43,10 @@
                         <td>#</td>
                         <td>Số điện thoại</td>
                         <td>Salon</td>
+                        <td>Dịch vụ</td>
                         <td>Thời gian</td>
                         <td>Ngày đặt</td>
                         <td>Lời nhắn</td>
-                        <td>Tổng tiền</td>
-                        <td>Người tạo</td>
                         <td>Trạng thái</td>
                         <td colspan="2">Hành động</td>
                     </tr>
@@ -57,12 +56,17 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->number_phone }}</td>
-                            <td >{{ $item->salon_id}}</td>
+                            <td >{{ $item->Salon->name_salon}}</td>
+                            <td>
+                                <ul>
+                                    @foreach($item->service as $ser)
+                                        <li>{{$ser->name}}</li>
+                                    @endforeach
+                                </ul>
+                            </td>
                             <td >{{ $item->Time->time_start}}</td>
-                            <td>{{ $item->date_booking }}</td>
-                            <td>{{ $item->note }}</td>
-                            <td>{{$item->total_price}}</td>
-                            <td>{{$item->add_by_id_user}}</td>
+                            <td>{{ $item->date_booking}}</td>
+                            <td>{{ $item->note}}</td>
                             <td>
                                 @if ($item->status == config('common.booking.status.cho_xac_nhan'))
                                     <span class="text-danger">Chờ xác nhận</span>
@@ -98,7 +102,7 @@
                                                     data-dismiss="modal">Cancel</button>
 
                                                 <form method="POST"
-                                                    action="{{ route('admin.bookings.delete', ['booking' => $item->id]) }}">
+                                                    action="{{ route('admin.bookings.remove', ['booking' => $item->id]) }}">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger">Xóa</button>
                                                 </form>
