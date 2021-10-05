@@ -7,7 +7,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">Dịch vụ</li>
-            <li class="breadcrumb-item"><a href="">Danh sách dịch vụ</a> </li>
+            <li class="breadcrumb-item"><a href="{{route('admin.services.index')}}">Danh sách dịch vụ</a> </li>
             <li class="breadcrumb-item">Sửa dịch vụ</li>
         </ol>
     </nav>

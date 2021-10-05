@@ -41,25 +41,25 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <td>ID</td>
+                        <td>#</td>
                         <td>Tên dịch vụ</td>
                         <td>Giá</td>
-                        <td>cate_id</td>
-                        <td>execution_time</td>
-                        <td>discount</td>
-                        <td>description	</td>
-                        <td>detail</td>
-                        <td>image</td>
-                        <td>total_time</td>
-                        <td>status</td>
-                        <td>order_by</td>
+                        <td>Danh mục</td>
+                        <td>Thời gian thực hiện</td>
+                        <td>Giảm giá</td>
+                        <td>Mô tả ngắn</td>
+                        <td>Mô tả chi tiết</td>
+                        <td>Ảnh</td>
+                        <td>Tổng thời gian</td>
+                        <td>Trạng thái</td>
+                        <td>Sắp xếp</td>
                         <td>Chức năng</td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->price }}</td>
                             <td>{{ $item->cateService->name_cate }}</td>
@@ -69,7 +69,11 @@
                             <td>{{ $item->detail}}</td>
                             <td><img src="{{ asset('uploads/' . $item->image) }}" width="70" height="70" alt=""></td>
                             <td>{{ $item->total_time }}</td>
-                            <td>{{ $item->status }}</td>
+                            < <td>
+                                <div class="form-group">
+                                        <label class="btn btn-success btn-sm" >{{ $item->status ? 'ON' : 'OFF' }}</label>
+                                </div>
+                            </td>
                             <td>{{ $item->order_by }}</td>
                             <td> <a href="{{route('admin.services.edit', ['service' => $item->id])}}"
                                     class="btn btn-warning btn-circle btn-sm">

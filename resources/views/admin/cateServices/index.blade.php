@@ -40,16 +40,16 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <td>ID</td>
+                        <td>#</td>
                         <td>Tên danh mục dịch vụ</td>
-                        <td>Order_by</td>
+                        <td>Sắp xếp</td>
                         <td>Hành động</td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->name_cate }}</td>
                             <td>{{ $item->order_by }}</td>
                             <td> <a href="{{ Route('admin.cate_services.edit', ['cateService' => $item->id]) }}" {{-- {{ route('admin.salons.edit', ['salon' => $item->id]) }} --}}
