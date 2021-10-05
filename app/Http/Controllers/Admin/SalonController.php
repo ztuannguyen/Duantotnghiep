@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Salon;
+use App\Models\Booking;
 use App\Http\Requests\Admin\Salon\SalonRequest;
 use App\Http\Requests\Admin\Salon\UpdateRequest;
 
@@ -18,6 +19,7 @@ class SalonController extends Controller
             $ListSalon = Salon::where('status',1)->orderBy('id','ASC')->get();
         }
         $ListSalon->load(['times']);
+        $ListSalon->load(['bookings']);
         return view('admin/salons/index', ['data' => $ListSalon]);
     }
     public function create(){

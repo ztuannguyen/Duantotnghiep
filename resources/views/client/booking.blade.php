@@ -182,6 +182,8 @@
                                                         <div class="box-time_item   " role="presentation">7h00</div>
                                                         <div class="box-time_item   " role="presentation">7h20</div>
                                                         <div class="box-time_item   " role="presentation">7h40</div>
+                                                            
+                                                      
                                                     </div>
                                                     <div class="swiper-slide box-time_gr"
                                                         style="width: 83.9231px; margin-right: 8px;">
@@ -279,13 +281,13 @@
                                                         <div class="box-time_item   " role="presentation">23h20</div>
                                                         <div class="box-time_item  " role="presentation">23h40</div>
                                                     </div>
-                                                </div><span class="swiper-notification" aria-live="assertive"
+                                                </div>
+                                                <span class="swiper-notification" aria-live="assertive"
                                                     aria-atomic="true">
                                                     Không có giờ nào phù hợp với anh
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class=""></div>
                                 </div>
                             </div>
                             <div class="

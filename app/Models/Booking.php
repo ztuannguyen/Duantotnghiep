@@ -5,22 +5,28 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Time extends Model
+class Booking extends Model
 {
     use HasFactory;
 
-    protected $table = 'times';
+    protected $table = 'bookings';
+
     protected $primaryKey = 'id';
+
     protected $fillable = [
-        'slot',
+        'number_phone',
         'salon_id',
-        'time_start',
-        'time_end',
+        'time_id',
+        'note',
+        'date_booking',
+        'total_price',
+        'add_by_id_user',
+        'status',
     ];
     public function Salon(){
         return $this->belongsTo(Salon::class,'salon_id','id');
     }
-    public function Bookings(){
-        return $this->hasMany(Booking::class,'time_id','id');
+    public function Time(){
+        return $this->belongsTo(Time::class,'time_id','id');
     }
 }
