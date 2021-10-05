@@ -31,12 +31,12 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
             aria-controls="collapseTwo">
             <i class="fas fa-th-list"></i>
-            <span>Danh mục</span>
+            <span>Dịch vụ</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{Route('admin.cate_services.index')}}">Danh mục dịch vụ</a>
-                <a class="collapse-item" href="{{Route('admin.services.index')}}">Dịch vụ</a>
+                <a class="collapse-item" href="{{Route('admin.services.index')}}">Danh sách dịch vụ</a>
             </div>
         </div>
     </li>
@@ -45,19 +45,21 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
             aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Utilities</span>
+            <i class="fas fa-fw fa-building"></i>
+            <span>Cửa hàng</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Utilities:</h6>
-                <a class="collapse-item" href="utilities-color.html">Colors</a>
-                <a class="collapse-item" href="utilities-border.html">Borders</a>
-                <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                <a class="collapse-item" href="utilities-other.html">Other</a>
+                <a class="collapse-item" href="/admin/salons">Danh sách chi nhánh</a>
+                <a class="collapse-item" href="/admin/times">Thời gian đặt lịch</a>
             </div>
         </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/bookings">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Đặt lịch</span></a>
     </li>
 
     <!-- Divider -->

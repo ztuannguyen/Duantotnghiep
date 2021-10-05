@@ -5,8 +5,8 @@
 @section('contents')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">Danh mục</li>
-            <li class="breadcrumb-item">Danh sách danh mục dịch vụ </li>
+            <li class="breadcrumb-item">Dịch vụ</li>
+            <li class="breadcrumb-item"><a href="{{route('admin.cate_services.index')}}"> Danh sách danh mục dịch vụ</a> </li>
         </ol>
     </nav>
     <div class="card shadow mb-4">
@@ -21,7 +21,9 @@
                 <span class="text">Thêm mới</span>
             </a>
             <!-- Topbar Search -->
-            <form class="d-none d-sm-inline-block form-inline mr-auto  ml-md-3 my-2 my-md-0 mw-100 navbar-search" action=""
+
+            <form class="d-none d-sm-inline-block form-inline mr-auto  ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="{{route('admin.cate_services.index')}}"
+
                 method="GET">
                 <div class="input-group">
                     <input type="text" class="form-control bg-light  small" placeholder="Tìm kiếm..." aria-label="Search"
@@ -40,16 +42,16 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <td>ID</td>
+                        <td>#</td>
                         <td>Tên danh mục dịch vụ</td>
-                        <td>Order_by</td>
+                        <td>Sắp xếp</td>
                         <td>Hành động</td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->name_cate }}</td>
                             <td>{{ $item->order_by }}</td>
                             <td> <a href="{{ Route('admin.cate_services.edit', ['cateService' => $item->id]) }}" {{-- {{ route('admin.salons.edit', ['salon' => $item->id]) }} --}}

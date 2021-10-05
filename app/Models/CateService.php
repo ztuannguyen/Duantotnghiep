@@ -17,7 +17,7 @@ class CateService extends Model
         'order_by',
     ];
 
-    public function services(){
-        return $this->hasMany('App\Models\Service', 'cate_id', 'id');
+    public function Services(){
+        return $this->hasMany(Service::class, 'cate_id', 'id');
     }
 }

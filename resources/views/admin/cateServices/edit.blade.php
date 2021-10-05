@@ -5,8 +5,8 @@
 @section('contents')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Danh mục</li>
-        <li class="breadcrumb-item"><a href="{{route('admin.cate_services.index')}}">Danh mục dịch vụ</a> </li>
+        <li class="breadcrumb-item">Dịch vụ</li>
+        <li class="breadcrumb-item"><a href="{{route('admin.cate_services.index')}}">Danh sách danh mục dịch vụ</a> </li>
         <li class="breadcrumb-item">Sửa danh mục dịch vụ</li>
     </ol>
 </nav>

@@ -6,8 +6,8 @@
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">Danh mục</li>
-            <li class="breadcrumb-item"><a href="">Dịch vụ</a> </li>
+            <li class="breadcrumb-item">Dịch vụ</li>
+            <li class="breadcrumb-item"><a href="{{route('admin.services.index')}}">Danh sách dịch vụ</a> </li>
             <li class="breadcrumb-item">Thêm mới dịch vụ</li>
         </ol>
     </nav>
@@ -46,7 +46,8 @@
                     {{-- execution_time --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Thời gian thực hiện</label>
-                        <input class="form-control" type="text" name="execution_time" placeholder="Nhập thời gian ...">
+
+                        <input class="form-control" type="time" name="execution_time" placeholder="Nhập thời gian ...">
                         @error('execution_time')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -102,10 +103,10 @@
                     <div class="form-group">
                         <label class="font-weight-bold">Trạng thái</label>
                         <select class="mt-3 form-control" name="status">
-                            <option value="0">
+                            <option value="1">
                                 Đang hoạt động
                             </option>
-                            <option value="1">
+                            <option value="0">
                                 Dừng hoạt động
                             </option >
                             @error('status')
