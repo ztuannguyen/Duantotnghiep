@@ -20,5 +20,4 @@ class Time extends Model
     public function Salon(){
         return $this->belongsTo(Salon::class,'salon_id','id');
     }
-    
 }

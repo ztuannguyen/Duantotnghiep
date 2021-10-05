@@ -4,7 +4,6 @@ use App\Http\Controllers\Admin\CateServiceController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Client\ClientController;
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SalonController;
 use App\Http\Controllers\Admin\SalonTimeController;
@@ -29,7 +28,6 @@ Route::get('/', function () {
 Route::get('/client/booking',[ClientController::class,'index'])->name('client.booking');
 // Admin dashbord
 Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
-
 
 //--------------------------SALONS--------------------//
 Route::group([
