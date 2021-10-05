@@ -4,11 +4,12 @@ use App\Http\Controllers\Admin\CateServiceController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Client\ClientController;
-use App\Http\Controllers\UserController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SalonController;
 use App\Http\Controllers\Admin\SalonTimeController;
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
@@ -83,3 +84,11 @@ Route::post('/admin/services/store', [ServiceController::class, 'store'])->name(
 Route::get('/admin/services/edit/{service}', [ServiceController::class, 'edit'])->name('admin.services.edit');
 Route::post('/admin/services/update/{service}', [ServiceController::class, 'update'])->name('admin.services.update');
 
+//users
+
+Route::get('/admin/users', [UserController::class,'index'])->name('admin.users.index');
+Route::get('/admin/user/delete/{id}', [UserController::class, 'remove'])->name('admin.users.remove');
+Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
+Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
+Route::get('/admin/users/edit/{user}', [UserController::class, 'edit'])->name('admin.users.edit');
+Route::post('/admin/users/update/{user}', [UserController::class, 'update'])->name('admin.users.update');
