@@ -53,14 +53,21 @@ class SalonController extends Controller
             $filename = time() . '.' . $ext;
             $file->move(public_path('/uploads'), $filename);
             $salons->image = $filename;
-        }
             $salon->update([
-            'name_salon' => $request->name_salon,
-            'address' => $request->address,
-            'status' => $request->status,
-            'image' => $filename,
-            'description' => $request->description,
-        ]);
+                'name_salon' => $request->name_salon,
+                'address' => $request->address,
+                'status' => $request->status,
+                'image' => $filename,
+                'description' => $request->description,
+            ]);
+        }else{
+            $salon->update([
+                'name_salon' => $request->name_salon,
+                'address' => $request->address,
+                'status' => $request->status,
+                'description' => $request->description,
+            ]);
+        }
         return redirect()->route('admin.salons.index');
     }
     public function delete(Salon $salon){

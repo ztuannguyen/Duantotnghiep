@@ -109,7 +109,6 @@ class UserController extends Controller
                  'number_phone' => 'required',
                  'pass' => 'required|min:6|max:10',
                  'otp' => 'required',
-                 'image' => 'required',
                  'ratings' => 'required',
                  'role_id' => 'required',
             ]);
@@ -126,16 +125,25 @@ class UserController extends Controller
             $filename = time() . '.' . $ext;
             $file->move(public_path('/uploads'), $filename);
             $users->image = $filename;
+            $user->update([
+                'name' => $request->name,
+                'number_phone' => $request->number_phone,
+                'pass' => $request->pass,
+                'otp' => $request->otp,
+                'image' => $filename,
+                'ratings' => $request->ratings,
+                'role_id' =>  $request->role_id,
+            ]);
+        }else{
+            $user->update([
+                'name' => $request->name,
+                'number_phone' => $request->number_phone,
+                'pass' => $request->pass,
+                'otp' => $request->otp,
+                'ratings' => $request->ratings,
+                'role_id' =>  $request->role_id,
+            ]);
         }
-        $user->update([
-            'name' => $request->name,
-            'number_phone' => $request->number_phone,
-            'pass' => $request->pass,
-            'otp' => $request->otp,
-            'image' => $filename,
-            'ratings' => $request->ratings,
-            'role_id' =>  $request->role_id,
-        ]);
         return redirect()->route('admin.users.index');
     }
 

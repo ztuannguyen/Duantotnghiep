@@ -63,7 +63,11 @@
                     {{-- description --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Mô tả</label>
-                        <input class="form-control" type="text" name="description" placeholder="Nhập mô tả ...">
+                        <textarea name="description" id="description" class="form-control ckeditor"></textarea>
+                        <script>
+                            CKEDITOR.replace('description');
+                            var data = CKEDITOR.instances.description.getData();
+                        </script>
                         @error('description')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -71,7 +75,11 @@
                     {{-- detail --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Chi tiết</label>
-                        <input class="form-control" type="text" name="detail" placeholder="Nhập chi tiết ...">
+                        <textarea name="detail" id="detail" class="form-control ckeditor"></textarea>
+                        <script>
+                            CKEDITOR.replace('detail');
+                            var data = CKEDITOR.instances.detail.getData();
+                        </script>
                         @error('detail')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
