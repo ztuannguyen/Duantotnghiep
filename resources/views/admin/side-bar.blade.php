@@ -61,7 +61,6 @@
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Đặt lịch</span></a>
     </li>
-
     <!-- Divider -->
     <hr class="sidebar-divider">
 

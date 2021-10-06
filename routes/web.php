@@ -26,7 +26,7 @@ Route::get('/', function () {
 });
 // User
 Route::get('/client/booking',[ClientController::class,'index'])->name('client.booking');
-// Admin dashbord
+// Admin dashboard
 Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
 
 //--------------------------SALONS--------------------//
@@ -97,8 +97,8 @@ Route::group([
         Route::get('/', [BookingController::class,'index'])->name('index');
         Route::get('/create', [BookingController::class,'create'])->name('create');
         Route::post('/store', [BookingController::class,'store'])->name('store');
-        // Route::get('/edit/{salon}', [BookingController::class,'edit'])->name('edit');
-        // Route::post('/update/{salon}', [BookingController::class,'update'])->name('update');
+        Route::get('/edit/{booking}', [BookingController::class,'edit'])->name('edit');
+        Route::post('/update/{booking}', [BookingController::class,'update'])->name('update');
         Route::post('/delete/{booking}', [BookingController::class,'remove'])->name('remove');
     });
 });

@@ -76,7 +76,8 @@
                                     <span class="text-danger">Đã hủy</span>
                                 @endif
                             </td>
-                            <td>{{-- <td> <a href="{{ route('admin.salons.edit', ['salon' => $item->id]) }}"
+                            <td> 
+                                {{-- <a href="{{ route('admin.bookings.edit', ['booking' => $item->id]) }}"
                                     class="btn btn-warning btn-circle btn-sm">
                                     <i class="fas  fa-edit"></i>
                                 </a> --}}

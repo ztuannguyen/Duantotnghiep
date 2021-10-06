@@ -20,7 +20,7 @@
                     @csrf
                     <div class="form-group">
                         <label class="font-weight-bold">Số điện thoại</label>
-                        <input class="form-control" type="number" name="number_phone" value="{{ old('number_phone') }}">
+                        <input class="form-control" type="tel" name="number_phone" value="{{ old('number_phone') }}">
                         @error('number_phone')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -44,7 +44,7 @@
                                   </label>
                               </div>
                           @endforeach
-                      </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Thời gian</label>
