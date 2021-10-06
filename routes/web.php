@@ -60,7 +60,7 @@ Route::group([
         Route::get('/', [BookingController::class,'index'])->name('index');
         Route::get('/create', [BookingController::class,'create'])->name('create');
         Route::post('/store', [BookingController::class,'store'])->name('store');
-        // Route::get('/edit/{salon}', [BookingController::class,'edit'])->name('edit');
+        Route::get('/edit/{booking}', [BookingController::class,'edit'])->name('edit');
         // Route::post('/update/{salon}', [BookingController::class,'update'])->name('update');
         Route::post('/delete/{booking}', [BookingController::class,'delete'])->name('delete');
     });

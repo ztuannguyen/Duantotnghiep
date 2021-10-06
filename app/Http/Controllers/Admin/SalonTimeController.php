@@ -16,7 +16,7 @@ class SalonTimeController extends Controller
             $keyword = $request->get('keyword');
             $ListTime = Time::where('salon_id', 'LIKE', "%$keyword%")->get();
         } else {
-            $ListTime = Time::paginate(14);
+            $ListTime = Time::all();
         }
         $ListTime->load(['salon']);
         $ListTime->load(['bookings']);

@@ -12,13 +12,10 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-
-        $pagesize = 6;
-
         $searchData = $request->except('page'); 
         if (count($request->all()) == 0) {
             // Lấy ra danh sách phòng & phân trang cho nó
-            $users = User::paginate($pagesize);
+            $users = User::paginate(6);
         } else {
             $userQuery = User::where('name', 'like', "%" . $request->keyword . "%");
 
@@ -33,11 +30,8 @@ class UserController extends Controller
                     $userQuery = $userQuery->orderByDesc('role_id');
                 }
             }
-            $users = $userQuery->paginate($pagesize)->appends($searchData);;
+            $users = $userQuery->paginate(6)->appends($searchData);
         }
-
-
-     
         $roles = Role::all();
         $users->load('roles');
 
@@ -48,13 +42,6 @@ class UserController extends Controller
             'searchData' => $searchData
 
         ]);
-    }
-    public function remove($id)
-    {
-        $model = User::find($id);
-        $model->delete();
-        User::destroy($id);
-        return redirect()->back();
     }
     public function create(){
         return view('admin/users/create');
@@ -125,15 +112,6 @@ class UserController extends Controller
             $filename = time() . '.' . $ext;
             $file->move(public_path('/uploads'), $filename);
             $users->image = $filename;
-            $user->update([
-                'name' => $request->name,
-                'number_phone' => $request->number_phone,
-                'pass' => $request->pass,
-                'otp' => $request->otp,
-                'image' => $filename,
-                'ratings' => $request->ratings,
-                'role_id' =>  $request->role_id,
-            ]);
         }else{
             $user->update([
                 'name' => $request->name,
@@ -145,6 +123,13 @@ class UserController extends Controller
             ]);
         }
         return redirect()->route('admin.users.index');
+    } 
+    public function remove($id)
+    {
+        $model = User::find($id);
+        $model->delete();
+        User::destroy($id);
+        return redirect()->back();
     }
 
 }

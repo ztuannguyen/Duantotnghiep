@@ -2,10 +2,10 @@
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
     
-
+    @yield('search-form')
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
-
+       
         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
         <li class="nav-item dropdown no-arrow d-sm-none">
             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
