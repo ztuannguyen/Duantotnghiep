@@ -56,6 +56,13 @@
             </div>
         </div>
     </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.users.index')}}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Người dùng</span></a>
+    </li>
+
     <li class="nav-item">
         <a class="nav-link" href="/admin/bookings">
             <i class="fas fa-fw fa-chart-area"></i>
