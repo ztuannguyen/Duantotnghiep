@@ -6,7 +6,7 @@
 
 
     <section class="hero-wrap hero-wrap-2" style="background-image:
-                              url('images/bg-1.jpg');" data-stellar-background-ratio="0.5">
+                                                          url('images/bg-1.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-end
@@ -80,49 +80,50 @@
                     </div>
                     <div class="booking-service">
                         @foreach ($cateService as $item)
-                        <div class="" id="
-                            category-1">
-                            <div class="service">
-                                <div class="service__category">
-                                    <div class="category__name">{{ $item['name_cate'] }}</div>
-                                    <div class="category__number">{{ count($item['services']) }} dịch vụ</div>
-                                </div>
-                                <div class="service__list">
-                                    <div class="swiper-container bbb_viewed_slider_container row col-md-12"
-                                        id="cate_{{ $item['id'] }}">
-                                        <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
-                                            <div class="owl-carousel bbb_viewed_slider">
-                                                @foreach ($item['services'] as $service)
-                                                    <div class="swiper-slide list__item swiper-slide-active">
-                                                        <div class="item__media pointer ">
-                                                            <img src="{{ url('uploads') }}/{{ $service['image'] }}"
-                                                                width="60" height="150" alt="">
+                            <div class="" id=" category-1">
+                                <div class="service">
+                                    <div class="service__category">
+                                        <div class="category__name">{{ $item['name_cate'] }}</div>
+                                        <div class="category__number">{{ count($item['services']) }} dịch vụ</div>
+                                    </div>
+                                    <div class="service__list">
+                                        <div class="swiper-container bbb_viewed_slider_container row col-md-12"
+                                            id="cate_{{ $item['id'] }}">
+                                            <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+                                                <div class="owl-carousel bbb_viewed_slider">
+                                                    @foreach ($item['services'] as $service)
+                                                        <div class="swiper-slide list__item swiper-slide-active">
+                                                            <div class="item__media pointer ">
+                                                                <img src="{{ url('uploads') }}/{{ $service['image'] }}"
+                                                                    width="60" height="150" alt="">
 
-                                                        </div>
-                                                        <div class="item__title pointer ">{{ $service['name'] }}</div>
-                                                        <div class="item__description pointer ">
-                                                            {{ $service['description'] }}</div>
-                                                        <div class="item__price pointer">
-                                                            <div class="meta__price"><span
-                                                                    class="meta__newPrice">{{ number_format($service['price']) }}đ</span>
                                                             </div>
+                                                            <div class="item__title pointer ">{{ $service['name'] }}</div>
+                                                            <div class="item__description pointer ">
+                                                                {{ $service['description'] }}</div>
+                                                            <div class="item__price pointer">
+                                                                <div class="meta__price"><span
+                                                                        class="meta__newPrice">{{ number_format($service['price']) }}đ</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="item__button" data-cate_id="{{ $item['id'] }}"
+                                                                data-service_id="{{ $service['id'] }}"
+                                                                onClick="onClick()">Chọn</div>
                                                         </div>
-                                                        <div class="item__button" data-cate_id="{{ $item['id'] }}"
-                                                            data-service_id="{{ $service['id'] }}" onClick="onClick()">Chọn</div>
-                                                    </div>
-                                                @endforeach
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>
                 <div class="new-affix-v2">
                     <div class="flex space-between text-center content-step">
-                        <div class="right button-next pointer btn-inactive" role="presentation" id="click"><span>Chọn <a id="clicks"></a> dịch 
+                        <div class="right button-next pointer btn-inactive" role="presentation" id="click"><span>Chọn <a
+                                    id="clicks"></a> dịch
                                 vụ</span></div>
                     </div>
                 </div>
@@ -135,93 +136,88 @@
             <div class="row">
                 <div class="row justify-content-center">
                     <div class="col-md-10 ftco-animate">
-                        <form action="{{ route('admin.bookings.store') }}" class="appointment-form">
-                            @csrf
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h3>1. Số điện thoại</h3>
-                                    <div class="input-group mb-3">
-                                        <input type="tel" class="form-control" name="number_phone"
-                                            value="{{ old('number_phone') }}" placeholder="Nhập số điện thoại..">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h3>1. Số điện thoại</h3>
+                                <div class="input-group mb-3">
+                                    <input type="tel" class="form-control" name="number_phone"
+                                        value="{{ old('number_phone') }}" placeholder="Nhập số điện thoại..">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <h3>2. Chọn Salon</h3>
+                                <div class="input-group mb-3">
+                                    <input type="text" name="salon_id" class="form-control" data-toggle="modal"
+                                        data-target="#listSalon" placeholder="Chọn salon">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary form-control" name="salon_id" type="button"
+                                            data-toggle="modal" data-target="#listSalon">></button>
                                     </div>
                                 </div>
-                                <div class="col-sm-12">
-                                    <h3>1. Chọn Salon</h3>
-                                    <div class="input-group mb-3">
-                                       <input type="text" name="salon_id" class="form-control" data-toggle="modal"
-                                            data-target="#listSalon" placeholder="Chọn salon">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary form-control" name="salon_id"
-                                                type="button" data-toggle="modal" data-target="#listSalon">></button>
-                                        </div> 
-                                    </div>
-                                </div>
+                            </div>
 
-                                <div class="col-sm-12">
-                                    <h3>2. Chọn dịch vụ</h3>
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" name="bookings_services[]"
-                                            data-toggle="modal" data-target="#listService" placeholder="Nhập Tên Dịch Vụ">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary form-control"
-                                                name="bookings_services[]" type="button" data-toggle="modal"
-                                                data-target="#listService">></button>
-                                        </div>
+                            <div class="col-sm-12">
+                                <h3>3. Chọn dịch vụ</h3>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" name="bookings_services[]" data-toggle="modal"
+                                        data-target="#listService" placeholder="Nhập Tên Dịch Vụ">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary form-control" name="bookings_services[]"
+                                            type="button" data-toggle="modal" data-target="#listService">></button>
                                     </div>
                                 </div>
-                                <div class="col-sm-12">
-                                    <h5>Anh đi cắt cùng nhiều người ? (nếu khung giờ không đủ
-                                        thợ cho cả nhóm salon sẽ gọi xác nhận lại)</h5>
-                                    <div class="input-group mb-3">
-                                        <textarea name="note" class="form-control" id="" rows="5"
-                                            placeholder="VD : Anh đi cùng bạn bè , đi cùng con anh..."></textarea>
-                                    </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <h5>Anh đi cắt cùng nhiều người ? (nếu khung giờ không đủ
+                                    thợ cho cả nhóm salon sẽ gọi xác nhận lại)</h5>
+                                <div class="input-group mb-3">
+                                    <textarea name="note" class="form-control" id="" rows="5"
+                                        placeholder="VD : Anh đi cùng bạn bè , đi cùng con anh..."></textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <h3>4. Chọn ngày cắt</h3>
+                                <div class="input-group mb-3">
+                                    <input type="date" class="form-control" name="date_booking">
                                 </div>
                                 <div class="col-sm-12">
-                                    <h3>3. Chọn ngày cắt</h3>
-                                    <div class="input-group mb-3">
-                                        <input type="date" class="form-control" name="date_booking">
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="box-time" id="box-time">
-                                            <div class="relative">
-                                                <div
-                                                    class="swiper-container swiper-container-initialized swiper-container-horizontal">
+                                    <div class="box-time" id="box-time">
+                                        <div class="relative">
+                                            <div
+                                                class="swiper-container swiper-container-initialized swiper-container-horizontal">
 
-                                                    <div class="swiper-wrapper">
-                                                        @foreach ($time as $item)
-                                                            <div class="swiper-slide box-time_gr"
-                                                                style="width: 83.9231px; margin-right: 8px;">
-                                                                <div class="box-time_item   " role="presentation">
-                                                                    {{ $item->time_start }}</div>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-
-                                                    <span class="swiper-notification" aria-live="assertive"
-                                                        aria-atomic="true">
-                                                        Không có giờ nào phù hợp với anh
-                                                    </span>
+                                                <div class="swiper-wrapper">
+                                                    @foreach ($time as $item)
+                                                        <div class="swiper-slide box-time_gr"
+                                                            style="width: 83.9231px; margin-right: 8px;">
+                                                            <div class="box-time_item   " role="presentation">
+                                                                {{ $item->time_start }}</div>
+                                                        </div>
+                                                    @endforeach
                                                 </div>
 
+                                                <span class="swiper-notification" aria-live="assertive" aria-atomic="true">
+                                                    Không có giờ nào phù hợp với anh
+                                                </span>
                                             </div>
-                                            <div class=""></div>
+
+                                        </div>
+                                        <div class=""></div>
                                 </div>
                             </div>
                             <div class="
-                                                col-sm-12 mb-3">
-                                                <div class="form-group">
-                                                    <input type="submit" value="Đặt Lịch Ngay" class="btn btn-primary">
-                                                </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                            col-sm-10 mb-3">
+                                            <div class="form-group">
+                                                <input type="submit" value="Đặt Lịch Ngay" class="btn btn-primary">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
     </section>
-    </div>
-    </div>
-    </section> <!-- .section -->
+
     <style>
         .btn-selected {
             background: #b98d58;
@@ -242,14 +238,14 @@
         });
     </script>
     <script type="text/javascript">
-    var clicks = 0;
-    var click = 0;
-    function onClick() {
-        clicks += ;
-        document.getElementById("clicks").innerHTML = clicks;
-        document.getElementById("click").style.backgroundColor = "#b98d58 "; 
+        var clicks = 0;
+        var click = 0;
 
-    };
+        function onClick() {
+            clicks += 1;
+            document.getElementById("clicks").innerHTML = clicks;
+            document.getElementById("click").style.backgroundColor = "#b98d58 ";
+
+        };
     </script>
 @endsection
-
