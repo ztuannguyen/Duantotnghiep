@@ -26,7 +26,6 @@ class UpdateRequest extends FormRequest
         return [
             'name_salon' => 'required|max:50',
             'address' => 'required|max:255',
-            'image' => 'required|image',
             'description' => 'required|min:10|max:255'
         ];
     }
