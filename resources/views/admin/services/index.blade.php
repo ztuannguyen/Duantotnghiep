@@ -60,7 +60,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->price }}</td>
-                            <td>{{ $item->cateService->name_cate }}</td>
+                            <td>{{ $item->cate_id}}</td>
                             <td>{{ $item->execution_time }}</td>
                             <td>{{ $item->discount }}</td>
                             <td>{{ $item->detail}}</td>

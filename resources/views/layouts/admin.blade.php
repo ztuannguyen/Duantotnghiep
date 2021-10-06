@@ -88,7 +88,7 @@
                 </div>
             </div>
         </div>
-
+        <script type="text/javascript" language="javascript" src="{{asset("ckeditor/ckeditor.js")}}"></script>
         <!-- Bootstrap core JavaScript-->
         <script src="/admin/vendor/jquery/jquery.min.js"></script>
         <script src="/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
