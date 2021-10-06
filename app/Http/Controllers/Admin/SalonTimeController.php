@@ -19,7 +19,8 @@ class SalonTimeController extends Controller
         } else {
             $ListTime = Salon::paginate(14);
         }
-            $ListTime->load(['salon']);
+        $ListTime->load(['salon']);
+        $ListTime->load(['bookings']);
         return view('admin.times.index',['data'=>$ListTime]);
     }
     public function create(){

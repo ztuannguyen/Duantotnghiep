@@ -102,7 +102,7 @@
                                                     data-dismiss="modal">Cancel</button>
 
                                                 <form method="POST"
-                                                    action="{{ route('admin.bookings.delete', ['booking' => $item->id]) }}">
+                                                    action="{{ route('admin.bookings.remove', ['booking' => $item->id]) }}">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger">Xóa</button>
                                                 </form>

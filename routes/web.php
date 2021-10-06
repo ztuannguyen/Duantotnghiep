@@ -47,6 +47,24 @@ Route::group([
         Route::post('/delete/{salon}', [SalonController::class,'delete'])->name('delete');
     });
 });
+//--------------------------BOOKINGS--------------------//
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'namespace' => 'Admin'
+], function () {
+    Route::group([
+        'prefix' => "bookings",
+        'as' => "bookings."
+    ], function () {
+        Route::get('/', [BookingController::class,'index'])->name('index');
+        Route::get('/create', [BookingController::class,'create'])->name('create');
+        Route::post('/store', [BookingController::class,'store'])->name('store');
+        // Route::get('/edit/{salon}', [BookingController::class,'edit'])->name('edit');
+        // Route::post('/update/{salon}', [BookingController::class,'update'])->name('update');
+        Route::post('/delete/{booking}', [BookingController::class,'delete'])->name('delete');
+    });
+});
 //-------------------------TIME SALONS----------------------//
 Route::group([
     'prefix' => 'admin',
@@ -63,6 +81,25 @@ Route::group([
         Route::get('/edit/{time}', [SalonTimeController::class,'edit'])->name('edit');
         Route::post('/update/{time}', [SalonTimeController::class,'update'])->name('update');
         Route::post('/delete/{time}', [SalonTimeController::class,'delete'])->name('delete');
+    });
+});
+///bookings
+//--------------------------BOOKINGS--------------------//
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'namespace' => 'Admin'
+], function () {
+    Route::group([
+        'prefix' => "bookings",
+        'as' => "bookings."
+    ], function () {
+        Route::get('/', [BookingController::class,'index'])->name('index');
+        Route::get('/create', [BookingController::class,'create'])->name('create');
+        Route::post('/store', [BookingController::class,'store'])->name('store');
+        // Route::get('/edit/{salon}', [BookingController::class,'edit'])->name('edit');
+        // Route::post('/update/{salon}', [BookingController::class,'update'])->name('update');
+        Route::post('/delete/{booking}', [BookingController::class,'remove'])->name('remove');
     });
 });
 // Cate Service
@@ -82,7 +119,10 @@ Route::get('/admin/services/edit/{service}', [ServiceController::class, 'edit'])
 Route::post('/admin/services/update/{service}', [ServiceController::class, 'update'])->name('admin.services.update');
 
 
+
 //users
+
+
 Route::get('/admin/users', [UserController::class,'index'])->name('admin.users.index');
 Route::get('/admin/user/delete/{id}', [UserController::class, 'remove'])->name('admin.users.remove');
 Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');

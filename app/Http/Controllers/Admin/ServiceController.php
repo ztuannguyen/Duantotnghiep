@@ -33,14 +33,13 @@ class ServiceController extends Controller
         
          if ($request->isMethod('post')) {  
              $validator =Validator::make($request->all(),[
-                 'name' => 'required|min:3|max:30',
+                 'name' => 'required|min:5|max:255',
                  'price' => 'required',
                  'image' => 'required',
                  'execution_time' => 'required',
                  'discount' => 'required',
                  'description' => 'required',
                  'detail' => 'required',
-                 'total_time' => 'required',
                  'status' => 'required',
                  'order_by' => 'required',
              ]);
@@ -83,7 +82,6 @@ class ServiceController extends Controller
                 'discount' => 'required',
                 'description' => 'required',
                 'detail' => 'required',
-                'total_time' => 'required',
                 'cate_id' => 'required',
                 'status' => 'required',
                 'order_by' => 'required',
@@ -114,7 +112,6 @@ class ServiceController extends Controller
             'discount' => $request->discount,
             'description' => $request->description,
             'detail' => $request->detail,
-            'total_time' => $request->total_time,
             'cate_id' => $request->cate_id,
             'status' => $request->status,
             'order_by' => $request->order_by,
