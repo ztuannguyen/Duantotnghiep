@@ -48,6 +48,7 @@
                             <td>Địa chỉ</td>
                             <td>Ảnh cửa hàng</td>
                             <td>Mô tả </td>
+                            <td>Trạng thái</td>
                             <td>Hành động</td>
                         </tr>
                     </thead>
@@ -60,6 +61,12 @@
                                 <td><img src="{{ asset('uploads/' . $item->image) }}" width="150" height="100" alt="">
                                 </td>
                                 <td>{{ $item->description }}</td>
+                                <td>
+                                    <div class="form-group">
+                                        <label
+                                            class="btn btn-success btn-sm">{{ $item->status ? 'ON' : 'OFF' }}</label>
+                                    </div>
+                                </td>
                                 <td> <a href="{{ route('admin.salons.edit', ['salon' => $item->id]) }}"
                                         class="btn btn-warning btn-circle btn-sm">
                                         <i class="fas  fa-edit"></i>

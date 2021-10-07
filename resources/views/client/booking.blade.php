@@ -6,7 +6,8 @@
 
 
     <section class="hero-wrap hero-wrap-2" style="background-image:
-                                                          url('images/bg-1.jpg');" data-stellar-background-ratio="0.5">
+                                                                                  url('images/bg-1.jpg');"
+        data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-end
@@ -36,7 +37,8 @@
 
                     </div>
                     @foreach ($salon as $item)
-                        <div class="salon__item show" role="presentation">
+                        <div class="salon__item show" role="presentation"
+                            onclick="clickChiNhanh('{{ $item->id }}','{{ $item->address }}')">
 
                             <div class="item">
                                 <div class="flex">
@@ -62,8 +64,6 @@
                     @endforeach
                 </div>
             </div>
-        </div>
-        </div>
         </div>
         <!--End Modal danh sách salon -->
 
@@ -98,7 +98,8 @@
                                                                     width="60" height="150" alt="">
 
                                                             </div>
-                                                            <div class="item__title pointer ">{{ $service['name'] }}</div>
+                                                            <div class="item__title pointer ">{{ $service['name'] }}
+                                                            </div>
                                                             <div class="item__description pointer ">
                                                                 {{ $service['description'] }}</div>
                                                             <div class="item__price pointer">
@@ -129,7 +130,6 @@
                 </div>
             </div>
         </div>
-        </div>
         <!--End Modal service -->
 
         <div class="container">
@@ -137,85 +137,93 @@
                 <div class="row justify-content-center">
                     <div class="col-md-10 ftco-animate">
                         <div class="row">
-                            <div class="col-sm-12">
-                                <h3>1. Số điện thoại</h3>
-                                <div class="input-group mb-3">
-                                    <input type="tel" class="form-control" name="number_phone"
-                                        value="{{ old('number_phone') }}" placeholder="Nhập số điện thoại..">
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <h3>2. Chọn Salon</h3>
-                                <div class="input-group mb-3">
-                                    <input type="text" name="salon_id" class="form-control" data-toggle="modal"
-                                        data-target="#listSalon" placeholder="Chọn salon">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary form-control" name="salon_id" type="button"
-                                            data-toggle="modal" data-target="#listSalon">></button>
+                            <form action="" method="post">
+                                <div class="col-sm-12">
+                                    <h3>1. Số điện thoại</h3>
+                                    <div class="input-group mb-3">
+                                        <input type="tel" class="form-control" name="number_phone"
+                                            value="{{ old('number_phone') }}" placeholder="Nhập số điện thoại..">
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12">
-                                <h3>3. Chọn dịch vụ</h3>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" name="bookings_services[]" data-toggle="modal"
-                                        data-target="#listService" placeholder="Nhập Tên Dịch Vụ">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary form-control" name="bookings_services[]"
-                                            type="button" data-toggle="modal" data-target="#listService">></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <h5>Anh đi cắt cùng nhiều người ? (nếu khung giờ không đủ
-                                    thợ cho cả nhóm salon sẽ gọi xác nhận lại)</h5>
-                                <div class="input-group mb-3">
-                                    <textarea name="note" class="form-control" id="" rows="5"
-                                        placeholder="VD : Anh đi cùng bạn bè , đi cùng con anh..."></textarea>
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <h3>4. Chọn ngày cắt</h3>
-                                <div class="input-group mb-3">
-                                    <input type="date" class="form-control" name="date_booking">
                                 </div>
                                 <div class="col-sm-12">
-                                    <div class="box-time" id="box-time">
-                                        <div class="relative">
-                                            <div
-                                                class="swiper-container swiper-container-initialized swiper-container-horizontal">
-
-                                                <div class="swiper-wrapper">
-                                                    @foreach ($time as $item)
-                                                        <div class="swiper-slide box-time_gr"
-                                                            style="width: 83.9231px; margin-right: 8px;">
-                                                            <div class="box-time_item   " role="presentation">
-                                                                {{ $item->time_start }}</div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-
-                                                <span class="swiper-notification" aria-live="assertive" aria-atomic="true">
-                                                    Không có giờ nào phù hợp với anh
-                                                </span>
-                                            </div>
-
+                                    <h3>2. Chọn Salon</h3>
+                                    <input type="hidden" value="" id="id_chi_nhanh">
+                                    <div class="input-group mb-3" data-toggle="modal" data-target="#listSalon" id="choose_address">
+                                        <input type="text" name="name_salon" id="chi_nhanh" disabled class="form-control" placeholder="Chọn salon">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text form-control" 
+                                               ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                              </svg></span>
                                         </div>
-                                        <div class=""></div>
-                                </div>
-                            </div>
-                            <div class="
-                                            col-sm-10 mb-3">
-                                            <div class="form-group">
-                                                <input type="submit" value="Đặt Lịch Ngay" class="btn btn-primary">
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </div>
-                            </div>
+
+                                <div class="col-sm-12">
+                                    <h3>3. Chọn dịch vụ</h3>
+                                    <div class="input-group mb-3" data-toggle="modal" data-target="#listService">
+                                        <input type="text" class="form-control" disabled placeholder="Nhập Tên Dịch Vụ">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text form-control" 
+                                                   ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                                  </svg></span>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <h5>Anh đi cắt cùng nhiều người ? (nếu khung giờ không đủ
+                                        thợ cho cả nhóm salon sẽ gọi xác nhận lại)</h5>
+                                    <div class="input-group mb-3">
+                                        <textarea name="note" class="form-control" id="" rows="5"
+                                            placeholder="VD : Anh đi cùng bạn bè , đi cùng con anh..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <h3>4. Chọn ngày cắt</h3>
+                                    <div class="input-group mb-3">
+                                        <input type="date" class="form-control" name="date_booking">
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="box-time" id="box-time">
+                                            <div class="relative">
+                                                <div
+                                                    class="swiper-container swiper-container-initialized swiper-container-horizontal">
+
+                                                    <div class="swiper-wrapper">
+                                                        @foreach ($time as $item)
+                                                            <div class="swiper-slide box-time_gr"
+                                                                style="width: 83.9231px; margin-right: 8px;">
+                                                                <div class="box-time_item   " role="presentation">
+                                                                    {{ $item->time_start }}</div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+
+                                                    <span class="swiper-notification" aria-live="assertive"
+                                                        aria-atomic="true">
+                                                        Không có giờ nào phù hợp với anh
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                            <div class=""></div>
+                                </div>
+                                <div class="
+                                                col-sm-10 mb-3">
+                                                <div class="form-group">
+                                                    <input type="submit" value="Đặt Lịch Ngay" class="btn btn-primary">
+                                                </div>
+                                            </div>
+
+
+                            </form>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </section>
 
     <style>
@@ -247,5 +255,17 @@
             document.getElementById("click").style.backgroundColor = "#b98d58 ";
 
         };
+    </script>
+    <script>
+        function clickChiNhanh(id,address){
+            $('#listSalon').modal('hide')
+            $('#id_chi_nhanh').val(id);
+            $('#chi_nhanh').val(address);
+        }
+        $(document).ready(function() {
+            $('#choose_address').click(function() {
+                $('#listSalon').modal('show')
+            })
+        })
     </script>
 @endsection

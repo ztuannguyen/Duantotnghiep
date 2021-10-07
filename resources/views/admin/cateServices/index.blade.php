@@ -47,6 +47,7 @@
                             <td>#</td>
                             <td>Tên danh mục dịch vụ</td>
                             <td>Sắp xếp</td>
+                            <td>Trạng thái</td>
                             <td>Hành động</td>
                         </tr>
                     </thead>
@@ -56,6 +57,12 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->name_cate }}</td>
                                 <td>{{ $item->order_by }}</td>
+                                <td>
+                                    <div class="form-group">
+                                        <label
+                                            class="btn btn-success btn-sm">{{ $item->status ? 'ON' : 'OFF' }}</label>
+                                    </div>
+                                </td>
                                 <td> <a href="{{ Route('admin.cate_services.edit', ['cateService' => $item->id]) }}"
                                          class="btn btn-warning btn-circle btn-sm">
                                         <i class="fas  fa-edit"></i>

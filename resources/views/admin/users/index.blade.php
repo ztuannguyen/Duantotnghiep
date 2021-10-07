@@ -35,23 +35,6 @@
                 </div>
             </form>
         @endsection
-        {{-- <form class="d-none d-sm-inline-block form-inline mr-auto  ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-                action="{{ route('admin.users.index') }}" method="GET">
-                <div class="input-group">
-                    <select class="form-control" name="order_by">
-                        <option value="0">Mặc định</option>
-                        <option @if (isset($searchData['order_by']) && $searchData['order_by'] == 1) selected @endif value="1">Tên alphabet</option>
-                        <option @if (isset($searchData['order_by']) && $searchData['order_by'] == 2) selected @endif value="2">Tên giảm dần alphabet</option>
-                        <option @if (isset($searchData['order_by']) && $searchData['order_by'] == 3) selected @endif value="3">Vai trò tăng dần</option>
-                        <option @if (isset($searchData['order_by']) && $searchData['order_by'] == 4) selected @endif value="4">Vai trò giảm dần</option>
-                    </select>
-                    <div class="input-group-append">
-                        <button class="btn btn-primary">
-                            Sắp xếp
-                        </button>
-                    </div>
-                </div>
-            </form> --}}
         @if (!empty($users))
             <div class="card-body">
                 <div class="table-responsive">

@@ -48,6 +48,7 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
+        $data =  $request->except('_token');
         if ($request->isMethod('post')) {
             $validator = Validator::make($request->all(),[
                  'name' => 'required|min:6|max:30|alpha',
@@ -64,7 +65,6 @@ class UserController extends Controller
                      ->withInput();
          }
          }
-         $data =  request()->except('_token');
          $model = new User();
         $model->fill($request->all());
         // lưu ảnh
@@ -105,13 +105,21 @@ class UserController extends Controller
                      ->withInput();
          }
          }
-         $users=new User;
+         $users = new User();
          if ($request->hasFile('image')) {
             $file = $request->file('image');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
             $file->move(public_path('/uploads'), $filename);
             $users->image = $filename;
+            $user->update([
+                'name' => $request->name,
+                'number_phone' => $request->number_phone,
+                'pass' => $request->pass,
+                'otp' => $request->otp,
+                'ratings' => $request->ratings,
+                'role_id' =>  $request->role_id,
+            ]);
         }else{
             $user->update([
                 'name' => $request->name,

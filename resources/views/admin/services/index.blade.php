@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Danh mục dịch vụ
+    Danh sách dịch vụ
 @endsection
 @section('contents')
     <nav aria-label="breadcrumb">
@@ -47,6 +47,7 @@
                             <td>Tên dịch vụ</td>
                             <td>Giá</td>
                             <td>Giảm giá</td>
+                            <td>Thời gian thực hiện</td>
                             <td>Mô tả ngắn</td>
                             <td>Ảnh</td>
                             <td>Danh mục</td>
@@ -61,6 +62,7 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->price }}</td>
                                 <td>{{ $item->discount }}</td>
+                                <td>{{$item->execution_time}}</td>
                                 <td>{{ $item->description }}</td>
                                 <td><img src="{{ asset('uploads/' . $item->image) }}" width="150" height="100" alt="">
                                 </td>
