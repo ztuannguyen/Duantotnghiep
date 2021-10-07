@@ -51,19 +51,13 @@ Sửa thông tin người dùng
                 </div>
 
                 <div class="form-group">
-                    <div class="add-product-preview-img">
-
-                        <img src="{{asset( 'uploads/' . $user->image)}}" width="70" />
-        
-                    </div>
                     <label class="font-weight-bold">Ảnh</label>
-                    
-                
-                        <div class="form-group">
-                          <label for="exampleFormControlFile1">Example file input</label>
-                          <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1" value="{{$user->image}}">
-                        </div>
-                   
+                    <input class="form-control" type="file" name="image" value="{{$user->image}}">
+                    <div >
+                        @if ($user->image)
+                        <img src="{{ asset('uploads/' . $user->image) }}" width="150px" height="100px">
+                        @endif
+                    </div>
                     @error('image')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror

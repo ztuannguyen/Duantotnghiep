@@ -45,7 +45,7 @@
                         <tr>
                             <td>#</td>
                             <td>Số điện thoại</td>
-                            <td>Salon</td>
+                            <td>Chi nhánh</td>
                             <td>Dịch vụ</td>
                             <td>Thời gian</td>
                             <td>Ngày đặt</td>
@@ -59,7 +59,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->number_phone }}</td>
-                                <td>{{ $item->Salon->name_salon }}</td>
+                                <td>{{ $item->Salon->address }}</td>
                                 <td>
                                     <ul>
                                         @foreach ($item->service as $ser)
