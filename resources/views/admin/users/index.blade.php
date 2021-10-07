@@ -55,7 +55,7 @@
                                     <td>{{ ($users->currentPage() - 1) * 6 + $loop->iteration }}</td>
                                     <td>{{ $p->name }}</td>
                                     <td>{{ $p->roles->name }}</td>
-                                    <td><img src="{{ asset('uploads/' . $p->image) }}" width="70" /></td>
+                                    <td><img src="{{ asset('uploads/' . $p->image) }}" width="100" height="100" /></td>
 
                                     <td>{{ $p->number_phone }}</td>
                                     <td> <a href="{{ route('admin.users.edit', ['user' => $p->id]) }}"

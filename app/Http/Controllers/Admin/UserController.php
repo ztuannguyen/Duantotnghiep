@@ -117,6 +117,7 @@ class UserController extends Controller
                 'number_phone' => $request->number_phone,
                 'pass' => $request->pass,
                 'otp' => $request->otp,
+                'image' => $filename,
                 'ratings' => $request->ratings,
                 'role_id' =>  $request->role_id,
             ]);
