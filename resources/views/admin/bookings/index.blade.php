@@ -56,7 +56,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->number_phone }}</td>
-                            <td >{{ $item->Salon->name_salon}}</td>
+                            <td >{{ $item->salon_id}}</td>
                             <td>
                                 <ul>
                                     @foreach($item->service as $ser)
