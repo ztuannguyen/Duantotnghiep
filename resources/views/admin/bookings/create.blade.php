@@ -20,7 +20,7 @@
                     @csrf
                     <div class="form-group">
                         <label class="font-weight-bold">Số điện thoại</label>
-                        <input class="form-control" type="number" name="number_phone" value="{{ old('number_phone') }}">
+                        <input class="form-control" type="tel" name="number_phone" value="{{ old('number_phone') }}">
                         @error('number_phone')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -29,7 +29,7 @@
                         <label class="font-weight-bold">Chi nhánh Salon</label>
                         <select class="mt-3 form-control" name="salon_id">
                             @foreach ($ListSalon as $item)
-                                <option value="{{ $item->id }}">{{ $item->name_salon }}</option>
+                                <option value="{{ $item->id }}">{{ $item->address }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -44,7 +44,7 @@
                                   </label>
                               </div>
                           @endforeach
-                      </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Thời gian</label>

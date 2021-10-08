@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Salon;
+use App\Models\Booking;
 use App\Http\Requests\Admin\Salon\SalonRequest;
 use App\Http\Requests\Admin\Salon\UpdateRequest;
 
@@ -15,9 +16,10 @@ class SalonController extends Controller
             $keyword = $request->get('keyword');
             $ListSalon = Salon::where('name_salon', 'LIKE', "%$keyword%")->get();
         } else {
-            $ListSalon = Salon::where('status',1)->orderBy('id','ASC')->get();
+            $ListSalon = Salon::all();
         }
         $ListSalon->load(['times']);
+        $ListSalon->load(['bookings']);
         return view('admin/salons/index', ['data' => $ListSalon]);
     }
     public function create(){
@@ -51,14 +53,21 @@ class SalonController extends Controller
             $filename = time() . '.' . $ext;
             $file->move(public_path('/uploads'), $filename);
             $salons->image = $filename;
-        }
             $salon->update([
-            'name_salon' => $request->name_salon,
-            'address' => $request->address,
-            'status' => $request->status,
-            'image' => $filename,
-            'description' => $request->description,
-        ]);
+                'name_salon' => $request->name_salon,
+                'address' => $request->address,
+                'status' => $request->status,
+                'image' => $filename,
+                'description' => $request->description,
+            ]);
+        }else{
+            $salon->update([
+                'name_salon' => $request->name_salon,
+                'address' => $request->address,
+                'status' => $request->status,
+                'description' => $request->description,
+            ]);
+        }
         return redirect()->route('admin.salons.index');
     }
     public function delete(Salon $salon){

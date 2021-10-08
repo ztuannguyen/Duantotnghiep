@@ -46,8 +46,8 @@
                     {{-- execution_time --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Thời gian thực hiện</label>
+                        <input class="form-control" type="number" name="execution_time" placeholder="Nhập thời gian ...">
 
-                        <input class="form-control" type="time" name="execution_time" placeholder="Nhập thời gian ...">
                         @error('execution_time')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -63,7 +63,11 @@
                     {{-- description --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Mô tả</label>
-                        <input class="form-control" type="text" name="description" placeholder="Nhập mô tả ...">
+                        <textarea name="description" id="description" class="form-control ckeditor"></textarea>
+                        <script>
+                            CKEDITOR.replace('description');
+                            var data = CKEDITOR.instances.description.getData();
+                        </script>
                         @error('description')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -71,17 +75,12 @@
                     {{-- detail --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Chi tiết</label>
-                        <input class="form-control" type="text" name="detail" placeholder="Nhập chi tiết ...">
+                        <textarea name="detail" id="detail" class="form-control ckeditor"></textarea>
+                        <script>
+                            CKEDITOR.replace('detail');
+                            var data = CKEDITOR.instances.detail.getData();
+                        </script>
                         @error('detail')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    {{-- total_time --}}
-                    <div class="form-group">
-                        <label class="font-weight-bold">Tổng thời gian</label>
-                        <input class="form-control" type="text" name="total_time"
-                            placeholder="Nhập tổng thời gian ...">
-                        @error('total_time')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
@@ -116,18 +115,11 @@
                     </div>
                     {{-- order_by --}}
                     <div class="form-group">
-                        <label class="font-weight-bold">Được tạo bởi</label>
-                        <select class="mt-3 form-control" name="order_by">
-                            <option value="0">
-                                1
-                            </option>
-                            <option value="1">
-                                2
-                            </option>
-                            @error('order_by')
-                                <span class="text-danger">{{ $message }}</span>
-    @enderror
-                        </select>
+                        <label class="font-weight-bold">Order_by</label>
+                        <input class="form-control" type="number" name="order_by">
+                        @error('order_by')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-success">Thêm</button>
                 </form>

@@ -46,7 +46,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
             aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-building"></i>
-            <span>Cửa hàng</span>
+            <span>Chi nhánh cửa hàng</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">
@@ -56,12 +56,18 @@
             </div>
         </div>
     </li>
+
     <li class="nav-item">
-        <a class="nav-link" href="/admin/bookings">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Đặt lịch</span></a>
+        <a class="nav-link" href="{{route('admin.users.index')}}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Người dùng</span></a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/bookings">
+            <i class="fas fa-fw fa-calendar"></i>
+            <span>Đơn đặt lịch</span></a>
+    </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
 
