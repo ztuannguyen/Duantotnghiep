@@ -6,7 +6,7 @@
 
 
     <section class="hero-wrap hero-wrap-2" style="background-image:
-                                                                                  url('images/bg-1.jpg');"
+                                                                                      url('images/bg-1.jpg');"
         data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
@@ -92,7 +92,7 @@
                                             <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
                                                 <div class="owl-carousel bbb_viewed_slider">
                                                     @foreach ($item['services'] as $service)
-                                                        <div class="swiper-slide list__item swiper-slide-active">
+                                                        <div class="swiper-slide list__item swiper-slide-active" >
                                                             <div class="item__media pointer ">
                                                                 <img src="{{ url('uploads') }}/{{ $service['image'] }}"
                                                                     width="60" height="150" alt="">
@@ -109,7 +109,7 @@
                                                             </div>
                                                             <div class="item__button" data-cate_id="{{ $item['id'] }}"
                                                                 data-service_id="{{ $service['id'] }}"
-                                                                onClick="onClick()">Chọn</div>
+                                                                onClick="ClickService()">Chọn</div>
                                                         </div>
                                                     @endforeach
                                                 </div>
@@ -148,28 +148,34 @@
                                 <div class="col-sm-12">
                                     <h3>2. Chọn Salon</h3>
                                     <input type="hidden" value="" id="id_chi_nhanh">
-                                    <div class="input-group mb-3" data-toggle="modal" data-target="#listSalon" id="choose_address">
-                                        <input type="text" name="name_salon" id="chi_nhanh" disabled class="form-control" placeholder="Chọn salon">
+                                    <div class="input-group mb-3" data-toggle="modal" data-target="#listSalon">
+                                        <input type="text" name="name_salon" id="chi_nhanh" disabled class="form-control"
+                                            placeholder="Chọn salon">
                                         <div class="input-group-append">
-                                            <span class="input-group-text form-control" 
-                                               ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                                                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                                              </svg></span>
+                                            <span class="input-group-text form-control"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                                </svg></span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-12">
                                     <h3>3. Chọn dịch vụ</h3>
-                                    <div class="input-group mb-3" data-toggle="modal" data-target="#listService">
-                                        <input type="text" class="form-control" disabled placeholder="Nhập Tên Dịch Vụ">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text form-control" 
-                                                   ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                                                  </svg></span>
-                                            </div>
+                                    <div class="input-group mb-3" data-toggle="modal" data-target="#listService" >
+                                        <input type="text" class="form-control" name="bookings_services[]"  disabled placeholder="Chọn dịch vụ">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text form-control"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                                </svg></span>
+                                        </div>
                                     </div>
+                                    
                                 </div>
                                 <div class="col-sm-12">
                                     <h5>Anh đi cắt cùng nhiều người ? (nếu khung giờ không đủ
@@ -193,13 +199,13 @@
 
                                                     <div id= "atv" class="swiper-wrapper">
                                                         @foreach ($time as $item)
-                                                            <div  class="swiper-slide box-time_gr"
-                                                                style="width: 83.9231px; margin-right: 8px;">
-                                                                <div class="box-time_item" role="presentation">
-
-
-                                                                    {{ $item->time_start }}</div>
+                                                            <div class="swiper-slide box-time_gr"
+                                                                style="width: 83.9231px; margin-right: 8px;" onclick="clickTime('{{ $item->id }}','{{ $item->time_start }}')">
+                                                                <div class="box-time_item" role="presentation" id="click_time">
+                                                                    <span type="hidden" value="" id="time_id">{{ $item->time_start }}</span></div>
+                                                        
                                                             </div>
+                                                           
                                                         @endforeach
                                                     </div>
 
@@ -212,8 +218,7 @@
                                             </div>
                                             <div class=""></div>
                                 </div>
-                                <div class="
-                                                col-sm-10 mb-3">
+                                <div class="col-sm-10 mb-3">
                                                 <div class="form-group">
                                                     <input type="submit" value="Đặt Lịch Ngay" class="btn btn-primary">
                                                 </div>
@@ -252,25 +257,25 @@
         var clicks = 0;
         var click = 0;
 
+        function ClickService() {
+            clicks++;
 
-        function onClick() {
-            clicks += 1;
             document.getElementById("clicks").innerHTML = clicks;
             document.getElementById("click").style.backgroundColor = "#b98d58 ";
-
         };
     </script>
     <script>
-        function clickChiNhanh(id,address){
-            $('#listSalon').modal('hide')
+        function clickChiNhanh(id, address) {
+            $('#listSalon').modal('hide');
             $('#id_chi_nhanh').val(id);
             $('#chi_nhanh').val(address);
         }
-        $(document).ready(function() {
-            $('#choose_address').click(function() {
-                $('#listSalon').modal('show')
-            })
-        })
+    </script>
+    <script>
+        function clickTime(id,time_start){
+            $('#time_id').val(id);
+            $('#click_time').val(time_start);
+        }
     </script>
 
 

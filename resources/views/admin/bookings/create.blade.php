@@ -35,22 +35,27 @@
                     </div>
                     <div class="form-group">
                         <label for="">Dịch vụ</label>
-                        <div class="form-check">
-                          @foreach($service as $ser)
-                              <div class="form-check">
-                                  <input class="form-check-input" name="bookings_services[]" type="checkbox" value="{{$ser->id}}">
-                                  <label class="form-check-label" >
-                                      {{$ser->name}}
-                                  </label>
-                              </div>
-                          @endforeach
-                        </div>
+                        @foreach ($cateService as $item)
+                            <h6>{{ $item->name_cate }}</h6>
+                            <div class="form-check-inline-block mb-3" id="cate_{{ $item['id'] }}">
+                                @foreach ($item['services'] as $ser)
+                                    <div class="form-check-inline ">
+                                        <input class="form-check-input" name="bookings_services[]" type="checkbox"
+                                            value="{{ $ser['id'] }}">
+                                        <label class="form-check-label" >
+                                            {{ $ser['name'] }}
+                                        </label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endforeach
+
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Thời gian</label>
                         <select class="mt-3 form-control" name="time_id">
                             @foreach ($ListTime as $item)
-                                <option value="{{ $item->id }}">{{ $item->time_start}}</option>
+                                <option value="{{ $item->id }}">{{ $item->time_start }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -96,3 +101,22 @@
         </div>
     </div>
 @endsection
+{{-- @section('script')
+    <script>
+            $("input:checkbox").on('click', function() {
+    // in the handler, 'this' refers to the box clicked on
+    var $box = $(this);
+    if ($box.is(":checked")) {
+        // the name of the box is retrieved using the .attr() method
+        // as it is assumed and expected to be immutable
+        var group = "input:checkbox[name='" + $box.attr("name") + "']";
+        // the checked state of the group/box on the other hand will change
+        // and the current value is retrieved using .prop() method
+        $(group).prop("checked", false);
+        $box.prop("checked", true);
+    } else {
+        $box.prop("checked", false);
+    }
+    });
+    </script>
+@endsection --}}
