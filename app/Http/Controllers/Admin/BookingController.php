@@ -8,6 +8,7 @@ use App\Models\Booking;
 use App\Models\Salon;
 use App\Models\Service;
 use App\Models\Time;
+use App\Models\CateService;
 use App\Models\Booking_Service;
 
 class BookingController extends Controller
@@ -32,13 +33,12 @@ class BookingController extends Controller
 
     public function create()
     {
-
-
         $booking = Booking::with('service')->get();
         $service = Service::all();
+        $cateService = CateService::with('services')->get();
         $ListSalon = Salon::all();
         $ListTime = Time::all();
-        return view('admin.bookings.create', compact('service', 'ListSalon', 'ListTime'));
+        return view('admin.bookings.create', compact('service', 'ListSalon', 'ListTime', 'cateService'));
     }
     public function store(Request $request)
     {
@@ -63,35 +63,43 @@ class BookingController extends Controller
     }
     public function edit(Booking $booking)
     {
-        $booking = Booking::with('service')->get();
         $service = Service::all();
         $ListSalon = Salon::all();
         $ListTime = Time::all();
-        return view('admin.bookings.edit', ['booking' => $booking, 'service' => $service, 'ListSalon' => $ListSalon, 'ListTime' => $ListTime]);
+        $cateService = CateService::with('services')->get();
+        return view('admin.bookings.edit', ['booking' => $booking, 'cateService' => $cateService, 'service' => $service, 'ListSalon' => $ListSalon, 'ListTime' => $ListTime]);
     }
-    // public function update(Request $request, Booking $booking)
-    // {
+    public function update(Request $request, Booking $booking)
+    {
+        $model = new Booking();
+        $model->update([
+            'number_phone' => $request->number_phone,
+            'salon_id' => $request->salon_id,
+            'time_id' => $request->time_id,
+            'date_booking' => $request->date_booking,
+            'note' => $request->note,
+            'status' => $request->status,
+        ]);
+        if (isset($_POST['bookings_services'])) {
+            for ($i = 0; $i < count($_POST['bookings_services']); $i++) {
+                $booking_service = new Booking_Service();
+                $booking_service->booking_id = $model->id;
+                $booking_service->service_id = $_POST['bookings_services'][$i];
+                $booking_service->update();
+            }
+           
+        }
+        $booking->update([
+            'number_phone' => $request->number_phone,
+            'salon_id' => $request->salon_id,
+            'time_id' => $request->time_id,
+            'date_booking' => $request->date_booking,
+            'note' => $request->note,
+            'status' => $request->status,
+        ]);
 
-    //     $model = Booking::find($booking);
-    //     $model->update([
-    //         'number_phone' => $request->number_phone,
-    //         'salon_id' => $request->salon_id,
-    //         'time_id' => $request->time_id,
-    //         'date_booking' => $request->date_booking,
-    //         'note' => $request->note,
-    //         'status' => $request->status
-    //     ]);
-    //     if (isset($_POST['bookings_services'])) {
-    //         for ($i = 0; $i < count($_POST['bookings_services']); $i++) {
-    //             $booking_service = new Booking_Service();
-    //             $booking_service->booking_id = $model->id;
-    //             $booking_service->service_id = $_POST['bookings_services'][$i];
-    //             $booking_service->save();
-    //         }
-    //     }
-    //     $model->save();
-    //     return redirect()->route('admin.times.index');
-    // }
+        return redirect()->route('admin.bookings.index');
+    }
 
     public function remove($id)
     {
