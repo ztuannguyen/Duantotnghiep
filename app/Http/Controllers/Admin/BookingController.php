@@ -61,43 +61,40 @@ class BookingController extends Controller
         }
         return redirect()->route('admin.bookings.index');
     }
-    public function edit(Booking $booking)
+    public function edit($id)
     {
+        $model = Booking::find($id);
         $service = Service::all();
         $ListSalon = Salon::all();
         $ListTime = Time::all();
         $cateService = CateService::with('services')->get();
-        return view('admin.bookings.edit', ['booking' => $booking, 'cateService' => $cateService, 'service' => $service, 'ListSalon' => $ListSalon, 'ListTime' => $ListTime]);
-    }
-    public function update(Request $request, Booking $booking)
-    {
-        $model = new Booking();
-        $model->update([
-            'number_phone' => $request->number_phone,
-            'salon_id' => $request->salon_id,
-            'time_id' => $request->time_id,
-            'date_booking' => $request->date_booking,
-            'note' => $request->note,
-            'status' => $request->status,
-        ]);
-        if (isset($_POST['bookings_services'])) {
-            for ($i = 0; $i < count($_POST['bookings_services']); $i++) {
-                $booking_service = new Booking_Service();
-                $booking_service->booking_id = $model->id;
-                $booking_service->service_id = $_POST['bookings_services'][$i];
-                $booking_service->update();
-            }
-           
-        }
-        $booking->update([
-            'number_phone' => $request->number_phone,
-            'salon_id' => $request->salon_id,
-            'time_id' => $request->time_id,
-            'date_booking' => $request->date_booking,
-            'note' => $request->note,
-            'status' => $request->status,
-        ]);
+        $booking_services = $model->service->pluck("id")->toArray();
 
+        if(!$model) return redirect(route('admin.bookings.index'));
+        return view('admin.bookings.edit', ['booking' => $model, 'cateService' => $cateService, 'service' => $service, 'ListSalon' => $ListSalon, 'ListTime' => $ListTime,'booking_services' => $booking_services]);
+    }
+    public function update($id, Request $request)
+    {
+        $model = Booking::find($id); 
+        if(!$model){
+            return redirect()->back();
+        }
+        $model->number_phone = $request->number_phone;
+        $model->salon_id = $request->salon_id;
+        $model->time_id = $request->time_id;
+        $model->date_booking = $request->date_booking;
+        $model->note = $request->note;
+        $model->status = $request->status;
+        $model->save();
+        $booking_service = Booking_Service::where('booking_id',$id)->delete();
+        if(isset($_POST['booking_services'])){
+            for ($i = 0; $i < count($_POST['booking_services']); $i++) {
+                $booking_service = new Booking_service();
+                $booking_service->booking_id = $id;
+                $booking_service->service_id = $_POST['booking_services'][$i];
+                $booking_service->save();
+            }
+        }
         return redirect()->route('admin.bookings.index');
     }
 
