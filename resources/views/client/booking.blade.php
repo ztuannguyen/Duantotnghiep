@@ -190,11 +190,14 @@
                                                 <div
                                                     class="swiper-container swiper-container-initialized swiper-container-horizontal">
 
-                                                    <div class="swiper-wrapper">
+
+                                                    <div id= "atv" class="swiper-wrapper">
                                                         @foreach ($time as $item)
-                                                            <div class="swiper-slide box-time_gr"
+                                                            <div  class="swiper-slide box-time_gr"
                                                                 style="width: 83.9231px; margin-right: 8px;">
-                                                                <div class="box-time_item   " role="presentation">
+                                                                <div class="box-time_item" role="presentation">
+
+
                                                                     {{ $item->time_start }}</div>
                                                             </div>
                                                         @endforeach
@@ -249,6 +252,7 @@
         var clicks = 0;
         var click = 0;
 
+
         function onClick() {
             clicks += 1;
             document.getElementById("clicks").innerHTML = clicks;
@@ -267,5 +271,21 @@
                 $('#listSalon').modal('show')
             })
         })
+    </script>
+
+
+    <script>
+    // Active time
+    var header = document.getElementById("atv");
+    var btns = header.getElementsByClassName("box-time_item");
+    for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    if (current.length > 0) { 
+        current[0].className = current[0].className.replace(" active", "");
+    }
+    this.className += " active";
+    });
+    }
     </script>
 @endsection
