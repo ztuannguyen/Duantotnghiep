@@ -190,11 +190,14 @@
                                                 <div
                                                     class="swiper-container swiper-container-initialized swiper-container-horizontal">
 
+
                                                     <div id= "atv" class="swiper-wrapper">
                                                         @foreach ($time as $item)
                                                             <div  class="swiper-slide box-time_gr"
                                                                 style="width: 83.9231px; margin-right: 8px;">
                                                                 <div class="box-time_item" role="presentation">
+
+
                                                                     {{ $item->time_start }}</div>
                                                             </div>
                                                         @endforeach
@@ -232,6 +235,7 @@
             color: #fff !important;
             border: #b98d58 !important;
         }
+
     </style>
 @endsection
 
@@ -247,10 +251,13 @@
     <script type="text/javascript">
         var clicks = 0;
         var click = 0;
+
+
         function onClick() {
             clicks += 1;
             document.getElementById("clicks").innerHTML = clicks;
             document.getElementById("click").style.backgroundColor = "#b98d58 ";
+
         };
     </script>
     <script>
@@ -265,6 +272,7 @@
             })
         })
     </script>
+
 
     <script>
     // Active time

@@ -11,25 +11,22 @@ use App\Http\Requests\Admin\SalonTime\UpdateRequest;
 
 class SalonTimeController extends Controller
 {
-    public function index(Request $request)
-    {
-
+    public function index(Request $request){
         if ($request->has('keyword') == true) {
             $keyword = $request->get('keyword');
-            // SELECT * FROM users WHERE email LIKE '%keyword%'
             $ListTime = Time::where('salon_id', 'LIKE', "%$keyword%")->get();
         } else {
-            $ListTime = Time::paginate(14);
+            $ListTime = Time::all();
         }
-        return view('admin.times.index', ['data' => $ListTime]);
+        $ListTime->load(['salon']);
+        $ListTime->load(['bookings']);
+        return view('admin.times.index',['data'=>$ListTime]);
     }
-    public function create()
-    {
+    public function create(){
         $ListSalon = Salon::all();
         return view('admin.times.create', ['ListSalon' => $ListSalon]);
     }
-    public function store(SalonTimeRequest $request)
-    {
+    public function store(SalonTimeRequest $request){
         $data =  $request->except('_token');
         $result = Time::create($data);
         return redirect()->route('admin.times.index');

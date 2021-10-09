@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ServiceController extends Controller
 {
+
     public function index(Request $request){
         if ($request->has('keyword') == true) {
             $keyword = $request->get('keyword');
@@ -32,14 +33,13 @@ class ServiceController extends Controller
         
          if ($request->isMethod('post')) {  
              $validator =Validator::make($request->all(),[
-                 'name' => 'required|min:3|max:30',
+                 'name' => 'required|min:5|max:255',
                  'price' => 'required',
                  'image' => 'required',
                  'execution_time' => 'required',
                  'discount' => 'required',
                  'description' => 'required',
                  'detail' => 'required',
-                 'total_time' => 'required',
                  'status' => 'required',
                  'order_by' => 'required',
              ]);
@@ -52,7 +52,6 @@ class ServiceController extends Controller
           $data =  request()->except('_token');
           
           $model = new Service();
-
          $model->fill($request->all());
          // save ảnh
          if ($request->hasFile('image')) {
@@ -60,13 +59,12 @@ class ServiceController extends Controller
              $ext = $file->getClientOriginalExtension();
              $filename = time() . '.' . $ext;
              $file->move(public_path('/uploads'), $filename);
-             $model->image = $filename;
-             
+             $model->image = $filename;           
          }
         
         $model->save();
 
-        return redirect()->route('admin.services.index');
+        return redirect()->route('admin.services.index')->with('success', 'Thêm mới dịch vụ thành công');
     }
 
     public function edit(Service $service){
@@ -75,17 +73,14 @@ class ServiceController extends Controller
     }
 
     public function update(Request $request, Service $service){
-
         if ($request->isMethod('post')) {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|min:6|max:300',
-                'image' => 'required|max:10000',
                 'price' => 'required|integer',
                 'execution_time' => 'required',
                 'discount' => 'required',
                 'description' => 'required',
                 'detail' => 'required',
-                'total_time' => 'required',
                 'cate_id' => 'required',
                 'status' => 'required',
                 'order_by' => 'required',
@@ -107,20 +102,31 @@ class ServiceController extends Controller
             // lưu file vào thư mục upload
             $file->move(public_path('/uploads'), $filename);
             $services->image = $filename;
+            $service->update([
+                'name' => $request->name,
+                'price' => $request->price,
+                'image' => $filename,
+                'execution_time' => $request->execution_time,
+                'discount' => $request->discount,
+                'description' => $request->description,
+                'detail' => $request->detail,
+                'cate_id' => $request->cate_id,
+                'status' => $request->status,
+                'order_by' => $request->order_by,
+            ]);
+        }else{
+            $service->update([
+                'name' => $request->name,
+                'price' => $request->price,
+                'execution_time' => $request->execution_time,
+                'discount' => $request->discount,
+                'description' => $request->description,
+                'detail' => $request->detail,
+                'cate_id' => $request->cate_id,
+                'status' => $request->status,
+                'order_by' => $request->order_by,
+            ]);
         }
-        $service->update([
-            'name' => $request->name,
-            'price' => $request->price,
-            'image' => $filename,
-            'execution_time' => $request->execution_time,
-            'discount' => $request->discount,
-            'description' => $request->description,
-            'detail' => $request->detail,
-            'total_time' => $request->total_time,
-            'cate_id' => $request->cate_id,
-            'status' => $request->status,
-            'order_by' => $request->order_by,
-        ]);
         return redirect()->route('admin.services.index');
     }
 

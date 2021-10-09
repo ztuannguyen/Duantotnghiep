@@ -32,22 +32,20 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                {{-- <div class="form-group">
+                <div class="form-group">
                     <label class="font-weight-bold">Trạng thái</label>
                     <select class="mt-3 form-control" name="status">
-                        <option value="{{ config('common.salon.status.dang_hoat_dong') }}"
-                            {{ old('status'), config('common.salon.status.dang_hoat_dong') == config('common.salon.status.dang_hoat_dong') ? 'selected' : '' }}>
+                        <option value="1" {{ $cateService->status == 1 ? 'selected' : '' }} >
                             Đang hoạt động
                         </option>
-                        <option value=" {{ config('common.salon.status.dung_hoat_dong') }}"
-                            {{ old('status'), config('common.salon.status.dung_hoat_dong') == config('common.salon.status.dung_hoat_dong') ? 'selected' : '' }}>
+                        <option value="0" {{ $cateService->status == 0 ? 'selected' : '' }}>
                             Dừng hoạt động
-                        </option>
+                        </option >
                         @error('status')
                             <span class="text-danger">{{ $message }}</span>
-@enderror
+                        @enderror
                     </select>
-                </div> --}}
+                </div>
                 <button type="submit" class="btn btn-success">Sửa</button>
             </form>
         </div>

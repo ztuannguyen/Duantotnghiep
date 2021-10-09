@@ -16,11 +16,10 @@ class Service extends Model
     protected $fillable = [
         'cate_id',
         	'name',	'price',	'execution_time'	,'discount',	'description',	'detail',
-            	'image',	'total_time', 	'status',	'order_by',
+            	'image', 	'status',	'order_by',
     ];
 
     public function CateService(){
-        return $this->belongsTo(CateService::class, 'cate_id', 'id');
+        return $this->belongsTo(CateService::class, 'cate_id');
     }
-    
 }
