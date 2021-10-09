@@ -485,7 +485,7 @@ img {
     z-index: -1000;
 }
 
-.box-time .box-time_item {
+/* .box-time .box-time_item {
     background: rgb(255, 255, 255);
     border: 1px solid rgb(0, 0, 0);
     border-radius: 4px;
@@ -494,7 +494,34 @@ img {
     text-align: center;
     margin-bottom: 8px;
     cursor: pointer;
+} */
+.box-time_item{
+    border: none;
+    outline: none;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 4px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+
+ .box-time .box-time_gr .active {
+    background: #bf925b;
+    border: 1px solid transparent;
+    color: white;
 }
+.box-time_item:hover {
+    background: #bf925b;
+    border: 1px solid transparent;
+}
+/* .active, .box-time_item:hover{
+    background-color: #bf925b;
+    color: white;
+  } */
+
 
 
 /* button tư vấn */
