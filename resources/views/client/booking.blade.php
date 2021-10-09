@@ -196,12 +196,14 @@
                                                 <div
                                                     class="swiper-container swiper-container-initialized swiper-container-horizontal">
 
-                                                    <div class="swiper-wrapper">
+
+                                                    <div id= "atv" class="swiper-wrapper">
                                                         @foreach ($time as $item)
                                                             <div class="swiper-slide box-time_gr"
                                                                 style="width: 83.9231px; margin-right: 8px;" onclick="clickTime('{{ $item->id }}','{{ $item->time_start }}')">
                                                                 <div class="box-time_item" role="presentation" id="click_time">
                                                                     <span type="hidden" value="" id="time_id">{{ $item->time_start }}</span></div>
+                                                        
                                                             </div>
                                                            
                                                         @endforeach
@@ -257,6 +259,7 @@
 
         function ClickService() {
             clicks++;
+
             document.getElementById("clicks").innerHTML = clicks;
             document.getElementById("click").style.backgroundColor = "#b98d58 ";
         };
@@ -273,5 +276,21 @@
             $('#time_id').val(id);
             $('#click_time').val(time_start);
         }
+    </script>
+
+
+    <script>
+    // Active time
+    var header = document.getElementById("atv");
+    var btns = header.getElementsByClassName("box-time_item");
+    for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    if (current.length > 0) { 
+        current[0].className = current[0].className.replace(" active", "");
+    }
+    this.className += " active";
+    });
+    }
     </script>
 @endsection
