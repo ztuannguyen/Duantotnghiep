@@ -42,9 +42,7 @@
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
-                        <tr>
-<<<<<<< HEAD
-                            <td>{{ $loop->iteration }}</td>
+                        <tr>                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->number_phone }}</td>
                             <td >{{ $item->salon_id}}</td>
                             <td>
@@ -72,52 +70,7 @@
                                 </a> --}}
                                 <a data-toggle="modal" class="btn btn-danger btn-circle btn-sm"
                                     data-target="#confirm_delete_{{ $item->id }}"><i class="fas fa-trash"></i></a>
-=======
-                            <td>#</td>
-                            <td>Số điện thoại</td>
-                            <td>Chi nhánh</td>
-                            <td>Dịch vụ</td>
-                            <td>Thời gian</td>
-                            <td>Ngày đặt</td>
-                            <td>Lời nhắn</td>
-                            <td>Trạng thái</td>
-                            <td>Hành động</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data as $item)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->number_phone }}</td>
-                                <td>{{ $item->Salon->address }}</td>
-                                <td>
-                                    <ul>
-                                        @foreach ($item->service as $ser)
-                                            <li>{{ $ser->name }}</li>
-                                        @endforeach
-                                    </ul>
-                                </td>
-                                <td>{{ $item->Time->time_start }}</td>
-                                <td>{{ $item->date_booking }}</td>
-                                <td>{{ $item->note }}</td>
-                                <td>
-                                    @if ($item->status == config('common.booking.status.cho_xac_nhan'))
-                                        <span class="text-danger">Chờ xác nhận</span>
-                                    @elseif($item->status == config('common.booking.status.da_xac_nhan'))
-                                        <span class="text-success">Đã xác nhận</span>
-                                    @elseif($item->status == config('common.booking.status.da_huy'))
-                                        <span class="text-danger">Đã hủy</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin.bookings.edit', ['booking' => $item->id]) }}"
-                                        class="btn btn-warning btn-circle btn-sm">
-                                        <i class="fas  fa-edit"></i>
-                                    </a>
-                                    <a data-toggle="modal" class="btn btn-danger btn-circle btn-sm"
-                                        data-target="#confirm_delete_{{ $item->id }}"><i
-                                            class="fas fa-trash"></i></a>
->>>>>>> f51d96acc287496c80f17e29d5dc06ff43256eba
+
 
                                     <div class="modal fade" id="confirm_delete_{{ $item->id }}" tabindex="-1"
                                         role="dialog">
