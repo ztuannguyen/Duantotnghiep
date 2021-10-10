@@ -221,25 +221,25 @@ Thông tin đặt lịch
 
 @section('scripts')
 <script>
-    data_cate_service = <?php echo json_encode($cateService); ?>;
-
+    data_cate_service = <?php echo json_encode($cateService);?>;
+    
     $('.item__button').on('click', function() {
         cate_id = $(this).data('cate_id')
         service_id = $(this).data('service_id')
-        if ($(this).hasClass("btn-selected")) {
+        if($(this).hasClass( "btn-selected" )){
             $(this).removeClass('btn-selected');
-        } else {
+        }else{
             $('#cate_' + cate_id + ' .item__button').removeClass('btn-selected');
             $(this).addClass('btn-selected');
         }
 
-
+        
         document.getElementById("clicks").innerHTML = $('.item__button.btn-selected').length;
     });
-    $('#click_service').on('click', function() {
+    $('#click_service').on('click', function(){
         text_service = ''
-        $('.item__button.btn-selected').each(function(index) {
-            if (index != 0) text_service += ', '
+        $('.item__button.btn-selected').each(function(index){
+            if(index != 0) text_service += ', '
             service_name = $(this).data('service_name')
             text_service += service_name
         })

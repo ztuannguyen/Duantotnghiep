@@ -72,6 +72,7 @@
                                     data-target="#confirm_delete_{{ $item->id }}"><i class="fas fa-trash"></i></a>
 
 
+
                                     <div class="modal fade" id="confirm_delete_{{ $item->id }}" tabindex="-1"
                                         role="dialog">
                                         <div class="modal-dialog" role="document">
