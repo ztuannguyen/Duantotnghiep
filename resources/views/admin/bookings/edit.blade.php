@@ -39,13 +39,12 @@
                             <h6>{{ $item->name_cate }}</h6>
                             <div class="form-check-inline-block mb-3"  name="bookings_services[]" >
                                 @foreach ($item['services'] as $ser)
-                                    <div class="form-check-inline" >
-                                        <input class="form-check-input" type="checkbox"  {{ ($ser['id'] == $booking['bookings_services']) ? 'selected' : '' }}
-                                            value="{{ $ser['id'] }}">
-                                        <label class="form-check-label">
-                                            {{ $ser['name'] }}
-                                        </label>
-                                    </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" name="booking_services[]" type="checkbox" value="{{$ser->id}}" @if(in_array($ser->id, $booking_services)) checked @endif>
+                                    <label class="form-check-label" >
+                                        {{$ser->name}}
+                                    </label>
+                                </div>
                                 @endforeach
                             </div>
                         @endforeach
