@@ -39,7 +39,7 @@
                     @foreach ($salon as $item)
                         <div class="salon__item show" role="presentation"
                             onclick="clickChiNhanh('{{ $item->id }}','{{ $item->address }}')">
-
+ 
                             <div class="item">
                                 <div class="flex">
                                     <div class="item__media" style="width: 30%;">
