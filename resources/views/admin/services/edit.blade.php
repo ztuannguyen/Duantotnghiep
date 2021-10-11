@@ -93,7 +93,7 @@
                         <label class="font-weight-bold">Danh mục dịch vụ</label>
                         <select class="mt-3 form-control" name="cate_id">
                             @foreach ($cateService as $item)
-                            <option value="{{$item->id}}">
+                            <option {{ ($item->id == $service->name_cate) ? 'selected' : '' }} value="{{$item->id}}">
                                 {{$item->name_cate}}
                             </option>
                             @endforeach
