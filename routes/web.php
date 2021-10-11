@@ -25,7 +25,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 // User
-Route::get('/client/booking',[ClientController::class,'index'])->name('client.booking');
+Route::get('/client/booking',[ClientController::class,'show'])->name('client.show');
+Route::post('/',[ClientController::class, 'store'])->name('client.post');
 // Admin dashboard
 Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
 
@@ -47,24 +48,7 @@ Route::group([
         Route::post('/delete/{salon}', [SalonController::class,'delete'])->name('delete');
     });
 });
-//--------------------------BOOKINGS--------------------//
-Route::group([
-    'prefix' => 'admin',
-    'as' => 'admin.',
-    'namespace' => 'Admin'
-], function () {
-    Route::group([
-        'prefix' => "bookings",
-        'as' => "bookings."
-    ], function () {
-        Route::get('/', [BookingController::class,'index'])->name('index');
-        Route::get('/create', [BookingController::class,'create'])->name('create');
-        Route::post('/store', [BookingController::class,'store'])->name('store');
-        Route::get('/edit/{booking}', [BookingController::class,'edit'])->name('edit');
-        // Route::post('/update/{salon}', [BookingController::class,'update'])->name('update');
-        Route::post('/delete/{booking}', [BookingController::class,'delete'])->name('delete');
-    });
-});
+
 //-------------------------TIME SALONS----------------------//
 Route::group([
     'prefix' => 'admin',
@@ -77,7 +61,7 @@ Route::group([
     ], function () {
         Route::get('/', [SalonTimeController::class,'index'])->name('index');
         Route::get('/create', [SalonTimeController::class,'create'])->name('create');
-        Route::post('/store', [SalonTimeControlle::class,'store'])->name('store');
+        Route::post('/store', [SalonTimeController::class,'store'])->name('store');
         Route::get('/edit/{time}', [SalonTimeController::class,'edit'])->name('edit');
         Route::post('/update/{time}', [SalonTimeController::class,'update'])->name('update');
         Route::post('/delete/{time}', [SalonTimeController::class,'delete'])->name('delete');
