@@ -22,35 +22,6 @@
         </div>
     </section>
 
-
-                    </div>
-                    @foreach ($salon as $item)
-                        <div class="salon__item show" role="presentation"
-                            onclick="clickChiNhanh('{{ $item->id }}','{{ $item->address }}')">
- 
-                            <div class="item">
-                                <div class="flex">
-                                    <div class="item__media" style="width: 30%;">
-                                        <div class="relative">
-                                            <div class="placehoder" style="height: inherit;"><img class="block w-full"
-                                                    src="{{ url('uploads') }}/{{ $item->image }} " alt="">
-                                            </div>
-=======
-<section class="ftco-section ftco-degree-bg">
-    <!-- Modal danh sách salon -->
-    <div class="modal fade card-footer my-5 p-4" id="listSalon" data-backdrop="false" aria-labelledby="exampleModalScrollableTitle">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1>Danh sách salon</h1>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="white-text">&times;</span>
-                    </button>
-
-                </div>
-                @foreach ($salon as $item)
-                <div class="salon__item show" role="presentation" onclick="clickChiNhanh('{{ $item->id }}','{{ $item->address }}')">
-
     <section class="ftco-section ftco-degree-bg">
         <!-- Modal danh sách salon -->
         <div class="modal fade card-footer my-5 p-4" id="listSalon" data-backdrop="false"
@@ -67,7 +38,6 @@
                     @foreach ($salon as $item)
                         <div class="salon__item show" role="presentation"
                             onclick="clickChiNhanh('{{ $item->id }}','{{ $item->address }}')">
->>>>>>> 236c2365d7c7970a06177df33e91d9fdb6af31a9
 
                             <div class="item">
                                 <div class="flex">
@@ -121,7 +91,7 @@
                                             <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
                                                 <div class="owl-carousel bbb_viewed_slider">
                                                     @foreach ($item['services'] as $service)
-                                                        <div class="swiper-slide list__item swiper-slide-active">
+                                                        <div class="swiper-slide list__item swiper-slide-active" onclick="clickDichVu('{{ $service['id']}}','{{ $service['name'] }}')">
                                                             <div class="item__media pointer ">
                                                                 <img src="{{ url('uploads') }}/{{ $service['image'] }}"
                                                                     width="60" height="150" alt="">
@@ -195,6 +165,7 @@
 
                                 <div class="col-sm-12">
                                     <h3>3. Chọn dịch vụ</h3>
+                                    <input type="hidden" name="bookings_services[]" value="" id="id_dich_vu">
                                     <div class="input-group mb-3" data-toggle="modal" data-target="#listService">
                                         <input type="text" id="dich_vu" class="form-control" disabled
                                             placeholder="Chọn Dịch Vụ">
@@ -291,19 +262,23 @@
                 $(this).addClass('btn-selected');
             }
 
-
+            document.getElementById("click_service").style.backgroundColor = " #b98d58 ";
             document.getElementById("clicks").innerHTML = $('.item__button.btn-selected').length;
         });
-        $('#click_service').on('click', function() {
+        function clickDichVu(id,name){
+            $('#click_service').on('click', function() {
             text_service = ''
             $('.item__button.btn-selected').each(function(index) {
-                if (index != 0) text_service += ', '
+                if (index != 0) text_service += ' - '
                 service_name = $(this).data('service_name')
                 text_service += service_name
             })
+            $('#id_dich_vu').val(id)
             $('#dich_vu').val(text_service)
             $('#listService').modal('hide')
         });
+        }
+        
     </script>
     <script>
         function clickChiNhanh(id, address) {
