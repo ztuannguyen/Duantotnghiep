@@ -1,5 +1,3 @@
-
-
 .salon__regions {
     background-color: rgb(255, 255, 255);
     padding: 0px 15px 30px;
@@ -139,10 +137,12 @@
     padding: 15px 0px;
     margin: 0px 15px;
 }
+
 .salon__item:hover {
     background-color: #BF925B;
     color: white;
 }
+
 .salon__item .item {
     cursor: pointer;
 }
@@ -280,6 +280,7 @@ img {
     position: relative;
     transition-property: transform;
 }
+
 .btn,
 .pointer {
     cursor: pointer;
@@ -369,9 +370,10 @@ img {
     cursor: pointer;
 }
 
-.booking-service .service__list .list__item .item__button:hover{
+.booking-service .service__list .list__item .item__button:hover {
     background-color: #BF925B;
 }
+
 .swiper-container .swiper-notification {
     position: absolute;
     left: 0;
@@ -440,10 +442,11 @@ img {
 /*time*/
 
 .box-time {
-    font-family: Be;
-    font-size: 18px;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 17px;
     color: rgb(34, 34, 34);
-    margin-top: 15px;
+    font-weight: 500;
+    margin-top: 30px;
 }
 
 .box-time .relative {
@@ -487,17 +490,7 @@ img {
     z-index: -1000;
 }
 
-/* .box-time .box-time_item {
-    background: rgb(255, 255, 255);
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 4px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-align: center;
-    margin-bottom: 8px;
-    cursor: pointer;
-} */
-.box-time_item{
+.box-time_item {
     border: none;
     outline: none;
     background: rgb(255, 255, 255);
@@ -508,22 +501,24 @@ img {
     text-align: center;
     margin-bottom: 8px;
     cursor: pointer;
-  }
+}
 
- .box-time .box-time_gr .active {
+.box-time .box-time_gr .active {
     background: #bf925b;
     border: 1px solid transparent;
     color: white;
 }
+
 .box-time_item:hover {
     background: #bf925b;
     border: 1px solid transparent;
 }
+
+
 /* .active, .box-time_item:hover{
     background-color: #bf925b;
     color: white;
   } */
-
 
 
 /* button tư vấn */
