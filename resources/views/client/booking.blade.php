@@ -91,7 +91,7 @@
                                             <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
                                                 <div class="owl-carousel bbb_viewed_slider">
                                                     @foreach ($item['services'] as $service)
-                                                        <div class="swiper-slide list__item swiper-slide-active">
+                                                        <div class="swiper-slide list__item swiper-slide-active" onclick="clickDichVu('{{ $service['id']}}','{{ $service['name'] }}')">
                                                             <div class="item__media pointer ">
                                                                 <img src="{{ url('uploads') }}/{{ $service['image'] }}"
                                                                     width="60" height="150" alt="">
@@ -165,6 +165,7 @@
 
                                 <div class="col-sm-12">
                                     <h3>3. Chọn dịch vụ</h3>
+                                    <input type="hidden" name="bookings_services[]" value="" id="id_dich_vu">
                                     <div class="input-group mb-3" data-toggle="modal" data-target="#listService">
                                         <input type="text" id="dich_vu" class="form-control" disabled
                                             placeholder="Chọn Dịch Vụ">
@@ -261,19 +262,25 @@
                 $(this).addClass('btn-selected');
             }
 
-
+            document.getElementById("click_service").style.backgroundColor = " #b98d58 ";
             document.getElementById("clicks").innerHTML = $('.item__button.btn-selected').length;
         });
-        $('#click_service').on('click', function() {
+        function clickDichVu(id,name){
+            $('#click_service').on('click', function() {
             text_service = ''
             $('.item__button.btn-selected').each(function(index) {
-                if (index != 0) text_service += ', '
+                if (index != 0) text_service += ' - '
                 service_name = $(this).data('service_name')
                 text_service += service_name
+                
             })
+            $('#id_dich_vu').val(id)
+            console.log(id)
             $('#dich_vu').val(text_service)
             $('#listService').modal('hide')
         });
+        }
+        
     </script>
     <script>
         function clickChiNhanh(id, address) {
