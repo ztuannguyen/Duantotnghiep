@@ -272,13 +272,14 @@
                 if (index != 0) text_service += ' - '
                 service_name = $(this).data('service_name')
                 text_service += service_name
+                
             })
             $('#id_dich_vu').val(id)
+            console.log(id)
             $('#dich_vu').val(text_service)
             $('#listService').modal('hide')
         });
         }
-        
     </script>
     <script>
         function clickChiNhanh(id, address) {
