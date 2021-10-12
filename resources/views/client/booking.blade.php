@@ -280,7 +280,6 @@
             $('#listService').modal('hide')
         });
         }
-        
     </script>
     <script>
         function clickChiNhanh(id, address) {
