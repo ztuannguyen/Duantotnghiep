@@ -10912,7 +10912,6 @@ body {
     font-size: 16px;
     line-height: 1.8;
     font-weight: 400;
-    color: gray;
 }
 
 body.menu-show {
@@ -10948,7 +10947,7 @@ h5,
 .h5 {
     line-height: 1.5;
     color: black;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 .text-primary {

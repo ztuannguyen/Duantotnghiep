@@ -248,6 +248,12 @@ img {
     z-index: 1;
 }
 
+.btn-selected {
+    background: #b98d58;
+    color: #fff !important;
+    border: #b98d58 !important;
+}
+
 .swiper-wrapper {
     position: relative;
     width: 100%;
@@ -335,8 +341,7 @@ img {
 .booking-service .service__list .list__item .item__description {
     margin: 0 8px 8px;
     font-size: 10px;
-    color: #5f5f5f;
-    white-space: pre-line;
+    color: #424242;
 }
 
 .booking-service .service__list .list__item .item__price {
@@ -384,12 +389,16 @@ img {
 }
 
 .new-affix-v2 {
-    font-size: 25px;
-    font-family: Oswald;
     position: sticky;
     position: -webkit-sticky;
     bottom: -1px;
     z-index: 10;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    display: inline-block;
+    color: black;
 }
 
 .new-affix-v2 .content-step {
@@ -429,7 +438,6 @@ img {
 }
 
 .new-affix-v2 .button-next span {
-    font-family: Oswald;
     font-size: 16px;
     text-transform: uppercase;
     font-weight: 700;

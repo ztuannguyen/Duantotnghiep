@@ -91,7 +91,7 @@
                                             <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
                                                 <div class="owl-carousel bbb_viewed_slider">
                                                     @foreach ($item['services'] as $service)
-                                                        <div class="swiper-slide list__item swiper-slide-active" onclick="clickDichVu('{{ $service['id']}}','{{ $service['name'] }}')">
+                                                        <div class="swiper-slide list__item swiper-slide-active">
                                                             <div class="item__media pointer ">
                                                                 <img src="{{ url('uploads') }}/{{ $service['image'] }}"
                                                                     width="60" height="150" alt="">
@@ -109,7 +109,7 @@
                                                             </div>
                                                             <div class="item__button" data-cate_id="{{ $item['id'] }}"
                                                                 data-service_id="{{ $service['id'] }}"
-                                                                data-service_name="{{ $service['name'] }}">Chọn</div>
+                                                                data-service_name="{{ $service['name'] }}" onclick="toogleService(this)">Chọn</div>
                                                         </div>
                                                     @endforeach
                                                 </div>
@@ -122,8 +122,7 @@
                     </div>
                     <div class="new-affix-v2">
                         <div class="flex space-between text-center content-step">
-                            <div class="right button-next pointer btn-inactive" id="click_service"><span>Chọn <span
-                                        id="clicks"></span> dịch vụ</span></div>
+                            <div class="right button-next pointer btn-inactive" id="click_service"><span>Chọn dịch vụ</span></div>
                         </div>
                     </div>
                 </div>
@@ -165,7 +164,6 @@
 
                                 <div class="col-sm-12">
                                     <h3>3. Chọn dịch vụ</h3>
-                                    <input type="hidden" name="bookings_services[]" value="" id="id_dich_vu">
                                     <div class="input-group mb-3" data-toggle="modal" data-target="#listService">
                                         <input type="text" id="dich_vu" class="form-control" disabled
                                             placeholder="Chọn Dịch Vụ">
@@ -178,6 +176,7 @@
                                                 </svg></span>
                                         </div>
                                     </div>
+                                    <div id="selected_services_container"></div>
                                 </div>
                                 <div class="col-sm-12">
                                     <h5>Anh đi cắt cùng nhiều người ? (nếu khung giờ không đủ
@@ -225,6 +224,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="status" value="1">
+
                                 <div class="col text-center">
                                 <button type="submit" class="btn btn-primary">Đặt Lịch Ngay</button>
 
@@ -238,50 +238,53 @@
         </div>
     </section>
 
-    <style>
-        .btn-selected {
-            background: #b98d58;
-            color: #fff !important;
-            border: #b98d58 !important;
-        }
-
-    </style>
+  
 @endsection
 
 @section('scripts')
     <script>
-        data_cate_service = <?php echo json_encode($cateService); ?>;
-
-        $('.item__button').on('click', function() {
-            cate_id = $(this).data('cate_id')
-            service_id = $(this).data('service_id')
-            if ($(this).hasClass("btn-selected")) {
-                $(this).removeClass('btn-selected');
-            } else {
-                $('#cate_' + cate_id + ' .item__button').removeClass('btn-selected');
-                $(this).addClass('btn-selected');
+        var listSelectedServices = [];
+        function toogleService(el){
+            let selectedService = {
+                id: $(el).data('service_id'),
+                cate_id: $(el).data('cate_id'),
+                name: $(el).data('service_name')
+            };
+            
+            if(listSelectedServices.some(e => e.id == selectedService.id)){
+                listSelectedServices = listSelectedServices.filter(item => item.id != selectedService.id);
+            }else{
+                listSelectedServices = listSelectedServices.filter(item => item.cate_id != selectedService.cate_id);
+                $(`[data-cate_id="${selectedService.cate_id}"]`).removeClass('btn-selected');
+                listSelectedServices.push(selectedService);
             }
+            $(el).toggleClass('btn-selected');
+            if(listSelectedServices.length > 0){
+                $('#click_service').text("Đã chọn " + listSelectedServices.length + " dịch vụ")
+                document.getElementById('click_service').style.backgroundColor = " #b98d58"
+            }else{
+               $('#click_service').text("Chọn Dịch Vụ")
+                document.getElementById('click_service').style.backgroundColor = " #d1d1d1"
+            }
+           
+            $('#selected_services_container').html("");
+                let textDisplay = "";
+                listSelectedServices.forEach(element => {
 
-            document.getElementById("click_service").style.backgroundColor = " #b98d58 ";
-            document.getElementById("clicks").innerHTML = $('.item__button.btn-selected').length;
-        });
-        function clickDichVu(id,name){
-            $('#click_service').on('click', function() {
-            text_service = ''
-            $('.item__button.btn-selected').each(function(index) {
-                if (index != 0) text_service += ' - '
-                service_name = $(this).data('service_name')
-                text_service += service_name
+                    textDisplay += element.name + " - ";
+                    $('#selected_services_container').append(
+                        `<input type="hidden" name="bookings_services[]" value="${element.id}">`
+                    );
+                }); 
+
+                textDisplay = textDisplay.substring(0, textDisplay.length - 2);
+                $('#dich_vu').val(textDisplay);
                 
-            })
-            $('#id_dich_vu').val(id)
-            console.log(id)
-            $('#dich_vu').val(text_service)
-            $('#listService').modal('hide')
-        });
         }
-    </script>
-    <script>
+        $('#click_service').on('click', function() {
+            $('#listService').modal('hide')
+
+        });
         function clickChiNhanh(id, address) {
             $('#listSalon').modal('hide')
             $('#id_chi_nhanh').val(id);
@@ -293,16 +296,12 @@
                 $('#listSalon').modal('show')
             })
         })
-    </script>
-    <script>
         function clickTime(id, time_start) {
             $('#id_time').val(id)
             $('#thoi_gian').val(time_start)
         }
-    </script>
-    <script>
-        // Active time
-        var header = document.getElementById("atv");
+         // Active time
+         var header = document.getElementById("atv");
         var btns = header.getElementsByClassName("box-time_item");
         for (var i = 0; i < btns.length; i++) {
             btns[i].addEventListener("click", function() {
@@ -314,4 +313,5 @@
             });
         }
     </script>
+   
 @endsection
