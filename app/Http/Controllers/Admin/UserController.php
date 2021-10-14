@@ -12,13 +12,10 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-
-        $pagesize = 6;
-
         $searchData = $request->except('page'); 
         if (count($request->all()) == 0) {
             // Lấy ra danh sách phòng & phân trang cho nó
-            $users = User::paginate($pagesize);
+            $users = User::paginate(6);
         } else {
             $userQuery = User::where('name', 'like', "%" . $request->keyword . "%");
 
@@ -33,11 +30,8 @@ class UserController extends Controller
                     $userQuery = $userQuery->orderByDesc('role_id');
                 }
             }
-            $users = $userQuery->paginate($pagesize)->appends($searchData);;
+            $users = $userQuery->paginate(6)->appends($searchData);
         }
-
-
-     
         $roles = Role::all();
         $users->load('roles');
 
@@ -49,18 +43,12 @@ class UserController extends Controller
 
         ]);
     }
-    public function remove($id)
-    {
-        $model = User::find($id);
-        $model->delete();
-        User::destroy($id);
-        return redirect()->back();
-    }
     public function create(){
         return view('admin/users/create');
     }
 
     public function store(Request $request){
+        $data =  $request->except('_token');
         if ($request->isMethod('post')) {
             $validator = Validator::make($request->all(),[
                  'name' => 'required|min:6|max:30|alpha',
@@ -77,7 +65,6 @@ class UserController extends Controller
                      ->withInput();
          }
          }
-         $data =  request()->except('_token');
          $model = new User();
         $model->fill($request->all());
         // lưu ảnh
@@ -109,7 +96,6 @@ class UserController extends Controller
                  'number_phone' => 'required',
                  'pass' => 'required|min:6|max:10',
                  'otp' => 'required',
-                 'image' => 'required',
                  'ratings' => 'required',
                  'role_id' => 'required',
             ]);
@@ -119,24 +105,40 @@ class UserController extends Controller
                      ->withInput();
          }
          }
-         $users=new User;
+         $users = new User();
          if ($request->hasFile('image')) {
             $file = $request->file('image');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
             $file->move(public_path('/uploads'), $filename);
             $users->image = $filename;
+            $user->update([
+                'name' => $request->name,
+                'number_phone' => $request->number_phone,
+                'pass' => $request->pass,
+                'otp' => $request->otp,
+                'image' => $filename,
+                'ratings' => $request->ratings,
+                'role_id' =>  $request->role_id,
+            ]);
+        }else{
+            $user->update([
+                'name' => $request->name,
+                'number_phone' => $request->number_phone,
+                'pass' => $request->pass,
+                'otp' => $request->otp,
+                'ratings' => $request->ratings,
+                'role_id' =>  $request->role_id,
+            ]);
         }
-        $user->update([
-            'name' => $request->name,
-            'number_phone' => $request->number_phone,
-            'pass' => $request->pass,
-            'otp' => $request->otp,
-            'image' => $filename,
-            'ratings' => $request->ratings,
-            'role_id' =>  $request->role_id,
-        ]);
         return redirect()->route('admin.users.index');
+    } 
+    public function remove($id)
+    {
+        $model = User::find($id);
+        $model->delete();
+        User::destroy($id);
+        return redirect()->back();
     }
 
 }

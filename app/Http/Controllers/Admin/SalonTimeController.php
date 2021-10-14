@@ -14,10 +14,9 @@ class SalonTimeController extends Controller
     public function index(Request $request){
         if ($request->has('keyword') == true) {
             $keyword = $request->get('keyword');
-            // SELECT * FROM users WHERE email LIKE '%keyword%'
-            $ListTime = Salon::where('salon_id', 'LIKE', "%$keyword%")->get();
+            $ListTime = Time::where('salon_id', 'LIKE', "%$keyword%")->get();
         } else {
-            $ListTime = Salon::paginate(14);
+            $ListTime = Time::all();
         }
         $ListTime->load(['salon']);
         $ListTime->load(['bookings']);

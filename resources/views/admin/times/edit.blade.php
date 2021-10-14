@@ -22,7 +22,7 @@
                         <label class="font-weight-bold">Chi nhánh Salon</label>
                         <select class="mt-3 form-control" name="salon_id">
                             @foreach ($ListSalon as $item)
-                                <option value="{{$item->id}}">{{$item->name_salon}}</option>
+                                <option {{ ($item->id == $time->salon_id) ? 'selected' : '' }} value="{{$item->id}}">{{$item->address}}</option>
                             @endforeach
                         </select>
                     </div>
