@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\SalonController;
 use App\Http\Controllers\Admin\SalonTimeController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\LogoController;
+use App\Http\Controllers\Admin\ContactController;
 use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
@@ -102,10 +104,7 @@ Route::post('/admin/services/store', [ServiceController::class, 'store'])->name(
 Route::get('/admin/services/edit/{service}', [ServiceController::class, 'edit'])->name('admin.services.edit');
 Route::post('/admin/services/update/{service}', [ServiceController::class, 'update'])->name('admin.services.update');
 
-
-
 //users
-
 
 Route::get('/admin/users', [UserController::class,'index'])->name('admin.users.index');
 Route::get('/admin/user/delete/{id}', [UserController::class, 'remove'])->name('admin.users.remove');
@@ -113,3 +112,40 @@ Route::get('/admin/users/create', [UserController::class, 'create'])->name('admi
 Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
 Route::get('/admin/users/edit/{user}', [UserController::class, 'edit'])->name('admin.users.edit');
 Route::post('/admin/users/update/{user}', [UserController::class, 'update'])->name('admin.users.update');
+
+//--------------------------LOGO--------------------//
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'namespace' => 'Admin'
+], function () {
+    Route::group([
+        'prefix' => "logos",
+        'as' => "logos."
+    ], function () {
+        Route::get('/', [LogoController::class,'index'])->name('index');
+        Route::get('/create', [LogoController::class,'create'])->name('create');
+        Route::post('/store', [LogoController::class,'store'])->name('store');
+        Route::get('/edit/{logo}', [LogoController::class,'edit'])->name('edit');
+        Route::post('/update/{logo}', [LogoController::class,'update'])->name('update');
+        Route::post('/delete/{logo}', [LogoController::class,'delete'])->name('delete');
+    });
+});
+//--------------------------CONTACT--------------------//
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'namespace' => 'Admin'
+], function () {
+    Route::group([
+        'prefix' => "contacts",
+        'as' => "contacts."
+    ], function () {
+        Route::get('/', [ContactController::class,'index'])->name('index');
+        Route::get('/create', [ContactController::class,'create'])->name('create');
+        Route::post('/store', [ContactController::class,'store'])->name('store');
+        Route::get('/edit/{contact}', [ContactController::class,'edit'])->name('edit');
+        Route::post('/update/{contact}', [ContactController::class,'update'])->name('update');
+        Route::post('/delete/{contact}', [ContactController::class,'delete'])->name('delete');
+    });
+});

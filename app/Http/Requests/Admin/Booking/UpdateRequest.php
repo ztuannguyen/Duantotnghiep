@@ -24,15 +24,15 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'number_phone' => 'required|numeric|min:11',
+            'number_phone' => 'required|numeric|min:13',
             'date_booking' => 'required|date',
         ];
     }
     public function messages()
     {
         return [
-            'number_phone.numberic' => 'Bạn đã nhập sai định dạng',
-            'number_phone.mix' => 'Bạn chỉ được nhập tối đa 11 số',
+            'number_phone.numeric' => 'Bạn đã nhập sai định dạng',
+            'number_phone.min' => 'Số điện thoại nhập tối thiểu 13 số',
             'date_booking.date' => 'Bạn đã nhập sai định dạng',
             'required' => ':attribute không được để trống',
         ];

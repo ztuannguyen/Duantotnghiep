@@ -31,8 +31,8 @@ class BookingRequest extends FormRequest
     public function messages()
     {
         return [
-            'number_phone.numberic' => 'Bạn đã nhập sai định dạng',
-            'number_phone.mix' => 'Bạn chỉ được nhập tối đa 11 số',
+            'number_phone.numeric' => 'Bạn đã nhập sai định dạng',
+            'number_phone.min' => 'Số điện thoại nhập tối thiểu 11 số',
             'date_booking.date' => 'Bạn đã nhập sai định dạng',
             'required' => ':attribute không được để trống',
         ];

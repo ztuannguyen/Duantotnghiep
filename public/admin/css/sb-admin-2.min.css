@@ -5312,7 +5312,8 @@ a.badge-dark:focus {
     padding: .75rem 1.25rem;
     margin-bottom: 1rem;
     border: 1px solid transparent;
-    border-radius: .35rem
+    border-radius: .35rem;
+    width: 500px
 }
 
 .alert-heading {
@@ -11106,9 +11107,9 @@ a:focus {
 
 .btn-circle.btn-sm,
 .btn-group-sm>.btn-circle.btn {
-    height: 1.8rem;
+    height: 2.5rem;
     width: 1.8rem;
-    font-size: .75rem
+    font-size: .85rem
 }
 
 .btn-circle.btn-lg,
