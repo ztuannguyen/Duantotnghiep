@@ -26,7 +26,7 @@ class SalonRequest extends FormRequest
         return [
             'name_salon' => 'required|max:255',
             'address' => 'required|max:255',
-            'image' => 'required|image',
+            'image' => 'image',
             'description' => 'required|max:255'
         ];
     }
@@ -44,7 +44,6 @@ class SalonRequest extends FormRequest
     {
         return [
             'name_salon'=>'Tên cửa hàng',
-            'image'=>'Ảnh',
             'address'=>'Địa chỉ',
             'description' => 'Mô tả',
         ];

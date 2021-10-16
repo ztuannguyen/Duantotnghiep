@@ -1,33 +1,33 @@
 @extends('layouts.admin')
 @section('title')
-    Thêm mới cửa hàng
+    Thêm mới chi nhánh
 @endsection
 @section('contents')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">Danh sách cửa hàng</li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.salons.index') }}">Cửa hàng</a> </li>
-            <li class="breadcrumb-item">Thêm mới cửa hàng</li>
+            <li class="breadcrumb-item">Danh sách chi nhánh</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.salons.index') }}">chi nhánh</a> </li>
+            <li class="breadcrumb-item">Thêm mới chi nhánh</li>
         </ol>
     </nav>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Thêm mới cửa hàng</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Thêm mới chi nhánh</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <form method="POST" action="{{ route('admin.salons.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label class="font-weight-bold">Tên cửa hàng</label>
-                        <input class="form-control" type="text" name="name_salon" value="{{ old('name_salon') }}">
+                        <label class="font-weight-bold">Tên chi nhánh</label>
+                        <input class="form-control" type="text" name="name_salon" value="{{ old('name_salon') }}" placeholder="Nhập tên chi nhánh ...">
                         @error('name_salon')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Địa chỉ</label>
-                        <input class="form-control" type="text" name="address" value="{{ old('address') }}">
+                        <input class="form-control" type="text" name="address" value="{{ old('address') }}" placeholder="Nhập địa chỉ ...">
                         @error('address')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -41,7 +41,11 @@
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Mô tả</label>
-                        <input class="form-control" type="text" name="description" value="{{ old('description') }}">
+                        <input class="form-control" type="text" name="description" value="{{ old('description') }}" placeholder="Nhập mô tả ...">
+                        <script>
+                            CKEDITOR.replace('description');
+                            var data = CKEDITOR.instances.detail.getData();
+                        </script>
                         @error('description')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror

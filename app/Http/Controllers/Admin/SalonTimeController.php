@@ -29,6 +29,7 @@ class SalonTimeController extends Controller
     public function store(SalonTimeRequest $request){
         $data =  $request->except('_token');
         $result = Time::create($data);
+        session()->flash('message', 'Thêm thành công !');
         return redirect()->route('admin.times.index');
     }
     public function edit(Time $time)
@@ -40,11 +41,13 @@ class SalonTimeController extends Controller
     {
         $data = $request->except('_token');
         $time->update($data);
+        session()->flash('message', 'Sửa thành công !');
         return redirect()->route('admin.times.index');
     }
     public function delete(Time $time)
     {
         $time->delete($time);
+        session()->flash('message', 'Xóa thành công !');
         return redirect()->route('admin.times.index');
     }
 }

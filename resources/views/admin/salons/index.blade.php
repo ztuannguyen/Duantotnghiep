@@ -20,6 +20,7 @@
 
                 <span class="text">Thêm mới</span>
             </a>
+            
         </div>
     @section('search-form')
         <!-- Topbar Search -->
@@ -36,7 +37,11 @@
             </div>
         </form>
     @endsection
-
+    @if (session()->has('message'))
+    <div class="alert alert-success" style="margin-top:30px;margin-left:20px">
+      {{ session('message') }}
+    </div>
+@endif
     @if (!empty($data))
         <div class="card-body">
             <div class="table-responsive">
@@ -63,8 +68,12 @@
                                 <td>{{ $item->description }}</td>
                                 <td>
                                     <div class="form-group">
-                                        <label
-                                            class="btn btn-success btn-sm">{{ $item->status ? 'ON' : 'OFF' }}</label>
+                                        @if ($item->status == 0 ? 'selected' : '')
+                                            <button type="button" class="btn btn-success btn-xs btn-radius">ON</button>
+                                        @elseif($item->status == 1 ? 'selected' : '' )
+                                            <button type="button" class="btn btn-danger btn-xs btn-radius">OFF</button>
+
+                                        @endif
                                     </div>
                                 </td>
                                 <td> <a href="{{ route('admin.salons.edit', ['salon' => $item->id]) }}"

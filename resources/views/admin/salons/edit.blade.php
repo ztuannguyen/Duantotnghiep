@@ -54,10 +54,10 @@
                     <div class="form-group">
                         <label class="font-weight-bold">Trạng thái</label>
                         <select class="mt-2 form-control" name="status">
-                            <option value="1" {{ $salon->status == 1 ? 'selected' : '' }}>
+                            <option value="0" {{ $salon->status == 0 ? 'selected' : '' }}>
                                 Đang hoạt động
                             </option>
-                            <option value="0" {{ $salon->status == 0 ? 'selected' : '' }}>
+                            <option value="1" {{ $salon->status == 1 ? 'selected' : '' }}>
                                 Dừng hoạt động
                             </option>
                             @error('status')

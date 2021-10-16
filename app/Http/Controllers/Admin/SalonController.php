@@ -39,6 +39,7 @@ class SalonController extends Controller
             $model->image = $filename;
         }
         $model->save();
+        session()->flash('message', 'Thêm thành công !');
         return redirect()->route('admin.salons.index');
     }
     public function edit(Salon $salon){
@@ -68,10 +69,12 @@ class SalonController extends Controller
                 'description' => $request->description,
             ]);
         }
+        session()->flash('message', 'Sửa thành công !');
         return redirect()->route('admin.salons.index');
     }
     public function delete(Salon $salon){
         $salon->delete($salon);
+        session()->flash('message', 'Xóa thành công !');
         return redirect()->route('admin.salons.index');
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Danh mục dịch vụ
+    Sửa danh mục dịch vụ
 @endsection
 @section('contents')
 <nav aria-label="breadcrumb">
@@ -35,10 +35,10 @@
                 <div class="form-group">
                     <label class="font-weight-bold">Trạng thái</label>
                     <select class="mt-3 form-control" name="status">
-                        <option value="1" {{ $cateService->status == 1 ? 'selected' : '' }} >
+                        <option value="0" {{ $cateService->status == 0 ? 'selected' : '' }} >
                             Đang hoạt động
                         </option>
-                        <option value="0" {{ $cateService->status == 0 ? 'selected' : '' }}>
+                        <option value="1" {{ $cateService->status == 1 ? 'selected' : '' }}>
                             Dừng hoạt động
                         </option >
                         @error('status')

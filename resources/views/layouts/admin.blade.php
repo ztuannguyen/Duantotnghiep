@@ -20,10 +20,10 @@
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <!-- Custom styles for this template-->
     <link href="/admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/admin/css/button.css" rel="stylesheet">
 
     <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+    <!-- Latest compiled and minified CSS -->
 </head>
 
 <body id="page-top">
@@ -91,6 +91,7 @@
             </div>
         </div>
     </div>
+    
     <script type="text/javascript" language="javascript" src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="/admin/vendor/jquery/jquery.min.js"></script>
