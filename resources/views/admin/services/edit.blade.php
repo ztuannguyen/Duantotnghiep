@@ -70,7 +70,7 @@
                         <textarea name="description" id="description"  class="form-control ckeditor">{{$service->description}}</textarea>
                         <script>
                             CKEDITOR.replace('description');
-                            var data = CKEDITOR.instances.description.getData();
+                            var data = CKEDITOR.instances['description'].getData();
                         </script>
                         @error('description')
                             <span class="text-danger">{{ $message }}</span>
@@ -82,7 +82,7 @@
                         <textarea name="detail" id="detail"  class="form-control ckeditor">{{$service->detail}}</textarea>
                         <script>
                             CKEDITOR.replace('detail');
-                            var data = CKEDITOR.instances.detail.getData();
+                            var data = CKEDITOR.instances['detail'].getData();
                         </script>
                         @error('detail')
                             <span class="text-danger">{{ $message }}</span>
