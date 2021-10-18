@@ -68,10 +68,18 @@
             <i class="fas fa-fw fa-calendar"></i>
             <span>Đơn đặt lịch</span></a>
     </li>
+
     <li class="nav-item">
         <a class="nav-link" href="/admin/contacts">
             <i class="fas fa-fw fa-phone"></i>
             <span>Liên hệ</span></a>
+
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.slides.index')}}">
+            <i class="fas fa-fw fa-image"></i>
+            <span>Slide</span></a>
+
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider">

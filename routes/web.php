@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SalonController;
 use App\Http\Controllers\Admin\SalonTimeController;
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LogoController;
 use App\Http\Controllers\Admin\ContactController;
@@ -88,6 +89,7 @@ Route::group([
         Route::post('/delete/{booking}', [BookingController::class,'remove'])->name('remove');
     });
 });
+
 // Cate Service
 Route::get('/admin/cate_services', [CateServiceController::class, 'index'])->name('admin.cate_services.index');
 Route::get('/cate_services/delete/{id}', [CateServiceController::class, 'delete'])->name('admin.cate_services.delete');
@@ -149,3 +151,12 @@ Route::group([
         Route::post('/delete/{contact}', [ContactController::class,'delete'])->name('delete');
     });
 });
+
+//slides
+Route::get('/admin/slides', [SlideController::class, 'index'])->name('admin.slides.index');
+Route::get('/admin/slides/delete/{slide}', [SlideController::class, 'delete'])->name('admin.slides.delete');
+Route::get('/admin/slides/create', [SlideController::class, 'create'])->name('admin.slides.create');
+Route::post('/admin/slides/store', [SlideController::class, 'store'])->name('admin.slides.store');
+Route::get('/admin/slides/edit/{slide}', [SlideController::class, 'edit'])->name('admin.slides.edit');
+Route::post('/admin/slides/update/{slide}', [SlideController::class, 'update'])->name('admin.slides.update');
+
