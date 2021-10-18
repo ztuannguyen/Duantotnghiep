@@ -40,6 +40,6 @@ class ClientController extends Controller
                 $booking_service->save();
             }
         }
-        return redirect()->route('admin.bookings.index');
+        return redirect()->route('client.show')->with('message','Đã đặt hàng thành công!');
     }
 }

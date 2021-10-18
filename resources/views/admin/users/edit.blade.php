@@ -52,10 +52,13 @@ Sửa thông tin tài khoản
 
                 <div class="form-group">
                     <label class="font-weight-bold">Ảnh</label>
-                    <input class="form-control" type="file" name="image" value="{{$user->image}}">
-                    <div >
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input"  name="image" value="{{$user->image}}">
+                        <label class="custom-file-label" for="customFile" >Chọn ảnh ...</label>
+                        </div>
+                    <div class="mt-2">
                         @if ($user->image)
-                        <img src="{{ asset('uploads/' . $user->image) }}" width="150px" height="100px">
+                        <img src="{{ asset('uploads/' . $user->image) }}" width="150px" height="130px">
                         @endif
                     </div>
                     @error('image')

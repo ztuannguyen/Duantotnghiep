@@ -21,7 +21,11 @@
             </div>
         </div>
     </section>
-
+    @if (session()->has('message'))
+    <div class="alert alert-success" style="margin-top:30px;margin-left:20px">
+      {{ session('message') }}
+    </div>
+    @endif
     <section class="ftco-section ftco-degree-bg">
         <!-- Modal danh sách salon -->
         <div class="modal fade card-footer my-5 p-4" id="listSalon" data-backdrop="false"
@@ -190,9 +194,11 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <h3>4. Chọn ngày cắt</h3>
-                                    <div class="input-group mb-3">
-                                        <input type="date" class="form-control" name="date_booking"
-                                            value="{{ old('date_booking') }}">
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control" name="date_booking" value="{{ old('date_booking')}}" placeholder="Chọn ngày cắt ...">
+                                        <div class="input-group-addon">
+                                            <span><i class="bi bi-calendar-fill"></i></span>
+                                        </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="box-time" id="box-time">
@@ -246,6 +252,7 @@
 
 @section('scripts')
     <script>
+        //SelectService
         var listSelectedServices = [];
 
         function toogleService(el) {
@@ -289,7 +296,7 @@
             $('#listService').modal('hide')
 
         });
-
+        //choooseSalon
         function clickChiNhanh(id, address) {
             $('#listSalon').modal('hide')
             $('#id_chi_nhanh').val(id);
@@ -301,7 +308,7 @@
                 $('#listSalon').modal('show')
             })
         })
-
+        //chooseTime
         function clickTime(id, time_start) {
             $('#id_time').val(id)
             $('#thoi_gian').val(time_start)
@@ -318,6 +325,15 @@
                 this.className += " active";
             });
         }
+        $(document).ready(function(){
+            let today = moment().format('YYYY-MM-DD');     
+            let tomorrow  = moment().add(2,'days').format('YYYY-MM-DD');
+            $('input[name=date_booking]').datepicker({
+                format: 'yyyy-mm-d',
+                startDate: today,
+                endDate: tomorrow
+            });
+        })
     </script>
 
 @endsection
