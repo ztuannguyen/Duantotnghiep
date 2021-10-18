@@ -6,7 +6,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">Danh sách chi nhánh</li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.salons.index') }}">chi nhánh</a> </li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.salons.index') }}">Chi nhánh</a> </li>
             <li class="breadcrumb-item">Thêm mới chi nhánh</li>
         </ol>
     </nav>
@@ -34,7 +34,10 @@
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Ảnh</label>
-                        <input class="form-control" type="file" name="image" value="{{ old('image') }}">
+                        <div class="custom-file">
+                        <input type="file" class="custom-file-input"  name="image" value="{{ old('image') }}" >
+                        <label class="custom-file-label" for="customFile" >Chọn ảnh ...</label>
+                        </div>
                         @error('image')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror

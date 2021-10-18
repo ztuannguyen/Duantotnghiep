@@ -38,7 +38,10 @@
                     {{-- image --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Ảnh</label>
-                        <input class="form-control" type="file" name="image">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input"  name="image" value="{{ old('image') }}">
+                            <label class="custom-file-label" for="customFile" >Chọn ảnh ...</label>
+                            </div>
                         @error('image')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror

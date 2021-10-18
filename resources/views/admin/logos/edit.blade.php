@@ -20,10 +20,13 @@
                 @csrf
                 <div class="form-group">
                     <label class="font-weight-bold">Ảnh Logo</label>
-                    <input class="form-control" type="file" name="image" value="{{$logo->image}}">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input"  name="image" value="{{$logo->image}}" >
+                        <label class="custom-file-label" for="customFile" >Chọn ảnh ...</label>
+                        </div>
                     <div class="mt-2">
                         @if ($logo->image)
-                        <img src="{{ asset('uploads/' . $logo->image) }}" width="150px" height="150px">
+                        <img src="{{ asset('uploads/' . $logo->image) }}" width="200px" height="150px">
                         @endif
                     </div>
                     @error('image')

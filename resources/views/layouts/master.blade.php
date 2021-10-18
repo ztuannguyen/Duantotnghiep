@@ -9,27 +9,26 @@
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed:500,600,700&display=swap" rel="stylesheet">
-
-
     <link rel="stylesheet" href="{{ asset('client/css/open-iconic-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('client/css/animate.css') }}">
-
     <link rel="stylesheet" href="{{ asset('client/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('client/css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('client/css/magnific-popup.css') }}">
-
     <link rel="stylesheet" href="{{ asset('client/css/aos.css') }}">
-
     <link rel="stylesheet" href="{{ asset('client/css/ionicons.min.css') }}">
-
-    <link rel="stylesheet" href="{{ asset('client/css/bootstrap-datepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('client/css/jquery.timepicker.css') }}">
-
-
     <link rel="stylesheet" href="{{ asset('client/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('client/css/icomoon.css') }}">
     <link rel="stylesheet" href="{{ asset('client/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('client/css/css/booking.css') }}">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+        integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css"
+        integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
 </head>
 
 <body>
@@ -48,9 +47,19 @@
             <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
                 stroke="#F96D00" />
         </svg></div>
-
-
-    <script src="{{ asset('client/js/jquery.min.js') }}"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"
+        integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.bundle.min.js"
+        integrity="sha512-wV7Yj1alIZDqZFCUQJy85VN+qvEIly93fIQAN7iqDFCPEucLCeNFz4r35FCo9s6WrpdDQPi80xbljXB8Bjtvcg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('client/js/jquery-migrate-3.0.1.min.js') }}"></script>
     <script src="{{ asset('client/js/popper.min.js') }}"></script>
     <script src="{{ asset('client/js/bootstrap.min.js') }}"></script>
@@ -61,7 +70,6 @@
     <script src="{{ asset('client/js/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('client/js/aos.js') }}"></script>
     <script src="{{ asset('client/js/jquery.animateNumber.min.js') }}"></script>
-    <script src="{{ asset('client/js/bootstrap-datepicker.j') }}s"></script>
     <script src="{{ asset('client/js/jquery.timepicker.min.js') }}"></script>
     <script src="{{ asset('client/js/scrollax.min.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
@@ -69,7 +77,7 @@
     <script src="{{ asset('client/js/google-map.js') }}"></script>
     <script src="{{ asset('client/js/main.js') }}"></script>
     @yield('scripts')
-    
+
 </body>
 
 </html>
