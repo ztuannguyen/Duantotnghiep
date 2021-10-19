@@ -1596,7 +1596,7 @@ pre code {
 
 .table td,
 .table th {
-    padding: .75rem;
+    padding: .65rem;
     vertical-align: top;
     border-top: 1px solid #e3e6f0
 }
@@ -5312,7 +5312,8 @@ a.badge-dark:focus {
     padding: .75rem 1.25rem;
     margin-bottom: 1rem;
     border: 1px solid transparent;
-    border-radius: .35rem
+    border-radius: .35rem;
+    width: 500px
 }
 
 .alert-heading {
@@ -11106,9 +11107,9 @@ a:focus {
 
 .btn-circle.btn-sm,
 .btn-group-sm>.btn-circle.btn {
-    height: 1.8rem;
-    width: 1.8rem;
-    font-size: .75rem
+    height: 2.2rem;
+    width: 2rem;
+    font-size: .95rem
 }
 
 .btn-circle.btn-lg,

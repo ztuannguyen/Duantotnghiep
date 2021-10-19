@@ -41,6 +41,7 @@ class CateServiceController extends Controller
          }
         $data =  $request->except('_token');
         $result = CateService::create($data);
+        session()->flash('message', 'Thêm thành công !');
         return redirect()->route('admin.cate_services.index');
     }
 
@@ -64,30 +65,13 @@ class CateServiceController extends Controller
           
           $data = $request->except('_token');
           $cateService->update($data);
+          session()->flash('message', 'Sửa thành công !');
           return redirect()->route('admin.cate_services.index');
     }
-    // public function update(Request $request, CateService $cateService){
-    //     if ($request->isMethod('post')) {
-    //         $validator = Validator::make($request->all(),[
-    //             'name_cate' => 'required|min:3|max:30',
-    //             'order_by' => 'required',
-    //         ]);
-    //      if($validator->fails()){
-    //          return redirect()->back()
-    //                  ->withErrors($validator)
-    //                  ->withInput();
-    //      }
-    //      }
-    //     $cateService = new CateService;
-    //     $cateService->update([
-    //         'name_cate' => $request->name_cate,
-    //         'order_by' => $request->order_by,
-    //     ]);
-    //     return redirect()->route('admin.cate_services.index');
-    // }
 
      public function delete(cateService $id){
          $id->delete($id);
+         session()->flash('message', 'Xóa thành công !');
          return redirect()->route('admin.cate_services.index');
      }
 }

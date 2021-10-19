@@ -38,7 +38,10 @@
                     {{-- image --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Ảnh</label>
-                        <input class="form-control" type="file" name="image">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input"  name="image" value="{{ old('image') }}">
+                            <label class="custom-file-label" for="customFile" >Chọn ảnh ...</label>
+                            </div>
                         @error('image')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -54,8 +57,8 @@
                     </div>
                     {{-- discount --}}
                     <div class="form-group">
-                        <label class="font-weight-bold">discount</label>
-                        <input class="form-control" type="text" name="discount" placeholder="">
+                        <label class="font-weight-bold">Giảm giá</label>
+                        <input class="form-control" type="text" name="discount" placeholder="Nhập số tiền đã giảm ...">
                         @error('discount')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -84,6 +87,14 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    {{-- order_by --}}
+                    <div class="form-group">
+                        <label class="font-weight-bold">Sắp xếp</label>
+                        <input class="form-control" type="number" name="order_by" placeholder="Nhập thứ tự sắp xếp ...">
+                        @error('order_by')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
                     {{-- Cate_id --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Danh mục dịch vụ</label>
@@ -102,24 +113,16 @@
                     <div class="form-group">
                         <label class="font-weight-bold">Trạng thái</label>
                         <select class="mt-3 form-control" name="status">
-                            <option value="1">
+                            <option value="0">
                                 Đang hoạt động
                             </option>
-                            <option value="0">
+                            <option value="1">
                                 Dừng hoạt động
                             </option >
                             @error('status')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </select>
-                    </div>
-                    {{-- order_by --}}
-                    <div class="form-group">
-                        <label class="font-weight-bold">Order_by</label>
-                        <input class="form-control" type="number" name="order_by">
-                        @error('order_by')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
                     <button type="submit" class="btn btn-success">Thêm</button>
                 </form>

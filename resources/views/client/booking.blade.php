@@ -21,7 +21,11 @@
             </div>
         </div>
     </section>
-
+    @if (session()->has('message'))
+    <div class="alert alert-success" style="margin-top:30px;margin-left:20px">
+      {{ session('message') }}
+    </div>
+    @endif
     <section class="ftco-section ftco-degree-bg">
         <!-- Modal danh sách salon -->
         <div class="modal fade card-footer my-5 p-4" id="listSalon" data-backdrop="false"
@@ -109,7 +113,8 @@
                                                             </div>
                                                             <div class="item__button" data-cate_id="{{ $item['id'] }}"
                                                                 data-service_id="{{ $service['id'] }}"
-                                                                data-service_name="{{ $service['name'] }}" onclick="toogleService(this)">Chọn</div>
+                                                                data-service_name="{{ $service['name'] }}"
+                                                                onclick="toogleService(this)">Chọn</div>
                                                         </div>
                                                     @endforeach
                                                 </div>
@@ -122,7 +127,8 @@
                     </div>
                     <div class="new-affix-v2">
                         <div class="flex space-between text-center content-step">
-                            <div class="right button-next pointer btn-inactive" id="click_service"><span>Chọn dịch vụ</span></div>
+                            <div class="right button-next pointer btn-inactive" id="click_service"><span>Chọn dịch vụ</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -135,7 +141,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-10 ftco-animate">
                         <div class="row">
-                            <form action="{{route('client.post')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('client.post') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-sm-12">
                                     <h3>1. Số điện thoại</h3>
@@ -188,9 +194,11 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <h3>4. Chọn ngày cắt</h3>
-                                    <div class="input-group mb-3">
-                                        <input type="date" class="form-control" name="date_booking"
-                                            value="{{ old('date_booking') }}">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="date_booking"  placeholder="Chọn ngày cắt ...">
+                                        {{-- <div class="input-group-addon">
+                                            <span><i class="bi bi-calendar-fill"></i></span>
+                                        </div> --}}
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="box-time" id="box-time">
@@ -205,7 +213,8 @@
                                                             <div class="swiper-slide box-time_gr"
                                                                 style="width: 83.9231px; margin-right: 8px;"
                                                                 onclick="clickTime('{{ $item->id }}','{{ $item->time_start }}')">
-                                                                <div class="box-time_item" role="presentation" id="thoi_gian">
+                                                                <div class="box-time_item" role="presentation"
+                                                                    id="thoi_gian">
                                                                     {{ $item->time_start }}
                                                                 </div>
                                                             </div>
@@ -226,7 +235,7 @@
                                 <input type="hidden" name="status" value="1">
 
                                 <div class="col text-center">
-                                <button type="submit" class="btn btn-primary">Đặt Lịch Ngay</button>
+                                    <button type="submit" class="btn btn-primary">Đặt Lịch Ngay</button>
 
                                 </div>
                             </form>
@@ -238,53 +247,56 @@
         </div>
     </section>
 
-  
+
 @endsection
 
 @section('scripts')
     <script>
+        //SelectService
         var listSelectedServices = [];
-        function toogleService(el){
+
+        function toogleService(el) {
             let selectedService = {
                 id: $(el).data('service_id'),
                 cate_id: $(el).data('cate_id'),
                 name: $(el).data('service_name')
             };
-            
-            if(listSelectedServices.some(e => e.id == selectedService.id)){
+
+            if (listSelectedServices.some(e => e.id == selectedService.id)) {
                 listSelectedServices = listSelectedServices.filter(item => item.id != selectedService.id);
-            }else{
+            } else {
                 listSelectedServices = listSelectedServices.filter(item => item.cate_id != selectedService.cate_id);
                 $(`[data-cate_id="${selectedService.cate_id}"]`).removeClass('btn-selected');
                 listSelectedServices.push(selectedService);
             }
             $(el).toggleClass('btn-selected');
-            if(listSelectedServices.length > 0){
+            if (listSelectedServices.length > 0) {
                 $('#click_service').text("Đã chọn " + listSelectedServices.length + " dịch vụ")
                 document.getElementById('click_service').style.backgroundColor = " #b98d58"
-            }else{
-               $('#click_service').text("Chọn Dịch Vụ")
+            } else {
+                $('#click_service').text("Chọn Dịch Vụ")
                 document.getElementById('click_service').style.backgroundColor = " #d1d1d1"
             }
-           
+
             $('#selected_services_container').html("");
-                let textDisplay = "";
-                listSelectedServices.forEach(element => {
+            let textDisplay = "";
+            listSelectedServices.forEach(element => {
 
-                    textDisplay += element.name + " - ";
-                    $('#selected_services_container').append(
-                        `<input type="hidden" name="bookings_services[]" value="${element.id}">`
-                    );
-                }); 
+                textDisplay += element.name + " - ";
+                $('#selected_services_container').append(
+                    `<input type="hidden" name="bookings_services[]" value="${element.id}">`
+                );
+            });
 
-                textDisplay = textDisplay.substring(0, textDisplay.length - 2);
-                $('#dich_vu').val(textDisplay);
-                
+            textDisplay = textDisplay.substring(0, textDisplay.length - 2);
+            $('#dich_vu').val(textDisplay);
+
         }
         $('#click_service').on('click', function() {
             $('#listService').modal('hide')
 
         });
+        //choooseSalon
         function clickChiNhanh(id, address) {
             $('#listSalon').modal('hide')
             $('#id_chi_nhanh').val(id);
@@ -296,12 +308,13 @@
                 $('#listSalon').modal('show')
             })
         })
+        //chooseTime
         function clickTime(id, time_start) {
             $('#id_time').val(id)
             $('#thoi_gian').val(time_start)
         }
-         // Active time
-         var header = document.getElementById("atv");
+        // Active time
+        var header = document.getElementById("atv");
         var btns = header.getElementsByClassName("box-time_item");
         for (var i = 0; i < btns.length; i++) {
             btns[i].addEventListener("click", function() {
@@ -312,6 +325,15 @@
                 this.className += " active";
             });
         }
+        $(document).ready(function(){
+            let today = moment().format('YYYY-MM-DD');     
+            let tomorrow  = moment().add(2,'days').format('YYYY-MM-DD');
+            $('input[name=date_booking]').datepicker({
+                format: 'yyyy-mm-d',
+                startDate: today,
+                endDate: tomorrow
+            });
+        })
     </script>
-   
+
 @endsection

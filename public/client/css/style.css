@@ -2134,10 +2134,10 @@ pre code {
 .form-control:focus {
     color: #495057;
     background-color: #fff;
-    border-color: #80bdff;
-    outline: 0;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: 0 !important;
+    border-color: initial;
+    box-shadow: none;
 }
 
 .form-control::-webkit-input-placeholder {
@@ -10912,7 +10912,6 @@ body {
     font-size: 16px;
     line-height: 1.8;
     font-weight: 400;
-    color: gray;
 }
 
 body.menu-show {
@@ -10948,7 +10947,7 @@ h5,
 .h5 {
     line-height: 1.5;
     color: black;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 .text-primary {

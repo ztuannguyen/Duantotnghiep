@@ -15,7 +15,7 @@ class ClientController extends Controller
 {
     public function show(){
        
-        $salon = Salon::where('status',1)->orderBy('id','ASC')->get();
+        $salon = Salon::where('status',0)->orderBy('id','ASC')->get();
         $cateService = CateService::with('services')->get();
         $service = Service::all();
         $booking = Booking::with('service')->get();
@@ -40,6 +40,6 @@ class ClientController extends Controller
                 $booking_service->save();
             }
         }
-        return redirect()->route('admin.bookings.index');
+        return redirect()->route('client.show')->with('message','Đã đặt hàng thành công!');
     }
 }

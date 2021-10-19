@@ -1,18 +1,18 @@
 @extends('layouts.admin')
 @section('title')
-    Sửa thông tin cửa hàng
+    Sửa thông tin chi nhánh
 @endsection
 @section('contents')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">Danh sách cửa hàng</li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.salons.index') }}">Cửa hàng</a> </li>
-            <li class="breadcrumb-item">Sửa thông tin cửa hàng</li>
+            <li class="breadcrumb-item">Danh sách chi nhánh</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.salons.index') }}">Chi nhánh</a> </li>
+            <li class="breadcrumb-item">Sửa thông tin chi nhánh</li>
         </ol>
     </nav>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Thông tin cửa hàng</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Thông tin chi nhánh</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -34,10 +34,13 @@
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Ảnh</label>
-                        <input class="form-control" type="file" name="image" value="{{ $salon->image }}">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input"  name="image" value="{{ $salon->image }}">
+                            <label class="custom-file-label" for="customFile" value="{{ old('image') }}">Chọn ảnh ...</label>
+                            </div>
                         <div class="mt-2">
                             @if ($salon->image)
-                            <img src="{{ asset('uploads/' . $salon->image) }}" width="150px" height="150px">
+                            <img src="{{ asset('uploads/' . $salon->image) }}" width="170px" height="150px">
                             @endif
                         </div>
                         @error('image')
@@ -54,10 +57,10 @@
                     <div class="form-group">
                         <label class="font-weight-bold">Trạng thái</label>
                         <select class="mt-2 form-control" name="status">
-                            <option value="1" {{ $salon->status == 1 ? 'selected' : '' }}>
+                            <option value="0" {{ $salon->status == 0 ? 'selected' : '' }}>
                                 Đang hoạt động
                             </option>
-                            <option value="0" {{ $salon->status == 0 ? 'selected' : '' }}>
+                            <option value="1" {{ $salon->status == 1 ? 'selected' : '' }}>
                                 Dừng hoạt động
                             </option>
                             @error('status')

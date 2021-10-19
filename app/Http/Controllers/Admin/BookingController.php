@@ -61,6 +61,7 @@ class BookingController extends Controller
                 $booking_service->save();
             }
         }
+        session()->flash('message', 'Thêm thành công !');
         return redirect()->route('admin.bookings.index');
     }
     public function edit(Booking $booking)
@@ -95,6 +96,7 @@ class BookingController extends Controller
                 $booking_service->save();
             }
         }
+        session()->flash('message', 'Sửa thành công !');
         return redirect()->route('admin.bookings.index');
     }
 
@@ -103,6 +105,7 @@ class BookingController extends Controller
         $model = Booking::find($id);
         $model->delete();
         Booking::destroy($id);
+        session()->flash('message', 'Xóa thành công !');
         return redirect()->back();
     }
 }
