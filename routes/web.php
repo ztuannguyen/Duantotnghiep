@@ -154,9 +154,9 @@ Route::group([
 
 //slides
 Route::get('/admin/slides', [SlideController::class, 'index'])->name('admin.slides.index');
-Route::get('/admin/slides/delete/{slide}', [SlideController::class, 'delete'])->name('admin.slides.delete');
 Route::get('/admin/slides/create', [SlideController::class, 'create'])->name('admin.slides.create');
 Route::post('/admin/slides/store', [SlideController::class, 'store'])->name('admin.slides.store');
 Route::get('/admin/slides/edit/{slide}', [SlideController::class, 'edit'])->name('admin.slides.edit');
 Route::post('/admin/slides/update/{slide}', [SlideController::class, 'update'])->name('admin.slides.update');
+Route::get('/admin/slides/delete/{slide}', [SlideController::class, 'delete'])->name('admin.slides.delete');
 

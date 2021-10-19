@@ -21,6 +21,7 @@
     <link href="/admin/css/button.css" rel="stylesheet">
     <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     
+    
     <!-- Latest compiled and minified CSS -->
 </head>
 
@@ -112,6 +113,12 @@
 
     <!-- Page level custom scripts -->
     <script src="/admin/js/demo/datatables-demo.js"></script>
+    <script type="application/javascript">
+        $('input[type="file"]').change(function(e){
+            var fileName = e.target.files[0].name;
+            $('.custom-file-label').html(fileName);
+        });
+    </script>
     @yield('script')
 </body>
 

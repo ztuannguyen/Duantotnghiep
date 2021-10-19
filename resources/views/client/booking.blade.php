@@ -194,11 +194,11 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <h3>4. Chọn ngày cắt</h3>
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control" name="date_booking" value="{{ old('date_booking')}}" placeholder="Chọn ngày cắt ...">
-                                        <div class="input-group-addon">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="date_booking"  placeholder="Chọn ngày cắt ...">
+                                        {{-- <div class="input-group-addon">
                                             <span><i class="bi bi-calendar-fill"></i></span>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="box-time" id="box-time">

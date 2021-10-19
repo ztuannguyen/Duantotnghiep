@@ -6,7 +6,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">Logo</li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.cate_services.index') }}"> Danh sách Logo</a>
+            <li class="breadcrumb-item"><a href="{{ route('admin.logos.index') }}"> Danh sách Logo</a>
             </li>
         </ol>
     </nav>
