@@ -73,13 +73,6 @@
         <a class="nav-link" href="/admin/contacts">
             <i class="fas fa-fw fa-phone"></i>
             <span>Liên hệ</span></a>
-
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{route('admin.slides.index')}}">
-            <i class="fas fa-fw fa-image"></i>
-            <span>Slide</span></a>
-
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -100,7 +93,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="/admin/logos">Logo</a>
                 <a class="collapse-item" href="register.html">Footer</a>
-                <a class="collapse-item" href="forgot-password.html">Slide</a>
+                <a class="collapse-item" href="/admin/slides">Slide</a>
             </div>
         </div>
     </li>
