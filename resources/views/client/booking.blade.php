@@ -22,9 +22,9 @@
         </div>
     </section>
     @if (session()->has('message'))
-    <div class="alert alert-success" style="margin-top:30px;margin-left:20px">
-      {{ session('message') }}
-    </div>
+        <div class="alert alert-success" style="margin-top:30px;margin-left:20px">
+            {{ session('message') }}
+        </div>
     @endif
     <section class="ftco-section ftco-degree-bg">
         <!-- Modal danh sách salon -->
@@ -195,7 +195,8 @@
                                 <div class="col-sm-12">
                                     <h3>4. Chọn ngày cắt</h3>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="date_booking"  placeholder="Chọn ngày cắt ...">
+                                        <input type="text" class="form-control" name="date_booking"
+                                            placeholder="Chọn ngày cắt ...">
                                         {{-- <div class="input-group-addon">
                                             <span><i class="bi bi-calendar-fill"></i></span>
                                         </div> --}}
@@ -207,7 +208,7 @@
                                                     class="swiper-container swiper-container-initialized swiper-container-horizontal">
 
 
-                                                    <div id="atv" class="swiper-wrapper">
+                                                    <div class="swiper-wrapper">
                                                         <input type="hidden" name="time_id" value="" id="id_time">
                                                         @foreach ($time as $item)
                                                             <div class="swiper-slide box-time_gr"
@@ -314,20 +315,17 @@
             $('#thoi_gian').val(time_start)
         }
         // Active time
-        var header = document.getElementById("atv");
-        var btns = header.getElementsByClassName("box-time_item");
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function() {
-                var current = document.getElementsByClassName("active");
-                if (current.length > 0) {
-                    current[0].className = current[0].className.replace(" active", "");
-                }
-                this.className += " active";
-            });
-        }
-        $(document).ready(function(){
-            let today = moment().format('YYYY-MM-DD');     
-            let tomorrow  = moment().add(2,'days').format('YYYY-MM-DD');
+        $(".box-time_item").click(function() {
+            if ($(this).hasClass("active")) {
+                $(".box-time_item").removeClass("active");
+            } else {
+                $(".box-time_item").removeClass("active");
+                $(this).addClass("active");
+            }
+        });
+        $(document).ready(function() {
+            let today = moment().format('YYYY-MM-DD');
+            let tomorrow = moment().add(2, 'days').format('YYYY-MM-DD');
             $('input[name=date_booking]').datepicker({
                 format: 'yyyy-mm-d',
                 startDate: today,
