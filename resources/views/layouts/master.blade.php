@@ -62,6 +62,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
         integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"
+        integrity="sha512-2xXe2z/uA+2SyT/sTSt9Uq4jDKsT0lV4evd3eoE/oxKih8DSAsOF6LUb+ncafMJPAimWAXdu9W+yMXGrCVOzQA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('client/js/jquery-migrate-3.0.1.min.js') }}"></script>
     <script src="{{ asset('client/js/popper.min.js') }}"></script>
     <script src="{{ asset('client/js/bootstrap.min.js') }}"></script>
@@ -81,8 +84,8 @@
     @yield('scripts')
     @if (Session::has('message'))
         <script>
-            swal("Đặt hàng thành công!","{!! Session::get('message') !!}","success",{
-                button:"Xác nhận",
+            swal("Đặt hàng thành công!", "{!! Session::get('message') !!}", "success", {
+                button: "Xác nhận",
             });
         </script>
     @endif

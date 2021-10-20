@@ -211,7 +211,7 @@
                                                                 onclick="clickTime('{{ $item->id }}','{{ $item->time_start }}')">
                                                                 <div class="box-time_item" role="presentation"
                                                                     id="thoi_gian">
-                                                                    {{ $item->time_start }}
+                                                                    {{ date('H:i',strtotime($item->time_start)) }}
                                                                 </div>
                                                             </div>
                                                         @endforeach
@@ -317,7 +317,7 @@
                 $(".box-time_item").removeClass("active");
                 $(this).addClass("active");
             }
-        });
+        })
         $(document).ready(function() {
             let today = moment().format('YYYY-MM-DD');
             let tomorrow = moment().add(2, 'days').format('YYYY-MM-DD');
@@ -327,6 +327,7 @@
                 endDate: tomorrow
             });
         })
+        
     </script>
 
 @endsection
