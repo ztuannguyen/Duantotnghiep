@@ -20,8 +20,10 @@
     <link href="/admin/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="/admin/css/button.css" rel="stylesheet">
     <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Latest compiled and minified CSS -->
 </head>
 
@@ -90,7 +92,7 @@
             </div>
         </div>
     </div>
-   
+
     <script type="text/javascript" language="javascript" src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="/admin/vendor/jquery/jquery.min.js"></script>
@@ -110,15 +112,28 @@
 
     <script src="/admin/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.js"
+        integrity="sha512-6ORWJX/LrnSjBzwefdNUyLCMTIsGoNP6NftMy2UAm1JBm6PRZCO1d7OHBStWpVFZLO+RerTvqX/Z9mBFfCJZ4A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"
+        integrity="sha512-nnzkI2u2Dy6HMnzMIkh7CPd1KX445z38XIu4jG1jGw7x5tSL3VBjE44dY4ihMU1ijAQV930SPM12cCFrB18sVw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Page level custom scripts -->
     <script src="/admin/js/demo/datatables-demo.js"></script>
     <script type="application/javascript">
-        $('input[type="file"]').change(function(e){
+        $('input[type="file"]').change(function(e) {
             var fileName = e.target.files[0].name;
             $('.custom-file-label').html(fileName);
         });
     </script>
+    @if (Session::has('message'))
+        <script>
+            toastr.success("{!! Session::get('message') !!}")
+        </script>
+    @endif
     @yield('script')
 </body>
 

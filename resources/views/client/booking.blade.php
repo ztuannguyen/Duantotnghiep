@@ -21,11 +21,6 @@
             </div>
         </div>
     </section>
-    @if (session()->has('message'))
-        <div class="alert alert-success" style="margin-top:30px;margin-left:20px">
-            {{ session('message') }}
-        </div>
-    @endif
     <section class="ftco-section ftco-degree-bg">
         <!-- Modal danh sách salon -->
         <div class="modal fade card-footer my-5 p-4" id="listSalon" data-backdrop="false"

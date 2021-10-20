@@ -492,7 +492,8 @@ img {
 .box-time .swiper-wrapper {
     align-items: flex-end;
     flex-wrap: wrap;
-    width: 1020px;
+    width: 800px;
+    margin-left: 120px;
 }
 
 .box-time .box-time_gr {

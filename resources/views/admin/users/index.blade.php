@@ -35,11 +35,6 @@
             </div>
         </form>
     @endsection
-    @if (session()->has('message'))
-        <div class="alert alert-success" style="margin-top:30px;margin-left:20px">
-            {{ session('message') }}
-        </div>
-    @endif
     @if (!empty($users))
         <div class="card-body">
             <div class="table-responsive">
