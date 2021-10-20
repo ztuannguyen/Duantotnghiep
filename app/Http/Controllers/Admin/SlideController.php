@@ -61,12 +61,14 @@ class SlideController extends Controller
                 'status' => $request->status,
             ]);
         }
+        session()->flash('message', 'Sửa thành công !');
         return redirect()->route('admin.slides.index');
     }
 
     public function delete(Slide $slide)
     {
         $slide->delete($slide);
+        session()->flash('message', 'Xóa thành công !');
         return redirect()->route('admin.slides.index');
     }
 }

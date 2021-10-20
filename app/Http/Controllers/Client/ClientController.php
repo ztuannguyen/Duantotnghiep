@@ -40,6 +40,6 @@ class ClientController extends Controller
                 $booking_service->save();
             }
         }
-        return redirect()->route('client.show')->with('message','Đã đặt hàng thành công!');
+        return redirect()->route('client.show')->with('message','Cảm ơn anh tin tưởng lựa chọn dịch vụ.');
     }
 }
