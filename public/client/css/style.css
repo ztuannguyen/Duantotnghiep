@@ -12799,6 +12799,11 @@ textarea.form-control {
     transition: all 0.3s ease-out;
 }
 
+.disable {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
 .mfp-with-zoom.mfp-ready .mfp-container {
     opacity: 1;
 }
