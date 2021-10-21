@@ -192,9 +192,6 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="date_booking"
                                             placeholder="Chọn ngày cắt ...">
-                                        {{-- <div class="input-group-addon">
-                                            <span><i class="bi bi-calendar-fill"></i></span>
-                                        </div> --}}
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="box-time" id="box-time">
@@ -206,17 +203,20 @@
                                                     <div class="swiper-wrapper">
                                                         <input type="hidden" name="time_id" value="" id="id_time">
                                                         @foreach ($time as $item)
+                                                            @php
+                                                                $remainSlot = get_total_slot_remain($item->salon->slot_amount, $item->id, $bookingDetail);
+                                                            @endphp
                                                             <div class="swiper-slide box-time_gr"
                                                                 style="width: 83.9231px; margin-right: 8px;"
                                                                 onclick="clickTime('{{ $item->id }}','{{ $item->time_start }}')">
-                                                                <div class="box-time_item" role="presentation"
-                                                                    id="thoi_gian">
-                                                                    {{ date('H:i',strtotime($item->time_start)) }}
+                                                                <div class="box-time_item  @if ($remainSlot == 0) disable @endif"
+                                                                    role="presentation" id="thoi_gian">
+                                                                    {{ date('H:i', strtotime($item->time_start)) }}
+                                                                    <p>Số vị trí còn lại: {{ $remainSlot }}</p>
                                                                 </div>
                                                             </div>
                                                         @endforeach
                                                     </div>
-
                                                     <span class="swiper-notification" aria-live="assertive"
                                                         aria-atomic="true">
                                                         Không có giờ nào phù hợp với anh
@@ -229,10 +229,8 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="status" value="1">
-
                                 <div class="col text-center">
                                     <button type="submit" class="btn btn-primary">Đặt Lịch Ngay</button>
-
                                 </div>
                             </form>
                         </div>
@@ -322,12 +320,13 @@
             let today = moment().format('YYYY-MM-DD');
             let tomorrow = moment().add(2, 'days').format('YYYY-MM-DD');
             $('input[name=date_booking]').datepicker({
+                autoclose: true,
+                todayHighlight: true,
                 format: 'yyyy-mm-d',
                 startDate: today,
                 endDate: tomorrow
             });
         })
-        
     </script>
 
 @endsection

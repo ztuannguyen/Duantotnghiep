@@ -24,7 +24,6 @@ class SalonTimeRequest extends FormRequest
     public function rules()
     {
         return [
-            'slot' => 'required|integer',
             'time_start' => 'required',
             'time_end' => 'required|after:time_start',
         ];
@@ -32,7 +31,6 @@ class SalonTimeRequest extends FormRequest
     public function messages()
     {
         return [
-            'slot.integer' => 'Số ghế phải điền là số',
             'time_end.after:time_start' => 'Thời gian kết thúc phải lớn hơn thời gian bắt đầu',
             'required' => ':attribute không được để trống',
         ];
@@ -40,7 +38,6 @@ class SalonTimeRequest extends FormRequest
     public function attributes()
     {
         return [
-            'slot'=>'Số ghế',
             'time_start'=>'Thời gian bắt đầu',
             'time_end'=>'Thời gian kết thúc',
             

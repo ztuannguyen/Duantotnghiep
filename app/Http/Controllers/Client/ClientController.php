@@ -9,6 +9,7 @@ use App\Models\CateService;
 use App\Models\Salon;
 use App\Models\Service;
 use App\Models\Time;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -20,7 +21,9 @@ class ClientController extends Controller
         $service = Service::all();
         $booking = Booking::with('service')->get();
         $time = Time::where('salon_id',1)->orderBy('id','ASC')->get();
-        return view('client/booking',compact('salon','service','cateService','time'));
+        $todayBookingIds = Booking::where('salon_id',1)->where('date_booking',Carbon::now()->format('Y-m-d'))->pluck('id')->toArray();
+        $bookingDetail = Booking_Service::whereIn('booking_id', $todayBookingIds)->get();
+        return view('client/booking',compact('salon','service','cateService','time','bookingDetail'));
     }
 
     public function store(Request $request){

@@ -12,7 +12,6 @@ class Time extends Model
     protected $table = 'times';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'slot',
         'salon_id',
         'time_start',
         'time_end',

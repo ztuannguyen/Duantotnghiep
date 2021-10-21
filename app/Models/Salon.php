@@ -17,6 +17,7 @@ class Salon extends Model
         'name_salon',
         'address',
         'image',
+        'slot_amount',
         'status',
         'description',
     ];

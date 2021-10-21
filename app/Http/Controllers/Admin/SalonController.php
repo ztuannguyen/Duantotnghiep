@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Salon;
-use App\Models\Booking;
 use App\Http\Requests\Admin\Salon\SalonRequest;
 use App\Http\Requests\Admin\Salon\UpdateRequest;
 
@@ -18,7 +17,7 @@ class SalonController extends Controller
         } else {
             $ListSalon = Salon::all();
         }
-        $ListSalon->load(['times']);
+        // $ListSalon->load(['times']);
         $ListSalon->load(['bookings']);
         return view('admin/salons/index', ['data' => $ListSalon]);
     }
@@ -56,6 +55,7 @@ class SalonController extends Controller
             $salons->image = $filename;
             $salon->update([
                 'name_salon' => $request->name_salon,
+                'slot_amount' => $request->slot_amount,
                 'address' => $request->address,
                 'status' => $request->status,
                 'image' => $filename,
@@ -64,6 +64,7 @@ class SalonController extends Controller
         }else{
             $salon->update([
                 'name_salon' => $request->name_salon,
+                'slot_amount' => $request->slot_amount,
                 'address' => $request->address,
                 'status' => $request->status,
                 'description' => $request->description,
