@@ -27,13 +27,6 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="font-weight-bold">Số ghế</label>
-                        <input class="form-control" type="text" name="slot" value="{{ $time->slot}}">
-                        @error('slot')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
                         <label class="font-weight-bold">Thời gian bắt đầu</label>
                         <input class="form-control" type="time" name="time_start" value="{{ $time->time_start }}">
                         @error('time_start')

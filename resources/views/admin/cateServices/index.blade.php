@@ -37,7 +37,7 @@
             </div>
         </form>
     @endsection
-
+   
     @if (!empty($data))
         <div class="card-body">
             <div class="table-responsive">
@@ -59,12 +59,16 @@
                                 <td>{{ $item->order_by }}</td>
                                 <td>
                                     <div class="form-group">
-                                        <label
-                                            class="btn btn-success btn-sm">{{ $item->status ? 'ON' : 'OFF' }}</label>
+                                        @if( $item->status == 0 ? 'selected' : '' )
+                                            <button type="button" class="btn btn-success btn-xs btn-radius">ON</button>
+                                        @elseif($item->status == 1 ? 'selected' : '' )
+                                        <button type="button" class="btn btn-danger btn-xs btn-radius">OFF</button>
+                                        
+                                        @endif
                                     </div>
                                 </td>
                                 <td> <a href="{{ Route('admin.cate_services.edit', ['cateService' => $item->id]) }}"
-                                         class="btn btn-warning btn-circle btn-sm">
+                                        class="btn btn-warning btn-circle btn-sm">
                                         <i class="fas  fa-edit"></i>
                                     </a>
                                     <a data-toggle="modal" class="btn btn-danger btn-circle btn-sm"
@@ -109,5 +113,4 @@
     @else
         <h2>Không có dữ liệu</h2>
     @endif
-</div>
 @endsection

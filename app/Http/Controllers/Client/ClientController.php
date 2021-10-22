@@ -9,18 +9,24 @@ use App\Models\CateService;
 use App\Models\Salon;
 use App\Models\Service;
 use App\Models\Time;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
     public function show(){
        
-        $salon = Salon::where('status',1)->orderBy('id','ASC')->get();
+        $salon = Salon::where('status',0)->orderBy('id','ASC')->get();
         $cateService = CateService::with('services')->get();
         $service = Service::all();
         $booking = Booking::with('service')->get();
         $time = Time::where('salon_id',1)->orderBy('id','ASC')->get();
-        return view('client/booking',compact('salon','service','cateService','time'));
+        $salon->load(['times']);
+        $todayBookingIds = Booking::where('salon_id',1)
+                                    ->orWhere('date_booking', Carbon::now()->format('Y-m-d'))
+                                    ->pluck('id')->toArray();
+        $bookingDetail = Booking_Service::whereIn('booking_id', $todayBookingIds)->get();
+        return view('client/booking',compact('salon','service','cateService','time','bookingDetail'));
     }
 
     public function store(Request $request){
@@ -40,6 +46,6 @@ class ClientController extends Controller
                 $booking_service->save();
             }
         }
-        return redirect()->route('admin.bookings.index');
+        return redirect()->route('client.show')->with('message','Cảm ơn anh tin tưởng lựa chọn dịch vụ của BrotherHoods.');
     }
 }

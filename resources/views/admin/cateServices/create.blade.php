@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Danh mục dịch vụ
+    Thêm mới
 @endsection
 @section('contents')
 <nav aria-label="breadcrumb">
@@ -26,8 +26,8 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label class="font-weight-bold">Order_by</label>
-                    <input class="form-control" type="number" name="order_by">
+                    <label class="font-weight-bold">Sắp xếp</label>
+                    <input class="form-control" type="number" name="order_by" placeholder="Nhập thứ tự sắp xếp ...">
                     @error('order_by')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -35,10 +35,10 @@
                 <div class="form-group">
                     <label class="font-weight-bold">Trạng thái</label>
                     <select class="mt-3 form-control" name="status">
-                        <option value="1">
+                        <option value="0">
                             Đang hoạt động
                         </option>
-                        <option value="0">
+                        <option value="1">
                             Dừng hoạt động
                         </option >
                         @error('status')

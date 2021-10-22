@@ -36,7 +36,7 @@
             </div>
         </form>
     @endsection
-
+   
     @if (!empty($data))
         <div class="card-body">
             <div class="table-responsive">
@@ -62,15 +62,20 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->price }}</td>
                                 <td>{{ $item->discount }}</td>
-                                <td>{{$item->execution_time}}</td>
+                                <td>{{ $item->execution_time }}</td>
                                 <td>{{ $item->description }}</td>
-                                <td><img src="{{ asset('uploads/' . $item->image) }}" width="150" height="100" alt="">
+                                <td><img src="{{ asset('uploads/' . $item->image) }}" width="150" height="100"
+                                        alt="">
                                 </td>
                                 <td>{{ $item->cateService->name_cate }}</td>
                                 <td>
                                     <div class="form-group">
-                                        <label
-                                            class="btn btn-success btn-sm">{{ $item->status ? 'ON' : 'OFF' }}</label>
+                                        @if ($item->status == 0 ? 'selected' : '')
+                                            <button type="button" class="btn btn-success btn-xs btn-radius">ON</button>
+                                        @elseif($item->status == 1 ? 'selected' : '' )
+                                            <button type="button" class="btn btn-danger btn-xs btn-radius">OFF</button>
+
+                                        @endif
                                     </div>
                                 </td>
                                 <td> <a href="{{ route('admin.services.edit', ['service' => $item->id]) }}"

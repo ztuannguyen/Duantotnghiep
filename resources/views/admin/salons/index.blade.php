@@ -20,6 +20,7 @@
 
                 <span class="text">Thêm mới</span>
             </a>
+            
         </div>
     @section('search-form')
         <!-- Topbar Search -->
@@ -36,7 +37,7 @@
             </div>
         </form>
     @endsection
-
+  
     @if (!empty($data))
         <div class="card-body">
             <div class="table-responsive">
@@ -45,6 +46,7 @@
                         <tr>
                             <td>#</td>
                             <td>Tên chi nhánh</td>
+                            <td>Số ghế</td>
                             <td>Địa chỉ</td>
                             <td>Ảnh cửa hàng</td>
                             <td>Mô tả </td>
@@ -57,14 +59,19 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->name_salon }}</td>
+                                <td>{{$item->slot_amount}}</td>
                                 <td>{{ $item->address}}</td>
                                 <td><img src="{{ asset('uploads/' . $item->image) }}" width="150" height="100" alt="">
                                 </td>
                                 <td>{{ $item->description }}</td>
                                 <td>
                                     <div class="form-group">
-                                        <label
-                                            class="btn btn-success btn-sm">{{ $item->status ? 'ON' : 'OFF' }}</label>
+                                        @if ($item->status == 0 ? 'selected' : '')
+                                            <button type="button" class="btn btn-success btn-xs btn-radius">ON</button>
+                                        @elseif($item->status == 1 ? 'selected' : '' )
+                                            <button type="button" class="btn btn-danger btn-xs btn-radius">OFF</button>
+
+                                        @endif
                                     </div>
                                 </td>
                                 <td> <a href="{{ route('admin.salons.edit', ['salon' => $item->id]) }}"

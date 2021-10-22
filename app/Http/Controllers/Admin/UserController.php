@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $searchData = $request->except('page'); 
+        $searchData = $request->except('page');
         if (count($request->all()) == 0) {
             // Lấy ra danh sách phòng & phân trang cho nó
             $users = User::paginate(6);
@@ -43,29 +43,31 @@ class UserController extends Controller
 
         ]);
     }
-    public function create(){
+    public function create()
+    {
         return view('admin/users/create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $data =  $request->except('_token');
         if ($request->isMethod('post')) {
-            $validator = Validator::make($request->all(),[
-                 'name' => 'required|min:6|max:30|alpha',
-                 'number_phone' => 'required',
-                 'pass' => 'required|min:6|max:10',
-                 'otp' => 'required',
-                 'image' => 'required',
-                 'ratings' => 'required',
-                 'role_id' => 'required',
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|min:6|max:30|alpha',
+                'number_phone' => 'required',
+                'pass' => 'required|min:6|max:10',
+                'otp' => 'required',
+                'image' => 'required',
+                'ratings' => 'required',
+                'role_id' => 'required',
             ]);
-         if($validator->fails()){
-             return redirect()->back()
-                     ->withErrors($validator)
-                     ->withInput();
-         }
-         }
-         $model = new User();
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+        }
+        $model = new User();
         $model->fill($request->all());
         // lưu ảnh
         if ($request->hasFile('image')) {
@@ -76,37 +78,36 @@ class UserController extends Controller
             $model->image = $filename;
         }
         $model->save();
+        session()->flash('message', 'Thêm thành công !');
         return redirect()->route('admin.users.index');
-        
     }
-    public function edit(User $user){
-        $roles=Role::all();
+    public function edit(User $user)
+    {
+        $roles = Role::all();
         $user->load('roles');
-        return view('admin/users/edit',['user'=>$user,'roles'=>$roles]);
-
-
+        return view('admin/users/edit', ['user' => $user, 'roles' => $roles]);
     }
 
     public function update(Request $request, User $user)
     {
 
         if ($request->isMethod('post')) {
-            $validator = Validator::make($request->all(),[
-                 'name' => 'required|min:6|max:30',
-                 'number_phone' => 'required',
-                 'pass' => 'required|min:6|max:10',
-                 'otp' => 'required',
-                 'ratings' => 'required',
-                 'role_id' => 'required',
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|min:6|max:30',
+                'number_phone' => 'required',
+                'pass' => 'required|min:6|max:10',
+                'otp' => 'required',
+                'ratings' => 'required',
+                'role_id' => 'required',
             ]);
-         if($validator->fails()){
-             return redirect()->back()
-                     ->withErrors($validator)
-                     ->withInput();
-         }
-         }
-         $users = new User();
-         if ($request->hasFile('image')) {
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+        }
+        $users = new User();
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
@@ -121,7 +122,7 @@ class UserController extends Controller
                 'ratings' => $request->ratings,
                 'role_id' =>  $request->role_id,
             ]);
-        }else{
+        } else {
             $user->update([
                 'name' => $request->name,
                 'number_phone' => $request->number_phone,
@@ -131,14 +132,15 @@ class UserController extends Controller
                 'role_id' =>  $request->role_id,
             ]);
         }
+        session()->flash('message', 'Sửa thành công !');
         return redirect()->route('admin.users.index');
-    } 
+    }
     public function remove($id)
     {
         $model = User::find($id);
         $model->delete();
         User::destroy($id);
+        session()->flash('message', 'Xóa thành công !');
         return redirect()->back();
     }
-
 }

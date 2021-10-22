@@ -24,18 +24,20 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_salon' => 'required|max:50',
+            'name_salon' => 'required|max:255',
+            'slot_amount' => 'required|integer',
             'address' => 'required|max:255',
-            'description' => 'required|min:10|max:255'
+            'image' => 'image',
+            'description' => 'required|max:255'
         ];
     }
     public function messages()
     {
         return [
-            'name_salon.max' => 'Tên cửa hàng tối đa 50 ký tự',
+            'name_salon.max' => 'Tên cửa hàng tối đa 255 ký tự',
+            'slot_amount.integer' => 'Số ghế phải điền là số',
             'image.image' => 'Ảnh không đúng định dạng',
             'address.max' => 'Địa chỉ tối đa 255 ký tự',
-            'description.min' => 'Mô tả tổi thiểu 50 kí tự',
             'description.max' => 'Mô tả tổi đa 255 kí tự',
             'required' => ':attribute không được để trống',
         ];
@@ -44,9 +46,8 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name_salon'=>'Tên cửa hàng',
-            'image'=>'Ảnh',
+            'slot_amount'=>'Số ghế',
             'address'=>'Địa chỉ',
-
             'description' => 'Mô tả',
         ];
     }
