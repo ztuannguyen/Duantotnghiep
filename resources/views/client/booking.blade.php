@@ -315,17 +315,23 @@
                 },
                 success: function (res) {
                     let times = '';
-
-                    console.log(res);
+                    let disable = '';
 
                     $.each( res.times, function( key, value ) {
                         let remainSlot = get_total_slot_remain(value.salon.slot_amount, value.id, res.bookingDetails);
+
+                        if (remainSlot === 0) {
+                            disable = 'disable';
+                        }
+                        else {
+                            disable = '';
+                        }
 
                         times += `
                             <div class="swiper-slide box-time_gr"
                                 style="width: 83.9231px; margin-right: 8px;"
                                 onclick="clickTime('${value.id}','${value.time_start}')">
-                                <div class="box-time_item "
+                                <div class="box-time_item ${disable}"
                                     role="presentation" id="thoi_gian">
                                     ${value.time_start.substring(0, 5)}
                                     <p>Số vị trí còn lại: <span id="slot-time-${value.id}">${remainSlot}</span></p>
@@ -354,6 +360,15 @@
                         </div>
                         </div>
                     `);
+
+                    $(".box-time_item").click(function() {
+                        if ($(this).hasClass("active")) {
+                            $(".box-time_item").removeClass("active");
+                        } else {
+                            $(".box-time_item").removeClass("active");
+                            $(this).addClass("active");
+                        }
+                    })
                 },
                 errors: function () {
                     alert('Lỗi server!!!');
