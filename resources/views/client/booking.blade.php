@@ -36,7 +36,7 @@
                     </div>
                     @foreach ($salon as $item)
                         <div class="salon__item show" role="presentation"
-                            onclick="clickChiNhanh('{{ $item->id }}','{{ $item->address }}')">
+                            onclick="clickChiNhanh('{{ $item->id }}','{{ $item->address }}'); loadTime({{ $item->id }})">
 
                             <div class="item">
                                 <div class="flex">
@@ -187,14 +187,15 @@
                                             placeholder="VD : Anh đi cùng bạn bè , đi cùng con anh..."></textarea>
                                     </div>
                                 </div>
-                                <div class="col-sm-12">
+                                <div class="col-sm-12" id="time">
                                     <h3>4. Chọn ngày cắt</h3>
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="date_booking"
-                                            placeholder="Chọn ngày cắt ...">
+                                            placeholder="Chọn ngày cắt ..." value="{{ date('Y-m-d') }}" onchange="loadTime($('#id_chi_nhanh').val())">
                                     </div>
-                                    <div class="col-sm-12">
-                                        <div class="box-time" id="box-time">
+
+                                    <div class="col-sm-12" id="list-time">
+                                        {{-- <div class="box-time" id="box-time">
                                             <div class="relative">
                                                 <div
                                                     class="swiper-container swiper-container-initialized swiper-container-horizontal">
@@ -222,10 +223,8 @@
                                                         Không có giờ nào phù hợp với anh
                                                     </span>
                                                 </div>
-
                                             </div>
-                                        </div>
-
+                                        </div> --}}
                                     </div>
                                 </div>
                                 <input type="hidden" name="status" value="1">
@@ -295,8 +294,82 @@
             $('#listSalon').modal('hide')
             $('#id_chi_nhanh').val(id);
             $('#chi_nhanh').val(address);
-
         }
+
+
+        // load time
+        function loadTime (id) {
+            let date = $(`input[name="date_booking"]`).val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                url: "/client/get-time-of-salon",
+                type: "POST",
+                data: {
+                    id: id,
+                    date: date,
+                },
+                success: function (res) {
+                    let times = '';
+
+                    console.log(res);
+
+                    $.each( res.times, function( key, value ) {
+                        let remainSlot = get_total_slot_remain(value.salon.slot_amount, value.id, res.bookingDetails);
+
+                        times += `
+                            <div class="swiper-slide box-time_gr"
+                                style="width: 83.9231px; margin-right: 8px;"
+                                onclick="clickTime('${value.id}','${value.time_start}')">
+                                <div class="box-time_item "
+                                    role="presentation" id="thoi_gian">
+                                    ${value.time_start.substring(0, 5)}
+                                    <p>Số vị trí còn lại: <span id="slot-time-${value.id}">${remainSlot}</span></p>
+                                </div>
+                            </div>
+                        `
+                    });
+                    
+
+                    $('#list-time').remove();
+                    $('#time').append(`
+                        <div class="col-sm-12" id="list-time">
+                        <div class="box-time" id="box-time">
+                            <div class="relative">
+                                <div class="swiper-container swiper-container-initialized swiper-container-horizontal">
+                                    <div class="swiper-wrapper">
+                                        <input type="hidden" name="time_id" value="" id="id_time">
+                                        ${times}
+                                    </div>
+                                    <span class="swiper-notification" aria-live="assertive"
+                                        aria-atomic="true">
+                                        Không có giờ nào phù hợp với anh
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    `);
+                },
+                errors: function () {
+                    alert('Lỗi server!!!');
+                }
+            })
+        }
+
+        function get_total_slot_remain(remainSlot,slotId,arrBookedServices){
+            $.each( arrBookedServices, function( key, value ) {
+                if(value.doing_time_id == slotId){
+                    remainSlot -= 1;
+                }
+            });
+            return remainSlot;
+        }
+
         $(document).ready(function() {
             $('#choose_address').click(function() {
                 $('#listSalon').modal('show')

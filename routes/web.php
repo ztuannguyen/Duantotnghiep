@@ -29,6 +29,7 @@ Route::get('/', function () {
 });
 // User
 Route::get('/client/booking',[ClientController::class,'show'])->name('client.show');
+Route::post('/client/get-time-of-salon',[ClientController::class,'getTimeOfSalon'])->name('client.get-time-of-salon');
 Route::post('/',[ClientController::class, 'store'])->name('client.post');
 // Admin dashboard
 Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
