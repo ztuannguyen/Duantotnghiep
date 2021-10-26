@@ -193,39 +193,6 @@
                                         <input type="text" class="form-control" name="date_booking"
                                             placeholder="Chọn ngày cắt ..." value="{{ date('Y-m-d') }}" onchange="loadTime($('#id_chi_nhanh').val())">
                                     </div>
-
-                                    <div class="col-sm-12" id="list-time">
-                                        {{-- <div class="box-time" id="box-time">
-                                            <div class="relative">
-                                                <div
-                                                    class="swiper-container swiper-container-initialized swiper-container-horizontal">
-
-
-                                                    <div class="swiper-wrapper">
-                                                        <input type="hidden" name="time_id" value="" id="id_time">
-                                                        @foreach ($time as $item)
-                                                            @php
-                                                                $remainSlot = get_total_slot_remain($item->salon->slot_amount, $item->id, $bookingDetail);
-                                                            @endphp
-                                                            <div class="swiper-slide box-time_gr"
-                                                                style="width: 83.9231px; margin-right: 8px;"
-                                                                onclick="clickTime('{{ $item->id }}','{{ $item->time_start }}')">
-                                                                <div class="box-time_item  @if ($remainSlot == 0) disable @endif"
-                                                                    role="presentation" id="thoi_gian">
-                                                                    {{ date('H:i', strtotime($item->time_start)) }}
-                                                                    <p>Số vị trí còn lại: {{ $remainSlot }}</p>
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-                                                    <span class="swiper-notification" aria-live="assertive"
-                                                        aria-atomic="true">
-                                                        Không có giờ nào phù hợp với anh
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div> --}}
-                                    </div>
                                 </div>
                                 <input type="hidden" name="status" value="1">
                                 <div class="col text-center">
