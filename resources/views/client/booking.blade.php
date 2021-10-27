@@ -140,7 +140,7 @@
                                 @csrf
                                 <div class="col-sm-12">
                                     <h3>1. Số điện thoại</h3>
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3" style="width: 1039px">
                                         <input type="tel" class="form-control" name="number_phone"
                                             value="{{ old('number_phone') }}" placeholder="Nhập số điện thoại..">
                                     </div>
