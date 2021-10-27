@@ -26,6 +26,13 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label class="font-weight-bold">Số ghế</label>
+                        <input class="form-control" type="text" name="slot_amount"  value="{{ $salon->slot_amount }}" >
+                        @error('slot_amount')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label class="font-weight-bold">Địa chỉ</label>
                         <input class="form-control" type="text" name="address" value="{{ $salon->address }}">
                         @error('address')

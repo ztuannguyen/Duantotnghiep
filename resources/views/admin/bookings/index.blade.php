@@ -36,11 +36,7 @@
             </div>
         </form>
     @endsection
-    @if (session()->has('message'))
-    <div class="alert alert-success" style="margin-top:30px;margin-left:20px">
-      {{ session('message') }}
-    </div>
-    @endif
+   
     @if (!empty($data))
         <div class="card-body">
             <div class="table-responsive">
@@ -76,11 +72,11 @@
                                 <td>{{ $item->note }}</td>
                                 <td>
                                     @if ($item->status == config('common.booking.status.cho_xac_nhan'))
-                                    <button type="button" class="btn btn-info btn-xs btn-radius">Chờ xác nhận</button>
+                                        <span class="badge badge-danger">Chờ xác nhận</span>
                                     @elseif($item->status == config('common.booking.status.da_xac_nhan'))
-                                        <button type="button" class="btn btn-success btn-xs btn-radius">Đã xác nhận</button>
+                                        <span class="badge badge-success">Đã xác nhận</span>
                                     @elseif($item->status == config('common.booking.status.da_huy'))
-                                        <button type="button" class="btn btn-danger btn-xs btn-radius">Đã hủy</button>
+                                        <span class="badge badge-danger">Đã hủy</span>
                                     @endif
                                 </td>
                                 <td>

@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 class ClientController extends Controller
 {
     public function show(){
-       
         $salon = Salon::where('status',0)->orderBy('id','ASC')->get();
         $cateService = CateService::with('services')->get();
         $service = Service::all();
@@ -40,6 +39,22 @@ class ClientController extends Controller
                 $booking_service->save();
             }
         }
-        return redirect()->route('client.show')->with('message','Đã đặt hàng thành công!');
+        return redirect()->route('client.show')->with('message','Cảm ơn anh tin tưởng lựa chọn dịch vụ của BrotherHoods.');
+    }
+
+    public function getTimeOfSalon (Request $request) {
+        $times = Time::with('salon')->where('salon_id', $request->id)->orderBy('id','ASC')->get();
+
+        $todayBookingIds = Booking::where('salon_id', $request->id)
+                                    ->Where('date_booking', $request->date)
+                                    ->pluck('id')->toArray();
+        $bookingDetails = Booking_Service::whereIn('booking_id', $todayBookingIds)->get();
+
+        $data = [
+            'times' => $times,
+            'bookingDetails' => $bookingDetails,
+        ];
+
+        return $data;
     }
 }

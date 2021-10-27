@@ -35,11 +35,6 @@
             </div>
         </form>
     @endsection
-    @if (session()->has('message'))
-        <div class="alert alert-success" style="margin-top:30px;margin-left:20px">
-            {{ session('message') }}
-        </div>
-    @endif
     @if (!empty($users))
         <div class="card-body">
             <div class="table-responsive">
@@ -65,11 +60,9 @@
                                 <td>
                                     <div class="form-group">
                                         @if ($p->role_id == 1 ? 'selected' : '')
-                                            <button type="button" class="btn btn-success btn-xs btn-radius">Nhân
-                                                viên</button>
+                                            <span class="badge badge-success">Nhân viên</span>
                                         @elseif($p->role_id == 2 ? 'selected' : '' )
-                                            <button type="button" class="btn btn-danger btn-xs btn-radius">Quản
-                                                lý</button>
+                                            <span class="badge badge-danger">Quản lý</span>
                                         @endif
                                     </div>
                                 </td>

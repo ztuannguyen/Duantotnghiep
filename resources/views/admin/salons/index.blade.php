@@ -37,11 +37,7 @@
             </div>
         </form>
     @endsection
-    @if (session()->has('message'))
-    <div class="alert alert-success" style="margin-top:30px;margin-left:20px">
-      {{ session('message') }}
-    </div>
-@endif
+  
     @if (!empty($data))
         <div class="card-body">
             <div class="table-responsive">
@@ -50,6 +46,7 @@
                         <tr>
                             <td>#</td>
                             <td>Tên chi nhánh</td>
+                            <td>Số ghế</td>
                             <td>Địa chỉ</td>
                             <td>Ảnh cửa hàng</td>
                             <td>Mô tả </td>
@@ -62,6 +59,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->name_salon }}</td>
+                                <td>{{$item->slot_amount}}</td>
                                 <td>{{ $item->address}}</td>
                                 <td><img src="{{ asset('uploads/' . $item->image) }}" width="150" height="100" alt="">
                                 </td>

@@ -11880,6 +11880,7 @@ h3.vr {
     background: #bf925b !important;
     border: 1px solid #bf925b !important;
     color: #fff !important;
+    margin-top: 50px;
 }
 
 .btn.btn-primary:hover {
@@ -12796,6 +12797,11 @@ textarea.form-control {
     -moz-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
+}
+
+.disable {
+    pointer-events: none;
+    opacity: 0.4;
 }
 
 .mfp-with-zoom.mfp-ready .mfp-container {
