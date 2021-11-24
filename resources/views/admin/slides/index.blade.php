@@ -56,14 +56,13 @@
                                 <td><img src="{{ asset('uploads/' . $item->image) }}" width="150" height="100" alt="">
                                 </td>
                                 <td>
-                                    <div class="form-group">
-                                        @if ($item->status == 0 ? 'selected' : '')
-                                            <button type="button" class="btn btn-success btn-xs btn-radius">ON</button>
-                                        @elseif($item->status == 1 ? 'selected' : '' )
-                                            <button type="button" class="btn btn-danger btn-xs btn-radius">OFF</button>
-
-                                        @endif
-                                    </div>
+                                    @if($item->status == 0)
+                                    <a href="{{route('statusSlide',['id'=>$item->id,'status'=> 1])}}"
+                                        class="btn btn-success btn-sm">ON</a>
+                                    @else
+                                    <a href="{{route('statusSlide',['id'=>$item->id ,'status'=>0])}}"
+                                        class="btn btn-danger btn-sm">OFF</a>
+                                    @endif
                                 </td>
                                 <td> <a href="{{ route('admin.slides.edit', ['slide' => $item->id]) }}"
                                         class="btn btn-warning btn-circle btn-sm">

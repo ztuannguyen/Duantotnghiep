@@ -38,74 +38,135 @@ class BookingController extends Controller
         $booking = Booking::with('service')->get();
         $service = Service::all();
         $cateService = CateService::with('services')->get();
-        $ListSalon = Salon::all();
+        $ListSalon = Salon::with('time')->get();
         $ListTime = Time::all();
         return view('admin.bookings.create', compact('service', 'ListSalon', 'ListTime', 'cateService'));
     }
     public function store(BookingRequest $request)
     {
-
-        $model = new Booking();
-        $model->number_phone = $request->number_phone;
-        $model->salon_id = $request->salon_id;
-        $model->time_id = $request->time_id;
-        $model->date_booking = $request->date_booking;
-        $model->note = $request->note;
-        $model->status = $request->status;
-        $model->save();
-        if (isset($_POST['bookings_services'])) {
-            for ($i = 0; $i < count($_POST['bookings_services']); $i++) {
-                $booking_service = new Booking_Service();
-                $booking_service->booking_id = $model->id;
-                $booking_service->service_id = $_POST['bookings_services'][$i];
-                $booking_service->save();
+        $booking = new Booking();
+        $booking->fill($request->all());
+        $price = [];
+        if ($request->has('service_id')) {
+            foreach ($request->service_id as $key => $value) {
+                $services = Service::where('id', '=', $request->service_id[$key])->first();
+                $price[] = $services->discount;
             }
         }
-        session()->flash('message', 'Thêm thành công !');
+        $sum = array_sum($price);
+        $booking->total_price = $sum;
+        $booking->status = 1;
+        $booking->save();
+
+
+        if ($request->has('service_id')) {
+            foreach ($request->service_id as $key => $value) {
+                $booking_services = new Booking_Service();
+                $booking_services->service_id = $request->service_id[$key];
+                $booking_services->booking_id = $booking->id;
+                $booking_services->salon_id = $request->salon_id;
+                $booking_services->save();
+            }
+        }
+        session()->flash('message', 'Thêm đơn thành công !');
         return redirect()->route('admin.bookings.index');
     }
-    public function edit(Booking $booking)
+    public function edit($id)
     {
+        $booking = Booking::find($id);
+        if (!$booking) {
+            return redirect()->back();
+        }
+        $booking->load(['service']);
         $service = Service::all();
         $ListSalon = Salon::all();
         $ListTime = Time::all();
-        $cateService = CateService::with('services')->get();
-        $booking_services = $booking->service->pluck("id")->toArray();
-
-        if(!$booking) return redirect(route('admin.bookings.index'));
-        return view('admin.bookings.edit', ['booking' => $booking, 'cateService' => $cateService, 'service' => $service, 'ListSalon' => $ListSalon, 'ListTime' => $ListTime,'booking_services' => $booking_services]);
+        return view('admin.bookings.edit', compact('booking', 'service', 'ListSalon', 'ListTime'));
     }
-    public function update(UpdateRequest $request, Booking $booking)
+    public function update(UpdateRequest $request, $id)
     {
-        if(!$booking){
+        
+        $booking = booking::find($id);
+        if (!$booking) {
             return redirect()->back();
         }
-        $booking->number_phone = $request->number_phone;
-        $booking->salon_id = $request->salon_id;
-        $booking->time_id = $request->time_id;
-        $booking->date_booking = $request->date_booking;
-        $booking->note = $request->note;
-        $booking->status = $request->status;
-        $booking->save();
-        $booking_service = Booking_Service::where('booking_id',$booking)->delete();
-        if(isset($_POST['booking_services'])){
-            for ($i = 0; $i < count($_POST['booking_services']); $i++) {
-                $booking_service = new Booking_service();
-                $booking_service->booking_id = $booking;
-                $booking_service->service_id = $_POST['booking_services'][$i];
-                $booking_service->save();
+        $booking->fill($request->all());
+        $price = [];
+        if ($request->has('service_id')) {
+            foreach ($request->service_id as $key => $value) {
+                $services = Service::where('id', '=', $request->service_id[$key])->first();
+                $price[] = $services->price;
             }
         }
-        session()->flash('message', 'Sửa thành công !');
-        return redirect()->route('admin.bookings.index');
+        $sum = array_sum($price);
+        $booking->total_price = $sum;
+        $bookingServices = Booking_Service::where('booking_id', $id)->get();
+        $arr = [];
+        if (count($bookingServices) > 0 && $request->has('service_id')) {
+            foreach ($bookingServices as $key => $value) {
+                $arr[] += $value->service_id;
+            }
+            $check = array_diff($request->service_id, $arr);
+            if (count($check) > 0) {
+                $booking->status = 1;
+            }
+        }
+        $booking->save();
+        if (count($bookingServices) > 0 && $request->has('service_id')) {
+            $filter1 = array_diff($arr, $request->service_id);
+            $filter2 = array_diff($request->service_id, $arr);
+            foreach ($filter1 as $value) {
+               Booking_Service::where('service_id', $value)->delete();
+            }
+            foreach ($filter2 as $value) {
+                $booking_services = new Booking_Service();
+                $booking_services->service_id = $value;
+                $booking_services->booking_id = $booking->id;
+                $booking_services->status = 0;
+                $booking_services->save();
+            }
+        } else {
+            if ($request->has('service_id')) {
+                foreach ($request->service_id as $key => $value) {
+                    $booking_services = new Booking_Service();
+                    $booking_services->service_id = $request->service_id[$key];
+                    $booking_services->booking_id = $booking->id;
+                    $booking_services->status = 0;
+                    $booking_services->save();
+                }
+            }
+        }
+        if ($booking->status == 1) {
+            return redirect()->route('admin.bookings.sortAppointment')->with('message', 'Đã cập nhật lịch hẹn mới');
+        } else {
+            return redirect()->route('admin.bookings.index')->with('message', 'Cập nhật lịch hẹn thành công');
+        }
     }
 
     public function remove($id)
     {
-        $model = Booking::find($id);
-        $model->delete();
+        $booking = Booking::find($id);
+        $service = Booking_Service::where('booking_id', $id)->delete();
+        $booking->delete();
         Booking::destroy($id);
         session()->flash('message', 'Xóa thành công !');
         return redirect()->back();
+    }
+    public function detailAppointment(Request $request)
+    {
+        try {
+            $booking = Booking::find($request->id);
+            $services = Booking_Service::where('booking_id', $booking->id)->get();
+            $salon = Salon::with('time')->where('status', 0)->get();
+            $time = Time::all();
+            $arrayId = [];
+            foreach ($services as $value) {
+                $arrayId[] = $value->service_id;
+            }
+            $service = Service::whereIn('id', $arrayId)->get();
+            return response()->json(['status' => true, 'data' => $booking, 'service' => $service, 'salon' => $salon, 'time' => $time]);
+        } catch (Exception $e) {
+            return response()->json(['status' => false, 'fail' => 'Thất bại']);
+        }
     }
 }

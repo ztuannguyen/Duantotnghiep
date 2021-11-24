@@ -19,14 +19,6 @@
                 <form method="POST" action="{{ route('admin.times.update',['time' =>$time->id]) }}">
                     @csrf
                     <div class="form-group">
-                        <label class="font-weight-bold">Chi nhánh Salon</label>
-                        <select class="mt-3 form-control" name="salon_id">
-                            @foreach ($ListSalon as $item)
-                                <option {{ ($item->id == $time->salon_id) ? 'selected' : '' }} value="{{$item->id}}">{{$item->address}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
                         <label class="font-weight-bold">Thời gian bắt đầu</label>
                         <input class="form-control" type="time" name="time_start" value="{{ $time->time_start }}">
                         @error('time_start')
