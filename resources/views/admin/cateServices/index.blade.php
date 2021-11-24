@@ -37,7 +37,7 @@
             </div>
         </form>
     @endsection
-   
+
     @if (!empty($data))
         <div class="card-body">
             <div class="table-responsive">
@@ -46,7 +46,6 @@
                         <tr>
                             <td>#</td>
                             <td>Tên danh mục dịch vụ</td>
-                            <td>Sắp xếp</td>
                             <td>Trạng thái</td>
                             <td>Hành động</td>
                         </tr>
@@ -56,16 +55,14 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->name_cate }}</td>
-                                <td>{{ $item->order_by }}</td>
                                 <td>
-                                    <div class="form-group">
-                                        @if( $item->status == 0 ? 'selected' : '' )
-                                            <button type="button" class="btn btn-success btn-xs btn-radius">ON</button>
-                                        @elseif($item->status == 1 ? 'selected' : '' )
-                                        <button type="button" class="btn btn-danger btn-xs btn-radius">OFF</button>
-                                        
-                                        @endif
-                                    </div>
+                                    @if ($item->status == 0)
+                                        <a href="{{ route('statusCate', ['id' => $item->id, 'status' => 1]) }}"
+                                            class="btn btn-success btn-sm">ON</a>
+                                    @else
+                                        <a href="{{ route('statusCate', ['id' => $item->id, 'status' => 0]) }}"
+                                            class="btn btn-danger btn-sm">OFF</a>
+                                    @endif
                                 </td>
                                 <td> <a href="{{ Route('admin.cate_services.edit', ['cateService' => $item->id]) }}"
                                         class="btn btn-warning btn-circle btn-sm">

@@ -16,7 +16,7 @@
     </div>
     <div class="card-body">
             <div class="table-responsive">
-                <form method="POST" action="{{ route('admin.bookings.update',['booking' => $booking]) }}">
+                <form method="POST" action="{{ route('admin.bookings.update',['id' => $booking->id]) }}">
                     @csrf
                     <div class="form-group">
                         <label class="font-weight-bold">Số điện thoại</label>
@@ -34,20 +34,21 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="">Dịch vụ</label>
-                        @foreach ($cateService as $item)
-                            <h6>{{ $item->name_cate }}</h6>
-                            <div class="form-check-inline-block mb-3"  name="bookings_services[]" >
-                                @foreach ($item['services'] as $ser)
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" name="bookings_services[]" type="checkbox" value="{{$ser->id}}" @if(in_array($ser->id, $booking_services)) checked @endif>
-                                    <label class="form-check-label" >
-                                        {{$ser->name}}
-                                    </label>
-                                </div>
-                                @endforeach
-                            </div>
+                        <label for="" class="font-weight-bold">Dịch vụ</label>
+                        <select class="form-control " id="js-example-basic-single" 
+                        name="service_id[]" multiple data-select2-id="js-example-basic-single" tabindex="-1"
+                        aria-hidden="true" 
+                        >
+                        @foreach ($service as $s)
+                            <option value="{{ $s->id }}"
+                                @foreach ($booking->service as $bs)
+                                        @if ($s->id == $bs->id)
+                                            selected
+                                        @endif
+                                    @endforeach
+                                >{{ $s->name }}</option>
                         @endforeach
+                    </select>
 
                     </div>
                     <div class="form-group">
@@ -60,7 +61,7 @@
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Ngày đặt</label>
-                        <input class="form-control" type="date" name="date_booking" value="{{ $booking->date_booking }}">
+                        <input class="form-control" type="text" name="date_booking" value="{{ $booking->date_booking }}">
                         @error('date_booking')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -74,26 +75,37 @@
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Trạng thái</label>
-                        <select class="mt-3 form-control" name="status">
-                            <option value="1" {{ $booking->status == 1 ? 'selected' : '' }} >
-                                Chờ xác nhận
-                            </option>
-                            <option value="2" {{ $booking->status == 2 ? 'selected' : '' }}>
-                                Đã xác nhận
-                            </option>
-                            <option value="3" {{ $booking->status == 3 ? 'selected' : '' }}>
-                                Đã Hủy
-                            </option>
+                        <select  name="status" class="mt-3 form-control">
+                            <option value="1" {{$booking->status == 1 ? 'selected':''}} >Chờ xếp lịch</option>
+                            <option value="2" {{$booking->status == 2 ? 'selected':''}}>Đã xếp lịch</option>
+                            <option value="3" {{$booking->status == 3 ? 'selected':''}}>Đang làm</option>
+                            <option value="4" {{$booking->status == 4 ? 'selected':''}}>Đã xong</option>
+                            <option value="5" {{$booking->status == 5 ? 'selected':''}}>Hủy lịch</option>
                             @error('status')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-success">Sửa</button>
+                    <button type="submit" name="btn" value="0" class="btn btn-success">Sửa</button>
                 </form>
 
             </div>
         </div>
 </div>
+@endsection
+@section('addScript')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
+        integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#js-example-basic-single').select2({
+                placeholder: " Chọn dịch vụ ...",
+                allowClear: true,
+            });
+        });
+    </script>
+
 @endsection

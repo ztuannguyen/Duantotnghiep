@@ -12,14 +12,15 @@ class Time extends Model
     protected $table = 'times';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'salon_id',
         'time_start',
         'time_end',
     ];
-    public function Salon(){
-        return $this->belongsTo(Salon::class,'salon_id','id');
-    }
+   
     public function Bookings(){
         return $this->hasMany(Booking::class,'time_id','id');
+    }
+    public function salon()
+    {
+        return $this->belongsTo(Salon::class);
     }
 }

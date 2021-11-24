@@ -21,10 +21,13 @@ class Salon extends Model
         'status',
         'description',
     ];
-    public function Times(){
-        return $this->hasMany(Time::class,'salon_id','id');
-    }
     public function Bookings(){
         return $this->hasMany(Booking::class,'salon_id','id');
+    }
+    public function chair(){
+        return $this->belongsToMany(Chair::class,'salon_chairs','salon_id','chair_id');
+    }
+    public function time(){
+        return $this->belongsToMany(Time::class,'salon_times','salon_id','time_id');
     }
 }

@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LogoController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\ChairController;
+use App\Http\Controllers\Admin\SortAppointmentController;
 use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
@@ -47,12 +49,13 @@ Route::group([
         Route::get('/', [SalonController::class,'index'])->name('index');
         Route::get('/create', [SalonController::class,'create'])->name('create');
         Route::post('/store', [SalonController::class,'store'])->name('store');
-        Route::get('/edit/{salon}', [SalonController::class,'edit'])->name('edit');
-        Route::post('/update/{salon}', [SalonController::class,'update'])->name('update');
+        Route::get('/edit/{id}', [SalonController::class,'edit'])->name('edit');
+        Route::post('/update/{id}', [SalonController::class,'update'])->name('update');
         Route::post('/delete/{salon}', [SalonController::class,'delete'])->name('delete');
+        Route::get('/thay-doi-trang-thai/{id}/{status}',[SalonController::class, 'status'])->name('statusSalon');
     });
 });
-
+Route::get('/thay-doi-trang-thai/{id}/{status}',[SalonController::class, 'status'])->name('statusSalon');
 //-------------------------TIME SALONS----------------------//
 Route::group([
     'prefix' => 'admin',
@@ -85,9 +88,14 @@ Route::group([
         Route::get('/', [BookingController::class,'index'])->name('index');
         Route::get('/create', [BookingController::class,'create'])->name('create');
         Route::post('/store', [BookingController::class,'store'])->name('store');
-        Route::get('/edit/{booking}', [BookingController::class,'edit'])->name('edit');
-        Route::post('/update/{booking}', [BookingController::class,'update'])->name('update');
+        Route::get('/edit/{id}', [BookingController::class,'edit'])->name('edit');
+        Route::post('/update/{id}', [BookingController::class,'update'])->name('update');
         Route::post('/delete/{booking}', [BookingController::class,'remove'])->name('remove');
+        
+        Route::get('/sortAppointment',[SortAppointmentController::class,'index'])->name('sortAppointment');
+        Route::post('/chi-tiet-don-dat-lich',[BookingController::class,'detailAppointment'])->name('detailAppointment');
+        Route::post('/sortAppointment', [SortAppointmentController::class, 'post'])->name('admin.bookings.sortAppointment');
+        Route::resource('/booking_services','SortAppointmentController');
     });
 });
 
@@ -98,6 +106,7 @@ Route::get('/cate_services/create', [CateServiceController::class, 'create'])->n
 Route::post('/cate_services/store', [CateServiceController::class, 'store'])->name('admin.cate_services.store');
 Route::get('/cate_services/edit/{cateService}', [CateServiceController::class, 'edit'])->name('admin.cate_services.edit');
 Route::post('/cate_services/update/{cateService}', [CateServiceController::class, 'update'])->name('admin.cate_services.update');
+Route::get('/admin/cate_services/thay-doi-trang-thai/{id}/{status}',[CateServiceController::class, 'status'])->name('statusCate');
 
 // Service
 Route::get('/admin/services', [ServiceController::class, 'index'])->name('admin.services.index');
@@ -106,6 +115,7 @@ Route::get('/admin/services/create', [ServiceController::class, 'create'])->name
 Route::post('/admin/services/store', [ServiceController::class, 'store'])->name('admin.services.store');
 Route::get('/admin/services/edit/{service}', [ServiceController::class, 'edit'])->name('admin.services.edit');
 Route::post('/admin/services/update/{service}', [ServiceController::class, 'update'])->name('admin.services.update');
+Route::get('/admin/services/thay-doi-trang-thai/{id}/{status}',[ServiceController::class, 'status'])->name('statusService');
 
 //users
 
@@ -129,9 +139,11 @@ Route::group([
         Route::get('/', [LogoController::class,'index'])->name('index');
         Route::get('/create', [LogoController::class,'create'])->name('create');
         Route::post('/store', [LogoController::class,'store'])->name('store');
+        Route::get('/thay-doi-trang-thai/{id}/{status}', [LogoController::class,'status'])->name('statusLogo');
         Route::get('/edit/{logo}', [LogoController::class,'edit'])->name('edit');
         Route::post('/update/{logo}', [LogoController::class,'update'])->name('update');
         Route::post('/delete/{logo}', [LogoController::class,'delete'])->name('delete');
+        
     });
 });
 //--------------------------CONTACT--------------------//
@@ -147,6 +159,7 @@ Route::group([
         Route::get('/', [ContactController::class,'index'])->name('index');
         Route::get('/create', [ContactController::class,'create'])->name('create');
         Route::post('/store', [ContactController::class,'store'])->name('store');
+        Route::get('/thay-doi-trang-thai/{id}/{status}', [ContactController::class,'status'])->name('statusContact');
         Route::get('/edit/{contact}', [ContactController::class,'edit'])->name('edit');
         Route::post('/update/{contact}', [ContactController::class,'update'])->name('update');
         Route::post('/delete/{contact}', [ContactController::class,'delete'])->name('delete');
@@ -160,4 +173,26 @@ Route::post('/admin/slides/store', [SlideController::class, 'store'])->name('adm
 Route::get('/admin/slides/edit/{slide}', [SlideController::class, 'edit'])->name('admin.slides.edit');
 Route::post('/admin/slides/update/{slide}', [SlideController::class, 'update'])->name('admin.slides.update');
 Route::get('/admin/slides/delete/{slide}', [SlideController::class, 'delete'])->name('admin.slides.delete');
+Route::get('/admin/slides/thay-doi-trang-thai/{id}/{status}',[SlideController::class, 'status'])->name('statusSlide');
+
+//Chair
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'namespace' => 'Admin'
+], function () {
+    Route::group([
+        'prefix' => "chairs",
+        'as' => "chairs."
+    ], function () {
+        Route::get('/', [ChairController::class,'index'])->name('index');
+        Route::get('/create', [ChairController::class,'create'])->name('create');
+        Route::post('/store', [ChairController::class,'store'])->name('store');
+        Route::get('/edit/{chair}', [ChairController::class,'edit'])->name('edit');
+        Route::post('/update/{chair}', [ChairController::class,'update'])->name('update');
+        Route::post('/delete/{chair}', [ChairController::class,'delete'])->name('delete');
+        Route::get('/thay-doi-trang-thai/{id}/{status}',[ChairController::class, 'status'])->name('statusChair');
+    });
+});
+
 

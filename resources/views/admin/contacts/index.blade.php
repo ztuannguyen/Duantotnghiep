@@ -60,15 +60,13 @@
                                 <td>{{ $item->phone_number }}</td>
                                 <td>{{ $item->note }}</td>
                                 <td>
-                                    <div class="form-group">
-                                        @if( $item->status == 0 ? 'selected' : '' )
-                                            <button type="button" class="btn btn-primary btn-xs btn-radius">Đã liên hệ</button>
-                                        @elseif($item->status == 1 ? 'selected' : '' )
-                                        <button type="button" class="btn btn-danger btn-xs btn-radius">Chưa liên hệ</button>
-                                        
-                                        @endif
-                                        
-                                    </div>
+                                    @if ($item->status == 0)
+                                        <a href="{{route('admin.contacts.statusContact', ['id' => $item->id, 'status' => 1]) }}"
+                                            class="btn btn-primary btn-sm ">Đã liên hệ</a>
+                                    @else
+                                        <a href="{{route('admin.contacts.statusContact', ['id' => $item->id, 'status' => 0]) }}"
+                                            class="btn btn-danger btn-sm">Chưa liên hệ</a>
+                                    @endif
                                 </td>
                                 <td> 
                                     <a href="{{ route('admin.contacts.edit', ['contact' => $item->id]) }}"

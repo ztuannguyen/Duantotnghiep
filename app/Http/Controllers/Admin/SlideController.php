@@ -64,7 +64,17 @@ class SlideController extends Controller
         session()->flash('message', 'Sửa thành công !');
         return redirect()->route('admin.slides.index');
     }
-
+    public function status($id ,$status){
+        $flight = Slide::find($id);
+        $flight->status = $status;
+        if($status == 0){
+          session()->flash('message','Bật thành công'); 
+        }else{
+          session()->flash('warning','Tắt thành công'); 
+        }
+        $flight->save();
+        return redirect()->route('admin.slides.index',['type'=>$flight->type]);
+      }
     public function delete(Slide $slide)
     {
         $slide->delete($slide);

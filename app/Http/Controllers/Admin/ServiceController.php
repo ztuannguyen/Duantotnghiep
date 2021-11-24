@@ -136,7 +136,18 @@ class ServiceController extends Controller
         session()->flash('message', 'Sửa thành công !');
         return redirect()->route('admin.services.index');
     }
+    public function status($id ,$status){
+        $flight = Service::find($id);
+        $flight->status = $status;
+        if($status == 0){
+            session()->flash('message','Bật thành công'); 
+          }else{
+            session()->flash('warning','Tắt thành công'); 
+          }
+        $flight->save();
 
+        return redirect()->route('admin.services.index'); 
+    }
     public function delete(Service $service)
     {
         $service->delete($service);
