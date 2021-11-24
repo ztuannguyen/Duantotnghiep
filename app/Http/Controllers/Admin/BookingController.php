@@ -122,6 +122,7 @@ class BookingController extends Controller
                 $booking_services = new Booking_Service();
                 $booking_services->service_id = $value;
                 $booking_services->booking_id = $booking->id;
+                $booking_services->salon_id = $request->salon_id;
                 $booking_services->status = 0;
                 $booking_services->save();
             }
@@ -131,6 +132,7 @@ class BookingController extends Controller
                     $booking_services = new Booking_Service();
                     $booking_services->service_id = $request->service_id[$key];
                     $booking_services->booking_id = $booking->id;
+                    $booking_services->salon_id = $request->salon_id;
                     $booking_services->status = 0;
                     $booking_services->save();
                 }
