@@ -127,8 +127,8 @@
                                                         @endforeach
 
                                                     </select>
-                                                    <p id="error"></p>
                                                 </div>
+                                                <p class="error_dateTime"></p>
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group">
@@ -202,6 +202,7 @@
             mang[1] = p
             time = mang.join(':')
              $('.close_modal');
+             $('.error_dateTime').html();
             $.ajax({
                 type: "post",
                 url: "{{ route('admin.bookings.sortAppointment') }}",
@@ -221,7 +222,7 @@
                         window.location.href = "{{ route('admin.bookings.sortAppointment') }}";
                     }, 500);
                 
-                    // $('.error_dateTime').html(data);
+                    $('.error_dateTime').html(data);
                 }
             });
         }

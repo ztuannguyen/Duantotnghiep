@@ -38,13 +38,9 @@
                         <label for="" class="font-weight-bold">Dịch vụ</label>
                         <select class="form-control mt-3 " id="js-example-basic-single" name="service_id[]" multiple
                             data-select2-id="js-example-basic-single" tabindex="-1" aria-hidden="true">
-                            @foreach ($cateService as $item)
-                                {{ $item->name_cate }}
                                 @foreach ($service as $s)
                                     <option value="{{ $s->id }}">{{ $s->name }}</option>
                                 @endforeach
-                            @endforeach
-
                         </select>
 
                     </div>
@@ -82,7 +78,7 @@
                                 Đã xếp lịch
                             </option>
                             <option value="3">
-                                Đã làm
+                                Đang làm
                             </option>
                             <option value="4">
                                 Đã xong

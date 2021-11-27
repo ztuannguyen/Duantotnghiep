@@ -244,7 +244,7 @@
 
                 textDisplay += element.name + " - ";
                 $('#selected_services_container').append(
-                    `<input type="hidden" name="booking_services[]" value="${element.id}">`
+                    `<input type="hidden" name="service_id[]" value="${element.id}">`
                 );
             });
 
