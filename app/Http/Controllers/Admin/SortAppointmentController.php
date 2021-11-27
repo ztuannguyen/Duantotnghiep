@@ -70,7 +70,23 @@ class SortAppointmentController extends Controller
         $booking_services->status = $request->status;
         $booking_services->salon_id = $request->salon_id;
         $booking_services->save();
-        // chuyển trạng thái khi đã xếp lịch song
+
+        $bookingServices = Booking_Service::all();
+        foreach ($bookingServices as $item) {
+            if ($request->id != $item->id) {
+                if($item->chair_id == $request->chair_id){
+                    if ($request->time_start > $item->time_start && $request->time_start < $item->time_end
+                        || $item->time_end > $item->time_start && $item->time_end < $item->time_end
+                        ) {
+                            echo ' 
+                            <p class="mt-1" style="color: red">Thời gian khám bị trùng !</p>
+                            ';
+                            die;
+                    }
+                }
+            }
+        }
+        // chuyển trạng thái khi đã xếp lịch xong
         $booking_services->load('booking');
         $statusServices = Booking_Service::where('booking_id', $booking_services->booking->id)->get();
         $sttServices = Booking_Service::where('booking_id', $booking_services->booking->id)

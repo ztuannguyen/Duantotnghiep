@@ -21,22 +21,34 @@ class ClientController extends Controller
         $service = Service::all();
         $booking = Booking::with('service')->get();
         $time = Time::orderBy('id', 'ASC')->get();
-        return view('client/booking', compact('salon', 'service', 'cateService', 'time'));
+        return view('/client/booking', compact('salon', 'service', 'cateService', 'time'));
     }
 
     public function store(Request $request)
     {
 
-        $model = new Booking();
-        $model->fill($request->all());
-        $model->save();
-        if ($request->has('booking_services')) {
-            for ($i = 0; $i < count($request->booking_services); $i++) {
-                $booking_service = new Booking_Service();
-                $booking_service->booking_id = $model->id;
-                $booking_service->service_id = $request->booking_services[$i];
-                $booking_service->salon_id = $request->salon_id;
-                $booking_service->save();
+        $booking = new Booking();
+        $booking->fill($request->all());
+        $price = [];
+        if ($request->has('service_id')) {
+            foreach ($request->service_id as $key => $value) {
+                $services = Service::where('id', '=', $request->service_id[$key])->first();
+                $price[] = $services->price;
+            }
+        }
+        $sum = array_sum($price);
+        $booking->total_price = $sum;
+        $booking->status = 1;
+        $booking->save();
+
+
+        if ($request->has('service_id')) {
+            foreach ($request->service_id as $key => $value) {
+                $booking_services = new Booking_Service();
+                $booking_services->service_id = $request->service_id[$key];
+                $booking_services->booking_id = $booking->id;
+                $booking_services->salon_id = $request->salon_id;
+                $booking_services->save();
             }
         }
         return redirect()->route('client.show')->with('message', 'Cảm ơn anh tin tưởng lựa chọn dịch vụ của BrotherHoods.');

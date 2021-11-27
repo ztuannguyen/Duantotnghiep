@@ -83,7 +83,7 @@
                             @foreach ($time as $time)
                                 <div class="form-check-inline">
                                     <input class="form-check-input" name="salon_times[]" type="checkbox"
-                                        value="{{ $time->id }}" @if (in_array($ser->id, $salon_times)) checked @endif>
+                                        value="{{ $time->id }}" @if (in_array($time->id, $salon_times)) checked @endif>
                                     <label class="form-check-label">
                                         {{ $time->time_start }} - {{ $time->time_end }}
                                     </label>

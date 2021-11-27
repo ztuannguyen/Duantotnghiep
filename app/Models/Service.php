@@ -20,6 +20,6 @@ class Service extends Model
     ];
 
     public function CateService(){
-        return $this->belongsTo(CateService::class, 'cate_id');
+        return $this->belongsTo(CateService::class, 'cate_id','id');
     }
 }

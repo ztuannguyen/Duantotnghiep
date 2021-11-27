@@ -35,9 +35,11 @@ class BookingController extends Controller
 
     public function create()
     {
+     
         $booking = Booking::with('service')->get();
         $service = Service::all();
-        $cateService = CateService::with('services')->get();
+        $cateService = CateService::where('status', 0)->get();
+        $cateService->load(['services']);
         $ListSalon = Salon::with('time')->get();
         $ListTime = Time::all();
         return view('admin.bookings.create', compact('service', 'ListSalon', 'ListTime', 'cateService'));
@@ -50,7 +52,7 @@ class BookingController extends Controller
         if ($request->has('service_id')) {
             foreach ($request->service_id as $key => $value) {
                 $services = Service::where('id', '=', $request->service_id[$key])->first();
-                $price[] = $services->discount;
+                $price[] = $services->price;
             }
         }
         $sum = array_sum($price);
