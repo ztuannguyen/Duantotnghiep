@@ -69,14 +69,14 @@ class SortAppointmentController extends Controller
         $booking_services->time_end = $request->time_end;
         $booking_services->status = $request->status;
         $booking_services->salon_id = $request->salon_id;
-        $booking_services->save();
+        $booking_services->save(); 
 
         $bookingServices = Booking_Service::all();
         foreach ($bookingServices as $item) {
             if ($request->id != $item->id) {
                 if($item->chair_id == $request->chair_id){
                     if ($request->time_start > $item->time_start && $request->time_start < $item->time_end
-                        || $item->time_end > $item->time_start && $item->time_end < $item->time_end
+                        || $request->time_end > $item->time_start && $request->time_end < $item->time_end
                         ) {
                             echo ' 
                             <p class="mt-1" style="color: red">Thời gian khám bị trùng !</p>
@@ -92,7 +92,7 @@ class SortAppointmentController extends Controller
         $sttServices = Booking_Service::where('booking_id', $booking_services->booking->id)
             ->where('status', 1)
             ->orWhere('booking_id', $booking_services->booking->id)
-            ->where('status', 3)
+            ->where('status', 2)
             ->get();
         if (count($statusServices) == count($sttServices)) {
             $bk = Booking::find($booking_services->booking->id);

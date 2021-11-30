@@ -9,10 +9,9 @@ use App\Models\CateService;
 use App\Models\Salon;
 use App\Models\Service;
 use App\Models\Time;
-use App\Models\Salon_Time;
 use Illuminate\Http\Request;
 
-class ClientController extends Controller
+class BookingController extends Controller
 {
     public function show()
     {
@@ -21,7 +20,7 @@ class ClientController extends Controller
         $service = Service::all();
         $booking = Booking::with('service')->get();
         $time = Time::orderBy('id', 'ASC')->get();
-        return view('/client/booking', compact('salon', 'service', 'cateService', 'time'));
+        return view('client.booking', compact('salon', 'service', 'cateService', 'time'));
     }
 
     public function store(Request $request)

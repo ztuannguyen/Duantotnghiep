@@ -24,7 +24,7 @@ class SalonRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_salon' => 'required|max:255',
+            'name_salon' => 'required|unique:salons|max:255',
             'slot_amount' => 'required|integer',
             'address' => 'required|max:255',
             'image' => 'image',
@@ -35,6 +35,7 @@ class SalonRequest extends FormRequest
     {
         return [
             'name_salon.max' => 'Tên cửa hàng tối đa 255 ký tự',
+            'unique' =>':attribute đã tồn tại',
             'slot_amount.integer' => 'Số ghế phải điền là số',
             'image.image' => 'Ảnh không đúng định dạng',
             'address.max' => 'Địa chỉ tối đa 255 ký tự',

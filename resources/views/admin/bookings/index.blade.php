@@ -12,14 +12,63 @@
     <div class="card shadow mb-4">
 
         <div class="card-header py-3">
-            <!-- Sidebar Toggle (Topbar) -->
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                <i class="fa fa-bars"></i>
-            </button>
-            <a href="/admin/bookings/create" class="btn btn-success  ">
+            <div class="row">
 
-                <span class="text">Thêm mới</span>
-            </a>
+                <div class="col-2 mt-4">
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a href="/admin/bookings/create" class="btn btn-success">
+
+                        <span class="text">Thêm mới</span>
+                    </a>
+                </div>
+                <div class="col-3"></div>
+                <div class="col-7 mt-2">
+                    <form action="" method="get">
+                        <div class="row">
+                            <div class="col-3">
+                                <label for="">Chi nhánh</label>
+                                <select class="form-control" name="salon_id" id="">
+                                    <option @if (isset($searchData['salon_id']) && $searchData['salon_id'] == '') selected @endif value="">Chọn chi nhánh ..</option>
+                                    <option @if (isset($searchData['salon_id']) && $searchData['salon_id'] == 1) selected @endif value="1">151 Cầu Giấy, P. Quan Hoa, Q. Cầu Giấy, Hà
+                                        Nội
+                                    </option>
+                                    <option @if (isset($searchData['salon_id']) && $searchData['salon_id'] == 2) selected @endif value="2">109 Trần Quốc Hoàn, P. Dịch Vọng Hậu, Q. Cầu
+                                        Giấy, Hà Nội</option>
+                                    <option @if (isset($searchData['salon_id']) && $searchData['salon_id'] == 3) selected @endif value="3">382 Nguyễn Trãi, P. Thanh Xuân Trung, Q.
+                                        Thanh
+                                        Xuân, Hà Nội</option>
+                                    <option @if (isset($searchData['salon_id']) && $searchData['salon_id'] == 4) selected @endif value="4">235 Đội Cấn, P. Liễu Giai, Q. Ba Đình, Hà Nội
+                                    </option>
+                                    <option @if (isset($searchData['salon_id']) && $searchData['salon_id'] == 5) selected @endif value="4">346 Khâm Thiên, P. Thổ Quan, Q. Đống Đa, Hà
+                                        Nội
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <label for="">Thời gian</label>
+                                <input type="text" class="form-control date_start" name="date_booking" id="date_start"
+                                    @if (isset($searchData['date_booking'])) value="{{ $searchData['date_booking'] }}" @endif placeholder="Chọn ngày" autocomplete="off">
+                            </div>
+                            <div class="col-3">
+                                <label for="">Trạng thái</label>
+                                <select class="form-control filter_status" name="status" id="">
+                                    <option @if (isset($searchData['status']) && $searchData['status'] == '') selected @endif value="">Chọn trạng thái ..</option>
+                                    <option @if (isset($searchData['status']) && $searchData['status'] == 1) selected @endif value="1">Chờ xếp lịch</option>
+                                    <option @if (isset($searchData['status']) && $searchData['status'] == 2) selected @endif value="2">Đã xếp lịch</option>
+                                    <option @if (isset($searchData['status']) && $searchData['status'] == 3) selected @endif value="3">Đã xong</option>
+                                    <option @if (isset($searchData['status']) && $searchData['status'] == 4) selected @endif value="4">Hủy lịch</option>
+                                </select>
+                            </div>
+                            <div class="col-3 mt-4">
+                                <button type="submit" class="btn btn-primary btn-icon-split">Tìm kiếm</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     @section('search-form')
         <!-- Topbar Search -->
@@ -58,23 +107,21 @@
                         @foreach ($data as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>#{{$item->id}}</td>
+                                <td>#{{ $item->id }}</td>
                                 <td>{{ $item->number_phone }}</td>
                                 <td>{{ $item->Salon->address }}</td>
-                                <td>{{ $item->Time->time_start}}</td>
+                                <td>{{ $item->Time->time_start }}</td>
                                 <td>{{ $item->date_booking }}</td>
-                                <td><a class="btn btn-primary btn-sm btn-xem-chi-tiet"
-                                        data-appointmentid="{{ $item->id }}" target="_blank">Xem</a></td>
+                                <td><a class="btn btn-primary btn-sm " data-toggle="modal"
+                                        data-target="{{ '#' . '_' . $item->id }}">Xem</a></td>
                                 <td>
                                     @if ($item->status == 1)
                                         <span class="badge badge-danger p-3 ">Chờ xếp lịch </span>
                                     @elseif($item->status == 2)
                                         <span class="badge badge-success p-3 ">Đã lên lịch</span>
                                     @elseif($item->status == 3)
-                                        <span class="badge badge-warning p-3 ">Đang làm</span>
-                                    @elseif($item->status == 4)
                                         <span class="badge badge-success p-3 ">Đã xong</span>
-                                    @elseif($item->status == 5)
+                                    @elseif($item->status == 4)
                                         <span class="badge badge-danger p-3 ">Hủy lịch</span>
                                     @endif
                                 </td>
@@ -116,80 +163,87 @@
                                 </td>
 
                             </tr>
+                            <!-- Modal chi tiết-->
+                            <div class="modal fade" id="{{ '_' . $item->id }}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header" style="background-color: #14a08d;color:white">
+                                            <h5 class="modal-title" id="staticBackdropLabel">Chi tiết đơn đặt lịch
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="btn btn-info" style="width:100%">#{{ $item->id }}</p>
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header py-3">
+                                                    <h6 class="m-0 font-weight-bold text-primary">Thông tin khách hàng
+                                                    </h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="mb-3">
+                                                        Số điện thoại : <b>{{ $item->number_phone }} </b>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        Chi nhánh : <b>{{ $item->salon->address }}</b>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        Thời gian : <b>{{ $item->time->time_start }}</b>
+                                                    </div>
+                                                    <div>
+                                                        Ngày : <b>{{ $item->date_booking }}</b>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header py-3">
+                                                    <h6 class="m-0 font-weight-bold text-primary">Dịch vụ</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row mb-3" style="border-bottom: 2px solid gray;">
+                                                        <div class="col-10">Tên dịch vụ</div>
+                                                        <div>Giá</div>
+                                                    </div>
+                                                    @foreach ($item->service as $key => $ser)
+                                                        <div class="row">
+                                                            <div class="col-10 mb-3"><b>{{ $ser->name }}</b>
+                                                            </div>
+                                                            <div>
+                                                                <b>{{ number_format($ser->price) }}đ</b>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="card-header" style="width:50%;float:right;">
+                                                <div class="row mt-2">
+                                                    <div class="col-8 ">
+                                                        <h6 class="m-0 font-weight-bold text-primary">Tổng tiền : 
+                                                        </h6>
+                                                    </div>
+                                                    <div>
+                                                        <b>{{number_format($item->total_price)}}đ</b>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
-        <!-- Modal chi tiết-->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="background-color: #14a08d;color:white">
-                        <h5 class="modal-title" id="staticBackdropLabel">Chi tiết đơn đặt lịch</h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Số điện thoại</label>
-                            <input type="text" class="form-control" id="modal_phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Chi nhánh</label>
-                            <input type="text" class="form-control" id="modal_salon">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Thời gian </label>
-                            <input type="text" class="form-control" id="modal_time_start">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Ngày đặt</label>
-                            <input type="text" class="form-control" id="modal_date_booking">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Lời nhắn</label>
-                            <textarea class="form-control" name="note" id="modal_note" rows="5"></textarea>
-                        </div>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Tên dịch vụ </th>
-                                    <th scope="col">Giá</th>
-                                </tr>
-                            </thead>
-                            <tbody id="modal_tbody">
-                            </tbody>
-                            <thead>
-                                <tr>
-                                    <th scope="col"> </th>
-                                    <th scope="col"></th>
-                                </tr>
 
-                                <tr>
-                                    <th scope="col">Tạm tính </th>
-                                    <th scope="col" class="tam_tinh"></th>
-                                </tr>
-
-                                <tr>
-                                    <th scope="col">Mã giảm giá</th>
-                                    <th scope="col" class="ma_giam_gia"></th>
-                                </tr>
-                                <tr>
-                                    <th scope="col">Tổng tiền </th>
-                                    <th scope="col" class="modal_total_monney_detail"></th>
-                                </tr>
-                            </thead>
-                        </table>
-                        <p class="modal_created_at"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     @else
         <h2>Không có dữ liệu</h2>
     @endif
@@ -197,56 +251,10 @@
 @endsection
 @section('script')
 <script>
-    $(document).ready(function() {
-        $('.btn-xem-chi-tiet').on('click', function() {
-            $('#staticBackdrop').modal('show')
-            let id = $(this).data('appointmentid');
-            let apiDetail = '{{ route('admin.bookings.detailAppointment') }}';
-            $.ajax({
-                url: apiDetail,
-                method: "POST",
-                data: {
-                    id: id,
-                    _token: '{{ csrf_token() }}'
-                },
-                dataType: 'json',
-                success: function(response) {
-                    if (response.data) {
-                        $("#modal_phone").val(response.data.number_phone);
-                        $("#modal_salon").val(response.data.salon_id)
-                        $("#modal_time_start").val(response.data.time_id);
-                        $("#modal_date_booking").val(response.data.date_booking);
-                        $("#modal_note").val(response.data.note);
-
-                        let output = "";
-                        let total = "";
-                        for (let i = 0; i < response.service.length; i++) {
-                            var obj = response.service[i];
-                            var price = new Intl.NumberFormat().format(obj.discount);
-                            output += `<tr>
-                                           <th scope="row"> ` + obj.name + `</th>
-                                           <td> ` + price + ` VNĐ</td>
-                                           </tr>`;
-                        }
-
-                        $("#modal_tbody").html(output);
-                        $(".tam_tinh").html(new Intl.NumberFormat().format(response.data
-                            .total_price) + ' VNĐ');
-                        $(".thue_vat").html(new Intl.NumberFormat().format((response.data
-                            .total_price * 10) / 100) + ' VNĐ');
-                        $(".ma_giam_gia").html(new Intl.NumberFormat().format(response.data
-                            .discount_price) + ' VNĐ');
-                        $(".modal_total_monney_detail").html(new Intl.NumberFormat().format(
-                            (response.data.total_price) + (response.data
-                                .discount_price)) + ' VNĐ');
-                    } else {
-                        swal("Đơn đặt hàng không tồn tại", "", "warning");
-                    }
-                }
-            })
-
-        })
-
+    $('#date_start').datepicker({
+        todayHighlight: !0,
+        autoclose: !0,
+        format: "yyyy-mm-dd"
     })
 </script>
 @endsection

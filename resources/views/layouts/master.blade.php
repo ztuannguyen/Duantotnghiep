@@ -10,18 +10,18 @@
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed:500,600,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('client/css/open-iconic-bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/css/owl.theme.default.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/css/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/css/aos.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/css/ionicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/css/jquery.timepicker.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/css/flaticon.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/css/icomoon.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/css/css/booking.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/open-iconic-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/aos.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/jquery.timepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/icomoon.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/css/booking.css') }}">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css"
         integrity="sha512-rxThY3LYIfYsVCWPCW9dB0k+e3RZB39f23ylUYTEuZMDrN/vRqLdaCBo/FbvVT6uC2r0ObfPzotsfKF9Qc5W5g=="
@@ -53,24 +53,25 @@
     </div>
 
     <script>
-      var chatbox = document.getElementById('fb-customer-chat');
-      chatbox.setAttribute("page_id", "112981014505807");
-      chatbox.setAttribute("attribution", "biz_inbox");
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "112981014505807");
+        chatbox.setAttribute("attribution", "biz_inbox");
 
-      window.fbAsyncInit = function() {
-        FB.init({
-          xfbml            : true,
-          version          : 'v12.0'
-        });
-      };
+        window.fbAsyncInit = function() {
+            FB.init({
+                xfbml: true,
+                version: 'v12.0'
+            });
+        };
 
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
@@ -78,7 +79,7 @@
             <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
                 stroke="#F96D00" />
         </svg></div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -97,22 +98,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"
         integrity="sha512-2xXe2z/uA+2SyT/sTSt9Uq4jDKsT0lV4evd3eoE/oxKih8DSAsOF6LUb+ncafMJPAimWAXdu9W+yMXGrCVOzQA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{{ asset('client/js/jquery-migrate-3.0.1.min.js') }}"></script>
-    <script src="{{ asset('client/js/popper.min.js') }}"></script>
-    <script src="{{ asset('client/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('client/js/jquery.easing.1.3.js') }}"></script>
-    <script src="{{ asset('client/js/jquery.waypoints.min.js') }}"></script>
-    <script src="{{ asset('client/js/jquery.stellar.min.js') }}"></script>
-    <script src="{{ asset('client/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('client/js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('client/js/aos.js') }}"></script>
-    <script src="{{ asset('client/js/jquery.animateNumber.min.js') }}"></script>
-    <script src="{{ asset('client/js/jquery.timepicker.min.js') }}"></script>
-    <script src="{{ asset('client/js/scrollax.min.js') }}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
-    </script>
-    <script src="{{ asset('client/js/google-map.js') }}"></script>
-    <script src="{{ asset('client/js/main.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery-migrate-3.0.1.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/popper.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.easing.1.3.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.stellar.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/aos.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.animateNumber.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.timepicker.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/scrollax.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/main.js') }}"></script>
     @yield('scripts')
     @if (Session::has('message'))
         <script>
@@ -121,6 +119,18 @@
             });
         </script>
     @endif
+    <script>
+        @if (Session::has('warning'))
+            toastr.options =
+            {
+            "closeButton" : true,
+            "progressBar" : true,
+            "positionClass": "toast-bottom-left",
+            "timeOut": "3000",
+            }
+            toastr.error("{!! Session::get('warning') !!}")
+        @endif
+    </script>
 </body>
 
 </html>

@@ -24,13 +24,14 @@ class ChairRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
+            'name' => 'required|unique:chairs|max:255',
         ];
     }
     public function messages()
     {
         return [
             'name.max' => 'Tên ghế tối đa 255 ký tự',
+            'name.unique' =>'Tên ghế đã tồn tại',
             'name.required' => 'Tên ghế không được để trống'
         ];
     }

@@ -20,6 +20,7 @@
     <link href="/admin/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="/admin/css/button.css" rel="stylesheet">
     <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/admin/css/timepicker.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
         integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -120,7 +121,7 @@
     <script src="/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="/admin/js/sb-admin-2.min.js"></script>
-
+    <script src="/admin/js/timepicker.min.js"></script>
     <!-- Page level plugins -->
     <script src="/admin/vendor/chart.js/Chart.min.js"></script>
 

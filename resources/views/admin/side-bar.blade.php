@@ -80,6 +80,20 @@
         </div>
     </li>
     <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBlog"
+            aria-expanded="true" aria-controls="collapseBlog">
+            <i class="fas fa-fw fa-bookmark"></i>
+            <span>Bài viết</span>
+        </a>
+        <div id="collapseBlog" class="collapse" aria-labelledby="headingBlog"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('admin.cateBlogs.index')}}">Danh mục bài viết</a>
+                <a class="collapse-item" href="{{ route('admin.blogs.index')}}">Danh sách bài viết</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="/admin/contacts">
             <i class="fas fa-fw fa-phone"></i>
             <span>Liên hệ</span></a>

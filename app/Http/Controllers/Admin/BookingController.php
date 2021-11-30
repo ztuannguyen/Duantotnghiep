@@ -17,11 +17,22 @@ class BookingController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request->has('keyword') == true) {
-            $keyword = $request->get('keyword');
-            $ListBooking = Booking::where('number_phone', 'LIKE', "%$keyword%")->get();
-        } else {
-            $ListBooking = Booking::all();
+         
+        $searchData = $request->except('page');
+        if(count($request->all()) == 0){
+            $ListBooking = Booking::orderBy('created_at', 'DESC')->get();
+        }else{
+            $bookings = Booking::orderBy('created_at', 'DESC');
+            if($request->has('status') && $request->status != ""){
+                $bookings->where('status', $request->status);
+            }
+            if($request->has('date_booking') && $request->date_booking != ""){
+                $bookings->where('date_booking', $request->date_booking);
+            }
+            if($request->has('salon_id') && $request->salon_id != ""){
+                $bookings->where('salon_id', $request->salon_id);
+            }
+            $ListBooking = $bookings->get();
         }
         $ListBooking->load(['salon']);
         $ListBooking->load(['time']);
@@ -30,6 +41,7 @@ class BookingController extends Controller
         return view('admin.bookings.index', [
             'data' => $ListBooking,
             'service' => $service,
+            'searchData' => $searchData
         ]);
     }
 
@@ -156,21 +168,5 @@ class BookingController extends Controller
         session()->flash('message', 'Xóa thành công !');
         return redirect()->back();
     }
-    public function detailAppointment(Request $request)
-    {
-        try {
-            $booking = Booking::find($request->id);
-            $services = Booking_Service::where('booking_id', $booking->id)->get();
-            $salon = Salon::with('time')->where('status', 0)->get();
-            $time = Time::all();
-            $arrayId = [];
-            foreach ($services as $value) {
-                $arrayId[] = $value->service_id;
-            }
-            $service = Service::whereIn('id', $arrayId)->get();
-            return response()->json(['status' => true, 'data' => $booking, 'service' => $service, 'salon' => $salon, 'time' => $time]);
-        } catch (Exception $e) {
-            return response()->json(['status' => false, 'fail' => 'Thất bại']);
-        }
-    }
+  
 }
