@@ -78,12 +78,9 @@
                                 Đã xếp lịch
                             </option>
                             <option value="3">
-                                Đang làm
-                            </option>
-                            <option value="4">
                                 Đã xong
                             </option>
-                            <option value="5">
+                            <option value="4">
                                 Hủy lịch
                             </option>
                             @error('status')

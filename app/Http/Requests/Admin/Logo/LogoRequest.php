@@ -24,13 +24,15 @@ class LogoRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'image',
+            'image' => 'required|image|max:10000',
         ];
     }
     public function messages()
     {
         return [
+            'image.required' => 'Ảnh không được để trống',
             'image.image' => 'Ảnh không đúng định dạng',
+            'image.max' => 'Ảnh không vượt quá 10MB'
         ];
     }
 }

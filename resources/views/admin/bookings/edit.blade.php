@@ -78,9 +78,8 @@
                         <select  name="status" class="mt-3 form-control">
                             <option value="1" {{$booking->status == 1 ? 'selected':''}} >Chờ xếp lịch</option>
                             <option value="2" {{$booking->status == 2 ? 'selected':''}}>Đã xếp lịch</option>
-                            <option value="3" {{$booking->status == 3 ? 'selected':''}}>Đang làm</option>
-                            <option value="4" {{$booking->status == 4 ? 'selected':''}}>Đã xong</option>
-                            <option value="5" {{$booking->status == 5 ? 'selected':''}}>Hủy lịch</option>
+                            <option value="3" {{$booking->status == 3 ? 'selected':''}}>Đã xong</option>
+                            <option value="4" {{$booking->status == 4 ? 'selected':''}}>Hủy lịch</option>
                             @error('status')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

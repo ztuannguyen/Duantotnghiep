@@ -1,20 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admin\CateServiceController;
-use App\Http\Controllers\Admin\ServiceController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Client\ClientController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\SalonController;
-use App\Http\Controllers\Admin\SalonTimeController;
-use App\Http\Controllers\Admin\BookingController;
-use App\Http\Controllers\Admin\SlideController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\LogoController;
-use App\Http\Controllers\Admin\ContactController;
-use App\Http\Controllers\Admin\ChairController;
-use App\Http\Controllers\Admin\SortAppointmentController;
+use App\Http\Controllers\Client\BlogController;
+use App\Http\Controllers\Client\BookingController;
+use App\Http\Controllers\Client\ServiceController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,170 +20,16 @@ use Illuminate\Support\Facades\DB;
 Route::get('/', function () {
     return view('welcome');
 });
-// User
-Route::get('/client/booking',[ClientController::class,'show'])->name('client.show');
-Route::post('/client/get-time-of-salon',[ClientController::class,'getTimeOfSalon'])->name('client.get-time-of-salon');
-Route::post('/',[ClientController::class, 'store'])->name('client.post');
-// Admin dashboard
-Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
+// Client
+Route::get('/dat-lich',[BookingController::class,'show'])->name('client.show');
+Route::post('/client/get-time-of-salon',[BookingController::class,'getTimeOfSalon'])->name('client.get-time-of-salon');
+Route::post('/',[BookingController::class, 'store'])->name('client.post');
 
-//--------------------------SALONS--------------------//
-Route::group([
-    'prefix' => 'admin',
-    'as' => 'admin.',
-    'namespace' => 'Admin'
-], function () {
-    Route::group([
-        'prefix' => "salons",
-        'as' => "salons."
-    ], function () {
-        Route::get('/', [SalonController::class,'index'])->name('index');
-        Route::get('/create', [SalonController::class,'create'])->name('create');
-        Route::post('/store', [SalonController::class,'store'])->name('store');
-        Route::get('/edit/{id}', [SalonController::class,'edit'])->name('edit');
-        Route::post('/update/{id}', [SalonController::class,'update'])->name('update');
-        Route::post('/delete/{salon}', [SalonController::class,'delete'])->name('delete');
-        Route::get('/thay-doi-trang-thai/{id}/{status}',[SalonController::class, 'status'])->name('statusSalon');
-    });
-});
-Route::get('/thay-doi-trang-thai/{id}/{status}',[SalonController::class, 'status'])->name('statusSalon');
-//-------------------------TIME SALONS----------------------//
-Route::group([
-    'prefix' => 'admin',
-    'as' => 'admin.',
-    'namespace' => 'Admin'
-], function () {
-    Route::group([
-        'prefix' => "times",
-        'as' => "times."
-    ], function () {
-        Route::get('/', [SalonTimeController::class,'index'])->name('index');
-        Route::get('/create', [SalonTimeController::class,'create'])->name('create');
-        Route::post('/store', [SalonTimeController::class,'store'])->name('store');
-        Route::get('/edit/{time}', [SalonTimeController::class,'edit'])->name('edit');
-        Route::post('/update/{time}', [SalonTimeController::class,'update'])->name('update');
-        Route::post('/delete/{time}', [SalonTimeController::class,'delete'])->name('delete');
-    });
-});
-///bookings
-//--------------------------BOOKINGS--------------------//
-Route::group([
-    'prefix' => 'admin',
-    'as' => 'admin.',
-    'namespace' => 'Admin'
-], function () {
-    Route::group([
-        'prefix' => "bookings",
-        'as' => "bookings."
-    ], function () {
-        Route::get('/', [BookingController::class,'index'])->name('index');
-        Route::get('/create', [BookingController::class,'create'])->name('create');
-        Route::post('/store', [BookingController::class,'store'])->name('store');
-        Route::get('/edit/{id}', [BookingController::class,'edit'])->name('edit');
-        Route::post('/update/{id}', [BookingController::class,'update'])->name('update');
-        Route::post('/delete/{booking}', [BookingController::class,'remove'])->name('remove');
-        
-        Route::get('/sortAppointment',[SortAppointmentController::class,'index'])->name('sortAppointment');
-        Route::post('/chi-tiet-don-dat-lich',[BookingController::class,'detailAppointment'])->name('detailAppointment');
-        Route::post('/sortAppointment', [SortAppointmentController::class, 'post'])->name('admin.bookings.sortAppointment');
-        Route::resource('/booking_services','SortAppointmentController');
-    });
-});
+//Dịch vụ 
+Route::get('/dich-vu',[ServiceController::class,'service'])->name('client.service');
 
-// Cate Service
-Route::get('/admin/cate_services', [CateServiceController::class, 'index'])->name('admin.cate_services.index');
-Route::get('/cate_services/delete/{id}', [CateServiceController::class, 'delete'])->name('admin.cate_services.delete');
-Route::get('/cate_services/create', [CateServiceController::class, 'create'])->name('admin.cate_services.create');
-Route::post('/cate_services/store', [CateServiceController::class, 'store'])->name('admin.cate_services.store');
-Route::get('/cate_services/edit/{cateService}', [CateServiceController::class, 'edit'])->name('admin.cate_services.edit');
-Route::post('/cate_services/update/{cateService}', [CateServiceController::class, 'update'])->name('admin.cate_services.update');
-Route::get('/admin/cate_services/thay-doi-trang-thai/{id}/{status}',[CateServiceController::class, 'status'])->name('statusCate');
-
-// Service
-Route::get('/admin/services', [ServiceController::class, 'index'])->name('admin.services.index');
-Route::get('services/delete/{service}', [ServiceController::class, 'delete'])->name('admin.services.delete');
-Route::get('/admin/services/create', [ServiceController::class, 'create'])->name('admin.services.create');
-Route::post('/admin/services/store', [ServiceController::class, 'store'])->name('admin.services.store');
-Route::get('/admin/services/edit/{service}', [ServiceController::class, 'edit'])->name('admin.services.edit');
-Route::post('/admin/services/update/{service}', [ServiceController::class, 'update'])->name('admin.services.update');
-Route::get('/admin/services/thay-doi-trang-thai/{id}/{status}',[ServiceController::class, 'status'])->name('statusService');
-
-//users
-
-Route::get('/admin/users', [UserController::class,'index'])->name('admin.users.index');
-Route::get('/admin/user/delete/{id}', [UserController::class, 'remove'])->name('admin.users.remove');
-Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
-Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
-Route::get('/admin/users/edit/{user}', [UserController::class, 'edit'])->name('admin.users.edit');
-Route::post('/admin/users/update/{user}', [UserController::class, 'update'])->name('admin.users.update');
-
-//--------------------------LOGO--------------------//
-Route::group([
-    'prefix' => 'admin',
-    'as' => 'admin.',
-    'namespace' => 'Admin'
-], function () {
-    Route::group([
-        'prefix' => "logos",
-        'as' => "logos."
-    ], function () {
-        Route::get('/', [LogoController::class,'index'])->name('index');
-        Route::get('/create', [LogoController::class,'create'])->name('create');
-        Route::post('/store', [LogoController::class,'store'])->name('store');
-        Route::get('/thay-doi-trang-thai/{id}/{status}', [LogoController::class,'status'])->name('statusLogo');
-        Route::get('/edit/{logo}', [LogoController::class,'edit'])->name('edit');
-        Route::post('/update/{logo}', [LogoController::class,'update'])->name('update');
-        Route::post('/delete/{logo}', [LogoController::class,'delete'])->name('delete');
-        
-    });
-});
-//--------------------------CONTACT--------------------//
-Route::group([
-    'prefix' => 'admin',
-    'as' => 'admin.',
-    'namespace' => 'Admin'
-], function () {
-    Route::group([
-        'prefix' => "contacts",
-        'as' => "contacts."
-    ], function () {
-        Route::get('/', [ContactController::class,'index'])->name('index');
-        Route::get('/create', [ContactController::class,'create'])->name('create');
-        Route::post('/store', [ContactController::class,'store'])->name('store');
-        Route::get('/thay-doi-trang-thai/{id}/{status}', [ContactController::class,'status'])->name('statusContact');
-        Route::get('/edit/{contact}', [ContactController::class,'edit'])->name('edit');
-        Route::post('/update/{contact}', [ContactController::class,'update'])->name('update');
-        Route::post('/delete/{contact}', [ContactController::class,'delete'])->name('delete');
-    });
-});
-
-//slides
-Route::get('/admin/slides', [SlideController::class, 'index'])->name('admin.slides.index');
-Route::get('/admin/slides/create', [SlideController::class, 'create'])->name('admin.slides.create');
-Route::post('/admin/slides/store', [SlideController::class, 'store'])->name('admin.slides.store');
-Route::get('/admin/slides/edit/{slide}', [SlideController::class, 'edit'])->name('admin.slides.edit');
-Route::post('/admin/slides/update/{slide}', [SlideController::class, 'update'])->name('admin.slides.update');
-Route::get('/admin/slides/delete/{slide}', [SlideController::class, 'delete'])->name('admin.slides.delete');
-Route::get('/admin/slides/thay-doi-trang-thai/{id}/{status}',[SlideController::class, 'status'])->name('statusSlide');
-
-//Chair
-Route::group([
-    'prefix' => 'admin',
-    'as' => 'admin.',
-    'namespace' => 'Admin'
-], function () {
-    Route::group([
-        'prefix' => "chairs",
-        'as' => "chairs."
-    ], function () {
-        Route::get('/', [ChairController::class,'index'])->name('index');
-        Route::get('/create', [ChairController::class,'create'])->name('create');
-        Route::post('/store', [ChairController::class,'store'])->name('store');
-        Route::get('/edit/{chair}', [ChairController::class,'edit'])->name('edit');
-        Route::post('/update/{chair}', [ChairController::class,'update'])->name('update');
-        Route::post('/delete/{chair}', [ChairController::class,'delete'])->name('delete');
-        Route::get('/thay-doi-trang-thai/{id}/{status}',[ChairController::class, 'status'])->name('statusChair');
-    });
-});
-
-
+//Bài viết
+Route::get('/trang-bai-viet',[BlogController::class,'list'])->name('client.blog');
+Route::get('danh-muc-bai-viet/{id}',[BlogController::class,'category'])->name('category');
+Route::get('/chi-tiet-bai-viet/{id}',[BlogController::class,'detail'])->name('client.detailBlog');
+Route::get('/tim-kiem-bai-viet',[BlogController::class,'search'])->name('search');

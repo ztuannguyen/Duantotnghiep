@@ -66,7 +66,8 @@
                             {{ $item->service->name }}
                         </td>
                         <td><button class="btn btn-success btn-sm" data-toggle="modal"
-                                data-target={{ '#' . '_' . $item->booking->id }}><i class="fas fa-calendar-week"></i></button>
+                                data-target={{ '#' . '_' . $item->booking->id }}><i
+                                    class="fas fa-calendar-week"></i></button>
                         </td>
                         <td>
                             @if ($item->status == 0)
@@ -103,10 +104,11 @@
                                                     $timeTotal += $item->service->execution_time;
                                                 @endphp
                                                 <li>
-                                                    Tên dịch vụ : {{$item->service->name}}
+                                                    Tên dịch vụ : {{ $item->service->name }}
                                                 </li>
-                                                <li>Giá : {{ number_format($item->service->discount)}}đ</li>
-                                                <li>Thời gian làm : {{$item->service->execution_time}} phút</li>
+                                                <li>Giá : {{ number_format($item->service->discount) }}đ</li>
+                                                <li>Thời gian làm : {{ $item->service->execution_time }} phút</li>
+                                                <li>Thời gian bắt đầu : {{ $item->booking->time->time_start }}</li>
                                                 <li>Ngày : {{ $item->booking->date_booking }}</li>
                                                 <li>
                                                     Tổng thời gian: {{ $timeTotal }} phút
@@ -118,23 +120,17 @@
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label class="font-weight-bold">Thời gian</label>
-                                                    <select class="mt-3 form-control " name="time"
-                                                    id={{$item->id."time"}}>
-                                                        @foreach ($times as $time)
-                                                            <option value={{ $time->time_start }}>
-                                                                {{ $time->time_start }}
-                                                            </option>
-                                                        @endforeach
-
-                                                    </select>
+                                                    <div class="mt-3">
+                                                        <input type="text" class="form-control bs-timepicker"
+                                                            id={{ $item->id . 'time' }}>
+                                                    </div>
+                                                    <p class="error_dateTime"></p>
                                                 </div>
-                                                <p class="error_dateTime"></p>
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label class="font-weight-bold">Số ghế</label>
-                                                    <select class="mt-3 form-control " name="chair"
-                                                        id="chair_id">
+                                                    <select class="mt-3 form-control " name="chair" id="chair_id">
                                                         @foreach ($chairs as $chair)
                                                             <option value={{ $chair['key'] }}>
                                                                 {{ $chair['label'] }}
@@ -145,17 +141,16 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-success" data-dismiss="modal"
+                                            onclick="submit({{ $item->id }},{{ $timeTotal }},{{ $item->booking->salon_id }})">Xếp
+                                            lịch</button>
+                                    </div>
+                                    <input type="hidden" id="status" value="1">
                                 </div>
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success" data-dismiss="modal"
-                                        onclick="submit({{$item->id }},{{ $timeTotal }},{{$item->booking->salon_id}})">Xếp
-                                        lịch</button>
-                                </div>
-                                <input type="hidden" id="status" value="1">
                             </div>
                         </div>
-                    </div>
                 @endforeach
             </tbody>
         </table>
@@ -190,10 +185,10 @@
 @endsection
 @section('js')
     <script type="text/javascript" charset="utf-8">
-        function submit(id, timetotal , salon) {
+        function submit(id, timetotal, salon) {
             let chair_id = $('#chair_id').val();
-            let time =  $(`#${id}time`).val()
-            let timestart =   $(`#${id}time`).val()
+            let time = $(`#${id}time`).val()
+            let timestart = $(`#${id}time`).val()
             let status = $('#status').val();
             let mang = time.split(':')
             let h = Math.floor((Number(mang[1]) + Number(timetotal)) / 60)
@@ -201,8 +196,8 @@
             mang[0] = Number(mang[0]) + h
             mang[1] = p
             time = mang.join(':')
-             $('.close_modal');
-             $('.error_dateTime').html();
+            $('.close_modal');
+            $('.error_dateTime').html();
             $.ajax({
                 type: "post",
                 url: "{{ route('admin.bookings.sortAppointment') }}",
@@ -221,7 +216,7 @@
                     setTimeout(function() {
                         window.location.href = "{{ route('admin.bookings.sortAppointment') }}";
                     }, 500);
-                
+
                     $('.error_dateTime').html(data);
                 }
             });
@@ -293,5 +288,14 @@
                 window.location.href = url
             })
         });
+        $(document).ready(function() {
+            $('.bs-timepicker').timepicker({
+                format: 'HH:mm:00',
+                showInputs: false,
+                showMeridian: false,
+                setTime: null
+            });
+
+        })
     </script>
 @endsection

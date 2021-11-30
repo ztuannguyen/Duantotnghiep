@@ -90,7 +90,7 @@
                                                     <button type="button" class="btn btn-default"
                                                         data-dismiss="modal">Cancel</button>
 
-                                                    <form method="GET"
+                                                    <form method="POST"
                                                         action="{{ route('admin.cate_services.delete', ['id' => $item->id]) }}">
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger">Xóa</button>

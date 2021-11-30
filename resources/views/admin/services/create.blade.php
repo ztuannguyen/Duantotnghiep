@@ -22,7 +22,7 @@
                     {{-- name --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Tên dịch vụ</label>
-                        <input class="form-control" type="text" name="name" placeholder="Nhập tên dịch vụ ...">
+                        <input class="form-control" type="text" name="name" placeholder="Nhập tên dịch vụ ..." value="{{old('name')}}">
                         @error('name')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -30,7 +30,7 @@
                     {{-- price --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Giá</label>
-                        <input class="form-control" type="text" name="price" placeholder="Nhập giá ...">
+                        <input class="form-control" type="text" name="price" placeholder="Nhập giá ..." value="{{old('price')}}">
                         @error('price')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -49,8 +49,7 @@
                     {{-- execution_time --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Thời gian thực hiện</label>
-                        <input class="form-control" type="number" name="execution_time" placeholder="Nhập thời gian ...">
-
+                        <input class="form-control" type="number" name="execution_time" placeholder="Nhập thời gian ..."  value="{{old('execution_time')}}">
                         @error('execution_time')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -58,7 +57,7 @@
                     {{-- discount --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Giảm giá</label>
-                        <input class="form-control" type="text" name="discount" placeholder="Nhập số tiền đã giảm ...">
+                        <input class="form-control" type="text" name="discount" placeholder="Nhập số tiền đã giảm ..." value="{{old('discount')}}">
                         @error('discount')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror

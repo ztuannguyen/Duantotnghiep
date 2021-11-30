@@ -71,11 +71,11 @@
             ->get()
             ->count();
         $don_lam_xong = DB::table('bookings')
-            ->where('status', 4)
+            ->where('status', 3)
             ->get()
             ->count();
         $don_huy_lich = DB::table('bookings')
-            ->where('status', 5)
+            ->where('status', 4)
             ->get()
             ->count();
         ?>
@@ -189,20 +189,20 @@
                 $tong_dv_7 = DB::table('bookings')
                     ->orderBy('id', 'desc')
                     ->where('date_booking', '>=', $day_7)
-                    ->where('status', 4)
+                    ->where('status', 3)
                     ->select('total_price')
                     ->sum('total_price');
                 // Lấy dữ liệu đơn làm xong dịch vụ 30 ngày
                 $tong_dv_30 = DB::table('bookings')
                     ->orderBy('id', 'desc')
                     ->where('date_booking', '>=', $day_30)
-                    ->where('status', 4)
+                    ->where('status', 3)
                     ->sum('total_price');
                 // Lấy dữ liệu đơn làm xong hôm nay
                 $tong_dv_today = DB::table('bookings')
                     ->orderBy('id', 'desc')
                     ->where('date_booking', '>=', $toDay)
-                    ->where('status', 4)
+                    ->where('status', 3)
                     ->select('total_price')
                     ->sum('total_price');
                 ?>
