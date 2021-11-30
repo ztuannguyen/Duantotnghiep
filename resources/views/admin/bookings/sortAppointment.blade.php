@@ -60,7 +60,7 @@
                         <td>
                             {{ $loop->iteration }}
                         </td>
-                        <td>{{ $item->booking->id }}</td>
+                        <td>#{{ $item->booking->id }}</td>
                         <td>{{ $item->booking->number_phone }}</td>
                         <td>
                             {{ $item->service->name }}
@@ -211,13 +211,14 @@
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(data) {
+                    $('.error_dateTime').html(data);
                     toastr.success("Xếp lịch thành công !");
 
                     setTimeout(function() {
                         window.location.href = "{{ route('admin.bookings.sortAppointment') }}";
                     }, 500);
 
-                    $('.error_dateTime').html(data);
+                    
                 }
             });
         }

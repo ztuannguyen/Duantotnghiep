@@ -76,10 +76,10 @@ class SortAppointmentController extends Controller
             if ($request->id != $item->id) {
                 if($item->chair_id == $request->chair_id){
                     if ($request->time_start > $item->time_start && $request->time_start < $item->time_end
-                        || $request->time_end > $item->time_start && $request->time_end < $item->time_end
+                        || $item->time_end > $item->time_start && $item->time_end < $item->time_end
                         ) {
                             echo ' 
-                            <p class="mt-1" style="color: red">Thời gian khám bị trùng !</p>
+                            <p class="mt-1" style="color: red">Thời gian xếp bị trùng !</p>
                             ';
                             die;
                     }
