@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2021 at 05:39 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.4.24
+-- Generation Time: Dec 06, 2021 at 10:23 AM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 7.4.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,32 @@ SET time_zone = "+00:00";
 --
 -- Database: `data_datn`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blogs`
+--
+
+CREATE TABLE `blogs` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `detail` text NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `cate_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `blogs`
+--
+
+INSERT INTO `blogs` (`id`, `title`, `description`, `detail`, `image`, `status`, `cate_id`, `created_at`, `updated_at`) VALUES
+(1, 'demooooo', 'aaaaaaaaaaaaa', '<p>aaaaaaaaaaaa</p>', '1638085002.png', 0, 2, '2021-11-28 07:36:42', '2021-11-28 07:46:04'),
+(2, 'demo2', 'aaaaaaaaaaaaaaaaaaaaaaaaaaa', '<p>aaaaaaaaaaaaaaaaaaaaaaaa</p>', '1638203510.png', 0, 2, '2021-11-29 16:31:50', '2021-11-29 16:32:45');
 
 -- --------------------------------------------------------
 
@@ -47,9 +73,14 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `number_phone`, `salon_id`, `time_id`, `note`, `date_booking`, `total_price`, `discount_price`, `add_by_id_user`, `status`, `created_at`, `updated_at`) VALUES
-(140, '0981794925', 1, 83, NULL, '2021-11-24', 100000, NULL, NULL, 4, '2021-11-24 03:37:32', '2021-11-24 07:57:58'),
-(141, '0981794925', 1, 83, NULL, '2021-11-24', 140000, NULL, NULL, 4, '2021-11-24 03:43:58', '2021-11-24 07:57:52'),
-(149, '0981794925', 1, 83, NULL, '2021-11-26', 219000, NULL, NULL, 2, '2021-11-26 14:37:14', '2021-11-26 14:54:01');
+(140, '0981794925', 1, 83, NULL, '2021-11-24', 100000, NULL, NULL, 3, '2021-11-24 03:37:32', '2021-11-24 07:57:58'),
+(141, '0981794925', 1, 83, NULL, '2021-11-24', 140000, NULL, NULL, 3, '2021-11-24 03:43:58', '2021-11-24 07:57:52'),
+(149, '0981794925', 1, 83, NULL, '2021-11-26', 259000, NULL, NULL, 3, '2021-11-26 14:37:14', '2021-11-28 03:20:05'),
+(150, '0981794925', 1, 83, NULL, '2021-11-28', 259000, NULL, NULL, 3, '2021-11-28 08:12:48', '2021-11-28 10:16:19'),
+(151, '0934246754', 1, 88, NULL, '2021-11-28', 360000, NULL, NULL, 3, '2021-11-28 10:25:46', '2021-11-28 10:28:36'),
+(152, '0345674475', 2, 83, NULL, '2021-11-28', 100000, NULL, NULL, 4, '2021-11-28 12:01:12', '2021-11-28 12:12:55'),
+(154, '0988353523', 1, 83, NULL, '2021-11-30', 390000, NULL, NULL, 2, '2021-11-30 02:43:15', '2021-11-30 02:45:23'),
+(155, '0981335567', 1, 83, NULL, '2021-11-30', 379000, NULL, NULL, 1, '2021-11-30 02:50:11', '2021-11-30 02:50:11');
 
 -- --------------------------------------------------------
 
@@ -79,7 +110,39 @@ INSERT INTO `booking_services` (`id`, `booking_id`, `service_id`, `chair_id`, `s
 (414, 141, 14, 31, 1, '08:30:00', '09:00:00', 1, '2021-11-24 06:52:22', '2021-11-24 03:43:58'),
 (415, 141, 15, 31, 1, '09:00:00', '09:20:00', 1, '2021-11-24 08:56:58', '2021-11-24 03:43:58'),
 (432, 149, 14, 30, 1, '08:30:00', '09:00:00', 1, '2021-11-26 14:37:22', '2021-11-26 14:37:14'),
-(433, 149, 28, 30, 1, '09:00:00', '09:30:00', 1, '2021-11-26 14:54:01', '2021-11-26 14:37:14');
+(433, 149, 28, 30, 1, '09:00:00', '09:30:00', 1, '2021-11-26 14:54:01', '2021-11-26 14:37:14'),
+(434, 150, 14, 30, 1, '08:30:00', '09:00:00', 1, '2021-11-28 08:13:37', '2021-11-28 08:12:48'),
+(435, 150, 18, 30, 1, '09:00:00', '09:08:00', 1, '2021-11-28 08:13:43', '2021-11-28 08:12:48'),
+(436, 150, 27, 30, 1, '09:10:00', '09:30:00', 1, '2021-11-30 01:29:58', '2021-11-28 08:14:12'),
+(437, 151, 14, 30, 1, '11:00:00', '11:30:00', 1, '2021-11-28 10:27:41', '2021-11-28 10:25:46'),
+(438, 151, 23, 30, 1, '11:30:00', '12:00:00', 1, '2021-11-28 10:27:54', '2021-11-28 10:25:46'),
+(439, 152, 14, 30, 2, '08:30:00', '09:00:00', 1, '2021-11-28 12:11:26', '2021-11-28 12:01:12'),
+(442, 154, 14, 30, 1, '08:30:00', '09:00:00', 1, '2021-11-30 02:43:29', '2021-11-30 02:43:15'),
+(443, 154, 22, 30, 1, '09:00:00', '09:20:00', 1, '2021-11-30 02:44:53', '2021-11-30 02:44:21'),
+(444, 154, 23, 30, 1, '09:20:00', '09:50:00', 1, '2021-11-30 02:45:34', '2021-11-30 02:44:21'),
+(445, 155, 23, NULL, 1, NULL, NULL, 0, '2021-11-30 08:29:23', '2021-11-30 02:50:11'),
+(446, 155, 27, NULL, 1, NULL, NULL, 0, '2021-11-30 02:50:11', '2021-11-30 02:50:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cate_blogs`
+--
+
+CREATE TABLE `cate_blogs` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cate_blogs`
+--
+
+INSERT INTO `cate_blogs` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(2, 'Xu hướng tóc đẹp', 0, '2021-11-28 05:03:19', '2021-11-28 05:03:19');
 
 -- --------------------------------------------------------
 
@@ -101,7 +164,7 @@ CREATE TABLE `cate_services` (
 --
 
 INSERT INTO `cate_services` (`id`, `name_cate`, `status`, `order_by`, `created_at`, `updated_at`) VALUES
-(19, 'CẮT GỘI MASSAGE', 0, 1, '2021-09-28 23:00:51', '2021-11-19 15:09:25'),
+(19, 'CẮT GỘI MASSAGE', 0, 1, '2021-09-28 23:00:51', '2021-11-28 04:56:08'),
 (21, 'COMBO CHĂM SÓC DA - THƯ GIÃN', 0, 2, '2021-09-30 15:02:42', '2021-11-19 15:09:23'),
 (22, 'UỐN HÀN QUỐC 4 CẤP ĐỘ', 0, 3, '2021-09-30 15:02:50', '2021-10-16 02:39:42'),
 (23, 'NHUỘM CAO CẤP', 0, 4, '2021-10-03 06:55:25', '2021-10-16 02:39:46'),
@@ -202,7 +265,8 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'nhân viên', '2021-09-28 02:52:33', '2021-09-28 02:52:33'),
-(2, 'quản lý', '2021-09-28 02:52:42', '2021-09-28 02:52:42');
+(2, 'quản lý', '2021-09-28 02:52:42', '2021-09-28 02:52:42'),
+(3, 'khách hàng', '2021-12-05 16:37:59', '2021-12-05 16:37:59');
 
 -- --------------------------------------------------------
 
@@ -558,31 +622,39 @@ INSERT INTO `times` (`id`, `time_start`, `time_end`, `created_at`, `updated_at`)
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `name` varchar(250) NOT NULL,
+  `name` varchar(250) DEFAULT NULL,
   `number_phone` varchar(255) NOT NULL,
-  `pass` varchar(255) NOT NULL,
+  `pass` varchar(255) DEFAULT NULL,
   `otp` int(11) NOT NULL,
-  `image` varchar(300) NOT NULL,
-  `ratings` int(11) NOT NULL,
+  `image` varchar(300) DEFAULT NULL,
+  `ratings` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp()
+  `updated_at` timestamp NULL DEFAULT current_timestamp(),
+  `verify` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `name`, `number_phone`, `pass`, `otp`, `image`, `ratings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Tự Biên', '0988353523', '123201', 546529, '1633595565.jpg', 5, '2021-09-27 16:15:44', '2021-10-20 08:43:03'),
-(3, 2, 'Trung Kiên', '0939317456', '569012', 583346, '1633595676.jpg', 5, '2021-09-28 05:09:37', '2021-10-20 08:43:09'),
-(4, 1, 'Như Nguyên', '0345674475', '324323', 234523, '1633595689.jpg', 5, '2021-09-28 05:09:56', '2021-10-20 08:43:14'),
-(5, 1, 'Bá Phi', '0981794925', '3442324', 243423, '1633595711.jpg', 5, '2021-09-28 05:10:16', '2021-10-20 08:43:20'),
-(6, 1, 'Văn Thực', '0981335567', '232546', 124211, '1633595758.jpg', 5, '2021-10-04 09:45:31', '2021-10-20 08:43:26'),
-(7, 1, 'Trường Giang', '0988394203', '124124', 355328, '1633595797.jpg', 5, '2021-10-04 09:47:53', '2021-10-20 08:43:32');
+INSERT INTO `users` (`id`, `role_id`, `name`, `number_phone`, `pass`, `otp`, `image`, `ratings`, `created_at`, `updated_at`, `verify`) VALUES
+(1, 1, 'Tự Biên', '0988353523', '123201', 546529, '1633595565.jpg', 5, '2021-09-27 16:15:44', '2021-10-20 08:43:03', 0),
+(3, 2, 'Trung Kiên', '0939317456', '569012', 583346, '1633595676.jpg', 5, '2021-09-28 05:09:37', '2021-10-20 08:43:09', 0),
+(4, 1, 'Như Nguyên', '0345674475', '324323', 234523, '1633595689.jpg', 5, '2021-09-28 05:09:56', '2021-10-20 08:43:14', 0),
+(5, 1, 'Bá Phi', '0981794925', '3442324', 243423, '1633595711.jpg', 5, '2021-09-28 05:10:16', '2021-10-20 08:43:20', 0),
+(6, 1, 'Văn Thực', '0981335567', '232546', 124211, '1633595758.jpg', 5, '2021-10-04 09:45:31', '2021-10-20 08:43:26', 0),
+(7, 1, 'Trường Giang', '0988394203', '124124', 355328, '1633595797.jpg', 5, '2021-10-04 09:47:53', '2021-10-20 08:43:32', 0),
+(13, 3, 'Test', '0898103236', '123456', 945190, NULL, NULL, '2021-12-06 04:41:24', '2021-12-06 09:14:38', 1);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `blogs`
+--
+ALTER TABLE `blogs`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `bookings`
@@ -594,6 +666,12 @@ ALTER TABLE `bookings`
 -- Indexes for table `booking_services`
 --
 ALTER TABLE `booking_services`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cate_blogs`
+--
+ALTER TABLE `cate_blogs`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -674,16 +752,28 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `blogs`
+--
+ALTER TABLE `blogs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
 
 --
 -- AUTO_INCREMENT for table `booking_services`
 --
 ALTER TABLE `booking_services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=434;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=447;
+
+--
+-- AUTO_INCREMENT for table `cate_blogs`
+--
+ALTER TABLE `cate_blogs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `cate_services`
@@ -713,7 +803,7 @@ ALTER TABLE `logos`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `salons`
@@ -755,7 +845,7 @@ ALTER TABLE `times`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables

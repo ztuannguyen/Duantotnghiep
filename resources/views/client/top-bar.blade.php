@@ -18,6 +18,12 @@
               tôi</a></li>
           <li class="nav-item "><a href="{{route('client.blog')}}" class="nav-link">Blog</a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link">Liên hệ</a></li>
+          @if (!Auth::check())
+            <li class="nav-item"><a href="{{route('client.login')}}" class="nav-link">Đăng nhập</a></li>
+          @else
+            <li class="nav-item"><a href="javascript:void(0)" class="nav-link">{{Auth::user()->name}}</a></li>
+            <li class="nav-item"><a href="{{route('client.logout')}}" class="nav-link">Thoát</a></li>
+          @endif
         </ul>
       </div>
     </div>
