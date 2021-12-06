@@ -140,6 +140,21 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+
+        'email'		=> [
+            'required'		=>	'Bạn chưa nhập email',
+            'email'			=>	'Bạn chưa nhập đúng định dạng email'
+        ],
+
+        'hotline' => [
+            'required'		=>	'Bạn chưa nhập hotline',
+            'max:13'       => 'Hotline không vượt quá 13 số',
+            'numeric'     => 'Hotline phải là số'
+        ],
+
+        'description' => ['required' => 'Bạn chưa nhập mô tả'],
+        'fanpage' => ['required'=> 'Bạn chưa nhập fanpage'],
+        'status' => ['required'=> 'Bạn chưa chọn status'],
     ],
 
     /*
