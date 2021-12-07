@@ -21,12 +21,16 @@ use Illuminate\Support\Facades\Auth;
 
 // Client
 Route::get('/', function () {
-    if (Auth::user()->role_id == 3) {
-        return redirect()->route('client.show');
-    } elseif (Auth::user()->role_id == 1) {
-        return redirect()->route('client.show');
+    if (Auth::check()) {
+        if (Auth::user()->role_id == 3) {
+            return redirect()->route('client.show');
+        } elseif (Auth::user()->role_id == 1) {
+            return redirect()->route('admin.bookings.index');
+        } else {
+            return redirect()->route('admin.dashboard');
+        }
     } else {
-        return redirect()->route('admin.bookings.index');
+        return redirect()->route('client.show');
     }
 });
 Route::group(['middleware' => 'verify.customer'], function () {

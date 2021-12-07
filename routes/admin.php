@@ -126,7 +126,6 @@ Route::group(['middleware' => 'verify.admin'], function () {
     Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
     Route::get('/admin/users/edit/{user}', [UserController::class, 'edit'])->name('admin.users.edit');
     Route::post('/admin/users/update/{user}', [UserController::class, 'update'])->name('admin.users.update');
-    Route::get('/admin/users/logout', [UserController::class,'logout'])->name('admin.users.logout');
 
     //--------------------------LOGO--------------------//
     Route::group([
@@ -241,3 +240,4 @@ Route::group(['middleware' => 'verify.admin'], function () {
         });
     });
 });
+Route::get('/admin/users/logout', [UserController::class,'logout'])->name('admin.users.logout');
