@@ -4,14 +4,14 @@
         <div class="col-sm-12">
             <h3>Tên người dùng</h3>
             <div class="input-group mb-3" style="width: 1039px">
-                <input type="text" class="form-control" name="name" placeholder="Nhập tên người dùng">
+                <input type="text" class="form-control" name="name" placeholder="Nhập tên người dùng" required>
             </div>
         </div>
     @endif
     <div class="col-sm-12">
         <h3>Mật khẩu</h3>
         <div class="input-group mb-3" style="width: 1039px">
-            <input type="text" class="form-control" name="password" id="password" placeholder="Nhập mật khẩu">
+            <input type="text" class="form-control" name="password" id="password" placeholder="Nhập mật khẩu" required>
         </div>
     </div>
     @if (is_null(@$user->name))

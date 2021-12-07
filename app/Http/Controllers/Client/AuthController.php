@@ -49,6 +49,7 @@ class AuthController extends Controller
                     return response()->json([
                         'status' => 200,
                         'data'   =>  view('client.includes.auth.step3',compact('user'))->render(),
+                        'verify' => true
                     ]);
                 }
             }
@@ -61,6 +62,7 @@ class AuthController extends Controller
         return response()->json([
             'status' => 200,
             'data'   =>  view('client.includes.auth.step2',compact('phone'))->render(),
+            'verify' => false
         ]);
     }
 

@@ -22,9 +22,13 @@ $(document).ready(function() {
                 },
                 success: function(response) {
                     if(response.status == 200) {
-                        $("#phone_number").val(response.phone);
-                        $("#step-2").html(response.data);
-                        $("#step-2").fadeIn();
+                        if (response.verify == false) {
+                            $("#step-2").html(response.data);
+                            $("#step-2").fadeIn();
+                        } else {
+                            $("#step-3").html(response.data);
+                            $("#step-3").fadeIn();
+                        }
                     } else {
                         swal("Thất bại", "Số điện thoại không có trong hệ thống", "error", {
                             button: "Xác nhận",
