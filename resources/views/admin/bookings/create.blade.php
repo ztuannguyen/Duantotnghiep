@@ -19,6 +19,14 @@
                 <form method="POST" action="{{ route('admin.bookings.store') }}">
                     @csrf
                     <div class="form-group">
+                        <label class="font-weight-bold">Tên khách hàng</label>
+                        <input class="form-control" type="text" name="name" value="{{ old('name') }}"
+                            placeholder="Nhập tên khách hàng">
+                        @error('name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label class="font-weight-bold">Số điện thoại</label>
                         <input class="form-control" type="tel" name="number_phone" value="{{ old('number_phone') }}"
                             placeholder="Nhập số điện thoại">
@@ -38,11 +46,13 @@
                         <label for="" class="font-weight-bold">Dịch vụ</label>
                         <select class="form-control mt-3 " id="js-example-basic-single" name="service_id[]" multiple
                             data-select2-id="js-example-basic-single" tabindex="-1" aria-hidden="true">
-                                @foreach ($service as $s)
-                                    <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                @endforeach
+                            @foreach ($service as $s)
+                                <option value="{{ $s->id }}">{{ $s->name }}</option>
+                            @endforeach
                         </select>
-
+                        @error('service_id')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Thời gian</label>
@@ -78,9 +88,12 @@
                                 Đã xếp lịch
                             </option>
                             <option value="3">
-                                Đã xong
+                                Đang làm
                             </option>
                             <option value="4">
+                                Đã xong
+                            </option>
+                            <option value="5">
                                 Hủy lịch
                             </option>
                             @error('status')

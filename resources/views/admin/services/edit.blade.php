@@ -55,17 +55,17 @@
                                 @enderror
                             </div>
                             {{-- execution_time --}}
-                            <div class="form-group">
+                            <div class="form-group mt-2">
                                 <label class="font-weight-bold">Thời gian thực hiện</label>
                                 <input class="form-control" type="number" name="execution_time"
-                                    value="{{ $service->execution_time }}" placeholder="Nhập thời gian ...">Phút
+                                    value="{{ $service->execution_time }}" placeholder="Nhập thời gian ..." >
                                 @error('execution_time')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             {{-- discount --}}
                             <div class="form-group">
-                                <label class="font-weight-bold">discount</label>
+                                <label class="font-weight-bold">Giảm giá</label>
                                 <input class="form-control" type="text" name="discount" value="{{ $service->discount }}"
                                     placeholder="">
                                 @error('discount')

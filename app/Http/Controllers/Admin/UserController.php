@@ -58,7 +58,6 @@ class UserController extends Controller
                 'pass' => 'required|min:6|max:10',
                 'otp' => 'required',
                 'image' => 'required',
-                'ratings' => 'required',
                 'role_id' => 'required',
             ]);
             if ($validator->fails()) {
@@ -97,7 +96,6 @@ class UserController extends Controller
                 'number_phone' => 'required',
                 'pass' => 'required|min:6|max:10',
                 'otp' => 'required',
-                'ratings' => 'required',
                 'role_id' => 'required',
             ]);
             if ($validator->fails()) {
@@ -119,7 +117,6 @@ class UserController extends Controller
                 'pass' => $request->pass,
                 'otp' => $request->otp,
                 'image' => $filename,
-                'ratings' => $request->ratings,
                 'role_id' =>  $request->role_id,
             ]);
         } else {
@@ -128,7 +125,6 @@ class UserController extends Controller
                 'number_phone' => $request->number_phone,
                 'pass' => $request->pass,
                 'otp' => $request->otp,
-                'ratings' => $request->ratings,
                 'role_id' =>  $request->role_id,
             ]);
         }

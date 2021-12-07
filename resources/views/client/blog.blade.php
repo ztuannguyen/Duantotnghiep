@@ -27,17 +27,13 @@
                             <div class="col-md-12 d-flex ftco-animate">
                                 <div class="blog-entry align-self-stretch d-md-flex">
                                     <a href="{{ route('client.detailBlog', ['id' => $item->id]) }}" class="block-20">
-                                        <img src="{{ asset('uploads/' . $item->image) }}" alt="{{ $item->title }}">
+                                        <div class="mt-3">
+                                            <img src="{{ asset('uploads/' . $item->image) }}" alt="{{ $item->title }}" width="400" height="200">
+                                        </div>
                                     </a>
                                     <div class="text d-block pl-md-4">
-                                        <div class="meta mb-3">
-                                            <div><a href="#">{{ $item->created_at }}</a></div>
-                                            {{-- <div><a href="#">Admin</a></div>
-                                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span>
-                                                    3</a>
-                                            </div> --}}
-                                        </div>
-                                        <h3 class="heading"><a
+                                       
+                                        <h3 class="heading mt-2"><a
                                                 href="{{ route('client.detailBlog', ['id' => $item->id]) }}">{{ $item->title }}</a>
                                         </h3>
                                         <p>{{ $item->description }}</p>
@@ -88,21 +84,24 @@
                         </ul>
                     </div>
 
-                    <div class="sidebar-box bg-light ftco-animate">
-                        <h3 class="heading-2">Bài viết gần đây</h3>
-                        <div class="block-21 mb-4 d-flex">
-                            <a class="blog-img mr-4" style="background-image: url(images/work-1.jpg);"></a>
-                            <div class="text">
-                                <h3 class="heading-1"><a href="#">Even the all-powerful Pointing has no control about
-                                        the blind texts</a></h3>
-                                <div class="meta">
-                                    <div><a href="#"><span class="icon-calendar"></span> Sept. 12, 2019</a></div>
-                                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                    {{-- <div class="sidebar-box bg-light ftco-animate">
+                        <h3 class="heading-2">Bài viết liên quan</h3>
+                        @foreach ($cateblog as $item)
+                            <div class="block-21 mb-4 d-flex">
+                                <a href="{{ route('client.detailBlog', ['id' => $item->id]) }}"><img
+                                        src="{{ asset('uploads/' . $item->image) }}" alt="" width="180px"></a>
+                                <div class="text">
+                                    <h3 class="heading-1"><a
+                                            href="{{ route('client.detailBlog', ['id' => $item->id]) }}">{{ $item->title }}</a>
+                                    </h3>
+                                    <div class="meta">
+                                        <div><a href="#"><span class="icon-calendar"></span> {{$item->created_at}}</a></div>
+                                     
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        @endforeach
+                    </div> --}}
 
                     {{-- <div class="sidebar-box bg-light ftco-animate">
                         <h3 class="heading-2">Tag Cloud</h3>

@@ -14,6 +14,7 @@ class Booking extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'name',
         'number_phone',
         'salon_id',
         'time_id',

@@ -15,7 +15,6 @@ class CateService extends Model
     protected $fillable = [
         'name_cate',
         'status',
-        'order_by',
     ];
 
     public function Services(){

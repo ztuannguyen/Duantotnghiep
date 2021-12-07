@@ -27,7 +27,7 @@ class SalonRequest extends FormRequest
             'name_salon' => 'required|unique:salons|max:255',
             'slot_amount' => 'required|integer',
             'address' => 'required|max:255',
-            'image' => 'image',
+            'image' => 'required|image',
             'description' => 'required|max:255'
         ];
     }
@@ -50,6 +50,7 @@ class SalonRequest extends FormRequest
             'slot_amount'=>'Số ghế',
             'address'=>'Địa chỉ',
             'description' => 'Mô tả',
+            'image' => 'Ảnh'
         ];
     }
 }

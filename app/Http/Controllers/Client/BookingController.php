@@ -10,6 +10,7 @@ use App\Models\Salon;
 use App\Models\Service;
 use App\Models\Time;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\Booking\BookingRequest;
 
 class BookingController extends Controller
 {
@@ -23,7 +24,7 @@ class BookingController extends Controller
         return view('client.booking', compact('salon', 'service', 'cateService', 'time'));
     }
 
-    public function store(Request $request)
+    public function store(BookingRequest $request)
     {
 
         $booking = new Booking();

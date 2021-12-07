@@ -36,7 +36,7 @@
 
                 <div class="form-group">
                     <label class="font-weight-bold">Mật khẩu</label>
-                    <input class="form-control" type="text" name="pass" placeholder="Nhập mật khẩu ...">
+                    <input class="form-control" type="text" name="password" placeholder="Nhập mật khẩu ...">
                     @error('pass')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -76,13 +76,6 @@
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label class="font-weight-bold">Xếp hạng</label>
-                    <input class="form-control" type="text" name="ratings" placeholder="Nhập thứ tự xếp hạng ...">
-                    @error('ratings')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
                 <button type="submit" class="btn btn-success">Thêm</button>
             </form>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Slide;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SlideController extends Controller
 {
@@ -18,6 +19,24 @@ class SlideController extends Controller
         return view('admin.slides.create');
     }
     public function store(Request $request){
+        if ($request->isMethod('post')) {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'image' => 'required|image',
+
+                ],
+                [
+                    'image.required' => 'Ảnh slide không được để trống',
+                    'image.image' => 'Ảnh slide không đúng định dạng'
+                ]
+            );
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+        }
         $data =  $request->except('_token');
 
         $model = new Slide();
@@ -41,6 +60,23 @@ class SlideController extends Controller
 
     public function update(Slide $slide, Request $request)
     {
+        if ($request->isMethod('post')) {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'image' => 'image',
+
+                ],
+                [
+                    'image.image' => 'Ảnh slide không đúng định dạng'
+                ]
+            );
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+        }
         $slides = new Slide();
         if ($request->hasFile('image')) 
         {
