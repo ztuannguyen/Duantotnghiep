@@ -3,6 +3,7 @@
     Liên hệ
 @endsection
 @section('contents')
+@csrf
 <section class="hero-wrap hero-wrap-2" style="background-image: url('frontend/images/bg-1.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
@@ -64,16 +65,20 @@
 
               <!--Grid column-->
               <div class="col-md-12 mb-md-0 mb-5">
-                <form id="contact-form" name="contact-form" action="mail.php" method="POST">
-
+                <form  action="{{ route('client.postContact') }}" method="POST">
+                  @csrf
                   <!--Grid row-->
                   <div class="row">
 
                     <!--Grid column-->
                     <div class="col-md-6">
                       <div class="md-form mb-0">
-                        <label for="name" class="">Họ Tên</label>
-                        <input type="text" id="name" name="name" class="form-control">
+                        <label for="name" class="">Họ và Tên (<a style="color: red">*</a>)</label>
+                       
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Nhập họ và tên ...">
+                        @error('name')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                       </div>
                     </div>
                     <!--Grid column-->
@@ -81,9 +86,12 @@
                     <!--Grid column-->
                     <div class="col-md-6">
                       <div class="md-form mb-0">
-                        <label for="tel" class="">Số điện thoại</label>
-                        <input type="tel" id="tel" name="tel" class="form-control">
+                        <label for="tel" class="">Số điện thoại (<a style="color: red">*</a>)</label>
                         
+                        <input type="tel" id="tel" name="phone_number" class="form-control" placeholder="Nhập số điện thoại ...">
+                        @error('phone_number')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                       </div>
                     </div>
                     <!--Grid column-->
@@ -92,7 +100,7 @@
                   <!--Grid row-->
 
                   <!--Grid row-->
-                  <div class="row">
+                  {{-- <div class="row">
                     <div class="col-md-12">
                       <div class="md-form mb-0">
                         <label for="email" class="">Email</label>
@@ -100,7 +108,7 @@
                         
                       </div>
                     </div>
-                  </div>
+                  </div> --}}
                   <!--Grid row-->
 
                   <!--Grid row-->
@@ -110,23 +118,25 @@
                     <div class="col-md-12">
 
                       <div class="md-form">
-                        <label for="message">Nội dung</label>
-                        <textarea type="text" id="message" name="message" rows="2"
-                          class="form-control md-textarea"></textarea>
+                        <label for="message">Nội dung (<a style="color: red">*</a>)</label>
                         
+                        <textarea type="text" id="message" name="note" rows="5"
+                          class="form-control md-textarea" ></textarea>
+                    @error('note')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
                       </div>
 
                     </div>
                   </div>
                   <!--Grid row-->
-
+                  <div class="text-center text-md-left">
+                    <input type="submit" class="btn btn-primary" value="Gửi thông tin">
+                  </div>
+                  <div class="status"></div>
+                </div>
                 </form>
 
-                <div class="text-center text-md-left">
-                  <a class="btn btn-primary" onclick="validateForm();">Gửi thông tin</a>
-                </div>
-                <div class="status"></div>
-              </div>
               <!--Grid column-->
 
 

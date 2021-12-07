@@ -155,6 +155,14 @@ return [
         'description' => ['required' => 'Bạn chưa nhập mô tả'],
         'fanpage' => ['required'=> 'Bạn chưa nhập fanpage'],
         'status' => ['required'=> 'Bạn chưa chọn status'],
+        'note' => ['required' => 'Không được bỏ trống'],
+        'name'		=> [
+            'required'		=>	'Không được bỏ trống',
+        ],
+
+        'phone_number'		=> [
+            'required'		=>	'Không được bỏ trống',
+        ],
     ],
 
     /*
