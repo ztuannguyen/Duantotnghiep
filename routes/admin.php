@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\ChairController;
 use App\Http\Controllers\Admin\BlogCateController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\SortAppointmentController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -241,3 +242,9 @@ Route::group([
     });
 });
 
+Route::get('/admin/footers', [FooterController::class, 'index'])->name('admin.footers.index');
+Route::post('/admin/footers/delete/{footer}', [FooterController::class, 'delete'])->name('admin.footers.delete');
+Route::get('/admin/footers/create', [FooterController::class, 'create'])->name('admin.footers.create');
+Route::get('/admin/footers/edit/{footer}', [FooterController::class, 'edit'])->name('admin.footers.edit');
+Route::post('/admin/footers/store', [FooterController::class, 'store'])->name('admin.footers.store');
+Route::post('/admin/footers/update/{footer}', [FooterController::class, 'update'])->name('admin.footers.update');

@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/jquery.timepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/icomoon.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap-datepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/css/booking.css') }}">
     <link rel="stylesheet"
@@ -110,6 +111,7 @@
     <script src="{{ asset('frontend/js/aos.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.animateNumber.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.timepicker.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('frontend/js/scrollax.min.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     @yield('scripts')

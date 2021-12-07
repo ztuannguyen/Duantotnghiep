@@ -180,7 +180,6 @@
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
-
                                     <div class="col-sm-12">
                                         <h4>Chọn dịch vụ</h4>
                                         <div class="input-group mb-3" data-toggle="modal" data-target="#listService">
@@ -198,8 +197,8 @@
                                         </div>
                                         <div id="selected_services_container"></div>
                                         @error('service_id')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="col-sm-12">
                                         <h4>Lời nhắn</h4>
@@ -224,11 +223,12 @@
                                 <div class="col text-center">
                                     <button type="submit" class="btn btn-primary">Đặt Lịch Ngay</button>
                                 </div>
-                            </form>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
 
         </div>
     </section>

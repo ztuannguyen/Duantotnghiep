@@ -33,3 +33,12 @@ Route::get('/trang-bai-viet',[BlogController::class,'list'])->name('client.blog'
 Route::get('danh-muc-bai-viet/{id}',[BlogController::class,'category'])->name('category');
 Route::get('/chi-tiet-bai-viet/{id}',[BlogController::class,'detail'])->name('client.detailBlog');
 Route::get('/tim-kiem-bai-viet',[BlogController::class,'search'])->name('search');
+
+Route::get('/trang-lien-he', function() {
+    return view('client/contact');
+})->name('client.contact');
+
+
+Route::get('/trang-gioi-thieu', function() {
+    return view('client/about');
+})->name('client.about');
