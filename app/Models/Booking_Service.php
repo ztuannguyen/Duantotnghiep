@@ -22,4 +22,10 @@ class Booking_Service extends Model
     public function service(){
         return $this->belongsTo(Service::class,'service_id','id');
     }
+    public function chair(){
+        return $this->belongsTo(Chair::class,'chair_id','id');
+    }
+    public function salon(){
+        return $this->belongsTo(Salon::class,'salon_id','id');
+    }
 }

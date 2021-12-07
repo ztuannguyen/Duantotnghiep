@@ -24,7 +24,7 @@
                         <span class="text">Thêm mới</span>
                     </a>
                 </div>
-                <div class="col-3"></div>
+                {{-- <div class="col-3"></div>
                 <div class="col-7 mt-2">
                     <form action="" method="get">
                         <div class="row">
@@ -67,7 +67,7 @@
                             </div>
                         </div>
                     </form>
-                </div>
+                </div> --}}
             </div>
         </div>
     @section('search-form')
@@ -94,6 +94,7 @@
                         <tr>
                             <td>#</td>
                             <td>Mã hóa đơn</td>
+                            <td>Tên khách hàng</td>
                             <td>Số điện thoại</td>
                             <td>Chi nhánh</td>
                             <td>Thời gian</td>
@@ -108,6 +109,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>#{{ $item->id }}</td>
+                                <td>{{ $item->name }}</td>
                                 <td>{{ $item->number_phone }}</td>
                                 <td>{{ $item->Salon->address }}</td>
                                 <td>{{ $item->Time->time_start }}</td>
@@ -120,8 +122,10 @@
                                     @elseif($item->status == 2)
                                         <span class="badge badge-success p-3 ">Đã lên lịch</span>
                                     @elseif($item->status == 3)
-                                        <span class="badge badge-success p-3 ">Đã xong</span>
+                                        <span class="badge badge-warning p-3 ">Đang làm</span>
                                     @elseif($item->status == 4)
+                                        <span class="badge badge-success p-3 ">Đã xong</span>
+                                    @elseif($item->status == 5)
                                         <span class="badge badge-danger p-3 ">Hủy lịch</span>
                                     @endif
                                 </td>
@@ -183,6 +187,9 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="mb-3">
+                                                        Tên khách hàng : <b>{{ $item->name }}</b>
+                                                    </div>
+                                                    <div class="mb-3">
                                                         Số điện thoại : <b>{{ $item->number_phone }} </b>
                                                     </div>
                                                     <div class="mb-3">
@@ -216,17 +223,17 @@
                                                             </div>
                                                         </div>
                                                     @endforeach
-                                                    
+
                                                 </div>
                                             </div>
                                             <div class="card-header" style="width:50%;float:right;">
                                                 <div class="row mt-2">
                                                     <div class="col-8 ">
-                                                        <h6 class="m-0 font-weight-bold text-primary">Tổng tiền : 
+                                                        <h6 class="m-0 font-weight-bold text-primary">Tổng tiền :
                                                         </h6>
                                                     </div>
                                                     <div>
-                                                        <b>{{number_format($item->total_price)}}đ</b>
+                                                        <b>{{ number_format($item->total_price) }}đ</b>
                                                     </div>
                                                 </div>
                                             </div>

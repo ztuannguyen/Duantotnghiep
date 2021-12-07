@@ -612,9 +612,7 @@ pre code {
 }
 
 .container-fluid {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+    width: 95%;
     margin-right: auto;
     margin-left: auto;
 }
@@ -5110,7 +5108,7 @@ input[type="button"].btn-block {
     word-wrap: break-word;
     background-color: #333333;
     background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.125);
+    border: 2px solid black;
     border-radius: 0.5rem;
     color: #d0d0d0fa;
     font-family: "Barlow Condensed", sans-serif;
@@ -5140,7 +5138,7 @@ input[type="button"].btn-block {
 
 .card-title {
     margin-bottom: 0.75rem;
-    font-size: 24px;
+    font-size: 27px;
     font-weight: 700;
     color: #d0d0d0fa;
 }
@@ -5152,6 +5150,8 @@ input[type="button"].btn-block {
 
 .card-text:last-child {
     margin-bottom: 0;
+    font-size: 20px;
+    color: #b78d59;
 }
 
 .card-link:hover {
@@ -12114,7 +12114,7 @@ textarea.form-control {
 }
 
 .ftco-section {
-    padding: 7em 0;
+    padding: 3em 0;
     position: relative;
 }
 
@@ -12869,12 +12869,13 @@ textarea.form-control {
     background-position: center center;
     position: relative;
     display: block;
-    width: 100%;
+    width: 108%;
     height: 270px;
 }
 
 .blog-entry {
     overflow: hidden;
+    background-color: #ebe8de;
 }
 
 @media (min-width: 768px) {

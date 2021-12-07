@@ -38,15 +38,30 @@ class ServiceController extends Controller
 
         if ($request->isMethod('post')) {
             $validator = Validator::make($request->all(), [
-                'name' => 'required|min:5|max:255',
-                'price' => 'required',
-                'image' => 'required',
+                'name' => 'required|max:255|unique:services',
+                'price' => 'required|digits_between:0,9999999',
+                'image' => 'required|image',
                 'execution_time' => 'required',
-                'discount' => 'required',
-                'description' => 'required',
-                'detail' => 'required',
-                'status' => 'required',
+                'discount' => 'required|digits_between:0,9999999|lt:price',
+                'description' => 'required|max:65535',
+                'detail' => 'required|max:65535',
                 'order_by' => 'required',
+            ],[
+                'name.required' => 'Tên dịch vụ không được để trống',
+                'name.max' => 'Tên dịch vụ không vượt quá 255 ký tự',
+                'name.unique' => 'Tên dịch vụ đã được sử dụng',
+                'price.required' => 'Giá dịch vụ không được bỏ trống',
+                'price.digits_between' => 'Giá dịch vụ phải lớn hơn 0',
+                'image.required' => 'Ảnh dịch vụ không được bỏ trống',
+                'image.image' => 'Ảnh dịch vụ không đúng định dạng',
+                'execution_time.required' => 'Thời gian làm  không được bỏ trống',
+                'discount.required' => 'Giảm giá không được bỏ trống',
+                'discount.digits_between' => 'Giảm giá phải lớn hơn 0',
+                'discount.lt' => 'Giảm giá phải nhỏ hơn giá cũ',
+                'description.required' => 'Mô tả không được bỏ trống',
+                'description.max' => 'Mô tả không vượt quá 65536 ký tự',
+                'detail.required' => 'Chi tiết không được bỏ trống',
+                'detail.max' => 'Chi tiết không vượt quá 65536 ký tự',
             ]);
             if ($validator->fails()) {
                 return redirect()->back()
@@ -82,15 +97,28 @@ class ServiceController extends Controller
     {
         if ($request->isMethod('post')) {
             $validator = Validator::make($request->all(), [
-                'name' => 'required|min:6|max:300',
-                'price' => 'required|integer',
+                'name' => 'required|max:255',
+                'price' => 'required|digits_between:0,9999999',
+                'image' => 'image',
                 'execution_time' => 'required',
-                'discount' => 'required',
-                'description' => 'required',
-                'detail' => 'required',
-                'cate_id' => 'required',
-                'status' => 'required',
+                'discount' => 'required|digits_between:0,9999999|lt:price',
+                'description' => 'required|max:65535',
+                'detail' => 'required|max:65535',
                 'order_by' => 'required',
+            ],[
+                'name.required' => 'Tên dịch vụ không được để trống',
+                'name.max' => 'Tên dịch vụ không vượt quá 255 ký tự',
+                'price.required' => 'Giá dịch vụ không được bỏ trống',
+                'price.digits_between' => 'Giá dịch vụ phải lớn hơn 0',
+                'image.image' => 'Ảnh dịch vụ không đúng định dạng',
+                'execution_time.required' => 'Thời gian làm  không được bỏ trống',
+                'discount.required' => 'Giảm giá không được bỏ trống',
+                'discount.digits_between' => 'Giảm giá phải lớn hơn 0',
+                'discount.lt' => 'Giảm giá phải nhỏ hơn giá cũ',
+                'description.required' => 'Mô tả không được bỏ trống',
+                'description.max' => 'Mô tả không vượt quá 65536 ký tự',
+                'detail.required' => 'Chi tiết không được bỏ trống',
+                'detail.max' => 'Chi tiết không vượt quá 65536 ký tự',
             ]);
             if ($validator->fails()) {
                 return redirect()->back()

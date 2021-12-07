@@ -37,7 +37,7 @@
                             <input type="file" class="custom-file-input" name="image" value="{{ $blog->image }}">
                             <label class="custom-file-label" for="customFile">Chọn ảnh ...</label>
                             <div>
-                                <div class="mt-2">
+                                <div class="mt-1">
                                     @if ($blog->image)
                                         <img src="{{ asset('uploads/' . $blog->image) }}" width="150px" height="100px">
                                     @endif
@@ -46,8 +46,6 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                        </div>
-                    </div>
                     {{-- description --}}
                     <div class="form-group">
                         <label class="font-weight-bold">Mô tả</label>

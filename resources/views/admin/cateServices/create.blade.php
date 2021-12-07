@@ -26,13 +26,6 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label class="font-weight-bold">Sắp xếp</label>
-                    <input class="form-control" type="number" name="order_by" placeholder="Nhập thứ tự sắp xếp ...">
-                    @error('order_by')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="form-group">
                     <label class="font-weight-bold">Trạng thái</label>
                     <select class="mt-3 form-control" name="status">
                         <option value="0">

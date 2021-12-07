@@ -42,7 +42,7 @@ class ContactRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name'=>'Tên cửa hàng',
+            'name'=>'Tên khách hàng',
             'phone_number'=>'Số điện thoại',
             'note' => 'Mô tả',
         ];

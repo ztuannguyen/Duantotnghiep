@@ -24,22 +24,25 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'number_phone' => 'required|numeric|min:13',
+            'name' => 'required|max:255',
+            'number_phone' => 'required|numeric|digits:10',
             'date_booking' => 'required|date',
         ];
     }
     public function messages()
     {
         return [
-            'number_phone.numeric' => 'Bạn đã nhập sai định dạng',
-            'number_phone.min' => 'Số điện thoại nhập tối thiểu 13 số',
-            'date_booking.date' => 'Bạn đã nhập sai định dạng',
+            'name.max' => 'Tên khách hàng không vượt quá 255 ký tự',
+            'number_phone.numeric' => 'Quý khách đã nhập sai định dạng',
+            'number_phone.digits' => 'Số điện thoại phải là 10 chữ số',
+            'date_booking.date' => 'Quý khách đã nhập sai định dạng',
             'required' => ':attribute không được để trống',
         ];
     }
     public function attributes()
     {
         return [
+            'name' => 'Tên khách hàng',
             'number_phone'=>'Số điện thoại ',
             'date_booking'=>'Ngày đặt lịch',
           

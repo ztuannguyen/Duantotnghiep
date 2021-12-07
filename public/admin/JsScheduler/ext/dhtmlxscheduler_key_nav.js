@@ -1,7 +1,7 @@
 /*
 
 @license
-dhtmlxScheduler v.5.3.12 Professional Evaluation
+dhtmlxScheduler v.5.3.13 Professional Evaluation
 
 This software is covered by DHTMLX Evaluation License. Contact sales@dhtmlx.com to get Commercial or Enterprise license. Usage without proper license is prohibited.
 
@@ -107,4 +107,4 @@ if(e.config.key_nav)return n.keyDownHandler(t)},o=function(){n.keepScrollPositio
 for(var g=_.querySelectorAll("td"),u=0;u<g.length;u++)if(g[u]==l){s=u;break}}}var f=t.currentTarget;i.delay(function(){if(n||r||o){var t;n?(t=new e.$keyboardNavigation.MinicalButton(f,0),i.setActiveNode(new e.$keyboardNavigation.MinicalButton(f,0))):r?t=new e.$keyboardNavigation.MinicalButton(f,1):o&&(t=new e.$keyboardNavigation.MinicalCell(f,d,s)),t&&(i.enable(),t.isValid()&&(i.activeNode=null,i.setActiveNode(t)))}})}var i=e.$keyboardNavigation.dispatcher;if(e.renderCalendar){
 var n=e.renderCalendar;e.renderCalendar=function(){var r=n.apply(this,arguments),o=e.$keyboardNavigation._minicalendars;e.eventRemove(r,"click",a),e.event(r,"click",a),e.eventRemove(r,"focus",t),e.event(r,"focus",t);for(var d=!1,s=0;s<o.length;s++)if(o[s]==r){d=!0;break}if(d||o.push(r),i.isEnabled()){var _=i.getActiveNode();_&&_.container==r?i.focusNode(_):r.setAttribute("tabindex","0")}else r.setAttribute("tabindex","0");return r}}if(e.destroyCalendar){var r=e.destroyCalendar
 ;e.destroyCalendar=function(a,i){a=a||(e._def_count?e._def_count.firstChild:null);var n=r.apply(this,arguments);if(!a||!a.parentNode)for(var o=e.$keyboardNavigation._minicalendars,d=0;d<o.length;d++)o[d]==a&&(e.eventRemove(o[d],"focus",t),o.splice(d,1),d--);return n}}};var i=e.$keyboardNavigation.dispatcher;if(e.$keyboardNavigation.attachSchedulerHandlers(),e.renderCalendar)e.$keyboardNavigation.patchMinicalendar();else var n=e.attachEvent("onSchedulerReady",function(){e.detachEvent(n),
-e.$keyboardNavigation.patchMinicalendar()});setInterval(function(){if(e.$container&&e.$keyboardNavigation.isChildOf(e.$container,document.body)){var n=t();n?a(n):!n&&i.isEnabled()&&setTimeout(function(){e.config.key_nav?a(t()):e.$container.removeAttribute("tabindex")},100)}},500)}()}window.Scheduler?window.Scheduler.plugin(e):e(window.scheduler)}();
+e.$keyboardNavigation.patchMinicalendar()});setInterval(function(){if(e.$container&&e.$keyboardNavigation.isChildOf(e.$container,document.body)){var n=t();n?a(n):!n&&i.isEnabled()&&setTimeout(function(){e.config.key_nav?a(t()):e.$container.removeAttribute("tabindex")},100)}},500)}()}window.Scheduler&&window.Scheduler.plugin?window.Scheduler.plugin(e):e(window.scheduler)}();

@@ -24,7 +24,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:255|unique:blogs',
+            'title' => 'required|max:255',
             'description' => 'required|max:60000',
             'detail' => 'required|max:60000',
             'image' => 'image|max:10000',
@@ -34,7 +34,6 @@ class UpdateRequest extends FormRequest
         return [
             'required'=>':attribute không được để trống',
             'max'=>':attribute không được vượt quá :max',
-            'unique'=>':attribute đã được sử dụng',
             'max' => ':attribute kích thước không được vượt quá :max',
             'image.max' => 'Kích thước ảnh không được quá 10MB',
             'image.image' => 'Ảnh bài viết không đúng định dạng',

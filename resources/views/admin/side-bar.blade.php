@@ -76,6 +76,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('admin.bookings.index')}}">Danh sách đơn</a>
                 <a class="collapse-item" href="{{ route('admin.bookings.sortAppointment')}}">Bảng xếp lịch</a>
+                <a class="collapse-item" href="{{ route('admin.bookings.waitingCut')}}">Danh sách hàng chờ</a>
             </div>
         </div>
     </li>

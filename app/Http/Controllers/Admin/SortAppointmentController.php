@@ -11,7 +11,7 @@ use App\Models\Salon_Chair;
 use App\Models\Booking_Service;
 use App\Models\Service;
 use App\Models\Time;
-use Illuminate\Support\Facades\DB;
+use DateTime;
 use Illuminate\Database\Eloquent\Builder;
 
 class SortAppointmentController extends Controller
@@ -44,16 +44,16 @@ class SortAppointmentController extends Controller
         $booking_services->load(['booking']);
         foreach ($booking_services as $key => $sort_appointment) {
 
-            $time_start_date = $sort_appointment->booking->date_booking . ' ' . $sort_appointment->time_start;
-            $start_date = date_format(date_create($time_start_date), 'Y-m-d H:i');
+            // $time_start_date = $sort_appointment->booking->date_booking . ' ' . $sort_appointment->time_start;
+            // $start_date = date_format(date_create($time_start_date), 'Y-m-d H:i');
 
-            $time_end_date = $sort_appointment->booking->date_booking . ' ' . $sort_appointment->time_end;
-            $end_date = date_format(date_create($time_end_date), 'Y-m-d H:i');
+            // $time_end_date = $sort_appointment->booking->date_booking . ' ' . $sort_appointment->time_end;
+            // $end_date = date_format(date_create($time_end_date), 'Y-m-d H:i');
 
 
-            $sort_appointments[$key]['start_date'] = $start_date;
-            $sort_appointments[$key]['end_date'] = $end_date;
-            $sort_appointments[$key]['text'] = "#" . $sort_appointment->booking->id . "<br>" . $sort_appointment->booking->number_phone . "<br>" . $sort_appointment->service->name;
+            $sort_appointments[$key]['start_date'] = $sort_appointment->time_start;
+            $sort_appointments[$key]['end_date'] = $sort_appointment->time_end;
+            $sort_appointments[$key]['text'] = "#" . $sort_appointment->booking->id . "<br>" . $sort_appointment->booking->name . "<br>" . $sort_appointment->booking->number_phone . "<br>" . $sort_appointment->service->name;
             $sort_appointments[$key]['chair_id'] = $sort_appointment->chair_id;
             $sort_appointments[$key]['id'] = $sort_appointment->id;
         }
@@ -62,21 +62,22 @@ class SortAppointmentController extends Controller
     }
 
     public function post(Request $request)
-    {
+    {   
+
         $booking_services = Booking_Service::find($request->id);
-        $booking_services->chair_id = $request->chair_id;
-        $booking_services->time_start = $request->time_start;
-        $booking_services->time_end = $request->time_end;
-        $booking_services->status = $request->status;
-        $booking_services->salon_id = $request->salon_id;
-        $booking_services->save(); 
+        $booking_services->load('service');
+        $booking = Booking::find($booking_services->booking_id);
+        $date_start = $booking->date_booking . ' ' . $request->time_start;
+        $dateTime = new DateTime($date_start);
+        $dateTimeUpdate = date_add($dateTime ,date_interval_create_from_date_string($booking_services->service->execution_time . " minutes"));
+        $date_end = $dateTimeUpdate->format('Y-m-d H:i');
 
         $bookingServices = Booking_Service::all();
         foreach ($bookingServices as $item) {
             if ($request->id != $item->id) {
                 if($item->chair_id == $request->chair_id){
-                    if ($request->time_start > $item->time_start && $request->time_start < $item->time_end
-                        || $item->time_end > $item->time_start && $item->time_end < $item->time_end
+                    if ($date_start > $item->time_start && $date_start < $item->time_end
+                        || $date_end > $item->time_start && $date_end < $item->time_end
                         ) {
                             echo ' 
                             <p class="mt-1" style="color: red">Thời gian xếp bị trùng !</p>
@@ -86,6 +87,27 @@ class SortAppointmentController extends Controller
                 }
             }
         }
+        $bookingCheck = Booking_Service::where('booking_id', $booking_services->booking_id)->get();
+        if (count($bookingCheck) > 0) {
+            foreach ($bookingCheck as $item) {
+                if ($item->time_start != "") {
+                    if ($date_start < $item->time_end) {
+                        echo '
+                            <p class="mt-1" style="color: red">Thời gian xếp lịch phải lớn hơn thời gian kết thúc của dịch vụ trước! '.$item->time_end.'</p>
+                            ';
+                        die;
+                    }
+                }
+            }
+        }
+        $booking_services->chair_id = $request->chair_id;
+        $booking_services->time_start = $date_start;
+        $booking_services->time_end = $date_end;
+        $booking_services->status = $request->status;
+        $booking_services->salon_id = $request->salon_id;
+        $booking_services->save(); 
+
+        
         // chuyển trạng thái khi đã xếp lịch xong
         $booking_services->load('booking');
         $statusServices = Booking_Service::where('booking_id', $booking_services->booking->id)->get();
@@ -107,7 +129,7 @@ class SortAppointmentController extends Controller
         $booking->time_start = $request->start_date;
         $booking->time_end = $request->end_date;
         $booking->save();
-
+        dd($booking);
         return response()->json([
             "action" => "updated",
             'tid' => $booking->id

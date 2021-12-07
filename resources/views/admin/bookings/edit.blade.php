@@ -19,6 +19,13 @@
                 <form method="POST" action="{{ route('admin.bookings.update',['id' => $booking->id]) }}">
                     @csrf
                     <div class="form-group">
+                        <label class="font-weight-bold">Tên khách hàng</label>
+                        <input class="form-control" type="text" name="name" value="{{ $booking->name }}">
+                        @error('name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label class="font-weight-bold">Số điện thoại</label>
                         <input class="form-control" type="tel" name="number_phone" value="{{ $booking->number_phone }}">
                         @error('number_phone')
@@ -78,8 +85,9 @@
                         <select  name="status" class="mt-3 form-control">
                             <option value="1" {{$booking->status == 1 ? 'selected':''}} >Chờ xếp lịch</option>
                             <option value="2" {{$booking->status == 2 ? 'selected':''}}>Đã xếp lịch</option>
-                            <option value="3" {{$booking->status == 3 ? 'selected':''}}>Đã xong</option>
-                            <option value="4" {{$booking->status == 4 ? 'selected':''}}>Hủy lịch</option>
+                            <option value="3" {{$booking->status == 3 ? 'selected':''}}>Đang làm</option>
+                            <option value="4" {{$booking->status == 4 ? 'selected':''}}>Đã xong</option>
+                            <option value="5" {{$booking->status == 5 ? 'selected':''}}>Hủy lịch</option>
                             @error('status')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
