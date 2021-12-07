@@ -197,7 +197,9 @@
                                 <input type="hidden" name="status" value="1">
                                 <div class="col text-center">
                                     @if (Auth::check())
-                                        <button type="submit" class="btn btn-primary">Đặt Lịch Ngay</button>
+                                        @can('customer')
+                                            <button type="submit" class="btn btn-primary">Đặt Lịch Ngay</button>
+                                        @endcan
                                     @else
                                         <a href="{{ route('client.login') }}">Nhấn vào đây để đăng nhập</a>
                                     @endif

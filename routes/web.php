@@ -6,6 +6,7 @@ use App\Http\Controllers\Client\ServiceController;
 use App\Http\Controllers\Client\AuthController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,20 +21,28 @@ use Illuminate\Support\Facades\Route;
 
 // Client
 Route::get('/', function () {
-    return redirect()->route('client.show');
+    if (Auth::user()->role_id == 3) {
+        return redirect()->route('client.show');
+    } elseif (Auth::user()->role_id == 1) {
+        return redirect()->route('client.show');
+    } else {
+        return redirect()->route('admin.bookings.index');
+    }
 });
-Route::get('/dat-lich',[BookingController::class,'show'])->name('client.show');
-Route::post('/client/get-time-of-salon',[BookingController::class,'getTimeOfSalon'])->name('client.get-time-of-salon');
-Route::post('/',[BookingController::class, 'store'])->name('client.post');
+Route::group(['middleware' => 'verify.customer'], function () {
+    Route::get('/dat-lich',[BookingController::class,'show'])->name('client.show');
+    Route::post('/client/get-time-of-salon',[BookingController::class,'getTimeOfSalon'])->name('client.get-time-of-salon');
+    Route::post('/',[BookingController::class, 'store'])->name('client.post');
 
-//Dịch vụ 
-Route::get('/dich-vu',[ServiceController::class,'service'])->name('client.service');
+    //Dịch vụ 
+    Route::get('/dich-vu',[ServiceController::class,'service'])->name('client.service');
 
-//Bài viết
-Route::get('/trang-bai-viet',[BlogController::class,'list'])->name('client.blog');
-Route::get('danh-muc-bai-viet/{id}',[BlogController::class,'category'])->name('category');
-Route::get('/chi-tiet-bai-viet/{id}',[BlogController::class,'detail'])->name('client.detailBlog');
-Route::get('/tim-kiem-bai-viet',[BlogController::class,'search'])->name('search');
+    //Bài viết
+    Route::get('/trang-bai-viet',[BlogController::class,'list'])->name('client.blog');
+    Route::get('danh-muc-bai-viet/{id}',[BlogController::class,'category'])->name('category');
+    Route::get('/chi-tiet-bai-viet/{id}',[BlogController::class,'detail'])->name('client.detailBlog');
+    Route::get('/tim-kiem-bai-viet',[BlogController::class,'search'])->name('search');
+});
 
 // Đăng nhập, khôi phục mật khẩu
 Route::get('/dang-nhap',[AuthController::class,'login'])->name('client.login');

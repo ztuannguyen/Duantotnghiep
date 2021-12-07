@@ -166,7 +166,13 @@ $(document).ready(function() {
         },
         success: function(response) {
             if(response.status == 200) {
-                window.location.href = '/dat-lich';
+                if (response.role == 3) {
+                    window.location.href = '/dat-lich';
+                } else if (response.role == 2) {
+                    window.location.href = '/admin/dashboard';
+                } else {
+                    window.location.href = '/admin/bookings';
+                }
             } else {
                 swal("Thất bại", "Mật khẩu không đúng", "error", {
                     button: "Xác nhận",

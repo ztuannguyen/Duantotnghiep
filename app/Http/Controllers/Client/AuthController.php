@@ -143,7 +143,8 @@ class AuthController extends Controller
         if (!is_null($user)) {
             Auth::loginUsingId($user->id);
             return response()->json([
-                'status' => 200
+                'status' => 200,
+                'role'   => $user->role_id
             ]);
         } else {
             return response()->json([
