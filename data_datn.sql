@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2021 at 05:39 AM
+-- Generation Time: Dec 04, 2021 at 03:27 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -24,32 +24,50 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `blogs`
+--
+
+CREATE TABLE `blogs` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `detail` text NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `cate_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `blogs`
+--
+
+INSERT INTO `blogs` (`id`, `title`, `description`, `detail`, `image`, `status`, `cate_id`, `created_at`, `updated_at`) VALUES
+(1, 'Kiểu Tóc Sport Xanh Khói Mang Lại Vẻ Trẻ Trung, Năng Động Được Sơn Tùng, Noo Phước Thịnh Yêu Thích', 'Là một trong những kiểu tóc trending hàng đầu hiện nay. Sport thực sự nhận được rất nhiều sự yêu mến, không chỉ vì tạo hình ấn tượng...', '<h1 style=\"text-align:justify\"><span style=\"font-size:36px\"><span style=\"color:#ffcc66\"><strong>SPORT</strong></span></span><br />\r\n<span style=\"color:#ffcc66\"><strong><u>M&Agrave;U NHUỘM KH&Oacute;I XANH</u></strong></span></h1>\r\n\r\n<p style=\"text-align:justify\">&nbsp;</p>\r\n\r\n<p style=\"text-align:justify\"><img alt=\"sport-son-tung-mtp-mau-xanh-khoi-2020-30shine\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/kien/sport-son-tung-mtp-mau-xanh-khoi-2020-30shine-1.jpg\" style=\"height:757px; width:1200px\" title=\"Kiểu Tóc Side Part - Màu Nhuộm Nâu Khói Hot Trend 2020\" /></p>\r\n\r\n<p style=\"text-align:justify\">&ldquo;M&igrave;nh l&agrave; Ki&ecirc;n. M&igrave;nh được bạn b&egrave; giới thiệu tới Brotherhoods để nhuộm t&oacute;c v&igrave; nghe n&oacute;i c&aacute;c m&agrave;u nhuộm kh&oacute;i l&agrave;m ở Brotherhoods rất đẹp.&rdquo;</p>\r\n\r\n<p style=\"text-align:justify\"><img alt=\"sport-son-tung-mtp-mau-xanh-khoi-2020-30shine-2\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/kien/sport-son-tung-mtp-mau-xanh-khoi-2020-30shine-2.jpg\" style=\"height:457px; width:1200px\" title=\"Kiểu Tóc Side Part - Màu Nhuộm Nâu Khói Hot Trend 2020\" /></p>\r\n\r\n<p style=\"text-align:justify\">&ldquo;M&igrave;nh được stylist tư vấn nhuộm xanh kh&oacute;i v&agrave; cắt Sport. M&igrave;nh rất ngạc nhi&ecirc;n v&igrave; nghĩ m&agrave;u t&oacute;c n&agrave;y sẽ kh&oacute; để nhưng thật sự lại rất hợp với m&igrave;nh, kiểu t&oacute;c cũng gi&uacute;p m&igrave;nh tr&ocirc;ng đẹp trai hơn.&rdquo;</p>\r\n\r\n<p style=\"text-align:justify\"><img alt=\"sport-son-tung-mtp-mau-xanh-khoi-2020-30shine-3\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/kien/sport-son-tung-mtp-mau-xanh-khoi-2020-30shine-3.jpg\" style=\"height:743px; width:1200px\" title=\"Kiểu Tóc Side Part - Màu Nhuộm Nâu Khói Hot Trend 2020\" /></p>\r\n\r\n<p style=\"text-align:justify\">&ldquo;M&igrave;nh thấy rất đ&uacute;ng đắn khi tin tưởng bạn m&igrave;nh giới thiệu tới Brotherhoods. Chắc chắn sau n&agrave;y m&igrave;nh sẽ trở th&agrave;nh kh&aacute;ch h&agrave;ng thường xuy&ecirc;n của Brotherhoods.&rdquo;</p>\r\n\r\n<p style=\"text-align:justify\"><img alt=\"sport-son-tung-mtp-mau-xanh-khoi-2020-30shine-4\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/kien/sport-son-tung-mtp-mau-xanh-khoi-2020-30shine-4.jpg\" style=\"height:1804px; width:1200px\" title=\"Kiểu Tóc Side Part - Màu Nhuộm Nâu Khói Hot Trend 2020\" /></p>\r\n\r\n<p style=\"text-align:justify\">&ldquo;Kiểu t&oacute;c mới, m&agrave;u t&oacute;c mới đem đến cho m&igrave;nh một phong c&aacute;ch rất kh&aacute;c, nhưng rất hợp với c&aacute; t&iacute;nh mạnh mẽ v&agrave; th&iacute;ch sự nổi bật như m&igrave;nh.&rdquo;</p>\r\n\r\n<p style=\"text-align:justify\"><img alt=\"sport-son-tung-mtp-mau-xanh-khoi-2020-30shine-5\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/kien/sport-son-tung-mtp-mau-xanh-khoi-2020-30shine-5.jpg\" style=\"height:4578px; width:1200px\" title=\"Kiểu Tóc Side Part - Màu Nhuộm Nâu Khói Hot Trend 2020\" /></p>\r\n\r\n<p style=\"text-align:justify\">&ldquo;Cảm ơn Brotherhoods đ&atilde; thực hiện cho m&igrave;nh kiểu t&oacute;c rất ưng &yacute;. M&igrave;nh rất th&iacute;ch lu&ocirc;n.&rdquo;</p>\r\n\r\n<p style=\"text-align:justify\"><img alt=\"trai-nghiem-ngay-Shine-Combo-7-buoc-tai-30shine\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/kien/sport-son-tung-mtp-mau-xanh-khoi-2020-30shine-6.jpg\" style=\"height:692px; width:1200px\" title=\"Trải nghiệm ngay Shine Combo 7 bước tại 30Shine\" /></p>', '1638602005.jpg', 0, 2, '2021-11-28 07:36:42', '2021-12-04 07:38:06'),
+(2, 'Layer Moi - Kiểu Tóc Hoàn Hảo Dành Cho Các Nam Giới Mặt Béo, Tròn', 'Kiểu Tóc Layer moi rất thích hợp cho nam giới có gương mặt béo, tròn khi không để được những kiểu tóc dựng...', '<h1><span style=\"color:#ffcc66\"><strong><span style=\"font-size:36px\">LAYER</span></strong></span><br />\r\n<span style=\"color:#ffcc66\"><strong><u>M&Agrave;U&nbsp;NHUỘM N&Acirc;U MẬN</u></strong></span></h1>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><img alt=\"Layer Moi - Kiểu Tóc Hoàn Hảo Dành Cho Các Nam Giới Mặt Béo, Tròn\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/mat-beo/layer-moi-kieu-toc-danh-cho-mat-beo-dep-nhat-2020-30shine-1.jpg\" style=\"height:895px; width:1200px\" /></p>\r\n\r\n<p>&ldquo;M&igrave;nh l&agrave; An, 20 tuổi. M&igrave;nh c&oacute; một khu&ocirc;n mặt kh&aacute; l&agrave; tr&ograve;n, v&igrave; vậy m&agrave; rất kh&oacute; để t&oacute;c&rdquo;</p>\r\n\r\n<p><img alt=\"Layer Moi - Kiểu Tóc Hoàn Hảo Dành Cho Các Nam Giới Mặt Béo, Tròn\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/mat-beo/layer-moi-kieu-toc-danh-cho-mat-beo-dep-nhat-2020-30shine-2.jpg\" style=\"height:604px; width:1200px\" /></p>\r\n\r\n<p>&ldquo;Trước đ&acirc;y m&igrave;nh chỉ để undercut v&igrave; kh&ocirc;ng nghĩ c&oacute; kiểu n&agrave;o hợp hơn cả. Cho đến khi gặp anh Stylist Brotherhoods th&igrave; anh ấy đ&atilde; tư vấn m&igrave;nh nu&ocirc;i t&oacute;c d&agrave;i th&ecirc;m để đổi kiểu t&oacute;c&rdquo;</p>\r\n\r\n<p><img alt=\"Layer Moi - Kiểu Tóc Hoàn Hảo Dành Cho Các Nam Giới Mặt Béo, Tròn\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/mat-beo/layer-moi-kieu-toc-danh-cho-mat-beo-dep-nhat-2020-30shine-3.jpg\" style=\"height:1065px; width:1200px\" /></p>\r\n\r\n<p>&ldquo;Anh Stylist&nbsp; tư vấn m&igrave;nh để kiểu layer để che tr&aacute;n cao v&agrave; ph&ugrave; hợp với khuyến điểm t&oacute;c mỏng&rdquo;</p>\r\n\r\n<p><img alt=\"Layer Moi - Kiểu Tóc Hoàn Hảo Dành Cho Các Nam Giới Mặt Béo, Tròn\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/mat-beo/layer-moi-kieu-toc-danh-cho-mat-beo-dep-nhat-2020-30shine-4.jpg\" style=\"height:849px; width:1200px\" /></p>\r\n\r\n<p>Kiểu t&oacute;c:<span style=\"font-size:36px\"><strong>&nbsp;LAYER</strong></span></p>\r\n\r\n<p>M&agrave;u nhuộm:<span style=\"color:#c0392b\">&nbsp;<strong><span style=\"font-size:36px\">N&Acirc;U ĐỎ</span></strong></span></p>\r\n\r\n<p><img alt=\"Layer Moi - Kiểu Tóc Hoàn Hảo Dành Cho Các Nam Giới Mặt Béo, Tròn\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/mat-beo/layer-moi-kieu-toc-danh-cho-mat-beo-dep-nhat-2020-30shine-5.jpg\" style=\"height:800px; width:1200px\" /></p>\r\n\r\n<p>&ldquo;M&igrave;nh rất th&iacute;ch h&igrave;nh ảnh mới n&agrave;y. Nhờ h&ocirc;m nay m&igrave;nh mới biết ngo&agrave;i undercut m&igrave;nh c&ograve;n để được kiểu t&oacute;c layer v&agrave; sidepart nữa&rdquo;</p>\r\n\r\n<p><img alt=\"Layer Moi - Kiểu Tóc Hoàn Hảo Dành Cho Các Nam Giới Mặt Béo, Tròn\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/mat-beo/layer-moi-kieu-toc-danh-cho-mat-beo-dep-nhat-2020-30shine-6.jpg\" style=\"height:572px; width:1200px\" /></p>\r\n\r\n<p><img alt=\"Layer Moi - Kiểu Tóc Hoàn Hảo Dành Cho Các Nam Giới Mặt Béo, Tròn\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/mat-beo/layer-moi-kieu-toc-danh-cho-mat-beo-dep-nhat-2020-30shine-7.jpg\" style=\"height:1801px; width:1200px\" /></p>\r\n\r\n<p><img alt=\"Layer Moi - Kiểu Tóc Hoàn Hảo Dành Cho Các Nam Giới Mặt Béo, Tròn\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/mat-beo/layer-moi-kieu-toc-danh-cho-mat-beo-dep-nhat-2020-30shine-8.jpg\" style=\"height:887px; width:1200px\" /></p>\r\n\r\n<p><img alt=\"Layer Moi - Kiểu Tóc Hoàn Hảo Dành Cho Các Nam Giới Mặt Béo, Tròn\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/mat-beo/layer-moi-kieu-toc-danh-cho-mat-beo-dep-nhat-2020-30shine-9.jpg\" style=\"height:1801px; width:1200px\" /></p>\r\n\r\n<p><img alt=\"Layer Moi - Kiểu Tóc Hoàn Hảo Dành Cho Các Nam Giới Mặt Béo, Tròn\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/mat-beo/layer-moi-kieu-toc-danh-cho-mat-beo-dep-nhat-2020-30shine-10.jpg\" style=\"height:886px; width:1200px\" /></p>\r\n\r\n<p><img alt=\"Layer Moi - Kiểu Tóc Hoàn Hảo Dành Cho Các Nam Giới Mặt Béo, Tròn\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/mat-beo/layer-moi-kieu-toc-danh-cho-mat-beo-dep-nhat-2020-30shine-11.jpg\" style=\"height:1801px; width:1200px\" /></p>\r\n\r\n<p>&ldquo;Cảm ơn Brotherhoods rất nhiều đ&atilde; cho m&igrave;nh h&igrave;nh ảnh mới đẹp như thế n&agrave;y&rdquo;</p>\r\n\r\n<p><img alt=\"Trải nghiệm ngay Shine Combo 7 bước tại 30Shine\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/mat-beo/trai-nghiem-ngay-Shine-Combo-7-buoc-tai-30shine.jpg\" style=\"height:699px; width:1200px\" /></p>', '1638605274.jpg', 0, 2, '2021-11-29 16:31:50', '2021-12-04 08:09:16'),
+(3, 'Short Quiff - Kiểu Tóc Đẹp Nhất Dành Cho Mặt Béo, Tròn', 'Kiểu tóc Short Quiff – cái tên dường như đã trở thành cơn sốt mạnh mẽ đối với hàng triệu anh em nam giới yêu thích tóc nam đẹp...', '<h1><span style=\"font-size:36px\"><strong>SHORTQUIFF</strong></span></h1>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><img alt=\"short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/duc-anh-mat-beo/short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-1.jpg\" style=\"height:889px; width:1200px\" title=\"Kiểu Tóc Side Part - Màu Nhuộm Nâu Khói Hot Trend 2020\" /></p>\r\n\r\n<p><span style=\"font-size:18px\">&ldquo;M&igrave;nh l&agrave; Đức Anh, 20 tuổi. Hiện tại m&igrave;nh đang nu&ocirc;i kiểu t&oacute;c d&agrave;i để rủ xuống mặt nhưng c&oacute; vẻ kh&ocirc;ng hợp.&rdquo;</span></p>\r\n\r\n<p><img alt=\"short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-2\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/duc-anh-mat-beo/short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-2.jpg\" style=\"height:786px; width:1200px\" title=\"Kiểu Tóc Side Part - Màu Nhuộm Nâu Khói Hot Trend 2020\" /></p>\r\n\r\n<p><span style=\"font-size:18px\">&ldquo;H&ocirc;m nay m&igrave;nh đến Brotherhoods để được tư vấn v&agrave; thay đổi kiểu t&oacute;c mới ph&ugrave; hợp hơn. M&igrave;nh được Stylist tư vấn mặt tr&ograve;n như m&igrave;nh n&ecirc;n để kiểu t&oacute;c Short Quiff.&rdquo;</span></p>\r\n\r\n<p><img alt=\"short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-3\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/duc-anh-mat-beo/short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-3.jpg\" style=\"height:828px; width:1200px\" title=\"Kiểu Tóc Side Part - Màu Nhuộm Nâu Khói Hot Trend 2020\" /></p>\r\n\r\n<p><span style=\"font-size:18px\">&ldquo;M&igrave;nh cũng lựa chọn nhuộm th&ecirc;m m&agrave;u n&acirc;u để s&aacute;ng mặt hơn v&agrave; trẻ trung hơn.&rdquo;</span></p>\r\n\r\n<p><img alt=\"short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-4\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/duc-anh-mat-beo/short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-4.jpg\" style=\"height:808px; width:1200px\" title=\"Kiểu Tóc Side Part - Màu Nhuộm Nâu Khói Hot Trend 2020\" /></p>\r\n\r\n<p><img alt=\"short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-10\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/textshortquiff.png\" style=\"height:197px; width:1200px\" title=\"Kiểu Tóc Side Part - Màu Nhuộm Nâu Khói Hot Trend 2020\" /></p>\r\n\r\n<p><img alt=\"short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-5\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/duc-anh-mat-beo/short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-5.jpg\" style=\"height:817px; width:1200px\" title=\"Kiểu Tóc Side Part - Màu Nhuộm Nâu Khói Hot Trend 2020\" /></p>\r\n\r\n<p><span style=\"font-size:18px\">&ldquo;Kiểu t&oacute;c mới n&agrave;y l&agrave;m khu&ocirc;n mặt m&igrave;nh đỡ tr&ograve;n v&agrave; c&acirc;n đối hơn, m&igrave;nh cũng rất th&iacute;ch m&agrave;u t&oacute;c mới của m&igrave;nh. C&oacute; lẽ đ&acirc;y ch&iacute;nh l&agrave; kiểu t&oacute;c hợp khu&ocirc;n mặt m&igrave;nh nhất từ trước tới giờ.&rdquo;</span></p>\r\n\r\n<p><img alt=\"short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-6\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/duc-anh-mat-beo/short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-6.jpg\" style=\"height:1302px; width:1200px\" title=\"Kiểu Tóc Side Part - Màu Nhuộm Nâu Khói Hot Trend 2020\" /></p>\r\n\r\n<p><img alt=\"short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-7\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/duc-anh-mat-beo/short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-7.jpg\" style=\"height:1789px; width:1200px\" title=\"Kiểu Tóc Side Part - Màu Nhuộm Nâu Khói Hot Trend 2020\" /></p>\r\n\r\n<p><img alt=\"short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-8\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/duc-anh-mat-beo/short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-8.jpg\" style=\"height:1563px; width:1200px\" title=\"Kiểu Tóc Side Part - Màu Nhuộm Nâu Khói Hot Trend 2020\" /></p>\r\n\r\n<p><img alt=\"short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-9\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/duc-anh-mat-beo/short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-9.jpg\" style=\"height:818px; width:1200px\" title=\"Kiểu Tóc Side Part - Màu Nhuộm Nâu Khói Hot Trend 2020\" /></p>\r\n\r\n<p><span style=\"font-size:18px\">&ldquo;Kiểu t&oacute;c mới n&agrave;y l&agrave;m khu&ocirc;n mặt m&igrave;nh đỡ tr&ograve;n v&agrave; c&acirc;n đối hơn, m&igrave;nh cũng rất th&iacute;ch m&agrave;u t&oacute;c mới của m&igrave;nh. C&oacute; lẽ đ&acirc;y ch&iacute;nh l&agrave; kiểu t&oacute;c hợp khu&ocirc;n mặt m&igrave;nh nhất từ trước tới giờ.&rdquo;</span></p>\r\n\r\n<p><img alt=\"trai-nghiem-ngay-Shine-Combo-7-buoc-tai-30shine\" src=\"https://storage.30shine.com/ResourceWeb/data/images/lookbook/duc-anh-mat-beo/short-quiff-kieu-toc-dep-cho-mat-beo-tron-2020-30shine-10.jpg\" style=\"height:790px; width:1200px\" title=\"Trải nghiệm ngay Shine Combo 7 bước tại 30Shine\" /></p>', '1638605722.jpg', 0, 2, '2021-12-04 08:15:22', '2021-12-04 08:16:42');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `bookings`
 --
 
 CREATE TABLE `bookings` (
   `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `number_phone` varchar(255) NOT NULL,
   `salon_id` int(11) NOT NULL,
   `time_id` int(11) NOT NULL,
   `note` varchar(300) DEFAULT NULL,
   `date_booking` date NOT NULL,
-  `total_price` int(11) DEFAULT NULL,
-  `discount_price` int(11) DEFAULT NULL,
-  `add_by_id_user` int(11) DEFAULT NULL,
+  `total_price` int(11) NOT NULL,
+  `add_by_user` int(11) DEFAULT NULL,
   `status` tinyint(4) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `bookings`
---
-
-INSERT INTO `bookings` (`id`, `number_phone`, `salon_id`, `time_id`, `note`, `date_booking`, `total_price`, `discount_price`, `add_by_id_user`, `status`, `created_at`, `updated_at`) VALUES
-(140, '0981794925', 1, 83, NULL, '2021-11-24', 100000, NULL, NULL, 4, '2021-11-24 03:37:32', '2021-11-24 07:57:58'),
-(141, '0981794925', 1, 83, NULL, '2021-11-24', 140000, NULL, NULL, 4, '2021-11-24 03:43:58', '2021-11-24 07:57:52'),
-(149, '0981794925', 1, 83, NULL, '2021-11-26', 219000, NULL, NULL, 2, '2021-11-26 14:37:14', '2021-11-26 14:54:01');
 
 -- --------------------------------------------------------
 
@@ -62,24 +80,35 @@ CREATE TABLE `booking_services` (
   `booking_id` int(11) NOT NULL,
   `service_id` int(11) NOT NULL,
   `chair_id` int(11) DEFAULT NULL,
-  `salon_id` int(11) DEFAULT NULL,
-  `time_start` time DEFAULT NULL,
-  `time_end` time DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 0,
+  `salon_id` int(11) NOT NULL,
+  `time_start` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `time_end` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 0,
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   `created_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `booking_services`
+-- Table structure for table `cate_blogs`
 --
 
-INSERT INTO `booking_services` (`id`, `booking_id`, `service_id`, `chair_id`, `salon_id`, `time_start`, `time_end`, `status`, `updated_at`, `created_at`) VALUES
-(413, 140, 14, 30, 1, '08:30:00', '09:00:00', 1, '2021-11-24 03:46:10', '2021-11-24 03:37:32'),
-(414, 141, 14, 31, 1, '08:30:00', '09:00:00', 1, '2021-11-24 06:52:22', '2021-11-24 03:43:58'),
-(415, 141, 15, 31, 1, '09:00:00', '09:20:00', 1, '2021-11-24 08:56:58', '2021-11-24 03:43:58'),
-(432, 149, 14, 30, 1, '08:30:00', '09:00:00', 1, '2021-11-26 14:37:22', '2021-11-26 14:37:14'),
-(433, 149, 28, 30, 1, '09:00:00', '09:30:00', 1, '2021-11-26 14:54:01', '2021-11-26 14:37:14');
+CREATE TABLE `cate_blogs` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cate_blogs`
+--
+
+INSERT INTO `cate_blogs` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(2, 'Xu hướng tóc đẹp', 0, '2021-11-28 05:03:19', '2021-11-28 05:03:19'),
+(3, 'Mẹo chăm sóc tóc đẹp', 0, '2021-12-04 06:59:21', '2021-12-04 06:59:21');
 
 -- --------------------------------------------------------
 
@@ -91,7 +120,6 @@ CREATE TABLE `cate_services` (
   `id` int(11) NOT NULL,
   `name_cate` varchar(250) NOT NULL,
   `status` tinyint(4) NOT NULL,
-  `order_by` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -100,12 +128,12 @@ CREATE TABLE `cate_services` (
 -- Dumping data for table `cate_services`
 --
 
-INSERT INTO `cate_services` (`id`, `name_cate`, `status`, `order_by`, `created_at`, `updated_at`) VALUES
-(19, 'CẮT GỘI MASSAGE', 0, 1, '2021-09-28 23:00:51', '2021-11-19 15:09:25'),
-(21, 'COMBO CHĂM SÓC DA - THƯ GIÃN', 0, 2, '2021-09-30 15:02:42', '2021-11-19 15:09:23'),
-(22, 'UỐN HÀN QUỐC 4 CẤP ĐỘ', 0, 3, '2021-09-30 15:02:50', '2021-10-16 02:39:42'),
-(23, 'NHUỘM CAO CẤP', 0, 4, '2021-10-03 06:55:25', '2021-10-16 02:39:46'),
-(24, 'HẤP - PHỤC HỒI', 0, 5, '2021-10-05 03:37:00', '2021-10-16 02:39:49');
+INSERT INTO `cate_services` (`id`, `name_cate`, `status`, `created_at`, `updated_at`) VALUES
+(19, 'CẮT GỘI MASSAGE', 0, '2021-09-28 23:00:51', '2021-11-28 04:56:08'),
+(21, 'COMBO CHĂM SÓC DA - THƯ GIÃN', 0, '2021-09-30 15:02:42', '2021-11-19 15:09:23'),
+(22, 'UỐN HÀN QUỐC 4 CẤP ĐỘ', 0, '2021-09-30 15:02:50', '2021-10-16 02:39:42'),
+(23, 'NHUỘM CAO CẤP', 0, '2021-10-03 06:55:25', '2021-10-16 02:39:46'),
+(24, 'HẤP - PHỤC HỒI', 0, '2021-10-05 03:37:00', '2021-10-16 02:39:49');
 
 -- --------------------------------------------------------
 
@@ -144,7 +172,7 @@ INSERT INTO `chairs` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `contacts` (
-  `id` bigint(20) NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `phone_number` varchar(255) NOT NULL,
   `note` varchar(255) DEFAULT NULL,
@@ -168,7 +196,7 @@ INSERT INTO `contacts` (`id`, `name`, `phone_number`, `note`, `status`, `created
 --
 
 CREATE TABLE `logos` (
-  `id` bigint(20) NOT NULL,
+  `id` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
   `status` tinyint(4) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -180,8 +208,7 @@ CREATE TABLE `logos` (
 --
 
 INSERT INTO `logos` (`id`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(3, '1634370129.png', 0, '2021-10-16 00:42:09', '2021-11-10 10:16:43'),
-(4, '1634370361.png', 0, '2021-10-16 00:43:47', '2021-11-10 10:16:42');
+(3, '1634370129.png', 0, '2021-10-16 00:42:09', '2021-11-10 10:16:43');
 
 -- --------------------------------------------------------
 
@@ -192,6 +219,7 @@ INSERT INTO `logos` (`id`, `image`, `status`, `created_at`, `updated_at`) VALUES
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
   `name` varchar(250) NOT NULL,
+  `status` tinyint(4) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -200,9 +228,9 @@ CREATE TABLE `roles` (
 -- Dumping data for table `roles`
 --
 
-INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'nhân viên', '2021-09-28 02:52:33', '2021-09-28 02:52:33'),
-(2, 'quản lý', '2021-09-28 02:52:42', '2021-09-28 02:52:42');
+INSERT INTO `roles` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'nhân viên', 0, '2021-09-28 02:52:33', '2021-09-28 02:52:33'),
+(2, 'quản lý', 0, '2021-09-28 02:52:42', '2021-09-28 02:52:42');
 
 -- --------------------------------------------------------
 
@@ -211,13 +239,13 @@ INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `salons` (
-  `id` int(100) NOT NULL,
+  `id` int(11) NOT NULL,
   `name_salon` varchar(250) NOT NULL,
   `address` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `slot_amount` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
+  `description` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -451,7 +479,7 @@ INSERT INTO `salon_times` (`id`, `salon_id`, `time_id`, `created_at`, `updated_a
 --
 
 CREATE TABLE `services` (
-  `id` int(100) NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(250) NOT NULL,
   `price` int(11) NOT NULL,
   `execution_time` int(11) NOT NULL,
@@ -476,7 +504,7 @@ INSERT INTO `services` (`id`, `name`, `price`, `execution_time`, `discount`, `de
 (16, 'Cắt xả tạo kiểu', 70000, 30, 60000, 'Thợ cắt xả - Dành cho người bận rộn', 'Quá bận! Eo hẹp về thời gian, phải đi công chuyện gấp thì đây là gói dịch vụ anh nên chọn! Thợ cắt sẽ xả và cắt tóc tạo kiểu cho anh luôn!', '1633428406.jpg', 0, 19, 3, '2021-09-30 15:07:03', '2021-10-05 03:06:46'),
 (17, 'Kid combo', 70000, 30, 60000, 'Mĩ phẩm dịu nhẹ - thợ chiều trẻ em', 'Đẹp trai không phân biệt tuổi tác! Gói dịch vụ thiết kế dành riêng cho các bé trai, mĩ phẩm dịu nhẹ phù hợp với làn da và phải nói nhỏ thợ tại Brotherhoods siêu chiều các bé!', '1633432634.jpg', 0, 19, 4, '2021-10-02 09:08:54', '2021-10-05 04:17:14'),
 (18, 'Tẩy da chết sủi bọt, Đắp mặt nạ', 40000, 8, 30000, 'Trắng sáng tức thì, da mịn màng chắc khỏe', 'Máy tẩy tế bào chết xịn nhất thị trường, sử dụng công nghệ Ultra Sonic kết hợp cùng gel tẩy da chết sủi bọt giúp da sạch mịn không ngờ. Loại bỏ độc tố dầu nhờn, làm sạch lỗ chân lông, bổ sung tinh chất trắng da. Mặt nạ đá lạnh tươi mát bổ sung dưỡng chất sản sinh collagen, tái tạo tế bào da mới', '1633429367.jpg', 0, 21, 1, '2021-10-02 09:09:19', '2021-10-05 03:22:47'),
-(19, 'Massage cổ vai gáy', 40000, 8, 30000, '<p>Thư gi&atilde;n tuyệt đối, xả stress</p>', '<p>Đ&ocirc;i b&agrave;n tay uyển chuyển của skinner với b&agrave;i massage cổ truyền t&aacute;c động 12 huyệt đạo điệu nghệ cơn đau mỏi của anh sẽ nhanh ch&oacute;ng tan biến</p>', '1633429472.jpg', 0, 19, 2, '2021-10-02 09:09:41', '2021-11-09 08:12:30'),
+(19, 'Massage cổ vai gáy', 40000, 8, 30000, 'Thư giãn tuyệt đối, xả stress', '<p>Đ&ocirc;i b&agrave;n tay uyển chuyển của skinner với b&agrave;i massage cổ truyền t&aacute;c động 12 huyệt đạo điệu nghệ cơn đau mỏi của anh sẽ nhanh ch&oacute;ng tan biến</p>', '1633429472.jpg', 0, 19, 2, '2021-10-02 09:09:41', '2021-12-04 11:00:52'),
 (20, 'Lột mụn cám, Tẩy da chết sủi bọt', 65000, 10, 50000, 'Sạch mụn, không to lỗ chân lông', 'Gói dịch vụ tuyệt vời sẽ giúp anh trải nghiệm cảm giác mát lạnh chưa từng có. Công thức kết hợp không chỉ chăm sóc da mặt sáng khoẻ mà còn trị tận gốc các tác nhân gây gàu ngứa, loại bỏ tạp chất và bổ sung màng bảo vệ nang tóc. Hay hơn nữa, các skinner còn kết hợp thêm trong đó kỹ thuật massage con kiến sảng khoái, dứt cơn đau đầu siêu đỉnh', '1633432759.jpg', 0, 21, 3, '2021-10-02 09:09:55', '2021-10-05 04:19:19'),
 (21, 'Detox sạch gàu - massage', 70000, 10, 60000, 'Trị gầu ngứa -  Dứt cơn đau đầu', 'Mụn đầu đen, mụn cám khiến da trở nên sạm màu, kém sắc có thể biến thành các loại mụn viêm, tàn nhang. Vậy đâu là cách để ngăn chặn chuyện đó? Bắt đầu với lớp bọt mịn tẩy da chết đánh bay bụi bẩn, mở rộng lỗ chân lông. Sử dụng tinh than tre kết dính, kết hợp các loại máy công nghệ cao, an toàn để lấy mụn, hút mụn. Tiếp đó, bổ sung tinh chất lô hội dịu nhẹ cho làn da căng bóng và êm mịn. Cuối cùng, cân bằng lại bằng mặt nạ đá lạnh để trải nghiệm thêm tuyệt vời nhất', '1633432773.jpg', 0, 21, 4, '2021-10-05 03:31:27', '2021-10-05 04:19:33'),
 (22, 'Lấy ráy tai thoải mái sảng khoái', 30000, 20, 20000, 'An toàn - giải ngứa', 'Quy trình lấy chuyên nghiệp hiện đại, dụng cụ vệ sinh an toàn. Thăng hoa cùng giai điệu âm thoa vàng kết hợp tinh dầu tràm trà mát dịu', '1633429980.jpg', 0, 21, 5, '2021-10-05 03:33:00', '2021-10-05 03:33:00'),
@@ -498,7 +526,7 @@ INSERT INTO `services` (`id`, `name`, `price`, `execution_time`, `discount`, `de
 --
 
 CREATE TABLE `slides` (
-  `id` bigint(20) NOT NULL,
+  `id` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
   `status` tinyint(4) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -557,13 +585,12 @@ INSERT INTO `times` (`id`, `time_start`, `time_end`, `created_at`, `updated_at`)
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `role_id` int(11) NOT NULL,
   `name` varchar(250) NOT NULL,
   `number_phone` varchar(255) NOT NULL,
-  `pass` varchar(255) NOT NULL,
-  `otp` int(11) NOT NULL,
   `image` varchar(300) NOT NULL,
-  `ratings` int(11) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `otp` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -572,17 +599,24 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `name`, `number_phone`, `pass`, `otp`, `image`, `ratings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Tự Biên', '0988353523', '123201', 546529, '1633595565.jpg', 5, '2021-09-27 16:15:44', '2021-10-20 08:43:03'),
-(3, 2, 'Trung Kiên', '0939317456', '569012', 583346, '1633595676.jpg', 5, '2021-09-28 05:09:37', '2021-10-20 08:43:09'),
-(4, 1, 'Như Nguyên', '0345674475', '324323', 234523, '1633595689.jpg', 5, '2021-09-28 05:09:56', '2021-10-20 08:43:14'),
-(5, 1, 'Bá Phi', '0981794925', '3442324', 243423, '1633595711.jpg', 5, '2021-09-28 05:10:16', '2021-10-20 08:43:20'),
-(6, 1, 'Văn Thực', '0981335567', '232546', 124211, '1633595758.jpg', 5, '2021-10-04 09:45:31', '2021-10-20 08:43:26'),
-(7, 1, 'Trường Giang', '0988394203', '124124', 355328, '1633595797.jpg', 5, '2021-10-04 09:47:53', '2021-10-20 08:43:32');
+INSERT INTO `users` (`id`, `name`, `number_phone`, `image`, `password`, `otp`, `role_id`, `created_at`, `updated_at`) VALUES
+(1, 'Tự Biên', '0988353523', '1633595565.jpg', '123201', 546529, 1, '2021-09-27 16:15:44', '2021-10-20 08:43:03'),
+(3, 'Trung Kiên', '0939317456', '1633595676.jpg', '569012', 583346, 2, '2021-09-28 05:09:37', '2021-10-20 08:43:09'),
+(4, 'Như Nguyên', '0345674475', '1633595689.jpg', '324323', 234523, 1, '2021-09-28 05:09:56', '2021-10-20 08:43:14'),
+(5, 'Bá Phi', '0981794925', '1633595711.jpg', '3442324', 243423, 1, '2021-09-28 05:10:16', '2021-10-20 08:43:20'),
+(6, 'Văn Thực', '0981335567', '1633595758.jpg', '232546', 124211, 1, '2021-10-04 09:45:31', '2021-10-20 08:43:26'),
+(7, 'Trường Giang', '0988394203', '1633595797.jpg', '124124', 355328, 1, '2021-10-04 09:47:53', '2021-10-20 08:43:32'),
+(8, 'Phi Nguyễn', '+84981794925', 'Bá Phi - Hà Tây.jpg', '1234567890z', 6051, 0, '2021-12-01 08:35:31', '2021-12-01 08:35:31');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `blogs`
+--
+ALTER TABLE `blogs`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `bookings`
@@ -594,6 +628,12 @@ ALTER TABLE `bookings`
 -- Indexes for table `booking_services`
 --
 ALTER TABLE `booking_services`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cate_blogs`
+--
+ALTER TABLE `cate_blogs`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -674,16 +714,28 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `blogs`
+--
+ALTER TABLE `blogs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
 
 --
 -- AUTO_INCREMENT for table `booking_services`
 --
 ALTER TABLE `booking_services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=434;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=474;
+
+--
+-- AUTO_INCREMENT for table `cate_blogs`
+--
+ALTER TABLE `cate_blogs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `cate_services`
@@ -701,13 +753,13 @@ ALTER TABLE `chairs`
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `logos`
 --
 ALTER TABLE `logos`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -719,7 +771,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `salons`
 --
 ALTER TABLE `salons`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `salon_chairs`
@@ -737,13 +789,13 @@ ALTER TABLE `salon_times`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `slides`
 --
 ALTER TABLE `slides`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `times`
@@ -755,7 +807,7 @@ ALTER TABLE `times`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

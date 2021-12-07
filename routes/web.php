@@ -27,7 +27,7 @@ Route::post('/',[BookingController::class, 'store'])->name('client.post');
 
 //Dịch vụ 
 Route::get('/dich-vu',[ServiceController::class,'service'])->name('client.service');
-
+Route::get('/chi-tiet-dich-vu/{id}',[ServiceController::class,'detail'])->name('client.detailService');
 //Bài viết
 Route::get('/trang-bai-viet',[BlogController::class,'list'])->name('client.blog');
 Route::get('danh-muc-bai-viet/{id}',[BlogController::class,'category'])->name('category');

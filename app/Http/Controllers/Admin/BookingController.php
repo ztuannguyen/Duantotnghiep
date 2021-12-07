@@ -12,24 +12,25 @@ use App\Models\CateService;
 use App\Models\Booking_Service;
 use App\Http\Requests\Admin\Booking\BookingRequest;
 use App\Http\Requests\Admin\Booking\UpdateRequest;
+use App\Models\Chair;
 
 class BookingController extends Controller
 {
     public function index(Request $request)
     {
-         
+
         $searchData = $request->except('page');
-        if(count($request->all()) == 0){
+        if (count($request->all()) == 0) {
             $ListBooking = Booking::orderBy('created_at', 'DESC')->get();
-        }else{
+        } else {
             $bookings = Booking::orderBy('created_at', 'DESC');
-            if($request->has('status') && $request->status != ""){
+            if ($request->has('status') && $request->status != "") {
                 $bookings->where('status', $request->status);
             }
-            if($request->has('date_booking') && $request->date_booking != ""){
+            if ($request->has('date_booking') && $request->date_booking != "") {
                 $bookings->where('date_booking', $request->date_booking);
             }
-            if($request->has('salon_id') && $request->salon_id != ""){
+            if ($request->has('salon_id') && $request->salon_id != "") {
                 $bookings->where('salon_id', $request->salon_id);
             }
             $ListBooking = $bookings->get();
@@ -47,7 +48,7 @@ class BookingController extends Controller
 
     public function create()
     {
-     
+
         $booking = Booking::with('service')->get();
         $service = Service::all();
         $cateService = CateService::where('status', 0)->get();
@@ -99,7 +100,7 @@ class BookingController extends Controller
     }
     public function update(UpdateRequest $request, $id)
     {
-        
+
         $booking = booking::find($id);
         if (!$booking) {
             return redirect()->back();
@@ -130,7 +131,7 @@ class BookingController extends Controller
             $filter1 = array_diff($arr, $request->service_id);
             $filter2 = array_diff($request->service_id, $arr);
             foreach ($filter1 as $value) {
-               Booking_Service::where('service_id', $value)->delete();
+                Booking_Service::where('service_id', $value)->delete();
             }
             foreach ($filter2 as $value) {
                 $booking_services = new Booking_Service();
@@ -168,5 +169,28 @@ class BookingController extends Controller
         session()->flash('message', 'Xóa thành công !');
         return redirect()->back();
     }
-  
+    public function waitingCut()
+    {
+        $chair = Chair::where('status', 0)->get();
+        $bookingServices = Booking_Service::where('status', 1)->orderBy('time_start', 'ASC')->get();
+        $bookingServices->load('booking');
+        $bookingServices->load('service');
+        $bookingServices->load('chair');
+        $servicesAll = Service::all();
+        return view('admin.bookings.waitingCut', compact('chair', 'bookingServices', 'servicesAll'));
+    }
+    public function saveWaiting(Request $request)
+    {
+        $bookingSerivce = Booking_Service::find($request->id);
+        $bookingSerivce->status = 4;
+        $bookingSerivce->save();
+        $bookingSerivce->load('booking');
+        $count1 = Booking_Service::where('booking_id', $bookingSerivce->booking->id)->get();
+        $count2 = Booking_Service::where('booking_id', $bookingSerivce->booking->id)->where('status', 4)->get();
+        if (count($count1) == count($count2)) {
+            $bk = Booking::find($bookingSerivce->booking->id);
+            $bk->status = 4;
+            $bk->save();
+        }
+    }
 }

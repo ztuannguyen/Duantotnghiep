@@ -138,63 +138,89 @@
                         <div class="row">
                             <form action="{{ route('client.post') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <div class="col-sm-12">
-                                    <h3>1. Số điện thoại</h3>
-                                    <div class="input-group mb-3">
-                                        <input type="tel" class="form-control" name="number_phone"
-                                            value="{{ old('number_phone') }}" placeholder="Nhập số điện thoại..">
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <h3>2. Chọn Salon</h3>
-                                    <input type="hidden" value="" id="id_chi_nhanh" name="salon_id">
-                                    <div class="input-group mb-3" data-toggle="modal" data-target="#listSalon"
-                                        id="choose_address">
-                                        <input type="text" id="chi_nhanh" disabled class="form-control"
-                                            placeholder="Chọn salon">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text form-control"><svg
-                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
-                                                </svg></span>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h4>Tên khách hàng</h4>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="name"
+                                                value="{{ old('name') }}" placeholder="Nhập tên khách hàng..">
                                         </div>
+                                        @error('name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
-                                </div>
+                                    <div class="col-sm-6">
+                                        <h4>Số điện thoại</h4>
+                                        <div class="input-group mb-3">
+                                            <input type="tel" class="form-control" name="number_phone"
+                                                value="{{ old('number_phone') }}" placeholder="Nhập số điện thoại..">
+                                        </div>
+                                        @error('number_phone')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h4>Chọn Salon</h4>
+                                        <input type="hidden" value="" id="id_chi_nhanh" name="salon_id">
+                                        <div class="input-group mb-3" data-toggle="modal" data-target="#listSalon"
+                                            id="choose_address">
+                                            <input type="text" id="chi_nhanh" disabled class="form-control"
+                                                placeholder="Chọn salon">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text form-control"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-caret-right-fill"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                                    </svg></span>
+                                            </div>
+                                        </div>
+                                        @error('salon_id')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
 
-                                <div class="col-sm-12">
-                                    <h3>3. Chọn dịch vụ</h3>
-                                    <div class="input-group mb-3" data-toggle="modal" data-target="#listService">
-                                        <input type="text" id="dich_vu" class="form-control" disabled
-                                            placeholder="Chọn Dịch Vụ">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text form-control"><svg
-                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
-                                                </svg></span>
+                                    <div class="col-sm-12">
+                                        <h4>Chọn dịch vụ</h4>
+                                        <div class="input-group mb-3" data-toggle="modal" data-target="#listService">
+                                            <input type="text" id="dich_vu" class="form-control" disabled
+                                                placeholder="Chọn Dịch Vụ">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text form-control"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-caret-right-fill"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                                    </svg></span>
+                                            </div>
+                                        </div>
+                                        <div id="selected_services_container"></div>
+                                        @error('service_id')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h4>Lời nhắn</h4>
+                                        <div class="input-group mb-3">
+                                            <textarea name="note" class="form-control" value="{{ old('note') }}"
+                                                rows="5"
+                                                placeholder="Quý khách có yêu cầu gì hãy để lại lời nhắn tại đây..."></textarea>
                                         </div>
                                     </div>
-                                    <div id="selected_services_container"></div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <h5>Anh đi cắt cùng nhiều người ? (nếu khung giờ không đủ
-                                        thợ cho cả nhóm salon sẽ gọi xác nhận lại)</h5>
-                                    <div class="input-group mb-3">
-                                        <textarea name="note" class="form-control" value="{{ old('note') }}" rows="5"
-                                            placeholder="VD : Anh đi cùng bạn bè , đi cùng con anh..."></textarea>
+                                    <div class="col-sm-12" id="time">
+                                        <h4>Chọn ngày cắt</h4>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="date_booking"
+                                                placeholder="Chọn ngày cắt ..." value="{{ date('Y-m-d') }}"
+                                                onchange="loadTime($('#id_chi_nhanh').val())">
+                                        </div>
+                                        @error('date_booking')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
-                                <div class="col-sm-12" id="time">
-                                    <h3>4. Chọn ngày cắt</h3>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="date_booking"
-                                            placeholder="Chọn ngày cắt ..." value="{{ date('Y-m-d') }}" onchange="loadTime($('#id_chi_nhanh').val())">
-                                    </div>
-                                </div>
-                                <input type="hidden" name="status" value="1">
                                 <div class="col text-center">
                                     <button type="submit" class="btn btn-primary">Đặt Lịch Ngay</button>
                                 </div>
@@ -265,7 +291,7 @@
 
 
         // load time
-        function loadTime (id) {
+        function loadTime(id) {
             let date = $(`input[name="date_booking"]`).val();
             $.ajaxSetup({
                 headers: {
@@ -280,17 +306,16 @@
                     id: id,
                     date: date,
                 },
-                success: function (res) {
+                success: function(res) {
                     let times = '';
                     let disable = '';
 
-                    $.each( res.times, function( key, value ) {
-                        let remainSlot = get_total_slot_remain( value.id, res.bookingDetails);
+                    $.each(res.times, function(key, value) {
+                        let remainSlot = get_total_slot_remain(value.id, res.bookingDetails);
 
                         if (remainSlot === 0) {
                             disable = 'disable';
-                        }
-                        else {
+                        } else {
                             disable = '';
                         }
 
@@ -305,7 +330,7 @@
                             </div>
                         `
                     });
-                    
+
 
                     $('#list-time').remove();
                     $('#time').append(`
@@ -336,15 +361,15 @@
                         }
                     })
                 },
-                errors: function () {
+                errors: function() {
                     alert('Lỗi server!!!');
                 }
             })
         }
 
-        function get_total_slot_remain(remainSlot,slotId,arrBookedServices){
-            $.each( arrBookedServices, function( key, value ) {
-                if(value.doing_time_id == slotId){
+        function get_total_slot_remain(remainSlot, slotId, arrBookedServices) {
+            $.each(arrBookedServices, function(key, value) {
+                if (value.doing_time_id == slotId) {
                     remainSlot -= 1;
                 }
             });

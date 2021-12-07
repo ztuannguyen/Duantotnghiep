@@ -12,7 +12,11 @@ class ServiceController extends Controller
     public function service()
     {
         $category = CateService::with('services')->where('status',0)->get();
-        $serviceAll = Service::where('status',0)->orderByDesc('id')->get();
-        return view('client.service',compact('category','serviceAll'));
+        $service = Service::where('status',0)->get();
+        return view('client.service',compact('category','service'));
+    }
+    public function detail($id){
+        $detail = Service::where('id',$id)->get();
+        return view('client.detailService', compact('detail'));
     }
 }

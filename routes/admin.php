@@ -90,8 +90,11 @@ Route::group([
         Route::post('/delete/{booking}', [BookingController::class,'remove'])->name('remove');
         
         Route::get('/sortAppointment',[SortAppointmentController::class,'index'])->name('sortAppointment');
-        Route::post('/chi-tiet-don-dat-lich',[BookingController::class,'detailAppointment'])->name('detailAppointment');
         Route::post('/sortAppointment', [SortAppointmentController::class, 'post'])->name('admin.bookings.sortAppointment');
+        Route::post('/chi-tiet-don-dat-lich',[BookingController::class,'detailAppointment'])->name('detailAppointment');
+        Route::get('/waitingCut',[BookingController::class,'waitingCut'])->name('waitingCut');
+        Route::post('/save-waiting',[BookingController::class,'saveWaiting'])->name('saveWaiting');
+        Route::post('/save-waiting-schedule', [BookingController::class, 'saveWaitingSchedule'])->name('saveWaitingSchedule');
         Route::resource('/booking_services','SortAppointmentController');
     });
 });

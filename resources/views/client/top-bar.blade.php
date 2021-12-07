@@ -1,8 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark
       ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-      <a class="navbar-brand" href="index.html"><span
-          class="flaticon-scissors-in-a-hair-salon-badge"></span>Brotherhoods</a>
+      <?php
+        $logo = DB::table('logos')->where('status',0)->get();
+      ?>
+      @foreach ($logo as $item)
+      <a class="navbar-brand" href="index.html"><img src="{{ asset('uploads/' . $item->image) }}" width="200" height="50"></a>
+      @endforeach
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
         aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu

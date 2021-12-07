@@ -46,8 +46,7 @@
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
                 <tr>
-                    <th>STT</th>
-                    <th>Mã hóa đơn</th>
+                    <th>Mã hóa đơn - Tên KH</th>
                     <th>SĐT</th>
                     <th>Dịch vụ</th>
                     <th>Xếp lịch</th>
@@ -57,10 +56,7 @@
             <tbody>
                 @foreach ($bookingServices as $item)
                     <tr>
-                        <td>
-                            {{ $loop->iteration }}
-                        </td>
-                        <td>#{{ $item->booking->id }}</td>
+                        <td>#{{ $item->booking->id }} - {{ $item->booking->name }}</td>
                         <td>{{ $item->booking->number_phone }}</td>
                         <td>
                             {{ $item->service->name }}
@@ -103,6 +99,7 @@
                                                 @php
                                                     $timeTotal += $item->service->execution_time;
                                                 @endphp
+                                                <li>Tên khách hàng : {{ $item->booking->name }}</li>
                                                 <li>
                                                     Tên dịch vụ : {{ $item->service->name }}
                                                 </li>
@@ -121,7 +118,7 @@
                                                 <div class="form-group">
                                                     <label class="font-weight-bold">Thời gian</label>
                                                     <div class="mt-3">
-                                                        <input type="text" class="form-control bs-timepicker"
+                                                        <input type="text" class="form-control bs-timepicker" value="{{ date('H:i:00')}}"
                                                             id={{ $item->id . 'time' }}>
                                                     </div>
                                                     <p class="error_dateTime"></p>
@@ -143,7 +140,7 @@
                                     </div>
                                     <!-- Modal footer -->
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-success" data-dismiss="modal"
+                                        <button type="button" class="btn btn-success" 
                                             onclick="submit({{ $item->id }},{{ $timeTotal }},{{ $item->booking->salon_id }})">Xếp
                                             lịch</button>
                                     </div>
@@ -187,15 +184,17 @@
     <script type="text/javascript" charset="utf-8">
         function submit(id, timetotal, salon) {
             let chair_id = $('#chair_id').val();
-            let time = $(`#${id}time`).val()
-            let timestart = $(`#${id}time`).val()
+            let time = $(`#${id}time`).val();
+            let timestart = $(`#${id}time`).val();
             let status = $('#status').val();
-            let mang = time.split(':')
-            let h = Math.floor((Number(mang[1]) + Number(timetotal)) / 60)
-            let p = (Number(mang[1]) + Number(timetotal)) % 60
-            mang[0] = Number(mang[0]) + h
-            mang[1] = p
-            time = mang.join(':')
+
+            // let time = $(`#${id}time`).val()
+            // let mang = time.split(':')
+            // let h = Math.floor((Number(mang[1]) + Number(timetotal)) / 60)
+            // let p = (Number(mang[1]) + Number(timetotal)) % 60
+            // mang[0] = Number(mang[0]) + h
+            // mang[1] = p
+            // time = mang.join(':')
             $('.close_modal');
             $('.error_dateTime').html();
             $.ajax({
@@ -205,20 +204,19 @@
                     id: id,
                     chair_id: chair_id,
                     time_start: timestart,
-                    time_end: time,
+                    // time_end: time,
                     status: status,
                     salon_id: salon,
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(data) {
+                    if (data == "") {
+                        toastr.success("Xếp lịch thành công !");
+                        setTimeout(function() {
+                            window.location.href = "{{ route('admin.bookings.sortAppointment') }}";
+                        }, 100);
+                    }
                     $('.error_dateTime').html(data);
-                    toastr.success("Xếp lịch thành công !");
-
-                    setTimeout(function() {
-                        window.location.href = "{{ route('admin.bookings.sortAppointment') }}";
-                    }, 500);
-
-                    
                 }
             });
         }
@@ -290,12 +288,7 @@
             })
         });
         $(document).ready(function() {
-            $('.bs-timepicker').timepicker({
-                format: 'HH:mm:00',
-                showInputs: false,
-                showMeridian: false,
-                setTime: null
-            });
+            $('.bs-timepicker').timepicker();
 
         })
     </script>
