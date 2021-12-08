@@ -24,7 +24,7 @@
                         <span class="text">Thêm mới</span>
                     </a>
                 </div>
-                {{-- <div class="col-3"></div>
+                <div class="col-3"></div>
                 <div class="col-7 mt-2">
                     <form action="" method="get">
                         <div class="row">
@@ -67,7 +67,7 @@
                             </div>
                         </div>
                     </form>
-                </div> --}}
+                </div>
             </div>
         </div>
     @section('search-form')
@@ -97,8 +97,6 @@
                             <td>Tên khách hàng</td>
                             <td>Số điện thoại</td>
                             <td>Chi nhánh</td>
-                            <td>Thời gian</td>
-                            <td>Ngày đặt</td>
                             <td>Chi tiết</td>
                             <td>Trạng thái</td>
                             <td>Hành động</td>
@@ -112,8 +110,6 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->number_phone }}</td>
                                 <td>{{ $item->Salon->address }}</td>
-                                <td>{{ $item->Time->time_start }}</td>
-                                <td>{{ $item->date_booking }}</td>
                                 <td><a class="btn btn-primary btn-sm " data-toggle="modal"
                                         data-target="{{ '#' . '_' . $item->id }}">Xem</a></td>
                                 <td>
@@ -134,6 +130,7 @@
                                         class="btn btn-warning btn-circle btn-sm">
                                         <i class="fas fa-edit"></i>
                                     </a>
+                                    <a href="{{route('admin.bookings.invoices', ['id' => $item->id])}}"  class="btn btn-warning btn-circle btn-sm"><i class="fas fa-download"></i></a>
                                     <a data-toggle="modal" class="btn btn-danger btn-circle btn-sm"
                                         data-target="#confirm_delete_{{ $item->id }}"><i
                                             class="fas fa-trash"></i></a>

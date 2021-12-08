@@ -13,6 +13,7 @@ use App\Models\Booking_Service;
 use App\Http\Requests\Admin\Booking\BookingRequest;
 use App\Http\Requests\Admin\Booking\UpdateRequest;
 use App\Models\Chair;
+use PDF;
 
 class BookingController extends Controller
 {
@@ -192,5 +193,13 @@ class BookingController extends Controller
             $bk->status = 4;
             $bk->save();
         }
+    }
+    public function invoices($id){
+        $booking = Booking::find($id);
+        view()->share('booking',$booking);
+        $booking->load(['booking_services','service','salon']);
+        $pdf = PDF::loadView('admin.bookings.invoice', $booking);
+
+        return $pdf->download('Hoadonthanhtoan.pdf');
     }
 }

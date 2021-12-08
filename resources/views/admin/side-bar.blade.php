@@ -117,7 +117,7 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="/admin/logos">Logo</a>
-                <a class="collapse-item" href="register.html">Footer</a>
+                <a class="collapse-item" href="{{ route('admin.footers.index')}}">Footer</a>
                 <a class="collapse-item" href="/admin/slides">Slide</a>
             </div>
         </div>

@@ -30,7 +30,7 @@ class FooterController extends Controller
         if ($request->isMethod('post')) {
             $validator = Validator::make($request->all(),[
                  'email' => 'required|email',
-                 'hotline' => 'required|max:13|numeric',
+                 'hotline' => 'required|digits:10|numeric',
                  'description' => 'required',
                  'fanpage' => 'required',
                  'status' => 'required',
@@ -59,7 +59,7 @@ class FooterController extends Controller
         if ($request->isMethod('post')) {
             $validator = Validator::make($request->all(),[
                 'email' => 'required|email',
-                'hotline' => 'required|max:13|numeric',
+                'hotline' => 'required|digits:10|numeric',
                 'description' => 'required',
                 'fanpage' => 'required',
                 'status' => 'required',

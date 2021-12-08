@@ -27,20 +27,24 @@
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold">Hotline</label>
-                    <input class="form-control" type="text" name="hotline" placeholder="Nhập hotline ...">
+                    <input class="form-control" type="tel" name="hotline" placeholder="Nhập hotline ...">
                     @error('hotline')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label class="font-weight-bold">Description</label>
-                    <input class="form-control" type="text" name="description" placeholder="Nhập nội dung ...">
+                    <label class="font-weight-bold">Mô tả</label>
+                    <textarea name="description" id="description" class="form-control ckeditor"></textarea>
+                    <script>
+                        CKEDITOR.replace('description');
+                        var data = CKEDITOR.instances.description.getData();
+                    </script>
                     @error('description')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label class="font-weight-bold">Fanpage</label>
+                    <label class="font-weight-bold">Link Fanpage</label>
                     <input class="form-control" type="text" name="fanpage" placeholder="Nhập link fanpage ...">
                     @error('fanpage')
                         <span class="text-danger">{{ $message }}</span>
