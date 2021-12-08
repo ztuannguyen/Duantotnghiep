@@ -96,6 +96,7 @@ Route::group([
         Route::get('/waitingCut',[BookingController::class,'waitingCut'])->name('waitingCut');
         Route::post('/save-waiting',[BookingController::class,'saveWaiting'])->name('saveWaiting');
         Route::post('/save-waiting-schedule', [BookingController::class, 'saveWaitingSchedule'])->name('saveWaitingSchedule');
+        Route::get('/xuat-hoa-don/{id}', [BookingController::class, 'invoices'])->name('invoices');
         Route::resource('/booking_services','SortAppointmentController');
     });
 });

@@ -36,7 +36,7 @@
             </div>
         </form>
     @endsection
-    
+
     @if (!empty($data))
         <div class="card-body">
             <div class="table-responsive">
@@ -46,11 +46,11 @@
                             <td>#</td>
                             <td>Email</td>
                             <td>Hotline</td>
-                            <td>Description</td>
-                            <td>Fanpage</td>
-                            <td>Status</td>
+                            <td>Mô tả </td>
+                            <td>Link Fanpage</td>
+                            <td>Trạng thái</td>
                             <td>
-                                Chức năng
+                                Hành động
                             </td>
                         </tr>
                     </thead>
@@ -58,20 +58,18 @@
                         @foreach ($data as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{$item->email}}</td>
-                                <td>{{$item->hotline}}</td>
-                                <td>{{$item->description}}</td>
+                                <td>{{ $item->email }}</td>
+                                <td>{{ $item->hotline }}</td>
+                                <td>{{ $item->description }}</td>
                                 <td>
-                                    {{$item->fanpage}}
+                                    {{ $item->fanpage }}
                                 </td>
 
                                 <td>
                                     @if ($item->status == 0)
-                                        <a href=""
-                                            class="btn btn-success btn-sm">ON</a>
+                                        <a href="" class="btn btn-success btn-sm">ON</a>
                                     @else
-                                        <a href=""
-                                            class="btn btn-danger btn-sm">OFF</a>
+                                        <a href="" class="btn btn-danger btn-sm">OFF</a>
                                     @endif
                                 </td>
                                 <td>

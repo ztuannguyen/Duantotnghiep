@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold">Số điện thoại</label>
-                    <input class="form-control" type="number" name="phone_number"  value="{{$contact->phone_number}}">
+                    <input class="form-control" type="tel" name="phone_number"  value="{{$contact->phone_number}}">
                     @error('phone_number')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
