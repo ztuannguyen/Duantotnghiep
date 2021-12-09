@@ -14,6 +14,7 @@ use App\Http\Requests\Admin\Booking\BookingRequest;
 use App\Http\Requests\Admin\Booking\UpdateRequest;
 use App\Models\Chair;
 use PDF;
+use Exception;
 
 class BookingController extends Controller
 {
