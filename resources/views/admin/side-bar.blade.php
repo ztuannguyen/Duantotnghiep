@@ -1,7 +1,7 @@
 @section('side-bar')
 
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
@@ -43,16 +43,17 @@
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+            aria-expanded="true" aria-controls="collapseOne">
             <i class="fas fa-fw fa-building"></i>
             <span>Chi nhánh cửa hàng</span>
         </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+        <div id="collapseOne" class="collapse" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="/admin/salons">Danh sách chi nhánh</a>
                 <a class="collapse-item" href="/admin/times">Thời gian đặt lịch</a>
+                <a class="collapse-item" href="/admin/chairs">Ghế làm</a>
             </div>
         </div>
     </li>
@@ -63,12 +64,21 @@
             <span>Tài khoản</span></a>
     </li>
 
+  
     <li class="nav-item">
-        <a class="nav-link" href="/admin/bookings">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-calendar"></i>
-            <span>Đơn đặt lịch</span></a>
+            <span>Đơn đặt lịch</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('admin.bookings.index')}}">Danh sách đơn</a>
+                <a class="collapse-item" href="{{ route('admin.bookings.sortAppointment')}}">Bảng xếp lịch</a>
+            </div>
+        </div>
     </li>
-
     <li class="nav-item">
         <a class="nav-link" href="/admin/contacts">
             <i class="fas fa-fw fa-phone"></i>

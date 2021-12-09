@@ -44,7 +44,6 @@
                     <thead>
                         <tr>
                             <td>#</td>
-                            <td>Chi nhánh</td>
                             <td>Thời gian bắt đầu</td>
                             <td>Thời gian kết thúc</td>
                             <td>Hành động</td>
@@ -54,7 +53,6 @@
                         @foreach ($data as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->salon->address }}</td>
                                 <td>{{ $item->time_start }}</td>
                                 <td>{{ $item->time_end }}</td>
                                 <td> <a href="{{ route('admin.times.edit', ['time' => $item->id]) }}"

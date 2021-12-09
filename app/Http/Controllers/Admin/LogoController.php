@@ -58,6 +58,19 @@ class LogoController extends Controller
         session()->flash('message', 'Sửa thành công !');
         return redirect()->route('admin.logos.index');
     }
+    public function status($id, $status)
+    {
+        $flight = Logo::find($id);
+        $flight->status = $status;
+
+        if ($status == 0) {
+            session()->flash('message', 'Bật thành công');
+        } else {
+            session()->flash('warning', 'Tắt thành công');
+        }
+        $flight->save();
+        return redirect()->route('admin.logos.index');
+    }
     public function delete(Logo $logo){
         $logo->delete($logo);
         session()->flash('message', 'Xóa thành công !');

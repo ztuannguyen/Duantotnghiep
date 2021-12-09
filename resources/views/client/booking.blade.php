@@ -244,7 +244,7 @@
 
                 textDisplay += element.name + " - ";
                 $('#selected_services_container').append(
-                    `<input type="hidden" name="bookings_services[]" value="${element.id}">`
+                    `<input type="hidden" name="service_id[]" value="${element.id}">`
                 );
             });
 
@@ -314,7 +314,6 @@
                                 <div class="box-time_item ${disable}"
                                     role="presentation" id="thoi_gian">
                                     ${value.time_start.substring(0, 5)}
-                                    <p>Số vị trí còn lại: <span id="slot-time-${value.id}">${remainSlot}</span></p>
                                 </div>
                             </div>
                         `
@@ -375,15 +374,6 @@
             $('#id_time').val(id)
             $('#thoi_gian').val(time_start)
         }
-        // Active time
-        $(".box-time_item").click(function() {
-            if ($(this).hasClass("active")) {
-                $(".box-time_item").removeClass("active");
-            } else {
-                $(".box-time_item").removeClass("active");
-                $(this).addClass("active");
-            }
-        })
         $(document).ready(function() {
             let today = moment().format('YYYY-MM-DD');
             let tomorrow = moment().add(2, 'days').format('YYYY-MM-DD');

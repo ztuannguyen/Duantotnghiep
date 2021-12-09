@@ -18,13 +18,11 @@ class SalonTimeController extends Controller
         } else {
             $ListTime = Time::all();
         }
-        $ListTime->load(['salon']);
         $ListTime->load(['bookings']);
         return view('admin.times.index',['data'=>$ListTime]);
     }
     public function create(){
-        $ListSalon = Salon::all();
-        return view('admin.times.create', ['ListSalon' => $ListSalon]);
+        return view('admin.times.create');
     }
     public function store(SalonTimeRequest $request){
         $data =  $request->except('_token');
@@ -34,8 +32,7 @@ class SalonTimeController extends Controller
     }
     public function edit(Time $time)
     {
-        $ListSalon = Salon::all();
-        return view('admin.times.edit', ['time' => $time, 'ListSalon' => $ListSalon]);
+        return view('admin.times.edit', ['time' => $time]);
     }
     public function update(UpdateRequest $request, Time $time)
     {

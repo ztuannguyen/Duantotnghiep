@@ -18,14 +18,7 @@
             <div class="table-responsive">
                 <form method="POST" action="{{ route('admin.times.store') }}" >
                     @csrf
-                    <div class="form-group">
-                        <label class="font-weight-bold">Chi nhánh Salon</label>
-                        <select class="mt-3 form-control" name="salon_id">
-                            @foreach ($ListSalon as $item)
-                                <option value="{{$item->id}}">{{$item->address}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    
                     <div class="form-group">
                         <label class="font-weight-bold">Thời gian bắt đầu</label>
                         <input class="form-control" type="time" name="time_start" value="{{ old('time_start') }}">

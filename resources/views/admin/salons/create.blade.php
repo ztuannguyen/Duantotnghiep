@@ -20,21 +20,24 @@
                     @csrf
                     <div class="form-group">
                         <label class="font-weight-bold">Tên chi nhánh</label>
-                        <input class="form-control" type="text" name="name_salon" value="{{ old('name_salon') }}" placeholder="Nhập tên chi nhánh ...">
+                        <input class="form-control" type="text" name="name_salon" value="{{ old('name_salon') }}"
+                            placeholder="Nhập tên chi nhánh ...">
                         @error('name_salon')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Số ghế</label>
-                        <input class="form-control" type="text" name="slot_amount" value="{{ old('slot_amount') }}" placeholder="Nhập số ghế ...">
+                        <input class="form-control" type="text" name="slot_amount" value="{{ old('slot_amount') }}"
+                            placeholder="Nhập số ghế ...">
                         @error('slot_amount')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Địa chỉ</label>
-                        <input class="form-control" type="text" name="address" value="{{ old('address') }}" placeholder="Nhập địa chỉ ...">
+                        <input class="form-control" type="text" name="address" value="{{ old('address') }}"
+                            placeholder="Nhập địa chỉ ...">
                         @error('address')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -42,8 +45,8 @@
                     <div class="form-group">
                         <label class="font-weight-bold">Ảnh</label>
                         <div class="custom-file">
-                        <input type="file" class="custom-file-input"  name="image" value="{{ old('image') }}" >
-                        <label class="custom-file-label" for="customFile" >Chọn ảnh ...</label>
+                            <input type="file" class="custom-file-input" name="image" value="{{ old('image') }}">
+                            <label class="custom-file-label" for="customFile">Chọn ảnh ...</label>
                         </div>
                         @error('image')
                             <span class="text-danger">{{ $message }}</span>
@@ -51,7 +54,8 @@
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Mô tả</label>
-                        <input class="form-control" type="text" name="description" value="{{ old('description') }}" placeholder="Nhập mô tả ...">
+                        <input class="form-control" type="text" name="description" value="{{ old('description') }}"
+                            placeholder="Nhập mô tả ...">
                         <script>
                             CKEDITOR.replace('description');
                             var data = CKEDITOR.instances.detail.getData();
@@ -59,6 +63,34 @@
                         @error('description')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="font-weight-bold">Ghế làm</label>
+                        <div class="form-check-inline-block mb-3">
+                            @foreach ($chair as $ser)
+                                <div class="form-check-inline ">
+                                    <input class="form-check-input" name="salon_chairs[]" type="checkbox"
+                                        value="{{ $ser['id'] }}">
+                                    <label class="form-check-label">
+                                        {{ $ser['name'] }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="font-weight-bold">Thời gian làm việc</label>
+                        <div class="form-check-inline-block mb-3">
+                            @foreach ($time as $time)
+                                <div class="form-check-inline ">
+                                    <input class="form-check-input" name="salon_times[]" type="checkbox"
+                                        value="{{ $time['id'] }}">
+                                    <label class="form-check-label">
+                                        {{ $time['time_start'] }} - {{$time['time_end']}}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Trạng thái</label>

@@ -17,13 +17,13 @@ class CateServiceController extends Controller
             $listCateService = CateService::all();
         }
         $listCateService->load(['services']);
-        return view('admin/cateServices/index',['data' => $listCateService]);
+        return view('admin.cateServices.index',['data' => $listCateService]);
     }
 
     public function show(){}
 
     public function create(){
-        return view('admin/cateServices/create');
+        return view('admin.cateServices.create');
     }
 
     public function store(Request $request){
@@ -46,7 +46,7 @@ class CateServiceController extends Controller
     }
 
     public function edit(CateService $cateService){
-        return view('admin/cateServices/edit', ['cateService'=> $cateService]);
+        return view('admin.cateServices.edit', ['cateService'=> $cateService]);
     }
 
     public function update(Request $request, CateService $cateService)
@@ -68,7 +68,17 @@ class CateServiceController extends Controller
           session()->flash('message', 'Sửa thành công !');
           return redirect()->route('admin.cate_services.index');
     }
-
+    public function status($id ,$status){
+        $flight = CateService::find($id);
+        $flight->status = $status;
+        if($status == 0){
+            session()->flash('message','Bật thành công '); 
+          }else{
+            session()->flash('warning','Tắt thành công'); 
+          }
+        $flight->save();
+        return redirect()->route('admin.cate_services.index',['type'=>$flight->type]);
+    }
      public function delete(cateService $id){
          $id->delete($id);
          session()->flash('message', 'Xóa thành công !');

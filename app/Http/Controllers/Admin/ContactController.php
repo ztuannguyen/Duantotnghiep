@@ -40,6 +40,19 @@ class ContactController extends Controller
         session()->flash('message', 'Sửa thành công !');
         return redirect()->route('admin.contacts.index');
     }
+    public function status($id, $status)
+    {
+        $flight = Contact::find($id);
+        $flight->status = $status;
+
+        if ($status == 0) {
+            session()->flash('message', 'Bật thành công');
+        } else {
+            session()->flash('warning', 'Tắt thành công');
+        }
+        $flight->save();
+        return redirect()->route('admin.contacts.index');
+    }
     public function delete(Contact $contact)
     {
         $contact->delete($contact);

@@ -16,7 +16,8 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <form method="POST" action="{{ route('admin.salons.update',['salon' =>$salon->id]) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.salons.update', ['id' => $salon->id]) }}"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label class="font-weight-bold">Tên cửa hàng</label>
@@ -27,7 +28,7 @@
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Số ghế</label>
-                        <input class="form-control" type="text" name="slot_amount"  value="{{ $salon->slot_amount }}" >
+                        <input class="form-control" type="text" name="slot_amount" value="{{ $salon->slot_amount }}">
                         @error('slot_amount')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -42,12 +43,13 @@
                     <div class="form-group">
                         <label class="font-weight-bold">Ảnh</label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input"  name="image" value="{{ $salon->image }}">
-                            <label class="custom-file-label" for="customFile" value="{{ old('image') }}">Chọn ảnh ...</label>
-                            </div>
+                            <input type="file" class="custom-file-input" name="image" value="{{ $salon->image }}">
+                            <label class="custom-file-label" for="customFile" value="{{ old('image') }}">Chọn ảnh
+                                ...</label>
+                        </div>
                         <div class="mt-2">
                             @if ($salon->image)
-                            <img src="{{ asset('uploads/' . $salon->image) }}" width="170px" height="150px">
+                                <img src="{{ asset('uploads/' . $salon->image) }}" width="170px" height="150px">
                             @endif
                         </div>
                         @error('image')
@@ -60,6 +62,34 @@
                         @error('description')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="font-weight-bold">Ghế làm</label>
+                        <div class="form-check-inline-block mb-3">
+                            @foreach ($chair as $ser)
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" name="salon_chairs[]" type="checkbox"
+                                        value="{{ $ser->id }}" @if (in_array($ser->id, $salon_chairs)) checked @endif>
+                                    <label class="form-check-label">
+                                        {{ $ser->name }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="font-weight-bold">Thời gian làm việc</label>
+                        <div class="form-check-inline-block mb-3">
+                            @foreach ($time as $time)
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" name="salon_times[]" type="checkbox"
+                                        value="{{ $time->id }}" @if (in_array($time->id, $salon_times)) checked @endif>
+                                    <label class="form-check-label">
+                                        {{ $time->time_start }} - {{ $time->time_end }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Trạng thái</label>
