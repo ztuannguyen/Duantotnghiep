@@ -285,9 +285,22 @@
                     let disable = '';
 
                     $.each( res.times, function( key, value ) {
-                        let remainSlot = get_total_slot_remain(value.salon.slot_amount, value.id, res.bookingDetails);
-
-                        if (remainSlot === 0) {
+                        dt = new Date();
+                        var timeNow = dt.getHours()*3600 + dt.getMinutes()*60 + dt.getSeconds();
+                        var dateNow = dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate();
+                        
+                        var timeSl= value.time_start.split(":");
+                       
+                        let array=[]
+                        timeSl.map(arr=>{
+                            array.push(parseInt(arr))
+                        });
+             
+                        var sum = array[0]*3600+array[1]*60;
+                        
+                        
+                       
+                        if (timeNow > sum && dateNow===date) {
                             disable = 'disable';
                         }
                         else {
@@ -314,7 +327,7 @@
                         <div class="box-time" id="box-time">
                             <div class="relative">
                                 <div class="swiper-container swiper-container-initialized swiper-container-horizontal">
-                                    <div class="swiper-wrapper">
+                                    <div class="swiper-wrapper unvailailable">
                                         <input type="hidden" name="time_id" value="" id="id_time">
                                         ${times}
                                     </div>

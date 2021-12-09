@@ -12,6 +12,7 @@ use App\Models\CateService;
 use App\Models\Booking_Service;
 use App\Http\Requests\Admin\Booking\BookingRequest;
 use App\Http\Requests\Admin\Booking\UpdateRequest;
+use Exception;
 
 class BookingController extends Controller
 {
