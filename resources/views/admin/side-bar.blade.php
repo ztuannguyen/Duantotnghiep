@@ -3,14 +3,23 @@
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
-        <img src="/admin/img/undraw_profile.svg" alt="" width="20">
-    </a>
+    @can('admin')
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
+            <img src="/admin/img/undraw_profile.svg" alt="" width="20">
+        </a>
+    @endcan
+
+    @can('staff')
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/bookings">
+            <img src="/admin/img/undraw_profile.svg" alt="" width="20">
+        </a>
+    @endcan
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
+    @can('admin')
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
         <a class="nav-link" href="/admin/dashboard">
@@ -64,22 +73,24 @@
             <span>Tài khoản</span></a>
     </li>
 
-  
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-calendar"></i>
-            <span>Đơn đặt lịch</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('admin.bookings.index')}}">Danh sách đơn</a>
-                <a class="collapse-item" href="{{ route('admin.bookings.sortAppointment')}}">Bảng xếp lịch</a>
-                <a class="collapse-item" href="{{ route('admin.bookings.waitingCut')}}">Danh sách hàng chờ</a>
+    @endcan
+    @can('staff')
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-calendar"></i>
+                <span>Đơn đặt lịch</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{ route('admin.bookings.index')}}">Danh sách đơn</a>
+                    <a class="collapse-item" href="{{ route('admin.bookings.sortAppointment')}}">Bảng xếp lịch</a>
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
+    @endcan
+    @can('admin')
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBlog"
             aria-expanded="true" aria-controls="collapseBlog">
@@ -122,7 +133,7 @@
             </div>
         </div>
     </li>
-
+    @endcan
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

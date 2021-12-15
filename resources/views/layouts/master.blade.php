@@ -114,6 +114,7 @@
     <script src="{{ asset('frontend/js/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('frontend/js/scrollax.min.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+    <script src="{{ asset('frontend/js/step.js') }}"></script>
     @yield('scripts')
     @if (Session::has('message'))
         <script>
