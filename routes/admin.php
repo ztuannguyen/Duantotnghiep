@@ -242,7 +242,6 @@ Route::group(['middleware' => 'verify.admin'], function () {
         });
     });
 });
-<<<<<<< HEAD
 
 Route::get('/admin/footers', [FooterController::class, 'index'])->name('admin.footers.index');
 Route::post('/admin/footers/delete/{footer}', [FooterController::class, 'delete'])->name('admin.footers.delete');
@@ -250,6 +249,4 @@ Route::get('/admin/footers/create', [FooterController::class, 'create'])->name('
 Route::get('/admin/footers/edit/{footer}', [FooterController::class, 'edit'])->name('admin.footers.edit');
 Route::post('/admin/footers/store', [FooterController::class, 'store'])->name('admin.footers.store');
 Route::post('/admin/footers/update/{footer}', [FooterController::class, 'update'])->name('admin.footers.update');
-=======
 Route::get('/admin/users/logout', [UserController::class,'logout'])->name('admin.users.logout');
->>>>>>> tuan
