@@ -14,12 +14,10 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="index.html" class="nav-link">Trang chủ</a></li>
+          <li class="nav-item"><a href="{{route('client.home')}}" class="nav-link">Trang chủ</a></li>
+          <li class="nav-item"><a href="{{route('client.about')}}" class="nav-link">Giới thiệu</a></li>
           <li class="nav-item"><a href="{{route('client.service')}}" class="nav-link">Dịch
               vụ</a></li>
-          <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
-          <li class="nav-item"><a href="about.html" class="nav-link">Về chúng
-              tôi</a></li>
           <li class="nav-item "><a href="{{route('client.blog')}}" class="nav-link">Blog</a></li>
 
           <li class="nav-item"><a href="contact.html" class="nav-link">Liên hệ</a></li>

@@ -10,7 +10,7 @@
       <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
         <div class="col-md-9 ftco-animate pb-5 text-center">
           <h2 class="mb-0 bread">Liên hệ</h2>
-          <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Trang chủ <i class="ion-ios-arrow-round-forward"></i></a></span> <span class="mr-2"><a href="contact.html">Liên hệ <i class="ion-ios-arrow-forward"></i></a></span> <span>Liên hệ <i class="ion-ios-arrow-round-forward"></i></span></p>
+          <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Trang chủ <i class="ion-ios-arrow-round-forward"></i></a></span><span>Liên hệ</span></p>
         </div>
       </div>
     </div>
@@ -34,19 +34,19 @@
             <h4 class="h1-responsive font-weight-bold my-4">Chúng tôi trân
               trọng ý kiến của quý khách</h4>
             <!--Section description-->
-            <p class=" w-responsive mx-auto mb-5" style="color: gray">Nếu bạn có gì thắc mắc hãy
+            <p class=" w-responsive mx-auto mb-3">Nếu bạn có gì thắc mắc hãy
               liên hệ với chúng tôi qua địa chỉ</p>
-            <p class=" w-responsive mx-auto mb-5" style="color: gray">Điện
+            <p class=" w-responsive mx-auto mb-3">Điện
               thoại<br>
-              1900.27.27.30</p>
-            <p class=" w-responsive mx-auto mb-5" style="color: gray"><span>Điạ
-                chỉ</span><br><span>Số 82 Trần
-                Đại Nghĩa, phường Đồng Tâm, quận Hai Bà Trưng, Hà Nội.</span></p>
-            <p class=" w-responsive mx-auto mb-5" style="color: gray"><span>Email</span><br><span>BrotherHoods@gmail.com</span></p>
+              <b>1900.27.27.30</b></p>
+            <p class=" w-responsive mx-auto mb-3"><span>Điạ
+                chỉ</span><br><span><b>Số 82 Trần
+                Đại Nghĩa, phường Đồng Tâm, quận Hai Bà Trưng, Hà Nội.</b></span></p>
+            <p class=" w-responsive mx-auto mb-3"><span>Email</span><br><span><b>brotherhoods@gmail.com</b></span></p>
 
-            <p class=" w-responsive mx-auto mb-5" style="color: gray"><span>Thời
-                gian</span><br><span>Tất cả
-                các ngày trong tuần</span></p>
+            <p class=" w-responsive mx-auto mb-3"><span>Thời
+                gian</span><br><span><b>Tất cả
+                các ngày trong tuần</b></span></p>
 
           </section>
           <!--Section: Contact v.2-->
@@ -58,7 +58,7 @@
             <!--Section heading-->
             <h4 class="h1-responsive font-weight-bold my-4">Gửi thắc mắc cho chúng tôi</h4>
             <!--Section description-->
-            <p class=" w-responsive mx-auto mb-5" style="color: gray">Nếu bạn có thắc mắc gì, có thể gửi yêu cầu cho chúng tôi, và chúng tôi
+            <p class=" w-responsive mx-auto mb-5=4">Nếu bạn có thắc mắc gì, có thể gửi yêu cầu cho chúng tôi, và chúng tôi
               sẽ liên lạc lại với bạn sớm nhất có thể</p>
 
             <div class="row">
@@ -99,19 +99,6 @@
                   </div>
                   <!--Grid row-->
 
-                  <!--Grid row-->
-                  {{-- <div class="row">
-                    <div class="col-md-12">
-                      <div class="md-form mb-0">
-                        <label for="email" class="">Email</label>
-                        <input type="text" id="email" name="email" class="form-control">
-                        
-                      </div>
-                    </div>
-                  </div> --}}
-                  <!--Grid row-->
-
-                  <!--Grid row-->
                   <div class="row">
 
                     <!--Grid column-->

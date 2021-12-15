@@ -25,7 +25,7 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    <div class="from-group">
                         <label class="font-weight-bold">Hotline</label>
                         <input class="form-control" type="tel" name="hotline" value="{{ $footer->hotline }}">
                         @error('hotline')
@@ -58,7 +58,7 @@
                                 Đang hoạt động
                             </option>
                             <option value="1">
-                                Dừng hoạt động
+                                Dừng hoạt động 
                             </option>
                             @error('status')
                                 <span class="text-danger">{{ $message }}</span>

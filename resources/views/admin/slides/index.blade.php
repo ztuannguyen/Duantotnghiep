@@ -53,7 +53,7 @@
                         @foreach ($data as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td><img src="{{ asset('uploads/' . $item->image) }}" width="150" height="100" alt="">
+                                <td><img src="{{ asset('uploads/' . $item->image) }}" width="500" height="150" alt="">
                                 </td>
                                 <td>
                                     @if($item->status == 0)
