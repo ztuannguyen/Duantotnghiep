@@ -17,7 +17,7 @@ class SalonController extends Controller
     public function index(Request $request){
         if ($request->has('keyword') == true) {
             $keyword = $request->get('keyword');
-            $ListSalon = Salon::where('name_salon', 'LIKE', "%$keyword%")->get();
+            $ListSalon = Salon::where('name_salon', 'LIKE', "%$keyword%")->orWhere('address', 'LIKE', "%$keyword%")->get();
         } else {
             $ListSalon = Salon::all();
         }

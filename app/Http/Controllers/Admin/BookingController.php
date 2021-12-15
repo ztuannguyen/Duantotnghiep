@@ -13,7 +13,7 @@ use App\Models\Booking_Service;
 use App\Http\Requests\Admin\Booking\BookingRequest;
 use App\Http\Requests\Admin\Booking\UpdateRequest;
 use App\Models\Chair;
-use PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class BookingController extends Controller
 {
@@ -194,12 +194,14 @@ class BookingController extends Controller
             $bk->save();
         }
     }
-    public function invoices($id){
-        $booking = Booking::find($id);
-        view()->share('booking',$booking);
+    public function invoices($id)
+    {
+        $booking= Booking::find($id);
         $booking->load(['booking_services','service','salon']);
-        $pdf = PDF::loadView('admin.bookings.invoice', $booking);
-
+        $data = [
+            'booking' => $booking
+        ];
+        $pdf = PDF::loadView('admin.bookings.invoice', compact('data'));
         return $pdf->download('Hoadonthanhtoan.pdf');
     }
 }

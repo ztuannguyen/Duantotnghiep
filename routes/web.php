@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Client\BlogController;
 use App\Http\Controllers\Client\BookingController;
+use App\Http\Controllers\Client\ContactController;
+use App\Http\Controllers\Client\HomeController;
+
 use App\Http\Controllers\Client\ServiceController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -17,10 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-// Client
+
+Route::get('/',[HomeController::class,'show'])->name('client.home');
+// Booking
 Route::get('/dat-lich',[BookingController::class,'show'])->name('client.show');
 Route::post('/client/get-time-of-salon',[BookingController::class,'getTimeOfSalon'])->name('client.get-time-of-salon');
 Route::post('/',[BookingController::class, 'store'])->name('client.post');
