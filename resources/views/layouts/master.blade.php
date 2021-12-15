@@ -117,6 +117,14 @@
             });
         </script>
     @endif
+
+    @if (Session::has('message_contact'))
+        <script>
+            swal("Xong", "{!! Session::get('message_contact') !!}", "success", {
+                button: "Xác nhận",
+            });
+        </script>
+    @endif
     <script>
         @if (Session::has('warning'))
             toastr.options =

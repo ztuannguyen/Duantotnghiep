@@ -15,6 +15,7 @@ use App\Http\Requests\Admin\Booking\UpdateRequest;
 use App\Models\Chair;
 use Barryvdh\DomPDF\Facade as PDF;
 
+
 class BookingController extends Controller
 {
     public function index(Request $request)

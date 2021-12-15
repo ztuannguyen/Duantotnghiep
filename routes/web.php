@@ -4,7 +4,6 @@ use App\Http\Controllers\Client\BlogController;
 use App\Http\Controllers\Client\BookingController;
 use App\Http\Controllers\Client\ContactController;
 use App\Http\Controllers\Client\HomeController;
-
 use App\Http\Controllers\Client\ServiceController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -36,10 +35,8 @@ Route::get('danh-muc-bai-viet/{id}',[BlogController::class,'category'])->name('c
 Route::get('/chi-tiet-bai-viet/{id}',[BlogController::class,'detail'])->name('client.detailBlog');
 Route::get('/tim-kiem-bai-viet',[BlogController::class,'search'])->name('search');
 
-Route::get('/trang-lien-he', function() {
-    return view('client/contact');
-})->name('client.contact');
-
+Route::get('/trang-lien-he', [ContactController::class, 'contact'])->name('client.contact');
+Route::post('/trang-lien-he', [ContactController::class, 'postContact'])->name('client.postContact');
 
 Route::get('/trang-gioi-thieu', function() {
     return view('client/about');
