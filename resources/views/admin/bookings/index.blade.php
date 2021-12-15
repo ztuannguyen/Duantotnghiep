@@ -130,7 +130,7 @@
                                         class="btn btn-warning btn-circle btn-sm">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="{{route('admin.bookings.invoices', ['id' => $item->id])}}"  class="btn btn-warning btn-circle btn-sm"><i class="fas fa-download"></i></a>
+                                    <a href="{{route('admin.bookings.invoices', ['id' => $item->id])}}"  class="btn btn-primary btn-circle btn-sm"><i class="fas fa-download"></i></a>
                                     <a data-toggle="modal" class="btn btn-danger btn-circle btn-sm"
                                         data-target="#confirm_delete_{{ $item->id }}"><i
                                             class="fas fa-trash"></i></a>

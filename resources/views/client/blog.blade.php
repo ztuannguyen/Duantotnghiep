@@ -83,42 +83,7 @@
                             @endforeach
                         </ul>
                     </div>
-
-                    {{-- <div class="sidebar-box bg-light ftco-animate">
-                        <h3 class="heading-2">Bài viết liên quan</h3>
-                        @foreach ($cateblog as $item)
-                            <div class="block-21 mb-4 d-flex">
-                                <a href="{{ route('client.detailBlog', ['id' => $item->id]) }}"><img
-                                        src="{{ asset('uploads/' . $item->image) }}" alt="" width="180px"></a>
-                                <div class="text">
-                                    <h3 class="heading-1"><a
-                                            href="{{ route('client.detailBlog', ['id' => $item->id]) }}">{{ $item->title }}</a>
-                                    </h3>
-                                    <div class="meta">
-                                        <div><a href="#"><span class="icon-calendar"></span> {{$item->created_at}}</a></div>
-                                     
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div> --}}
-
-                    {{-- <div class="sidebar-box bg-light ftco-animate">
-                        <h3 class="heading-2">Tag Cloud</h3>
-                        <div class="tagcloud">
-                            <a href="#" class="tag-cloud-link">donate</a>
-                            <a href="#" class="tag-cloud-link">charity</a>
-                            <a href="#" class="tag-cloud-link">non-profit</a>
-                            <a href="#" class="tag-cloud-link">organization</a>
-                            <a href="#" class="tag-cloud-link">child</a>
-                            <a href="#" class="tag-cloud-link">abuse</a>
-                            <a href="#" class="tag-cloud-link">help</a>
-                            <a href="#" class="tag-cloud-link">volunteer</a>
-                        </div>
-                    </div> --}}
-
                 </div>
-
             </div>
         </div>
     </section> <!-- .section -->

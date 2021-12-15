@@ -46,22 +46,25 @@
 </style>
 
 <body>
+    @foreach ($data as $item)
+        
     <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 padding">
         <div class="card">
             <div class="card-header p-4">
-                <img src="{{asset('admin/img/Brotherhood.png')}}" alt="" width="200px">
+                <img src="{{ asset('admin/img/Brotherhood.png') }}" alt="" width="200px">
+
                 <div class="float-right">
-                    <h3 class="mb-0">Hóa đơn #{{ $booking->id }}</h3>
-                    Ngày : {{ date('d/m/Y', strtotime($booking->date_booking)) }}
+                    <h3 class="mb-0">Hóa đơn #{{ $item->id }}</h3>
+                    Ngày : {{ date('d/m/Y', strtotime($item->date_booking)) }}
                 </div>
             </div>
             <div class="card-body">
                 <div class="col-sm-9 mb-4">
                     <h3 class="mb-3">Thông tin khách hàng :</h3>
-                    <h4 class="text-dark mb-1">{{ $booking->name }}</h4>
-                    <div>Số điện thoại : {{ $booking->number_phone }}</div>
-                    <div>Chi nhánh : {{ $booking->Salon->address }}</div>
-                    <div>Thời gian : {{ $booking->time->time_start }}</div>
+                    <h4 class="text-dark mb-1">{{ $item->name }}</h4>
+                    <div>Số điện thoại : {{ $item->number_phone }}</div>
+                    <div>Chi nhánh : {{ $item->Salon->address }}</div>
+                    <div>Thời gian : {{ $item->time->time_start }}</div>
                 </div>
                 <div class="table-responsive-sm">
                     <table class="table table-striped">
@@ -74,14 +77,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($booking->service as $item)
-                                
-                            <tr>
-                                <td class="center">{{ $loop->iteration }}</td>
-                                <td class="left strong">{{$item->name}}</td>
-                                <td class="right">{{ number_format($item->price)}}đ</td>
-                                <td class="right">{{ number_format($item->price)}}đ</td>
-                            </tr>
+                            @foreach ($item->service as $item)
+
+                                <tr>
+                                    <td class="center">{{ $loop->iteration }}</td>
+                                    <td class="left strong">{{ $item->name }}</td>
+                                    <td class="right">{{ number_format($item->price) }}đ</td>
+                                    <td class="right">{{ number_format($item->price) }}đ</td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -96,7 +99,8 @@
                                     <strong class="text-dark">Total</strong>
                                 </td>
                                 <td class="right">
-                                    <strong class="text-dark">{{ number_format($booking->total_price)}}đ</strong>
+                                    <strong
+                                        class="text-dark">{{ number_format($item->total_price) }}đ</strong>
                                 </td>
                                 </tr>
                             </tbody>
@@ -109,6 +113,8 @@
             </div>
         </div>
     </div>
+    @endforeach
+
 
     <!-- Script -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
