@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\BlogCateController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\SortAppointmentController;
+use App\Http\Controllers\CancelBookingController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -249,3 +250,7 @@ Route::get('/admin/footers/create', [FooterController::class, 'create'])->name('
 Route::get('/admin/footers/edit/{footer}', [FooterController::class, 'edit'])->name('admin.footers.edit');
 Route::post('/admin/footers/store', [FooterController::class, 'store'])->name('admin.footers.store');
 Route::post('/admin/footers/update/{footer}', [FooterController::class, 'update'])->name('admin.footers.update');
+
+
+Route::get('/admin/cancelBooking/index', [CancelBookingController::class, 'index'])->name('admin.cancelBooking.index');
+Route::post('/admin/cancelBooking', [CancelBookingController::class, 'cancelBooking'])->name('admin.cancelBooking');
