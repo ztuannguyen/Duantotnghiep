@@ -14,14 +14,19 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="index.html" class="nav-link">Trang chủ</a></li>
+          <li class="nav-item"><a href="{{route('client.home')}}" class="nav-link">Trang chủ</a></li>
+          <li class="nav-item"><a href="{{route('client.about')}}" class="nav-link">Giới thiệu</a></li>
           <li class="nav-item"><a href="{{route('client.service')}}" class="nav-link">Dịch
               vụ</a></li>
-          <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
-          <li class="nav-item"><a href="about.html" class="nav-link">Về chúng
-              tôi</a></li>
           <li class="nav-item "><a href="{{route('client.blog')}}" class="nav-link">Blog</a></li>
-          <li class="nav-item"><a href="{{route('client.contact')}}" class="nav-link">Liên hệ</a></li>
+
+          <li class="nav-item"><a href="contact.html" class="nav-link">Liên hệ</a></li>
+          @if (!Auth::check())
+            <li class="nav-item"><a href="{{route('client.login')}}" class="nav-link">Đăng nhập</a></li>
+          @else
+            <li class="nav-item"><a href="javascript:void(0)" class="nav-link">{{Auth::user()->name}}</a></li>
+            <li class="nav-item"><a href="{{route('client.logout')}}" class="nav-link">Thoát</a></li>
+          @endif
         </ul>
       </div>
     </div>

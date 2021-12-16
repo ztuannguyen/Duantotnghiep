@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -138,5 +139,10 @@ class UserController extends Controller
         User::destroy($id);
         session()->flash('message', 'Xóa thành công !');
         return redirect()->back();
+    }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('client.login');
     }
 }

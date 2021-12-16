@@ -211,7 +211,7 @@
                                     <div class="col-sm-12" id="time">
                                         <h4>Chọn ngày cắt</h4>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="date_booking"
+                                            <input type="text" class="form-control" id="booking" name="date_booking"
                                                 placeholder="Chọn ngày cắt ..." value="{{ date('Y-m-d') }}"
                                                 onchange="loadTime($('#id_chi_nhanh').val())">
                                         </div>
@@ -221,7 +221,13 @@
                                     </div>
                                 </div>
                                 <div class="col text-center">
-                                    <button type="submit" class="btn btn-primary">Đặt Lịch Ngay</button>
+                                    @if (Auth::check())
+                                        @can('customer')
+                                            <button type="submit" class="btn btn-primary">Đặt Lịch Ngay</button>
+                                        @endcan
+                                    @else
+                                        <a href="{{ route('client.login') }}">Nhấn vào đây để đăng nhập</a>
+                                    @endif
                                 </div>
                         </div>
                         </form>
@@ -292,7 +298,7 @@
 
         // load time
         function loadTime(id) {
-            let date = $(`input[name="date_booking"]`).val();
+            let date = $(`#booking`).val();
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -402,7 +408,7 @@
         $(document).ready(function() {
             let today = moment().format('YYYY-MM-DD');
             let tomorrow = moment().add(2, 'days').format('YYYY-MM-DD');
-            $('input[name=date_booking]').datepicker({
+            $('#booking').datepicker({
                 autoclose: true,
                 todayHighlight: true,
                 format: 'yyyy-mm-d',

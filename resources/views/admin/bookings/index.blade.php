@@ -130,49 +130,7 @@
                                         class="btn btn-warning btn-circle btn-sm">
                                         <i class="fas fa-edit"></i>
                                     </a>
-{{--  --}}
-                                    <a href="{{route('admin.bookings.invoices', ['id' => $item->id])}}"  class="btn btn-warning btn-circle btn-sm"><i class="fas fa-download"></i></a>
-                          {{--  --}}
-                          <a data-toggle="modal" class="btn btn-warning btn-circle btn-sm"
-                                        data-target="#confirm_huy">🚫
-                                            </a>
-                                            <div class="modal fade" id="confirm_huy" tabindex="-1"
-                                                role="dialog">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel"></h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-
-                                                        <form method="POST" action="{{Route('admin.cancelBooking')}}">
-                                                        @csrf
-                                                        <div class="modal-body">
-                                                            <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">Vui lòng chọn lí do ?</label>
-                                                                <select class="form-control" id="exampleFormControlSelect1" name="reason">
-                                                                  <option value="0"></option>
-                                                                  <option value="1">Có việc bận hoặc không muốn cắt nữa </option>
-                                                                  <option value="2">Thay đổi thời gian hoặc dịch vụ </option>
-                                                                  <option value="3">Khác</option>
-                                                                </select>
-                                                              </div> 
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                                <button type="button" class="btn btn-default"
-                                                                data-dismiss="modal">Cancel</button>
-                                                                <button type="submit" class="btn btn-danger">Hủy lịch</button>
-                                                        </div>
-                                                        </div>
-                                                        </form>
-
-                                                </div>
-                                            </div>
-            
-                         {{--  --}}
+                                    <a href="{{route('admin.bookings.invoices', ['id' => $item->id])}}"  class="btn btn-primary btn-circle btn-sm"><i class="fas fa-download"></i></a>
                                     <a data-toggle="modal" class="btn btn-danger btn-circle btn-sm"
                                         data-target="#confirm_delete_{{ $item->id }}"><i
                                             class="fas fa-trash"></i></a>
