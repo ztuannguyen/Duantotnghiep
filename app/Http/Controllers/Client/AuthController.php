@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Nexmo\Client\Credentials\Basic;
+use Nexmo\Client;
+
+
 
 class AuthController extends Controller
 {
@@ -24,8 +28,8 @@ class AuthController extends Controller
         $phone = $request->phone;
         $user = User::where('number_phone',$phone)->first();
         $otp   = random_int(100000, 999999);
-        $basic  = new \Nexmo\Client\Credentials\Basic('c026d24d', '106gnGJMQm40ypfu');
-        $client = new \Nexmo\Client($basic);
+        $basic  = new Basic('b167184f', 'vjBOZfH9tAHq2ou3');
+        $client = new Client($basic);
         if (is_null($user)) {
             if (!isset($request->reset)) {
                 User::create([
@@ -70,8 +74,8 @@ class AuthController extends Controller
     {
         $phone = $request->phone;
         $otp   = random_int(100000, 999999);
-        $basic  = new \Nexmo\Client\Credentials\Basic('c026d24d', '106gnGJMQm40ypfu');
-        $client = new \Nexmo\Client($basic);
+        $basic  = new Basic('b167184f', 'vjBOZfH9tAHq2ou3');
+        $client = new Client($basic);
         User::where('number_phone',$phone)->update(['otp' => $otp]);
         $client->message()->send([
             'to' => '84'.(int)$phone,

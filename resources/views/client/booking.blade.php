@@ -139,26 +139,30 @@
                             <form action="{{ route('client.post') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <h4>Tên khách hàng</h4>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" name="name"
-                                                value="{{ old('name') }}" placeholder="Nhập tên khách hàng..">
+                                    @if (!Auth::check())
+                                    @else
+                                        <div class="col-sm-6">
+                                            <h4>Tên khách hàng</h4>
+                                            <div class="input-group mb-3 disable">
+                                                <input type="text" class="form-control" name="name"
+                                                    value="{{ Auth::user()->name }}" placeholder="Nhập tên khách hàng..">
+                                            </div>
+                                            @error('name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
-                                        @error('name')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <h4>Số điện thoại</h4>
-                                        <div class="input-group mb-3">
-                                            <input type="tel" class="form-control" name="number_phone"
-                                                value="{{ old('number_phone') }}" placeholder="Nhập số điện thoại..">
+                                        <div class="col-sm-6">
+                                            <h4>Số điện thoại</h4>
+                                            <div class="input-group mb-3 disable">
+                                                <input type="tel" class="form-control" name="number_phone"
+                                                    value="{{ Auth::user()->number_phone }}"
+                                                    placeholder="Nhập số điện thoại..">
+                                            </div>
+                                            @error('number_phone')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
-                                        @error('number_phone')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                    @endif
                                     <div class="col-sm-12">
                                         <h4>Chọn Salon</h4>
                                         <input type="hidden" value="" id="id_chi_nhanh" name="salon_id">
@@ -223,7 +227,7 @@
                                 <div class="col text-center">
                                     @if (Auth::check())
                                         @can('customer')
-                                            <button type="submit" class="btn btn-primary">Đặt Lịch Ngay</button>
+                                            <button type="submit" class="btn btn-primary" style="margin-top: 40px;">Đặt Lịch Ngay</button>
                                         @endcan
                                     @else
                                         <a href="{{ route('client.login') }}">Nhấn vào đây để đăng nhập</a>
@@ -316,23 +320,23 @@
                     let times = '';
                     let disable = '';
 
-                    $.each( res.times, function( key, value ) {
+                    $.each(res.times, function(key, value) {
                         dt = new Date();
-                        var timeNow = dt.getHours()*3600 + dt.getMinutes()*60 + dt.getSeconds();
-                        var dateNow = dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate();
-                        
-                        var timeSl= value.time_start.split(":");
-                       
-                        let array=[]
-                        timeSl.map(arr=>{
+                        var timeNow = dt.getHours() * 3600 + dt.getMinutes() * 60 + dt.getSeconds();
+                        var dateNow = dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate();
+
+                        var timeSl = value.time_start.split(":");
+
+                        let array = []
+                        timeSl.map(arr => {
                             array.push(parseInt(arr))
                         });
-             
-                        var sum = array[0]*3600+array[1]*60;
-                        
-                        
-                       
-                        if (timeNow > sum && dateNow===date) {
+
+                        var sum = array[0] * 3600 + array[1] * 60;
+
+
+
+                        if (timeNow > sum && dateNow === date) {
                             disable = 'disable';
                         } else {
                             disable = '';

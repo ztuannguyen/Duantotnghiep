@@ -15,6 +15,9 @@ class User extends Authenticatable
     public function roles(){
         return $this->belongsTo(Role::class, 'role_id');
     }
+    public function Bookings(){
+        return $this->hasMany(Booking::class,'add_by_user','id');
+    }
     protected $fillable = [
         'name',
         'number_phone',

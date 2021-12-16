@@ -21,8 +21,8 @@ class Booking extends Model
         'date_booking',
         'status',
         'note',
-        'total_price'
-        // 'add_by_id_user'
+        'total_price',
+        'add_by_user'
     ];
     public function Salon(){
         return $this->belongsTo(Salon::class,'salon_id','id');
@@ -38,5 +38,8 @@ class Booking extends Model
     }
     public function booking_services(){
         return $this->hasMany(Booking_Service::class,'booking_id','id');
+    }
+    public function User(){
+        return $this->belongsTo(User::class,'add_by_user','id');
     }
 }

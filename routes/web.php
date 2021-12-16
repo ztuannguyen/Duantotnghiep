@@ -34,13 +34,14 @@ Route::get('/', function () {
         return redirect()->route('client.show');
     }
 });
-Route::group(['middleware' => 'verify.customer'], function () {
+Route::group(['middleware' => 'verify.customer',], function () {
+    //Client
+    Route::get('/',[HomeController::class,'show'])->name('client.home');
+    //Booking
     Route::get('/dat-lich',[BookingController::class,'show'])->name('client.show');
     Route::post('/client/get-time-of-salon',[BookingController::class,'getTimeOfSalon'])->name('client.get-time-of-salon');
     Route::post('/',[BookingController::class, 'store'])->name('client.post');
-    Route::get('/',[HomeController::class,'show'])->name('client.home');
-
-
+    Route::get('/danh-sach-don',[BookingController::class,'listBooking'])->name('client.list');
     //Dịch vụ 
     Route::get('/dich-vu',[ServiceController::class,'service'])->name('client.service');
     Route::get('/chi-tiet-dich-vu/{id}',[ServiceController::class,'detail'])->name('client.detailService');
@@ -49,14 +50,13 @@ Route::group(['middleware' => 'verify.customer'], function () {
     Route::get('danh-muc-bai-viet/{id}',[BlogController::class,'category'])->name('category');
     Route::get('/chi-tiet-bai-viet/{id}',[BlogController::class,'detail'])->name('client.detailBlog');
     Route::get('/tim-kiem-bai-viet',[BlogController::class,'search'])->name('search');
-
+    //Liên hệ
     Route::get('/trang-lien-he', [ContactController::class, 'contact'])->name('client.contact');
     Route::post('/trang-lien-he', [ContactController::class, 'postContact'])->name('client.postContact');
-
+    //Giới thiệu
     Route::get('/trang-gioi-thieu', function() {
         return view('client/about');
     })->name('client.about');
-
 
     // Đăng nhập, khôi phục mật khẩu
     Route::get('/dang-nhap',[AuthController::class,'login'])->name('client.login');
