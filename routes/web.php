@@ -23,10 +23,10 @@ use Illuminate\Support\Facades\Auth;
 // Client
 Route::get('/', function () {
     if (Auth::check()) {
-        if (Auth::user()->role_id == 3) {
-            return redirect()->route('client.show');
-        } elseif (Auth::user()->role_id == 1) {
+        if (Auth::user()->role_id == 1) {
             return redirect()->route('admin.bookings.index');
+        } elseif (Auth::user()->role_id == 3) {
+            return redirect()->route('client.home');
         } else {
             return redirect()->route('admin.dashboard');
         }
@@ -63,7 +63,7 @@ Route::group(['middleware' => 'verify.customer'], function () {
     Route::get('/khoi-phuc-mat-khau',[AuthController::class,'resetPassword'])->name('client.resetPassword');
     Route::get('/continue_second',[AuthController::class,'continueSecond']);
     Route::get('/resend',[AuthController::class,'resendOTP']);
-Route::get('/continue_third',[AuthController::class,'continueThird']);
+    Route::get('/continue_third',[AuthController::class,'continueThird']);
     Route::post('/dang-nhap',[AuthController::class,'postLogin'])->name('client.postLogin');
     Route::post('/khoi-phuc-mat-khau',[AuthController::class,'postReset'])->name('client.postReset');
     Route::get('/dang-xuat',[AuthController::class,'logout'])->name('client.logout');
