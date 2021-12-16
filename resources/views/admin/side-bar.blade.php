@@ -2,17 +2,16 @@
 
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
-
     @can('admin')
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
-            <img src="/admin/img/undraw_profile.svg" alt="" width="20">
+            <img src="/admin/img/logo.png" alt="" width="130">
         </a>
     @endcan
-
     @can('staff')
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/bookings">
-            <img src="/admin/img/undraw_profile.svg" alt="" width="20">
+            <img src="/admin/img/logo.png" alt="" width="130">
+  
         </a>
     @endcan
 
