@@ -63,6 +63,8 @@
                                             <span class="badge badge-success">Nhân viên</span>
                                         @elseif($p->role_id == 2 ? 'selected' : '' )
                                             <span class="badge badge-danger">Quản lý</span>
+                                        @elseif($p->role_id == 3 ? 'selected' : '' )
+                                            <span class="badge badge-primary">Khách hàng</span>
                                         @endif
                                     </div>
                                 </td>

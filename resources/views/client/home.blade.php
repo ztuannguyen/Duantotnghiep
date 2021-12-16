@@ -62,7 +62,7 @@
                         style="background-image: url(/frontend/images/formen.jpg);">
                         <div class="text">
                             <h3>HOODS DỊCH VỤ</h3>
-                            <p><a href="#" class="btn-custom">Xem thêm <span
+                            <p><a href="{{route('client.service')}}" class="btn-custom">Xem thêm <span
                                         class="ion-ios-arrow-round-forward"></span></a></p>
                         </div>
                     </div>
@@ -88,10 +88,10 @@
                 </div>
                 <div class="col-md text-center d-flex align-items-stretch">
                     <div class="services-wrap d-flex align-items-center img"
-                        style="background-image: url(images/forwomen.jpg);">
+                        style="background-image: url(/frontend/images/work-2.jpg);">
                         <div class="text">
-                            <h3>HOODS Dịch vụ</h3>
-                            <p><a href="#" class="btn-custom">Xem thêm <span
+                            <h3>HOODS TỎA SÁNG</h3>
+                            <p><a href="{{route('client.service')}}" class="btn-custom">Xem thêm <span
                                         class="ion-ios-arrow-round-forward"></span></a></p>
                         </div>
                     </div>
@@ -110,41 +110,18 @@
             <div class="row">
                 <div class="col-md-12 ftco-animate">
                     <div class="carousel-team owl-carousel">
-                        <div class="item">
-                            <a href="#" class="team text-center">
-                                <img src="https://storage.30shine.com/service/combo_booking/364.jpg" alt="">
-                                <h2>Cắt gội massage</h2>
-                                <span class="position">100k</span>
+                        @foreach ($listservice as $item)
+                        <div class="item team">
+                            <a href="#" class="text-center">
+                                <img src="{{ asset('uploads/' . $item->image) }}" alt="">
+                                <h2>{{$item->name}}</h2>
                             </a>
+                            <div class="row mt-3" style="padding-left: 50px">
+                                <div class="col"><span class="card-text">{{number_format($item->price)}}đ</span></div>
+                                <div class="col"><a href="{{route('client.detailService', ['id' => $item->id])}}" class="card-text">Xem chi tiết >></a></div>
+                            </div>
                         </div>
-                        <div class="item">
-                            <a href="#" class="team text-center">
-                                <img src="https://storage.30shine.com/service/combo_booking/364.jpg" alt="">
-                                <h2>Cắt gội massage</h2>
-                                <span class="position">100k</span>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#" class="team text-center">
-                                <img src="https://storage.30shine.com/service/combo_booking/364.jpg" alt="">
-                                <h2>Cắt gội massage</h2>
-                                <span class="position">100k</span>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#" class="team text-center">
-                                <img src="https://storage.30shine.com/service/combo_booking/364.jpg" alt="">
-                                <h2>Cắt gội massage</h2>
-                                <span class="position">100k</span>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#" class="team text-center">
-                                <img src="https://storage.30shine.com/service/combo_booking/364.jpg" alt="">
-                                <h2>Cắt gội massage</h2>
-                                <span class="position">100k</span>
-                            </a>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
