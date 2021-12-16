@@ -221,7 +221,13 @@
                                     </div>
                                 </div>
                                 <div class="col text-center">
-                                    <button type="submit" class="btn btn-primary">Đặt Lịch Ngay</button>
+                                    @if (Auth::check())
+                                        @can('customer')
+                                            <button type="submit" class="btn btn-primary">Đặt Lịch Ngay</button>
+                                        @endcan
+                                    @else
+                                        <a href="{{ route('client.login') }}">Nhấn vào đây để đăng nhập</a>
+                                    @endif
                                 </div>
                         </div>
                         </form>

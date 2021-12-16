@@ -22,6 +22,8 @@ class User extends Authenticatable
         'otp',
         'image',
         'role_id',
+        'ratings',
+        'verify'
     ];
 
     /**
