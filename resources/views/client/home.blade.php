@@ -187,48 +187,14 @@
             <div class="row">
                 <div class="col-md-12 ftco-animate">
                     <div class="carousel-team owl-carousel">
-                        <div class="item">
-                            <a href="#" class="team text-center">
-                                <img src="images/person_4.jpg" alt="">
-                                <h2>Cùng brother hoods khám phá kiểu tóc hót nhất 2021</h2>
-                                <span class="position">xem thêm >></span>
+                        @foreach ($listBlog as $item)
+                        <div class="item team">
+                            <a href="{{route('client.detailBlog', ['id' => $item->id])}}" class="text-center">
+                                <img src="{{ asset('uploads/' . $item->image) }}" alt="">
+                                <h2>{{ $item->title }}</h2>
                             </a>
                         </div>
-                        <div class="item">
-                            <a href="#" class="team text-center">
-                                <img src="images/person_4.jpg" alt="">
-                                <h2>Cùng brother hoods khám phá kiểu tóc hót nhất 2021</h2>
-                                <span class="position">xem thêm >></span>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#" class="team text-center">
-                                <img src="images/person_4.jpg" alt="">
-                                <h2>Cùng brother hoods khám phá kiểu tóc hót nhất 2021</h2>
-                                <span class="position">xem thêm >></span>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#" class="team text-center">
-                                <img src="images/person_4.jpg" alt="">
-                                <h2>Cùng brother hoods khám phá kiểu tóc hót nhất 2021</h2>
-                                <span class="position">xem thêm >></span>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#" class="team text-center">
-                                <img src="images/person_4.jpg" alt="">
-                                <h2>Cùng brother hoods khám phá kiểu tóc hót nhất 2021</h2>
-                                <span class="position">xem thêm >></span>
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#" class="team text-center">
-                                <img src="images/person_4.jpg" alt="">
-                                <h2>Cùng brother hoods khám phá kiểu tóc hót nhất 2021</h2>
-                                <span class="position">xem thêm >></span>
-                            </a>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
