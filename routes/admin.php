@@ -253,7 +253,6 @@ Route::group(['middleware' => 'verify.admin'], function () {
 });
 
 Route::get('/admin/users/logout', [UserController::class, 'logout'])->name('admin.users.logout');
-
 Route::get('/admin/cancelBooking/index', [CancelBookingController::class, 'index'])->name('admin.cancelBooking.index');
 Route::post('/admin/cancelBooking', [CancelBookingController::class, 'cancelBooking'])->name('admin.cancelBooking');
 

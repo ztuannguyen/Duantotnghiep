@@ -145,7 +145,8 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Đóng</button>
-                                            <button type="button" onclick="submit({{ $item->id }})" class="btn btn-primary">Đã xong</button>
+                                            <button type="button" class="btn btn-primary" onclick="submit({{ $item->id }})"
+                                                >Đã xong</button>
                                         </div>
                                     </div>
                                 </div>
@@ -169,10 +170,11 @@
                     id: id,
                 },
                 success: function(response) {
-                    toarst.success("Lịch cắt đã hoàn thành !");
-                    setTimeout(function() {
-                        window.location.href = "{{ route('admin.bookings.waitingCut') }}";
-                    }, 200);
+                    if (data == "") {
+                        setTimeout(function() {
+                            window.location.href = "{{ route('admin.bookings.waitingCut') }}";
+                        }, 200);
+                    }
                 }
             });
         }

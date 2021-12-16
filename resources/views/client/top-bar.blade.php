@@ -17,7 +17,8 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="{{ route('client.home') }}" class="nav-link">Trang chủ</a></li>
+                <li class="nav-item"><a href="{{ route('client.home') }}" class="nav-link">Trang chủ</a>
+                </li>
                 <li class="nav-item"><a href="{{ route('client.about') }}" class="nav-link">Giới thiệu</a>
                 </li>
                 <li class="nav-item"><a href="{{ route('client.service') }}" class="nav-link">Dịch
@@ -29,14 +30,13 @@
                     <li class="nav-item"><a href="{{ route('client.login') }}" class="nav-link">Đăng
                             nhập</a></li>
                 @else
-                    <div class="dropdown collapse navbar-collapse">
+                    <div class="dropdown collapse navbar-collapse nav-item">
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <li class="nav-item"><a href="javascript:void(0)"
-                                    class="nav-link">{{ Auth::user()->name }}</a></li>
+                           <b style="color:rgb(158, 68, 4);">{{ Auth::user()->name }}</b>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Quản lý đơn hàng</a>
+                            <a class="dropdown-item" href="{{ route('client.list')}}">Quản lý đơn hàng</a>
                             <a class="dropdown-item" href="{{ route('client.logout') }}">Đăng xuất</a>
                         </div>
                     </div>

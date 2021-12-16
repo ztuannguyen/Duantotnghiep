@@ -26,7 +26,6 @@ class BookingController extends Controller
 
     public function store(BookingRequest $request)
     {
-
         $booking = new Booking();
         $booking->fill($request->all());
         $price = [];
@@ -72,5 +71,10 @@ class BookingController extends Controller
         ];
 
         return $data;
+    }
+    public function listBooking(){
+        $booking = Booking::where('add_by_user',5)->get();
+        $booking->load(['service','salon']);
+        return view('client.list', compact('booking'));
     }
 }
