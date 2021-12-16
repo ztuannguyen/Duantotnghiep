@@ -12,6 +12,7 @@ use App\Models\CateService;
 use App\Models\Booking_Service;
 use App\Http\Requests\Admin\Booking\BookingRequest;
 use App\Http\Requests\Admin\Booking\UpdateRequest;
+use App\Models\Cancel_Bookings;
 use App\Models\Chair;
 use Barryvdh\DomPDF\Facade as PDF;
 

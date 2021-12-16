@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\BlogCateController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\SortAppointmentController;
+use App\Http\Controllers\CancelBookingController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -252,3 +253,8 @@ Route::group(['middleware' => 'verify.admin'], function () {
 });
 
 Route::get('/admin/users/logout', [UserController::class, 'logout'])->name('admin.users.logout');
+
+Route::get('/admin/cancelBooking/index', [CancelBookingController::class, 'index'])->name('admin.cancelBooking.index');
+Route::post('/admin/cancelBooking', [CancelBookingController::class, 'cancelBooking'])->name('admin.cancelBooking');
+
+
