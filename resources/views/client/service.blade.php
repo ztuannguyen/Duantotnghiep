@@ -79,7 +79,7 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col"> <p class="card-text">{{number_format($service['price'])}}đ</p></div>
-                                               <div class="col"> <a href="#" class="card-text">Xem chi tiết >>></a></div>
+                                               <div class="col"> <a href="{{route('client.detailService',['id' => $service->id])}}" class="card-text">Xem chi tiết >>></a></div>
                                             </div>
                                            
                                         </div>
