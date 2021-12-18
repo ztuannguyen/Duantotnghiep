@@ -135,49 +135,6 @@
                                     </a>
                                     
                                     <a href="{{route('admin.bookings.invoices', ['id' => $item->id])}}"  class="btn btn-primary btn-circle btn-sm"><i class="fas fa-download"></i></a>
-                                    {{-- cancel --}}
-                                    <a data-toggle="modal" data-target="#cancel_{{ $item->id }}"
-                                     class="btn btn-warning btn-circle btn-sm">🚫</a>
-                                    <div class="modal fade" id="cancel_{{ $item->id }}" tabindex="-1"
-                                        role="dialog">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Hủy đơn đặt lịch</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <form method="POST" action="{{route('admin.cancelBooking')}}">
-                                                    @csrf
-                                                 <div class="modal-body">
-                                                    <input type="text" style="width:50px;" hidden value="{{$item->id}}" name="booking_id">
-        
-                                                    <select class="form-select" aria-label="Default select example" name="reason">
-                                                       <option value="">Vui lòng nhập lí do ?</option>
-                                                       <option value="Có việc bận hoặc không muốn cắt nữa">Có việc bận hoặc không muốn cắt nữa</option>
-                                                       <option value="Muốn thay đổi lịch">Muốn thay đổi lịch </option>
-                                                       <option value="Khác">Khác</option>
-                                                     </select>
-                                                     @error('reason')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                                                </div> 
-                                                
-                                                <div class="modal-footer">
-                                                    
-                                                     
-                                                         
-                                                           <button type="button" class="btn btn-default"
-                                                        data-dismiss="modal">Cancel</button>
-                                                        <button type="submit" class="btn btn-danger">Hủy lịch</button>
-                                                    
-                                                </div>
-                                            </form>
-                                            </div>
-                                        </div>
-                                    </div>
                                     {{-- xóa --}}
                                     <a data-toggle="modal" class="btn btn-danger btn-circle btn-sm"
                                         data-target="#confirm_delete_{{ $item->id }}"><i
