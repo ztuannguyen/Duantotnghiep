@@ -21,6 +21,7 @@
             </div>
         </div>
     </section>
+
     <section class="ftco-section ftco-degree-bg">
         <!-- Modal danh sách salon -->
         <div class="modal fade card-footer my-5 p-4" id="listSalon" data-backdrop="false"
@@ -141,6 +142,7 @@
                                 <div class="row">
                                     @if (!Auth::check())
                                     @else
+                                    <input type="hidden" name="add_by_user" id="" value="{{ Auth::user()->id }}">
                                         <div class="col-sm-6">
                                             <h4>Tên khách hàng</h4>
                                             <div class="input-group mb-3 disable">
