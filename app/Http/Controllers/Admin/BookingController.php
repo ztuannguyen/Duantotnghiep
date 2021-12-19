@@ -198,12 +198,50 @@ class BookingController extends Controller
     }
     public function invoices($id)
     {
-        $booking= Booking::find($id);
-        $booking->load(['booking_services','service','salon']);
+        $booking = Booking::find($id);
+        $booking->load(['booking_services', 'service', 'salon']);
         $data = [
             'booking' => $booking
         ];
         $pdf = PDF::loadView('admin.bookings.invoice', compact('data'));
         return $pdf->download('Hoadonthanhtoan.pdf');
+    }
+    public function cancellation(Request $request)
+    {
+        $booking = Booking::find($request->id);
+        $booking->status = 5;
+        $booking->reason = $request->reason;
+        $booking->save();
+        $booking_services = Booking_Service::where('booking_id', $request->id)->get();
+        foreach ($booking_services as $key => $item) {
+            $item->status = 5;
+            $item->chair_id = null;
+            $item->time_start = null;
+            $item->time_end = null;
+            $item->save();
+        }
+        return response()->json([
+            "msg" => ''
+        ]);
+    }
+    public function listCancel()
+    {
+        $booking = Booking::where('status', 5)->orderBy('updated_at', 'DESC')->get();
+        $booking->load('service');
+        return view('admin.bookings.listCancel', compact('booking'));
+    }
+    public function restore($id)
+    {
+        $booking = booking::find($id);
+        $booking->status = 1;
+        $booking->reason = null;
+        $booking->save();
+        $booking_services = Booking_Service::where('booking_id', $id)->get();
+        foreach ($booking_services as $key => $item) {
+            $item->status = 0;
+            $item->save();
+        }
+        session()->flash('message', 'Khôi phục đơn thành công !');
+        return redirect()->route('admin.bookings.listCancel');
     }
 }

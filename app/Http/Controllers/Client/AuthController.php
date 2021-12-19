@@ -8,8 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Nexmo\Client\Credentials\Basic;
 use Nexmo\Client;
-
-
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {

@@ -133,9 +133,15 @@
                                         class="btn btn-warning btn-circle btn-sm">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    
-                                    <a href="{{route('admin.bookings.invoices', ['id' => $item->id])}}"  class="btn btn-primary btn-circle btn-sm"><i class="fas fa-download"></i></a>
-                                    {{-- xóa --}}
+                                    <a href="{{ route('admin.bookings.invoices', ['id' => $item->id]) }}"
+                                        class="btn btn-primary btn-circle btn-sm"><i class="fas fa-download"></i></a>
+                                    @if ($item->status == 5)
+                                    @elseif($item->status == 4)
+                                    @else
+                                        <a href="#" data-bs-toggle="modal"
+                                            data-bs-target="{{ '#' . 'cancel_' . $item->id }}"
+                                            class="btn btn-info btn-circle btn-sm"><i class="fas fa-ban"></i></a>
+                                    @endif
                                     <a data-toggle="modal" class="btn btn-danger btn-circle btn-sm"
                                         data-target="#confirm_delete_{{ $item->id }}"><i
                                             class="fas fa-trash"></i></a>
@@ -247,6 +253,31 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Modal hủy đơn -->
+                            <div class="modal fade" id="{{ 'cancel_' . $item->id }}" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc muốn hủy đơn
+                                                này?</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <textarea class="form-control" name="" id="{{ $item->id }}_reason"
+                                                cols="30" rows="5"
+                                                placeholder="Mời bạn nhập lý do hủy đơn !"></textarea>
+                                            <span class="text-danger" id="{{ $item->id }}_errorReason"></span>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">Đóng</button>
+                                            <button type="submit" onclick="cancellation({{ $item->id }})"
+                                                class="btn btn-danger">Hủy đơn</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @endforeach
                     </tbody>
                 </table>
@@ -267,5 +298,38 @@
         autoclose: !0,
         format: "yyyy-mm-dd"
     })
+
+    function cancellation(id) {
+        let reason = $('#' + id + '_reason').val();
+        if (reason == "") {
+            $('#' + id + '_errorReason').html('Lý do không được để trống');
+            return false;
+        }
+       
+        $.ajax({
+            type: "post",
+            url: "{{ route('admin.bookings.cancellation') }}",
+            data: {
+                _token: '{{ csrf_token() }}',
+                id: id,
+                reason: reason
+            },
+            success: function(response) {
+                if (response['msg'] == "") {
+                    $('.close_modal').hide();
+                    toastr.options = {
+                        "closeButton": true,
+                        "progressBar": true,
+                        "positionClass": "toast-bottom-left",
+                        "timeOut": "3000",
+                    }
+                    toastr.success('Hủy lịch khám thành công!');
+                    setTimeout(function() {
+                        window.location.href = "{{ route('admin.bookings.index') }}";
+                    }, 1200);
+                }
+            }
+        });
+    }
 </script>
 @endsection

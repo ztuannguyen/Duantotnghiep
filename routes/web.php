@@ -42,6 +42,8 @@ Route::group(['middleware' => 'verify.customer',], function () {
     Route::post('/client/get-time-of-salon',[BookingController::class,'getTimeOfSalon'])->name('client.get-time-of-salon');
     Route::post('/',[BookingController::class, 'store'])->name('client.post');
     Route::get('/danh-sach-don',[BookingController::class,'listBooking'])->name('client.list');
+    Route::post('/cancellation', [BookingController::class, 'cancellation'])->name('cancellation');
+    Route::post('/changeCalendar', [BookingController::class, 'changeCalendar'])->name('changeCalendar');
     //Dịch vụ 
     Route::get('/dich-vu',[ServiceController::class,'service'])->name('client.service');
     Route::get('/chi-tiet-dich-vu/{id}',[ServiceController::class,'detail'])->name('client.detailService');

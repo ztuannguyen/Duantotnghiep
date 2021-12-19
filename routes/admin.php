@@ -99,6 +99,9 @@ Route::group(['middleware' => 'verify.staff'], function () {
             Route::post('/save-waiting', [BookingController::class, 'saveWaiting'])->name('saveWaiting');
             Route::post('/save-waiting-schedule', [BookingController::class, 'saveWaitingSchedule'])->name('saveWaitingSchedule');
             Route::get('/xuat-hoa-don/{id}', [BookingController::class, 'invoices'])->name('invoices');
+            Route::post('/cancellation', [BookingController::class, 'cancellation'])->name('cancellation');
+            Route::get('restore/{id}',[BookingController::class, 'restore'])->name('restore');
+            Route::get('/listCancel',[BookingController::class, 'listCancel'])->name('listCancel');
             Route::resource('/booking_services', 'SortAppointmentController');
         });
     });

@@ -214,7 +214,7 @@
                         toastr.success("Xếp lịch thành công !");
                         setTimeout(function() {
                             window.location.href = "{{ route('admin.bookings.sortAppointment') }}";
-                        }, 100);
+                        }, 500);
                     }
                     $('.error_dateTime').html(data);
                 }

@@ -118,7 +118,7 @@
 
     @if (Session::has('message_contact'))
         <script>
-            swal("Xong", "{!! Session::get('message_contact') !!}", "success", {
+            swal("Thành công", "{!! Session::get('message_contact') !!}", "success", {
                 button: "Xác nhận",
             });
         </script>
@@ -134,6 +134,19 @@
             }
             toastr.error("{!! Session::get('warning') !!}")
         @endif
+    </script>
+    <script>
+        $(document).ready(function() {
+            let today = moment().format('YYYY-MM-DD');
+            let tomorrow = moment().add(2, 'days').format('YYYY-MM-DD');
+            $('input[name=date_booking]').datepicker({
+                autoclose: true,
+                todayHighlight: true,
+                format: 'yyyy-mm-d',
+                startDate: today,
+                endDate: tomorrow
+            });
+        })
     </script>
 </body>
 
