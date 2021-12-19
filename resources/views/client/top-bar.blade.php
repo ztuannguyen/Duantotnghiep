@@ -7,7 +7,7 @@
             ->get();
         ?>
         @foreach ($logo as $item)
-            <a class="navbar-brand" href="index.html"><img src="{{ asset('uploads/' . $item->image) }}" width="200"
+            <a class="navbar-brand" href="{{ route('client.home') }}"><img src="{{ asset('uploads/' . $item->image) }}" width="200"
                     height="50"></a>
         @endforeach
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
