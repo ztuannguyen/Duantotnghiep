@@ -11,7 +11,7 @@
     <div class="col-sm-12">
         <h3>Mật khẩu</h3>
         <div class="input-group mb-3" style="width: 1039px">
-            <input type="text" class="form-control" name="password" id="password" placeholder="Nhập mật khẩu" required>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Nhập mật khẩu" required>
         </div>
     </div>
     @if (is_null(@$user->name))

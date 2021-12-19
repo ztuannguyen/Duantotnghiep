@@ -86,6 +86,7 @@
                     <a class="collapse-item" href="{{ route('admin.bookings.index')}}">Danh sách đơn</a>
                     <a class="collapse-item" href="{{ route('admin.bookings.sortAppointment')}}">Bảng xếp lịch</a>
                     <a class="collapse-item" href="{{ route('admin.bookings.waitingCut')}}">Danh sách hàng chờ</a>
+                    <a class="collapse-item" href="{{ route('admin.bookings.listCancel')}}">Danh sách lịch đã hủy</a>
                 </div>
             </div>
         </li>

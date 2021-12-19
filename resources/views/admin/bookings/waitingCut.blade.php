@@ -170,7 +170,8 @@
                     id: id,
                 },
                 success: function(response) {
-                    if (data == "") {
+                    if (response == "") {
+                        toastr.success('Lịch cắt đã hoàn thành!');
                         setTimeout(function() {
                             window.location.href = "{{ route('admin.bookings.waitingCut') }}";
                         }, 200);

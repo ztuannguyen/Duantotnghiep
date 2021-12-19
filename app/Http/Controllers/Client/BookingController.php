@@ -77,4 +77,28 @@ class BookingController extends Controller
         $booking->load(['service','salon']);
         return view('client.list', compact('booking'));
     }
+    public function cancellation(Request $request)
+    {
+        $booking = Booking::find($request->id);
+        $booking->status = 5;
+        $booking->reason = $request->reason;
+        $booking->save();
+        $booking_services = Booking_Service::where('booking_id', $request->id)->get();
+        foreach ($booking_services as $key => $item) {
+            $item->status = 5;
+            $item->chair_id = null;
+            $item->time_start = null;
+            $item->time_end = null;
+            $item->save();
+        }
+        session()->flash('message_contact', 'Đơn của quý khách đã được hủy !');
+    }
+    public function changeCalendar(Request $request){
+        $booking = Booking::find($request->id);
+        $booking->time_id = $request->time_id;
+        $booking->date_booking = $request->date_booking;
+        $booking->save();
+        $booking->load(['Time']);
+        session()->flash('message_contact', 'Quý khách đã chuyển lịch thành công !');
+    }
 }

@@ -29,7 +29,7 @@ class ContactController extends Controller
          }
          $data =  $request->except('_token');
          $result = Contact::create($data);
-         session()->flash('message_contact', 'Thông tin của bạn đã được gửi đi !');
+         session()->flash('message_contact', 'Thông tin của quý khách đã được gửi đi !');
          return redirect()->route('client.contact');
     }
 }

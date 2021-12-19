@@ -44,13 +44,6 @@ class SortAppointmentController extends Controller
         $booking_services->load(['booking']);
         foreach ($booking_services as $key => $sort_appointment) {
 
-            // $time_start_date = $sort_appointment->booking->date_booking . ' ' . $sort_appointment->time_start;
-            // $start_date = date_format(date_create($time_start_date), 'Y-m-d H:i');
-
-            // $time_end_date = $sort_appointment->booking->date_booking . ' ' . $sort_appointment->time_end;
-            // $end_date = date_format(date_create($time_end_date), 'Y-m-d H:i');
-
-
             $sort_appointments[$key]['start_date'] = $sort_appointment->time_start;
             $sort_appointments[$key]['end_date'] = $sort_appointment->time_end;
             $sort_appointments[$key]['text'] = "#" . $sort_appointment->booking->id . "<br>" . $sort_appointment->booking->name . "<br>" . $sort_appointment->booking->number_phone . "<br>" . $sort_appointment->service->name;

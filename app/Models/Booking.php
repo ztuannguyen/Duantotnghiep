@@ -21,6 +21,7 @@ class Booking extends Model
         'date_booking',
         'status',
         'note',
+        'reason',
         'total_price',
         'add_by_user'
     ];
