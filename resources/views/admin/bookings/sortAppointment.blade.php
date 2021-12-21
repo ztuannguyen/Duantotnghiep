@@ -187,14 +187,6 @@
             let time = $(`#${id}time`).val();
             let timestart = $(`#${id}time`).val();
             let status = $('#status').val();
-
-            // let time = $(`#${id}time`).val()
-            // let mang = time.split(':')
-            // let h = Math.floor((Number(mang[1]) + Number(timetotal)) / 60)
-            // let p = (Number(mang[1]) + Number(timetotal)) % 60
-            // mang[0] = Number(mang[0]) + h
-            // mang[1] = p
-            // time = mang.join(':')
             $('.close_modal');
             $('.error_dateTime').html();
             $.ajax({
@@ -289,7 +281,6 @@
         });
         $(document).ready(function() {
             $('.bs-timepicker').timepicker();
-
         })
     </script>
 @endsection

@@ -31,7 +31,8 @@
                         <th scope="col">Chi tiết</th>
                         <th scope="col">Trạng thái</th>
                         @foreach ($booking as $item)
-                            @if ($item->status != 1 && $item->status != 2)
+                            @if ($item->status != 1)
+
                             @else
                                 <th scope="col">Hành động</th>
                             @endif
@@ -48,7 +49,6 @@
                             <td><a class="btn btn-primary" data-toggle="modal"
                                     data-target="{{ '#' . '_' . $item->id }}"><span class="oi oi-eye"></span></a>
                             </td>
-                            </td>
                             <td>
                                 @if ($item->status == 1)
                                     <span class="badge badge-danger p-3 ">Chờ xếp lịch </span>
@@ -64,18 +64,10 @@
                             </td>
                             @if ($item->status == 1)
                                 <td>
-                                    <a href="#" data-toggle="modal" data-target="{{ '#' . 'change_' . $item->id }}"
-                                        class="btn btn-warning btn-circle ">
-                                        <span class="oi oi-pencil"></span>
-                                    </a>
                                     <a href="#" data-toggle="modal" data-target="{{ '#' . 'cancel_' . $item->id }}"
                                         class="btn btn-warning btn-circle"><i class="oi oi-ban"></i></a>
                                 </td>
-                            @elseif($item->status == 2)
-                                <td>
-                                    <a href="#" data-toggle="modal" data-target="{{ '#' . 'cancel_' . $item->id }}"
-                                        class="btn btn-warning btn-circle"><i class="oi oi-ban"></i></a>
-                                </td>
+                            @else
                             @endif
                         </tr>
                         <!-- Modal chi tiết-->
@@ -155,40 +147,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Modal chuyển lịch -->
-                        <div class="modal fade" id="{{ 'change_' . $item->id }}" tabindex="-1"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="staticBackdropLabel">Chuyển lịch cắt
-                                        </h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <label for="">Thời gian :</label>
-                                        <select class="form-control" name="time_id" id="{{ $item->id }}_time">
-                                            <option value="">Mời quý khách chọn thời gian</option>
-                                            @foreach ($booking->Time as $key => $item)
-                                                <option value="{{ $item->id }}">{{ $item->time_start }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        <span class="text-danger" id="{{ $item->id }}_errorTime"></span>
-                                        <label for="">Ngày đặt :</label>
-                                        <input class="form-control" type="text" name="date_booking"
-                                            id="{{ $item->id }}_date">
-                                        <span class="text-danger" id="{{ $item->id }}_errorDate"></span>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                        <button type="submit" onclick="changeCalendar({{ $item->id }})"
-                                            class="btn btn-danger">Chuyển lịch</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <!-- Modal hủy đơn -->
                         <div class="modal fade" id="{{ 'cancel_' . $item->id }}" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -239,36 +197,6 @@
                     _token: '{{ csrf_token() }}',
                     id: id,
                     reason: reason
-                },
-                success: function(data) {
-                    if (data == "") {
-                        setTimeout(function() {
-                            window.location.href = "{{ route('client.list') }}";
-                        }, 100);
-                    }
-                }
-            });
-        }
-
-        function changeCalendar(id) {
-            let time_id = $('#' + id + '_time').val();
-            if (time_id == "") {
-                $('#' + id + '_errorTime').html('Thời gian không được để trống');
-                return false;
-            }
-            let date_booking = $('#' + id + '_date').val();
-            if (date_booking == "") {
-                $('#' + id + '_errorDate').html('Ngày đặt không được để trống');
-                return false;
-            }
-            $.ajax({
-                type: "post",
-                url: "{{ route('changeCalendar') }}",
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    id: id,
-                    time_id: time_id,
-                    date_booking: date_booking
                 },
                 success: function(data) {
                     if (data == "") {

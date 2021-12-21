@@ -36,10 +36,9 @@
                             <td>Dịch vụ</td>
                             <td>Ghế làm</td>
                             <td>Chi nhánh</td>
-                            <td>Thời gian</td>
-                            <td>Ngày đặt</td>
                             <td>Chi tiết</td>
                             <td>Trạng thái</td>
+                            <td>Hành động</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,14 +55,16 @@
                                     @endif
                                 </td>
                                 <td>{{ $item->Salon->address }}</td>
-                                <td>{{ date('H:i:s', strtotime($item->time_start)) }}</td>
-                                <td>{{ $item->booking->date_booking }}</td>
                                 <td><a class="btn btn-primary btn-sm " data-toggle="modal"
                                         data-target="{{ '#' . '_' . $item->id }}">Xem</a></td>
                                 <td>
                                     @if ($item->status == 1)
                                         <span class="badge badge-warning p-3 ">Đang chờ cắt </span>
                                     @endif
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-primary btn-circle btn-sm" onclick="submit({{ $item->id }})"><i
+                                            class="fas fa-check-circle"></i></button>
                                 </td>
                             </tr>
                             <!-- Modal chi tiết-->
@@ -145,8 +146,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Đóng</button>
-                                            <button type="button" class="btn btn-primary" onclick="submit({{ $item->id }})"
-                                                >Đã xong</button>
+
                                         </div>
                                     </div>
                                 </div>

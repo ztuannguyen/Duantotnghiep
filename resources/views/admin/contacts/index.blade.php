@@ -17,10 +17,7 @@
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                 <i class="fa fa-bars"></i>
             </button>
-            <a href="{{ Route('admin.contacts.create') }}" class="btn btn-success  ">
-
-                <span class="text">Thêm mới</span>
-            </a>
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách thông tin liên hệ</h6>
         </div>
     @section('search-form')
         <!-- Topbar Search -->

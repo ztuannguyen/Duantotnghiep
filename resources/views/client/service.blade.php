@@ -28,10 +28,7 @@
             transform: translateY(-50%);
             margin-left: 28px;
         }
-        .card-img-top{
-            transform: scale(1.1);
-            transition: all .2s ease-in-out;
-        }
+
     </style>
 @endsection
 @section('contents')
@@ -63,27 +60,33 @@
     @foreach ($category as $item)
         <section class="bner_vip-section ftco-booking bg-light" style="height: auto;">
             <div class="container-fluid px-md-5">
-                <div class="service__title" style="padding-bottom: 20px; padding-top: 30px;">{{$item['name_cate']}}</div>
+                <div class="service__title" style="padding-bottom: 20px; padding-top: 30px;">{{ $item['name_cate'] }}</div>
                 <div class="container-fluid">
                     <div class="service__list">
                         <div class="swiper-container bbb_viewed_slider_container row col-md-12">
                             <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
-                                <div class="owl-carousel bbb_viewed_slider"   id="cate_{{ $item['id'] }}">
+                                <div class="owl-carousel bbb_viewed_slider" id="cate_{{ $item['id'] }}">
                                     @foreach ($item['services'] as $service)
-                                    <div class="card mb-3" style="width: 23rem;height: 26rem;" >
-                                        <img class="card-i mg-top" src="{{ url('uploads') }}/{{ $service['image'] }}" alt="Card image cap">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{$service['name']}}</h5>
-                                            <p class="card-subtitle">{{$service['description']}}.</p>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col"> <p class="card-text">{{number_format($service['price'])}}đ</p></div>
-                                               <div class="col"> <a href="{{route('client.detailService',['id' => $service->id])}}" class="card-text">Xem chi tiết >>></a></div>
+                                        <div class="card mb-3" style="width: 23rem;height: 26rem;">
+                                            <img class="card-img-top"
+                                                src="{{ url('uploads') }}/{{ $service['image'] }}" alt="Card image cap">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $service['name'] }}</h5>
+                                                <p class="card-subtitle">{{ $service['description'] }}.</p>
                                             </div>
-                                           
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p class="card-text">{{ number_format($service['price']) }}đ
+                                                        </p>
+                                                    </div>
+                                                    <div class="col"> <a
+                                                            href="{{ route('client.detailService', ['id' => $service->id]) }}"
+                                                            class="card-text">Xem chi tiết >>></a></div>
+                                                </div>
+
+                                            </div>
                                         </div>
-                                    </div>
                                     @endforeach
                                 </div>
                             </div>

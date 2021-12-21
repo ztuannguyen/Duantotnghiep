@@ -18,9 +18,18 @@
                                 <div class="text text-center">
                                     <h1 class="mb-4" style="text-shadow: 5px 2px 4px #bf925b;">Chào mừng đến với
                                         Brotherhoods</h1>
-                                    <a href="{{ route('client.show') }}" class="btn btn-primary px-5 py-3">
-                                        <h4 class="text-white">Đặt lịch ngay</h4>
-                                    </a>
+                                    @if (Auth::check())
+                                        @can('customer')
+                                            <a href="{{ route('client.show') }}" class="btn btn-primary px-5 py-3">
+                                                <h4 class="text-white">Đặt lịch ngay</h4>
+                                            </a>
+                                        @endcan
+                                    @else
+                                        <a href="{{ route('client.login') }}" class="btn btn-primary px-5 py-3">
+                                            <h4 class="text-white">Đặt lịch ngay</h4>
+                                        </a>
+                                    @endif
+
                                 </div>
                             </div>
                         </div>
@@ -62,7 +71,7 @@
                         style="background-image: url(/frontend/images/formen.jpg);">
                         <div class="text">
                             <h3>HOODS DỊCH VỤ</h3>
-                            <p><a href="{{route('client.service')}}" class="btn-custom">Xem thêm <span
+                            <p><a href="{{ route('client.service') }}" class="btn-custom">Xem thêm <span
                                         class="ion-ios-arrow-round-forward"></span></a></p>
                         </div>
                     </div>
@@ -91,7 +100,7 @@
                         style="background-image: url(/frontend/images/work-2.jpg);">
                         <div class="text">
                             <h3>HOODS TỎA SÁNG</h3>
-                            <p><a href="{{route('client.service')}}" class="btn-custom">Xem thêm <span
+                            <p><a href="{{ route('client.service') }}" class="btn-custom">Xem thêm <span
                                         class="ion-ios-arrow-round-forward"></span></a></p>
                         </div>
                     </div>
@@ -111,16 +120,19 @@
                 <div class="col-md-12 ftco-animate">
                     <div class="carousel-team owl-carousel">
                         @foreach ($listservice as $item)
-                        <div class="item team">
-                            <a href="#" class="text-center">
-                                <img src="{{ asset('uploads/' . $item->image) }}" alt="">
-                                <h2>{{$item->name}}</h2>
-                            </a>
-                            <div class="row mt-3" style="padding-left: 50px">
-                                <div class="col"><span class="card-text">{{number_format($item->price)}}đ</span></div>
-                                <div class="col"><a href="{{route('client.detailService', ['id' => $item->id])}}" class="card-text">Xem chi tiết >></a></div>
+                            <div class="item team">
+                                <a href="#" class="text-center ">
+                                    <img src="{{ asset('uploads/' . $item->image) }}" alt="">
+                                    <h2 class="mt-2">{{ $item->name }}</h2>
+                                </a>
+                                <div class="row mt-3" style="padding-left: 50px">
+                                    <div class="col"><span
+                                            class="card-text">{{ number_format($item->price) }}đ</span></div>
+                                    <div class="col"><a
+                                            href="{{ route('client.detailService', ['id' => $item->id]) }}"
+                                            class="card-text">Xem chi tiết >></a></div>
+                                </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>
@@ -188,12 +200,12 @@
                 <div class="col-md-12 ftco-animate">
                     <div class="carousel-team owl-carousel">
                         @foreach ($listBlog as $item)
-                        <div class="item team">
-                            <a href="{{route('client.detailBlog', ['id' => $item->id])}}" class="text-center">
-                                <img src="{{ asset('uploads/' . $item->image) }}" alt="">
-                                <h2>{{ $item->title }}</h2>
-                            </a>
-                        </div>
+                            <div class="item team">
+                                <a href="{{ route('client.detailBlog', ['id' => $item->id]) }}" class="text-center">
+                                    <img src="{{ asset('uploads/' . $item->image) }}" alt="">
+                                    <h2>{{ $item->title }}</h2>
+                                </a>
+                            </div>
                         @endforeach
                     </div>
                 </div>

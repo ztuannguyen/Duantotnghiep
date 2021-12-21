@@ -122,7 +122,6 @@ class SortAppointmentController extends Controller
         $booking->time_start = $request->start_date;
         $booking->time_end = $request->end_date;
         $booking->save();
-        dd($booking);
         return response()->json([
             "action" => "updated",
             'tid' => $booking->id

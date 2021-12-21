@@ -43,7 +43,6 @@ Route::group(['middleware' => 'verify.customer',], function () {
     Route::post('/',[BookingController::class, 'store'])->name('client.post');
     Route::get('/danh-sach-don',[BookingController::class,'listBooking'])->name('client.list');
     Route::post('/cancellation', [BookingController::class, 'cancellation'])->name('cancellation');
-    Route::post('/changeCalendar', [BookingController::class, 'changeCalendar'])->name('changeCalendar');
     //Dịch vụ 
     Route::get('/dich-vu',[ServiceController::class,'service'])->name('client.service');
     Route::get('/chi-tiet-dich-vu/{id}',[ServiceController::class,'detail'])->name('client.detailService');
@@ -59,6 +58,8 @@ Route::group(['middleware' => 'verify.customer',], function () {
     Route::get('/trang-gioi-thieu', function() {
         return view('client/about');
     })->name('client.about');
+    //SMS
+    Route::get('/sms',[BookingController::class,'store']);
 
     // Đăng nhập, khôi phục mật khẩu
     Route::get('/dang-nhap',[AuthController::class,'login'])->name('client.login');

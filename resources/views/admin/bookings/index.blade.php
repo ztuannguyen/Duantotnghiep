@@ -1,5 +1,3 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 @extends('layouts.admin')
 @section('title')
     Danh sách đặt lịch
@@ -187,7 +185,11 @@
                                                 aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         </div>
                                         <div class="modal-body">
-                                            <p class="btn btn-info" style="width:100%">#{{ $item->id }}</p>
+                                            <p class="btn btn-info" style="width:100%">
+                                                @if ($item->id)
+                                                    #{{ $item->id }}
+                                                @endif
+                                            </p>
                                             <div class="card shadow mb-4">
                                                 <div class="card-header py-3">
                                                     <h6 class="m-0 font-weight-bold text-primary">Thông tin khách hàng
@@ -204,7 +206,8 @@
                                                         Chi nhánh : <b>{{ $item->salon->address }}</b>
                                                     </div>
                                                     <div class="mb-3">
-                                                        Thời gian : <b>{{ $item->time->time_start }}</b>
+                                                        Thời gian :
+                                                        <b>{{ date('H:i:s', strtotime($item->Time->time_start)) }}</b>
                                                     </div>
                                                     <div>
                                                         Ngày : <b>{{ $item->date_booking }}</b>
@@ -223,15 +226,14 @@
                                                         <div>Giá</div>
                                                     </div>
                                                     @foreach ($item->service as $key => $ser)
-                                                        <div class="row">
-                                                            <div class="col-10 mb-3"><b>{{ $ser->name }}</b>
-                                                            </div>
-                                                            <div>
-                                                                <b>{{ number_format($ser->price) }}đ</b>
-                                                            </div>
+                                                    <div class="row">
+                                                        <div class="col-10 mb-3"><b>{{ $ser->name }}</b>
                                                         </div>
+                                                        <div>
+                                                            <b>{{ number_format($ser->price) }}đ</b>
+                                                        </div>
+                                                    </div>
                                                     @endforeach
-
                                                 </div>
                                             </div>
                                             <div class="card-header" style="width:50%;float:right;">
@@ -249,6 +251,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Đóng</button>
+
                                         </div>
                                     </div>
                                 </div>
@@ -288,8 +291,6 @@
         <h2>Không có dữ liệu</h2>
     @endif
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 @endsection
 @section('script')
 <script>
@@ -305,7 +306,7 @@
             $('#' + id + '_errorReason').html('Lý do không được để trống');
             return false;
         }
-       
+
         $.ajax({
             type: "post",
             url: "{{ route('admin.bookings.cancellation') }}",

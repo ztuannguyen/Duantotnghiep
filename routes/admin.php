@@ -102,6 +102,7 @@ Route::group(['middleware' => 'verify.staff'], function () {
             Route::post('/cancellation', [BookingController::class, 'cancellation'])->name('cancellation');
             Route::get('restore/{id}',[BookingController::class, 'restore'])->name('restore');
             Route::get('/listCancel',[BookingController::class, 'listCancel'])->name('listCancel');
+            Route::get('pdf', [BookingController::class,'pdf']);
             Route::resource('/booking_services', 'SortAppointmentController');
         });
     });

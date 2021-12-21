@@ -7,8 +7,8 @@
             ->get();
         ?>
         @foreach ($logo as $item)
-            <a class="navbar-brand" href="{{ route('client.home') }}"><img src="{{ asset('uploads/' . $item->image) }}" width="200"
-                    height="50"></a>
+            <a class="navbar-brand" href="{{ route('client.home') }}"><img src="{{ asset('uploads/' . $item->image) }}" width="300"
+                    height="100"></a>
         @endforeach
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
             aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,7 @@
                         vụ</a></li>
                 <li class="nav-item "><a href="{{ route('client.blog') }}" class="nav-link">Blog</a></li>
 
-                <li class="nav-item"><a href="contact.html" class="nav-link">Liên hệ</a></li>
+                <li class="nav-item"><a href="{{ route('client.contact')}}" class="nav-link">Liên hệ</a></li>
                 @if (!Auth::check())
                     <li class="nav-item"><a href="{{ route('client.login') }}" class="nav-link">Đăng
                             nhập</a></li>

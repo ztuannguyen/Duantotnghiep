@@ -142,10 +142,10 @@
                                 <div class="row">
                                     @if (!Auth::check())
                                     @else
-                                    <input type="hidden" name="add_by_user" id="" value="{{ Auth::user()->id }}">
+                                        <input type="hidden" name="add_by_user" id="" value="{{ Auth::user()->id }}">
                                         <div class="col-sm-6">
                                             <h4>Tên khách hàng</h4>
-                                            <div class="input-group mb-3 disable">
+                                            <div class="input-group mb-3">
                                                 <input type="text" class="form-control" name="name"
                                                     value="{{ Auth::user()->name }}" placeholder="Nhập tên khách hàng..">
                                             </div>
@@ -155,7 +155,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <h4>Số điện thoại</h4>
-                                            <div class="input-group mb-3 disable">
+                                            <div class="input-group mb-3">
                                                 <input type="tel" class="form-control" name="number_phone"
                                                     value="{{ Auth::user()->number_phone }}"
                                                     placeholder="Nhập số điện thoại..">
@@ -229,14 +229,16 @@
                                 <div class="col text-center">
                                     @if (Auth::check())
                                         @can('customer')
-                                            <button type="submit" class="btn btn-primary" style="margin-top: 40px;">Đặt Lịch Ngay</button>
+                                            <button type="submit" class="btn btn-primary" style="margin-top: 40px;">Đặt Lịch
+                                                Ngay</button>
                                         @endcan
                                     @else
-                                        <a href="{{ route('client.login') }}">Nhấn vào đây để đăng nhập</a>
+                                        <a href="{{ route('client.login') }}" class="btn btn-primary"
+                                            style="margin-top: 40px;">Đặt Lịch Ngay</a>
                                     @endif
                                 </div>
+                            </form>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>

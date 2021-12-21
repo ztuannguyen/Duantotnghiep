@@ -9,6 +9,8 @@ use App\Models\CateService;
 use App\Models\Salon;
 use App\Models\Service;
 use App\Models\Time;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Booking\BookingRequest;
 
@@ -72,8 +74,8 @@ class BookingController extends Controller
 
         return $data;
     }
-    public function listBooking(){
-        $booking = Booking::where('add_by_user',5)->get();
+    public function listBooking(Request $request){
+        $booking = Booking::where('add_by_user',Auth::user()->id)->get();
         $booking->load(['service','salon']);
         return view('client.list', compact('booking'));
     }
@@ -92,13 +94,5 @@ class BookingController extends Controller
             $item->save();
         }
         session()->flash('message_contact', 'Đơn của quý khách đã được hủy !');
-    }
-    public function changeCalendar(Request $request){
-        $booking = Booking::find($request->id);
-        $booking->time_id = $request->time_id;
-        $booking->date_booking = $request->date_booking;
-        $booking->save();
-        $booking->load(['Time']);
-        session()->flash('message_contact', 'Quý khách đã chuyển lịch thành công !');
     }
 }
